@@ -79,3 +79,10 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+App::error(function(\Tappleby\AuthToken\Exceptions\NotAuthorizedException $exception,$code){
+    return array(
+        'error' => 1,
+        'msg'=>'Not authorized access'
+    );
+});
