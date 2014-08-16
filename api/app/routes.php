@@ -13,7 +13,8 @@
 
 Route::get('/', function()
 {
-	return "asd";
+    Session::set('token',"proba token");
+	return Session::get('token');
 });
 Route::get('auth', 'Tappleby\AuthToken\AuthTokenController@index');
 Route::post('auth', 'Tappleby\AuthToken\AuthTokenController@store');

@@ -17,7 +17,7 @@ ClassLoader::addDirectories(array(
 	app_path().'/controllers',
 	app_path().'/models',
 	app_path().'/database/seeds',
-
+    app_path().'/listeners.php'
 ));
 
 /*
@@ -85,4 +85,10 @@ App::error(function(\Tappleby\AuthToken\Exceptions\NotAuthorizedException $excep
         'error' => 1,
         'msg'=>'Not authorized access'
     );
+});
+
+Event::listen('auth.token.created', function($user, $token)
+{
+    Session::put('token',AuthToken::publicToken($token));
+    return array("msg"=>"event fired");
 });
