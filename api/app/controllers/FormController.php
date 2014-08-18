@@ -9,7 +9,9 @@ class FormController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		return ProcessResponse::process(FormConfig::with(array('fields'=>function($query){
+
+                }))->get());
 	}
 
 
@@ -31,7 +33,7 @@ class FormController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+
 	}
 
 
@@ -43,7 +45,7 @@ class FormController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+
 	}
 
 

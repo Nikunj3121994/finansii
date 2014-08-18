@@ -17,6 +17,8 @@ Route::get('/', function()
 	return "asd";
 
 });
+Route::resource('form', 'FormController');
+Route::controller('config', 'ConfigController');
 Route::get('auth', 'Tappleby\AuthToken\AuthTokenController@index');
 Route::post('auth', 'Tappleby\AuthToken\AuthTokenController@store');
 Route::delete('auth', 'Tappleby\AuthToken\AuthTokenController@destroy');

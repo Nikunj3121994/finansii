@@ -1,7 +1,8 @@
 <?php
 
 class Field extends \Eloquent {
-    public function config(){
+    protected $fillable=array("name","visible","required","edit");
+    public function property(){
         return $this->hasMany('FieldConfig');
     }
     public function forms(){
