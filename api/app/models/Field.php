@@ -5,6 +5,6 @@ class Field extends \Eloquent {
         return $this->hasMany('FieldConfig');
     }
     public function forms(){
-        return $this->belongsToMany('Form');
+        return $this->belongsToMany('FormConfig');
     }
 }

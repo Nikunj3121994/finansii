@@ -122,7 +122,8 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
         'Tappleby\AuthToken\AuthTokenServiceProvider',
-        'Way\Generators\GeneratorsServiceProvider'
+        'Way\Generators\GeneratorsServiceProvider',
+        'Barryvdh\Debugbar\ServiceProvider'
 	),
 
 	/*
