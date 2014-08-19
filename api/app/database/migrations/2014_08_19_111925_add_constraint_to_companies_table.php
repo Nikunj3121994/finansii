@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateSettlementsTable extends Migration {
+class AddConstraintToCompaniesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,15 +12,11 @@ class CreateSettlementsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('settlements', function(Blueprint $table)
+		Schema::table('companies', function(Blueprint $table)
 		{
-			$table->increments('id');
-			$table->integer('settlement_code')->unsigned()->index();
-			$table->string('settlement_name', 100);
-			$table->integer('ptt_code');
-			$table->integer('municipality_code')->unsigned()->index();
             $table->foreign('municipality_code')->references('municipality_code')->on('municipalities')->onDelete('cascade');
-			$table->timestamps();
+            $table->foreign('settlement_code')->references('settlement_code')->on('settlements')->onDelete('cascade');
+            $table->foreign('street_code')->references('street_code')->on('streets')->onDelete('cascade');
 		});
 	}
 
@@ -32,7 +28,10 @@ class CreateSettlementsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('settlements');
+		Schema::table('companies', function(Blueprint $table)
+		{
+			
+		});
 	}
 
 }

@@ -15,16 +15,16 @@ class CreateCompaniesTable extends Migration {
 		Schema::create('companies', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('company_code', 5);
+			$table->integer('company_code')->unsigned()->index();
 			$table->string('company_name', 70);
 			$table->string('company_short_name', 30);
 			$table->string('company_address', 50);
 			$table->integer('municipality_code')->unsigned()->index();
-            $table->foreign('municipality_code')->references('municipality_code')->on('municipality')->onDelete('cascade');
+
 			$table->integer('settlement_code')->unsigned()->index();
-            $table->foreign('settlement_code')->references('settlement_code')->on('settlements')->onDelete('cascade');
+
 			$table->integer('street_code')->unsigned()->index();
-            $table->foreign('street_code')->references('street_code')->on('streets')->onDelete('cascade');
+
 			$table->string('telephone1', 20);
 			$table->string('telephone2', 20);
 			$table->string('fax', 20);

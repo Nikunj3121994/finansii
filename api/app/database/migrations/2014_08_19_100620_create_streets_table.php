@@ -15,7 +15,7 @@ class CreateStreetsTable extends Migration {
 		Schema::create('streets', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('street_code');
+			$table->integer('street_code')->unsigned()->index();
 			$table->string('street_name', 50);
 			$table->integer('settlement_code')->unsigned()->index();
             $table->foreign('settlement_code')->references('settlement_code')->on('settlements')->onDelete('cascade');

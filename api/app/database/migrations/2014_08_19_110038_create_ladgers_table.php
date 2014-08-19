@@ -26,7 +26,7 @@ class CreateLadgersTable extends Migration {
 			$table->string('document_number', 20);
 			$table->string('document_desc', 30);
 			$table->timestamp('document_date');
-			$table->integer('booking_type', 1);
+			$table->integer('booking_type');
 			$table->decimal('amount', 18,6);
 			$table->integer('currency_code')->unsigned()->index();
             $table->foreign('currency_code')->references('id')->on('currencies')->onDelete('cascade');

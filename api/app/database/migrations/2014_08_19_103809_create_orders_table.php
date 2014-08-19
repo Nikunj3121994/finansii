@@ -16,7 +16,7 @@ class CreateOrdersTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('order_type', 5);
-			$table->integer('order_number', 5);
+			$table->integer('order_number');
 			$table->timestamp('order_date');
 			$table->timestamp('order_booking');
 			$table->integer('operator_id')->unsigned()->index();

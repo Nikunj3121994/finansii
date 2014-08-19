@@ -17,7 +17,7 @@ class CreateExchangeRatesTable extends Migration {
 			$table->increments('id');
 			$table->timestamp('exchange_date');
 			$table->integer('currency_code')->unsigned()->index();
-            $table->foreign('currency_code')->references('currency_code')->on('currencies')->onDelete('cascade');
+            $table->foreign('currency_code')->references('id')->on('currencies')->onDelete('cascade');
 			$table->decimal('currency_value', 12,6);
 			$table->timestamps();
 		});

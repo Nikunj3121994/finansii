@@ -15,7 +15,7 @@ class CreateBanksTable extends Migration {
 		Schema::create('banks', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('bank_bic', 3);
+			$table->integer('bank_bic');
 			$table->string('bank_name', 50);
 			$table->string('bank_based', 50);
 			$table->string('bank_account', 15);
