@@ -22,3 +22,14 @@ Route::controller('config', 'ConfigController');
 Route::get('auth', 'Tappleby\AuthToken\AuthTokenController@index');
 Route::post('auth', 'Tappleby\AuthToken\AuthTokenController@store');
 Route::delete('auth', 'Tappleby\AuthToken\AuthTokenController@destroy');
+
+
+
+/**
+ * Route resources
+ */
+Route::resource('municipalities', 'MunicipalitiesController',array('except' =>array('edit','create')));
+Route::resource('settlements', 'SettlementsController');
+Route::resource('streets', 'StreetsController');
+Route::resource('companies', 'CompaniesController');
+Route::resource('orders', 'OrdersController');

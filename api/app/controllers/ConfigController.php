@@ -6,8 +6,8 @@ class ConfigController extends BaseController
     public function getIndex()
     {
         return ProcessResponse::process(FormConfig::with(array('fields' => function ($query) {
-                  $query->with('property');
-            }))->get());
+            $query->with('property');
+        }))->get());
     }
 
     public function postAddForm()

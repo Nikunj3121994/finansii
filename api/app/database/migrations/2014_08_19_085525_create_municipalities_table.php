@@ -16,7 +16,7 @@ class CreateMunicipalitiesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('municipality_code')->unsigned()->index();
-			$table->integer('municipality_name');
+			$table->string('municipality_name',50);
 			$table->integer('municipality_id');
 			$table->timestamps();
 		});
