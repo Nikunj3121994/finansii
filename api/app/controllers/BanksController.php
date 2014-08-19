@@ -1,21 +1,21 @@
 <?php
 
-class CompaniesController extends \BaseController {
+class BanksController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
-	 * GET /companies
+	 * GET /banks
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-        return ProcessResponse::process(Company::with('municipalities')->with('settlements')->with('streets')->get()->toArray());
+		return ProcessResponse::process(Bank::all()->toArray());
 	}
 
 	/**
 	 * Show the form for creating a new resource.
-	 * GET /companies/create
+	 * GET /banks/create
 	 *
 	 * @return Response
 	 */
@@ -26,24 +26,20 @@ class CompaniesController extends \BaseController {
 
 	/**
 	 * Store a newly created resource in storage.
-	 * POST /companies
+	 * POST /banks
 	 *
 	 * @return Response
 	 */
 	public function store()
 	{
         $validator = Validator::make(Input::all(), array(
-            "company_code" => "required|numeric",
-            "company_name" => "required",
-            "settlement_code" => "required|numeric",
-            "municipality_code" => "required|numeric",
-            "street_code" => "required|numeric",
-            "mail"=>"email"
+            "bank_bic" => "required|numeric",
+            "bank_name" => "required"
         ));
         if($validator->fails()){
             return ProcessResponse::getError(1000,$validator->messages());
         }else{
-            if(Company::create(Input::all())){
+            if(Bank::create(Input::all())){
                 return ProcessResponse::$success;
             }else{
                 return ProcessResponse::getError( 1000,"Error");
@@ -53,20 +49,19 @@ class CompaniesController extends \BaseController {
 
 	/**
 	 * Display the specified resource.
-	 * GET /companies/{id}
+	 * GET /banks/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function show($id)
 	{
-        return ProcessResponse::process(Company::find($id)->first()->with('municipalities')->
-            with('settlements')->with('streets')->get());
-	}
+		return ProcessResponse::process(Bank::find($id)->first()->get());
+    }
 
 	/**
 	 * Show the form for editing the specified resource.
-	 * GET /companies/{id}/edit
+	 * GET /banks/{id}/edit
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -78,7 +73,7 @@ class CompaniesController extends \BaseController {
 
 	/**
 	 * Update the specified resource in storage.
-	 * PUT /companies/{id}
+	 * PUT /banks/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -86,16 +81,12 @@ class CompaniesController extends \BaseController {
 	public function update($id)
 	{
         $validator = Validator::make(Input::all(), array(
-            "company_code" => "numeric",
-            "settlement_code" => "numeric",
-            "municipality_code" => "numeric",
-            "street_code" => "numeric",
-            "mail"=>"email"
+            "bank_bic" => "numeric"
         ));
         if($validator->fails()){
             return ProcessResponse::getError(1000,$validator->messages());
         }else{
-            $model=Company::find($id);
+            $model=Bank::find($id);
             $model->fill(Input::all());
             if($model->save()){
                 return ProcessResponse::$success;
@@ -107,19 +98,14 @@ class CompaniesController extends \BaseController {
 
 	/**
 	 * Remove the specified resource from storage.
-	 * DELETE /companies/{id}
+	 * DELETE /banks/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function destroy($id)
 	{
-        $model=Company::find($id);
-        if ( $model->delete()){
-            return ProcessResponse::$success;
-        } else {
-            return ProcessResponse::getError(1000, "Error");
-        }
+		//
 	}
 
 }

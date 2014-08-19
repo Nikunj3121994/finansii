@@ -5,7 +5,8 @@ class ProcessResponse {
     public static function process($data){
            if($data){
                if(sizeof($data)>0){
-                   return array("body"=>$data,"error"=>ProcessResponse::$success);
+                   if(sizeof($data)==1) return array("body"=>$data[0],"error"=>ProcessResponse::$success);
+                   else return array("body"=>$data,"error"=>ProcessResponse::$success);
                }
                else {
                    return ProcessResponse::getError(4000,"Resource not found");
