@@ -54,7 +54,6 @@ class ConfigController extends BaseController
         } else {
             return ProcessResponse::getError(1001,"Specify name for the requested form");
         }
-
     }
     public function postAttachField(){
         $field=Field::where('name','=',Input::get('field_name'))->first();
