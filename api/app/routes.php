@@ -30,6 +30,12 @@ Route::delete('auth', 'Tappleby\AuthToken\AuthTokenController@destroy');
 Route::resource('municipalities', 'MunicipalitiesController',array('except' =>array('edit','create')));
 Route::resource('settlements', 'SettlementsController');
 Route::resource('streets', 'StreetsController');
+
+Route::post('companies/add-bank','CompaniesController@addBank');
 Route::resource('companies', 'CompaniesController');
 Route::resource('orders', 'OrdersController');
 Route::resource('banks', 'BanksController');
+Route::resource('operators', 'OperatorsController');
+Route::resource('orders', 'OrdersController');
+Route::resource('sub-accounts', 'SubAccountsController');
+Route::resource('accounts', 'AccountsController');

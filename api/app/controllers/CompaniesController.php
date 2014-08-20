@@ -121,5 +121,20 @@ class CompaniesController extends \BaseController {
             return ProcessResponse::getError(1000, "Error");
         }
 	}
+    public function addBank(){
+        $validator=Validator::make(Input::all(),array(
+            'bank'=>'required|numeric',
+            'company'=>'required|numeric',
+            'bank_account'=>'required|numeric',
+            'rang'=>'numeric'
+        ));
+        if(!$validator->fails()){
+            $company=Company::find(Input::get('company'));
+            $company->banks()->attach(Input::has('bank'),array('bank_account'=>Input::get('bank_account'),'rang'=>Input::get('rang')));
+            return ProcessResponse::$success;
+        }else{
+            return ProcessResponse::getError(1000,$validator->messages());
+        }
+    }
 
 }

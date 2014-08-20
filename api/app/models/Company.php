@@ -16,4 +16,7 @@ class Company extends \Eloquent {
     public function streets(){
         return $this->belongsTo('Street','street_code','street_code');
     }
+    public function banks(){
+        return $this->belongsToMany('Bank')->withPivot('bank_account','rang');
+    }
 }

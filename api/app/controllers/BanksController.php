@@ -105,7 +105,12 @@ class BanksController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+        $model=Bank::find($id);
+        if ( $model->delete()){
+            return ProcessResponse::$success;
+        } else {
+            return ProcessResponse::getError(1000, "Error");
+        }
 	}
 
 }
