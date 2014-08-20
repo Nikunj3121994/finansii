@@ -27,15 +27,18 @@ Route::delete('auth', 'Tappleby\AuthToken\AuthTokenController@destroy');
 /**
  * Route resources
  */
-Route::resource('municipalities', 'MunicipalitiesController',array('except' =>array('edit','create')));
-Route::resource('settlements', 'SettlementsController');
-Route::resource('streets', 'StreetsController');
+$excludedPaths=array('except' =>array('edit','create'));
+Route::resource('municipalities', 'MunicipalitiesController',$excludedPaths);
+Route::resource('settlements', 'SettlementsController',$excludedPaths);
+Route::resource('streets', 'StreetsController',$excludedPaths);
 
-Route::post('companies/add-bank','CompaniesController@addBank');
-Route::resource('companies', 'CompaniesController');
-Route::resource('orders', 'OrdersController');
-Route::resource('banks', 'BanksController');
-Route::resource('operators', 'OperatorsController');
-Route::resource('orders', 'OrdersController');
-Route::resource('sub-accounts', 'SubAccountsController');
-Route::resource('accounts', 'AccountsController');
+Route::post('companies/add-bank','CompaniesController@addBank',$excludedPaths);
+Route::resource('companies', 'CompaniesController',$excludedPaths);
+Route::resource('orders', 'OrdersController',$excludedPaths);
+Route::resource('banks', 'BanksController',$excludedPaths);
+Route::resource('operators', 'OperatorsController',$excludedPaths);
+Route::resource('orders', 'OrdersController',$excludedPaths);
+Route::resource('sub-accounts', 'SubAccountsController',$excludedPaths);
+Route::resource('accounts', 'AccountsController',$excludedPaths);
+Route::resource('currencies', 'CurrenciesController',$excludedPaths);
+Route::resource('exchange-rates', 'ExchangeRatesController',$excludedPaths);

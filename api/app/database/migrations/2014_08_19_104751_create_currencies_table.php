@@ -17,7 +17,7 @@ class CreateCurrenciesTable extends Migration {
 			$table->increments('id');
 			$table->string('currency_shrt_name', 5);
 			$table->string('currency_name', 40);
-			$table->string('currency_country', 40)->integer();
+			$table->string('currency_country', 40);
 			$table->timestamps();
 		});
 	}
