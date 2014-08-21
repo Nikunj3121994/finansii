@@ -1,0 +1,34 @@
+{
+    "name": "Pripremi",
+    "version": "0.1.0",
+    "private": true,
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "jquery": "latest",
+        "perfect-scrollbar": "latest",
+        "jquery.slimscroll": "latest",
+        "requirejs": "latest",
+        "lodash": "latest",
+        "bootstrap": "latest",
+        "font-awesome": "latest",
+        "bourbon": "~3.2.0",
+        "angular": "latest",
+        "angular-bindonce": "latest",
+        "angular-bootstrap": "latest",
+        "angular-cache": "latest",
+        "angular-mocks": "latest",
+        "angular-route": "latest",
+        "angular-strap": "latest",
+        "angular-translate": "latest",
+        "angular-ui-router": "latest",
+        "angular-ui-utils": "latest",
+        "jspdf": "latest",
+        "react": "latest"
+    }
+}
