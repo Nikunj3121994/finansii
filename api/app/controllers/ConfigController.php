@@ -5,9 +5,37 @@ class ConfigController extends BaseController
 
     public function getIndex()
     {
-        return ProcessResponse::process(FormConfig::with(array('fields' => function ($query) {
+        $forms=FormConfig::with(array('fields' => function ($query) {
             $query->with('property');
-        }))->get());
+        }))->get()->toArray();
+        $output=array();
+        foreach($forms as $form){
+            $formsOutput=array();
+            foreach($form as $key=>$value){
+                $fieldsOutput=array();
+               if($key!="fields" && $key!="name"){
+                   $formsOutput=array_merge($formsOutput,array($key=>$value));
+               }else if($key=="fields"){
+                   foreach($value as $field){
+                       $fieldOutput=array();
+                       foreach($field as $fieldKey=>$fieldValue){
+                           if($fieldKey=="property"){
+                               foreach($fieldValue as$property){
+                                   $fieldOutput=array_merge($fieldOutput,array($property['key']=>$property['value']));
+                               }
+                           }else $fieldOutput=array_merge($fieldOutput,array($fieldKey=>$fieldValue));
+                       }
+                       $fieldsOutput=array_merge($fieldsOutput,array($field['name']=>$fieldOutput));
+                   }
+                    $formsOutput=array_merge($formsOutput,$fieldsOutput);
+               }
+
+            }
+            $output=array_merge($output,array($form['name']=>$formsOutput));
+
+        }
+
+        return $output;
     }
 
     public function postAddForm()
