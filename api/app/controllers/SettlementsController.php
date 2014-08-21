@@ -12,7 +12,9 @@ class SettlementsController extends \BaseController {
 	{
 		if(Input::has('municipalities')){
             return ProcessResponse::process(Settlement::where('municipality_code','=',Input::get('municipalities'))->toArray());
-        }else{
+        }else if(Input::has('val')){
+            return ProcessResponse::process(Settlement::where('settlement_name','like',"%".Input::get('val')."%")->take(5)->get());
+        } else{
             return ProcessResponse::process(Settlement::with('municipalities')->get()->toArray());
         }
 	}
