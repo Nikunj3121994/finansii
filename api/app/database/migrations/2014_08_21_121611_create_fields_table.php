@@ -18,6 +18,7 @@ class CreateFieldsTable extends Migration {
             $table->string('name',50);
             $table->string('label',50);
             $table->boolean('visible');
+            $table->string('type',20);
             $table->integer('edit');
             $table->boolean('required');
             $table->integer('form_config_id')->unsigned()->index();
