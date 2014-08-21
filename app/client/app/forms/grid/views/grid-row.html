@@ -1,0 +1,14 @@
+<td ng-if="gridOptions.permissions.select">
+    <label class="ui-checkbox">
+        <input type="checkbox" ng-model="selectedItems[row.id]">
+        <span></span>
+    </label>
+</td>
+<td bindonce ng-repeat="element in row.cols" ng-show="$parent.data.colsSettings[$index].visible" ng-switch on="$parent.data.colsSettings[$index].type" >
+   <span ng-switch-when="text">{{element.val}}</span>
+   <span ng-switch-when="date">{{element.val|date:'dd.MM.yyyy'}}</span>
+
+</td>
+<td ng-if="gridOptions.permissions.editResource">
+    <button class="btn btn-primary btn-xs" ng-click="editDataRow(row.id,$index)">Edit</button>
+</td>

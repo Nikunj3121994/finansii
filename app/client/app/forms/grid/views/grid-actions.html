@@ -1,0 +1,37 @@
+<div class="table-actions row">
+    <div ng-if="gridOptions.permissions.search" class="col-md-4">
+        <input type="text" class="form-control js_search_field" ng-model="$parent.searchField">
+    </div>
+    <div class="col-md-2">
+        <input class="page-size form-control" type="number" min="1" ng-model="pagination.pageSize" ng-pattern="/^[1-9][0-9]*$/">
+    </div>
+    <div class="col-md-6">
+        <div class="btn-group" ng-if="gridOptions.permissions.filterColumns">
+            <button class="btn btn-line-primary dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-columns"></i>
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li role="presentation" ng-click="showAllColumns()">
+                    <a role="menuitem" tabindex="-1">Show allcolumns</a>
+                </li>
+                <li role="presentation" ng-repeat="column in data.colsSettings">
+                    <input type="checkbox"
+                           ng-checked="column.visible"
+                           ng-model="data.colsSettings[$index].visible">
+                    <span>{{ column.header }}</span>
+                </li>
+            </ul>
+        </div>
+
+        <button class="btn btn-line-primary" ng-click="deleteResources()"
+                ng-if="gridOptions.permissions.deleteResource">
+            <i class="glyphicon glyphicon-trash"></i>
+        </button>
+
+        <button class="btn btn-line-primary" ng-click="addNewResource()"
+                ng-if="gridOptions.permissions.addResource">
+            <i class="fa fa-plus"></i>
+        </button>
+    </div>
+</div>

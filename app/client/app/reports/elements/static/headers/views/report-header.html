@@ -1,0 +1,23 @@
+<div class="report-header-container print-header">
+    <div class="error-message" ng-show="!data.header">Cannot bind from protoModels.headerData</div>
+    <div class="row">
+        <div class="col-md-2">
+            <span>{{ data.header.imeFirma }}</span>
+        </div>
+        <div class="col-md-2 col-md-offset-8">
+            <span>TODO Стр: 1</span>
+        </div>
+    </div>
+    <div class="">
+        <h2 class="text-uppercase text-center">
+            {{ data.header.title }}
+        </h2>
+        <div class="text-center">
+            {{ data.header.subTitle }}
+        </div>
+    </div>
+    <div class="">
+        За период од <strong>{{ data.header.dateFrom }}</strong>
+        до <strong>{{ data.header.dateTo }}</strong>
+    </div>
+</div>

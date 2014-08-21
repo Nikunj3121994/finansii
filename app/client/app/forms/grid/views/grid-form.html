@@ -1,0 +1,13 @@
+<form name="{{ gridOptions.formName }}" ng-show="formData" novalidate>
+    <fieldset>
+        <legend>{{ formLabel }}</legend>
+    </fieldset>
+    <div class="js-input-container">
+        <!-- Dynamicly generated inputs by link function -->
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary" ng-click="submitForm()" ng-disabled="isFormValid()">Submit
+        </button>
+        <button type="button" class="btn btn-warning" ng-click="cancelForm()">Cancel</button>
+    </div>
+</form>

@@ -1,0 +1,19 @@
+<nav>
+    <!-- Creating menu items for navigation -->
+    <ul id="nav" data-slim-scroll class="ng-scope" >
+        <li ng-repeat="menuItem in demoData" ng-class="{'active': opened}" data-collapse-item>
+            <a ng-href="{{ '#/' + menuItem.link }}">
+                <i class="{{ 'fa fa-' + menuItem.iconClass || 'noicon' }}"></i>
+                <span translate>{{ menuItem.name }}</span>
+            </a>
+            <!-- Creating sub menu for navigation -->
+            <ul ng-show="opened" data-has-submenu>
+                <li ng-repeat="subItem in menuItem.subMenu" >
+                    <a ng-href="{{ '#/' + menuItem.link + '/' + subItem.link }}">
+                        {{ subItem.name }}
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>

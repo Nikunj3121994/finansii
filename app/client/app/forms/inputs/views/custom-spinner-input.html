@@ -1,0 +1,27 @@
+<div class="custom-spinner row">
+    <div class="col-sm-2">
+        <label>{{ inputLabel }}</label>
+    </div>
+    <div class="col-sm-4">
+        <div class="input-group">
+            <input type="text" class="form-control"
+                   dynamic-name="inputName"
+                   ng-required="{{ inputRequired }}"
+                   ng-model="inputModel"
+                   notification-messages>
+            <div class="input-group-btn btn-group-vertical">
+                <button type="button" class="btn btn-xs btn-default btn-arrows" ng-click="increment()">
+                    <i class="fa fa-angle-up"></i>
+                </button>
+                <button type="button" class="btn spinner-down btn-xs btn-default btn-arrows" ng-click="decrement()">
+                    <i class="fa fa-angle-down"></i>
+                </button>
+            </div>
+        </div>
+        <div class="notification-messages">
+        <!-- Dependent of notification-messages directive in input -->
+        <p class="text-danger" ng-show="showRequiredMessage()">Required field</p>
+        <p class="text-danger" ng-show="showPatternMismatchedMessage()">{{ inputPatternMsg }}</p>
+        </div>
+    </div>
+</div>

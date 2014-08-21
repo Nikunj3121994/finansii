@@ -1,0 +1,79 @@
+{
+    "colsSettings": [
+        {
+            "header": "Тип",
+            "submitName": "opstini_kod",
+            "validateEmpty": "1",
+            "validateRegex": "\\d",
+            "validateEMessage": "\u0412\u043d\u0435\u0441\u0435\u0442\u0435 \u0431\u0440\u043e\u0458",
+            "editable": "1",
+            "tableName": "opstini",
+            "type":"text"
+
+        },
+        {
+            "header": "Број",
+            "submitName": "opstini_ime",
+            "validateEmpty": "1",
+            "validateRegex": "",
+            "validateEMessage": "",
+            "editable": "1",
+            "tableName": "opstini",
+            "type":"text"
+        },
+        {
+            "header": "Датум",
+            "submitName": "kod_zdravstvo",
+            "validateEmpty": "1",
+            "validateRegex": "",
+            "validateEMessage": "",
+            "editable": "1",
+            "tableName": "opstini",
+            "type":"text"
+        }
+    ],
+    "rows":[
+        {
+            "cols": [
+                {
+                    "val": "001"
+                },
+                {
+                    "val": "400"
+                },
+                {
+                    "val": "08.07.2013"
+                }
+            ],
+            "id": "1"
+        },
+        {
+            "cols": [
+                {
+                    "val": "001"
+                },
+                {
+                    "val": "401"
+                },
+                {
+                    "val": "08.07.2013"
+                }
+            ],
+            "id": "2"
+        },
+        {
+            "cols": [
+                {
+                    "val": "001"
+                },
+                {
+                    "val": "402"
+                },
+                {
+                    "val": "08.07.2013"
+                }
+            ],
+            "id": "3"
+        }
+    ]
+}
