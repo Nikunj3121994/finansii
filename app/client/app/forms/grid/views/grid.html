@@ -1,0 +1,23 @@
+<div class="custom-grid-container">
+    <!--  TABLE HEADER  -->
+    <data-grid-actions></data-grid-actions>
+
+    <!--  THE TABLE  -->
+    <div class="table-container">
+        <table class="table">
+            <thead data-grid-head></thead>
+            <tbody>
+            <tr data-grid-row data-ng-repeat="row in filteredData" ng-click="changeSelectedRow($index, row.id)"></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--  PAGINATION  -->
+    <pagination boundary-links="true" max-size="5" items-per-page="pagination.pageSize"
+                num-pages="pagination.numPages" ng-show="pagination.numPages > 1"
+                total-items="pagination.totalItems" ng-model="pagination.currentPage"
+            >
+    </pagination>
+
+    <data-custom-form ng-show="gridOptions.permissions.editResource || gridOptions.permissions.addResource"></data-custom-form>
+</div>

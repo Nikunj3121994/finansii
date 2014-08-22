@@ -1,0 +1,8 @@
+<div class="summary_container">
+    <ul>
+        <li ng-repeat="calc in calculations">
+            {{ calc.label }}
+            <strong>{{ calc.modelFunction(calc.mathFunction) }}</strong>
+        </li>
+    </ul>
+</div>

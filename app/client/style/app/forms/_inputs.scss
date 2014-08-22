@@ -1,0 +1,33 @@
+.custom-date {
+  .datepicker-holder {
+    margin-top: 25px;
+  }
+  .grid-no-padding {
+    padding: 0;
+
+  }
+}
+
+.custom-spinner {
+
+  button.btn-arrows {
+    height: 17px;
+
+    & + .btn-arrows {
+      margin-top: 0;
+    }
+  }
+}
+.auto-complete{
+  position:relative;
+  ul{
+    position: absolute;
+    top:0;
+    left:0;
+    .selected{
+      background: #5c7cff;
+      color:#fff;
+    }
+  }
+
+}

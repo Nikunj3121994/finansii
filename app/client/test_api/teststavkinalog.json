@@ -1,0 +1,550 @@
+{
+    "formGroups": [
+        {
+            "header": "grupa 1"
+        }
+    ],
+    "inputGroups": [
+        {
+            "header": "grupa input",
+            "contextGroup": 0
+        }
+    ],
+    "colsSettings": [
+        {
+            "header": "Број. Док.",
+            "submitName": "br_dok",
+            "validateEmpty": "1",
+            "validateRegex": "",
+            "validateEMessage": "\u0412\u043d\u0435\u0441\u0435\u0442\u0435 \u0431\u0440\u043e\u0458",
+            "editable": "1",
+            "tableName": "nalog",
+            "visible": 1,
+            "contextGroup": 0,
+            "type":"text"
+        },
+        {
+            "header": "Датум",
+            "submitName": "date",
+            "validateEmpty": "1",
+            "validateRegex": "",
+            "validateEMessage": "\u0412\u043d\u0435\u0441\u0435\u0442\u0435 \u0431\u0440\u043e\u0458",
+            "editable": "1",
+            "tableName": "nalog",
+            "visible": 1,
+            "contextGroup": 0,
+            "type":"date"
+        },
+        {
+            "header": "Opis",
+            "submitName": "opis",
+            "validateEmpty": "1",
+            "validateRegex": "",
+            "validateEMessage": "\u0412\u043d\u0435\u0441\u0435\u0442\u0435 \u0431\u0440\u043e\u0458",
+            "editable": "1",
+            "tableName": "nalog",
+            "visible": 1,
+            "type":"text"
+        },
+        {
+            "header": "Орг. Ед.",
+            "submitName": "org_ed",
+            "validateEmpty": "1",
+            "validateRegex": "",
+            "validateEMessage": "\u0412\u043d\u0435\u0441\u0435\u0442\u0435 \u0431\u0440\u043e\u0458",
+            "editable": "1",
+            "tableName": "nalog",
+            "visible": 1,
+            "type":"text"
+        },
+        {
+            "header": "Конто",
+            "submitName": "konto",
+            "validateEmpty": "1",
+            "validateRegex": "",
+            "validateEMessage": "\u0412\u043d\u0435\u0441\u0435\u0442\u0435 \u0431\u0440\u043e\u0458",
+            "editable": "1",
+            "tableName": "nalog",
+            "visible": 1,
+            "inputGroup": -1,
+            "contextGroup": 0,
+            "type":"text"
+        },
+        {
+            "header": "Должи",
+            "submitName": "dolzi",
+            "validateEmpty": "1",
+            "validateRegex": "",
+            "validateEMessage": "\u0412\u043d\u0435\u0441\u0435\u0442\u0435 \u0431\u0440\u043e\u0458",
+            "editable": "1",
+            "tableName": "nalog",
+            "visible": 1,
+            "inputGroup": -1,
+            "contextGroup": 0,
+            "type":"text"
+        },
+        {
+            "header": "Побарува",
+            "submitName": "pobaruva",
+            "validateEmpty": "1",
+            "validateRegex": "",
+            "validateEMessage": "\u0412\u043d\u0435\u0441\u0435\u0442\u0435 \u0431\u0440\u043e\u0458",
+            "editable": "1",
+            "tableName": "nalog",
+            "visible": 1,
+            "inputGroup": -1,
+            "contextGroup": -1,
+            "type":"text"
+        },
+        {
+            "header": "Комитент",
+            "submitName": "komitent",
+            "validateEmpty": "1",
+            "validateRegex": "",
+            "validateEMessage": "\u0412\u043d\u0435\u0441\u0435\u0442\u0435 \u0431\u0440\u043e\u0458",
+            "editable": "1",
+            "tableName": "nalog",
+            "visible": 1,
+            "inputGroup": -1,
+            "contextGroup": -1,
+            "type":"text"
+        },
+        {
+            "header": "Име",
+            "submitName": "ime",
+            "validateEmpty": "1",
+            "validateRegex": "",
+            "validateEMessage": "\u0412\u043d\u0435\u0441\u0435\u0442\u0435 \u0431\u0440\u043e\u0458",
+            "editable": "1",
+            "tableName": "nalog",
+            "visible": 1,
+            "inputGroup": -1,
+            "contextGroup": -1,
+            "type":"text"
+        },
+        {
+            "header": "Рефер",
+            "submitName": "refer",
+            "validateEmpty": "1",
+            "validateRegex": "",
+            "validateEMessage": "\u0412\u043d\u0435\u0441\u0435\u0442\u0435 \u0431\u0440\u043e\u0458",
+            "editable": "1",
+            "tableName": "nalog",
+            "visible": 1,
+            "inputGroup": -1,
+            "contextGroup": -1,
+            "type":"text"
+        },
+        {
+            "header": "ДДВ 5%",
+            "submitName": "ddv5",
+            "validateEmpty": "1",
+            "validateRegex": "",
+            "validateEMessage": "\u0412\u043d\u0435\u0441\u0435\u0442\u0435 \u0431\u0440\u043e\u0458",
+            "editable": "1",
+            "tableName": "nalog",
+            "visible": 1,
+            "inputGroup": 0,
+            "contextGroup": -1,
+            "type":"text"
+        },
+        {
+            "header": "ДДВ 18%",
+            "submitName": "ddv18",
+            "validateEmpty": "1",
+            "validateRegex": "",
+            "validateEMessage": "\u0412\u043d\u0435\u0441\u0435\u0442\u0435 \u0431\u0440\u043e\u0458",
+            "editable": "1",
+            "tableName": "nalog",
+            "visible": 1,
+            "contextGroup": -1,
+            "type":"text"
+        }
+        ,
+        {
+            "header": "Валутиз",
+            "submitName": "valutiz",
+            "validateEmpty": "1",
+            "validateRegex": "",
+            "validateEMessage": "\u0412\u043d\u0435\u0441\u0435\u0442\u0435 \u0431\u0440\u043e\u0458",
+            "editable": "1",
+            "tableName": "nalog",
+            "visible": 1,
+            "inputGroup": 0,
+            "contextGroup": -1,
+            "type":"text"
+        }
+        ,
+        {
+            "header": "Долзи-Дев.",
+            "submitName": "dolzi_dev",
+            "validateEmpty": "1",
+            "validateRegex": "",
+            "validateEMessage": "\u0412\u043d\u0435\u0441\u0435\u0442\u0435 \u0431\u0440\u043e\u0458",
+            "editable": "1",
+            "tableName": "nalog",
+            "visible": 1,
+            "inputGroup": -1,
+            "contextGroup": -1,
+            "type":"text"
+        }
+        ,
+        {
+            "header": "Побарува-Дев",
+            "submitName": "pobaruva_dev",
+            "validateEmpty": "1",
+            "validateRegex": "",
+            "validateEMessage": "\u0412\u043d\u0435\u0441\u0435\u0442\u0435 \u0431\u0440\u043e\u0458",
+            "editable": "1",
+            "tableName": "nalog",
+            "visible": 1,
+            "inputGroup": -1,
+            "contextGroup": -1,
+            "type":"text"
+        }
+        ,
+        {
+            "header": "Валута",
+            "submitName": "valuta",
+            "validateEmpty": "1",
+            "validateRegex": "",
+            "validateEMessage": "\u0412\u043d\u0435\u0441\u0435\u0442\u0435 \u0431\u0440\u043e\u0458",
+            "editable": "1",
+            "tableName": "nalog",
+            "visible": 1,
+            "inputGroup": -1,
+            "contextGroup": -1,
+            "type":"text"
+        }
+        ,
+        {
+            "header": "Курс",
+            "submitName": "kurs",
+            "validateEmpty": "1",
+            "validateRegex": "",
+            "validateEMessage": "\u0412\u043d\u0435\u0441\u0435\u0442\u0435 \u0431\u0440\u043e\u0458",
+            "editable": "1",
+            "tableName": "nalog",
+            "visible": 1,
+            "inputGroup": -1,
+            "contextGroup": -1,
+            "type":"text"
+        }
+        ,
+        {
+            "header": "Договор",
+            "submitName": "dogovor",
+            "validateEmpty": "1",
+            "validateRegex": "",
+            "validateEMessage": "\u0412\u043d\u0435\u0441\u0435\u0442\u0435 \u0431\u0440\u043e\u0458",
+            "editable": "1",
+            "tableName": "nalog",
+            "visible": 1,
+            "inputGroup": -1,
+            "contextGroup": -1,
+            "type":"text"
+        }
+        ,
+        {
+            "header": "Шифра",
+            "submitName": "sifra",
+            "validateEmpty": "1",
+            "validateRegex": "",
+            "validateEMessage": "\u0412\u043d\u0435\u0441\u0435\u0442\u0435 \u0431\u0440\u043e\u0458",
+            "editable": "1",
+            "tableName": "nalog",
+            "visible": 1,
+            "inputGroup": -1,
+            "contextGroup": -1,
+            "type":"text"
+        }
+        ,
+        {
+            "header": "Презиме и име",
+            "submitName": "ime_prezime",
+            "validateEmpty": "1",
+            "validateRegex": "",
+            "validateEMessage": "\u0412\u043d\u0435\u0441\u0435\u0442\u0435 \u0431\u0440\u043e\u0458",
+            "editable": "1",
+            "tableName": "nalog",
+            "visible": 1,
+            "inputGroup": -1,
+            "contextGroup": -1,
+            "type":"text"
+        }
+    ],
+    "rows": [
+        {
+            "cols": [
+                {
+                    "val": "400"
+                },
+                {
+                    "val": "08.07.2013"
+                },
+                {
+                    "val": "ПАШАРИНА 2011"
+                },
+                {
+                    "val": "191"
+                },
+                {
+                    "val": "1200"
+                },
+                {
+                    "val": "0.00"
+                }
+                ,
+                {
+                    "val": "20000.00"
+                },
+                {
+                    "val": "7367"
+                },
+                {
+                    "val": "Душко михајлов"
+                }
+                ,
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                }
+                ,
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                }
+            ],
+            "id": "4"
+        },
+        {
+            "cols": [
+                {
+                    "val": "400"
+                },
+                {
+                    "val": "08.07.2013"
+                },
+                {
+                    "val": "ПАШАРИНА 2011"
+                },
+                {
+                    "val": "191"
+                },
+                {
+                    "val": "1200"
+                },
+                {
+                    "val": "0.00"
+                }
+                ,
+                {
+                    "val": "20000.00"
+                },
+                {
+                    "val": "7367"
+                },
+                {
+                    "val": "Душко михајлов"
+                }
+                ,
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                }
+                ,
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                }
+            ],
+            "id": "3"
+        },
+        {
+            "cols": [
+                {
+                    "val": "400"
+                },
+                {
+                    "val": "08.07.2013"
+                },
+                {
+                    "val": "ПАШАРИНА 2011"
+                },
+                {
+                    "val": "191"
+                },
+                {
+                    "val": "1200"
+                },
+                {
+                    "val": "0.00"
+                }
+                ,
+                {
+                    "val": "20000.00"
+                },
+                {
+                    "val": "7367"
+                },
+                {
+                    "val": "Душко михајлов"
+                }
+                ,
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                }
+                ,
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                }
+            ],
+            "id": "2"
+        },
+        {
+            "cols": [
+                {
+                    "val": "400"
+                },
+                {
+                    "val": "08.07.2013"
+                },
+                {
+                    "val": "ПАШАРИНА 2011"
+                },
+                {
+                    "val": "191"
+                },
+                {
+                    "val": "1200"
+                },
+                {
+                    "val": "0.00"
+                }
+                ,
+                {
+                    "val": "20000.00"
+                },
+                {
+                    "val": "7367"
+                },
+                {
+                    "val": "Душко михајлов"
+                }
+                ,
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                }
+                ,
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                },
+                {
+                    "val": ""
+                }
+            ],
+            "id": "1"
+        }
+    ]
+}

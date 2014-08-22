@@ -1,0 +1,54 @@
+.order_container {
+  $padding-td: 3px 5px;
+  /* === all inputs style === */
+  .form-control {
+    height: 25px;
+    padding: 7px 6px;
+  }
+  .btn {
+    padding: 2px 10px;
+  }
+  > .row {
+    margin: 0;
+  }
+  /* === both grids style === */
+  .custom-grid-container {
+    .table {
+      tbody {
+        tr {
+          td {
+            padding: $padding-td;
+            white-space: nowrap;
+          }
+        }
+      }
+      thead {
+        tr {
+          td {
+            padding: $padding-td;
+          }
+        }
+      }
+    }
+    .pagination > li > a,
+    .pagination > li > span {
+      padding: 1px 8px;
+    }
+  }
+  .panel {
+    padding: 0;
+  }
+  .small-grid {
+    .table-actions {
+      [class*="col-"] {
+        padding-right: 0;
+      }
+    }
+  }
+  .inputs-container {
+    .input-wrapper {
+      padding: 5px 0;
+    }
+  }
+
+}

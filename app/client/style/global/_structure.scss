@@ -1,0 +1,47 @@
+/* Variables for page sections */
+$header-height: 50px;
+
+
+html, body {
+    height: 100%;
+}
+
+.header-container {
+    position: relative;
+    display: block;
+    height: $header-height;
+
+}
+.main-viewport {
+    position: absolute;
+    top: $header-height;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    .stick-left {
+        display: block;
+        float: left;
+        height: 100%;
+        width: auto;
+    }
+
+    .expand-right {
+        height: 100%;
+        overflow: auto;
+        overflow-x: scroll;
+        padding: 10px;
+    }
+}
+
+
+/*
+ Used by shouldMaximize directive in GlobalDirectives.js
+ */
+.main-viewport.maximize {
+    top: 0;
+}
+.stick-left.maximize,
+.header-container.maximize{
+    display: none;
+}

@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-md-4">
+        <p class="input-group">
+            <input  id="date"  class="form-control"  type="text"  dynamic-name="inputName" ng-required="ngRequired==1" ng-model="ngModel" datepicker-popup="{{format}}" is-open="opened"  min-date="minDate" max-date="maxDate"  ng-blur="inputBlur=true" ng-pattern="testInputValue"   model-view-value="true" >
+<span class="input-group-btn">
+     <button type="button" class="btn btn-default" ng-click="open($event)"><span class="glyphicon glyphicon-calendar"></span></button>
+   </span>
+        <p class="text-danger" ng-show="showRequiredMessage()">Полето е задолжително</p>
+        <p class="text-danger" ng-show="showPatternMismatchedMessage()">{{patternMsg}}</p>
+
+        </p>
+
+    </div></div>
+
