@@ -169,7 +169,6 @@ define([
                     for (var i = 0; i < scope.config.order.length; i++) {
                         var inputGroup = $('<div class="col-md-12"></div>');
                         var tplData = scope.config[scope.config.order[i]];
-                        console.log(tplData);
                         var tempInput;
                         if (tplData)
                             if (tplData.type == "text") {

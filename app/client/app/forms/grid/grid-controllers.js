@@ -25,7 +25,6 @@ define([], function () {
         });
         jsonGridDataService.getResource($scope.gridResource).then(function (data) {
             $scope.resources = data;
-            console.log(data);
             $scope.dataChangeTag = !$scope.dataChangeTag;
         });
         $scope.data = {};

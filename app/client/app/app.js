@@ -45,8 +45,8 @@ define([
                 $stateProvider.state('dashboard', {
                     url: '/dashboard',
                     views: {
-                        navigationView: {
-                            template: 'navigationView init from Dashboard'
+                        headerView: {
+                            template: '<h3>Dashboard</h3>'
                         },
                         contentView: {
                             template:'dashboard'
@@ -56,8 +56,8 @@ define([
                     url: '/finance',
                     abstract: true,
                     views: {
-                        navigationView: {
-                            template: 'navigationView init from Admin'
+                        headerView: {
+                            template: '<h3><div class="btn" ui-sref="dashboard"><i class="glyphicon glyphicon-chevron-left"></i> </div> Finance</h3>'
                         },
                         contentView: {
                             templateUrl: 'app/pages/finance/finance.html'
