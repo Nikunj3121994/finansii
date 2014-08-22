@@ -1,0 +1,8 @@
+<div class="resources" ng-controller="resourcesPageController">
+    <div class="resourcesNavigator col-lg-2">
+        <div class="resource " data-ng-repeat="item in resources" ui-sref="finance.resources.resource({resource:item.resource})">{{item.name}}</div>
+    </div>
+    <div ui-view class="col-lg-10">
+
+    </div>
+</div>

@@ -42,6 +42,7 @@ define([
             data: "=?gridData",
             gridName: "=",
             gridOptions: "=?",
+            gridResource:"@",
             gridDataUrl: "@" // ova ne trebit ovde - vo servis
         };
 
@@ -156,7 +157,7 @@ define([
             };
 
             //TODO da vidime dali morat watch
-            scope.$watch('data.colsSettings', function () {
+            scope.$watch('config', function () {
                 if (!(typeof scope.data.colsSettings === "undefined")) {
                     if (attrs.$attr.formId) {
                         scope.setFormData(attrs.formId);
@@ -165,22 +166,25 @@ define([
                     var inputGroups = [];
 
                     var inputCont = element.find('.js-input-container');
-                    for (var i = 0; i < scope.data.colsSettings.length; i++) {
+                    for (var i = 0; i < scope.config.order.length; i++) {
                         var inputGroup = $('<div class="col-md-12"></div>');
-                        var tplData = scope.data.colsSettings[i];
+                        var tplData = scope.config[scope.config.order[i]];
+                        console.log(tplData);
                         var tempInput;
                         if (tplData)
                             if (tplData.type == "text") {
                                 tempInput = $('<input data-custom-input>');
                             } else if (tplData.type == "date") {
                                 tempInput = $('<input data-custom-date>');
+                            }else if (tplData.type == "number") {
+                                tempInput = $('<input data-custom-spinner>');
                             }
-                        tempInput.attr('input-name', tplData.submitName);
-                        tempInput.attr('input-label', tplData.header);
-                        tempInput.attr('input-model', 'formData["' + tplData.submitName + '"]');
-                        tempInput.attr('input-required', tplData.validateEmpty);
-                        tempInput.attr('input-pattern', tplData.validateRegex);
-                        tempInput.attr('input-pattern-msg', tplData.validateEMessage);
+                        tempInput.attr('input-name', tplData.name);
+                        tempInput.attr('input-label', tplData.label);
+                        tempInput.attr('input-model', 'formData["' + tplData.name + '"]');
+                        tempInput.attr('input-required', tplData.required);
+                        tempInput.attr('input-pattern', tplData.regex);
+                        tempInput.attr('input-pattern-msg', tplData.regexMsg);
 
                         if (tplData.contextGroup > -1) {
                             if (formGroups[tplData.contextGroup] == null) {

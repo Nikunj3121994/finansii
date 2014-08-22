@@ -19,6 +19,13 @@ define([], function() {
      * @description used for handling the resuouce that fills the grid, pagination, selection of rows
      */
     module.controller("gridController", function ($scope, $http, $filter, jsonGridDataService) {
+        jsonGridDataService.getConfig($scope.gridResource).then(function(data){
+            $scope.config=data;
+        });
+        jsonGridDataService.getResource($scope.gridResource).then(function(data){
+           $scope.resources=data;
+            console.log(data);
+        });
         $scope.data = {};
         $scope.dataChangeTag = false;
         $scope.dataReady = false;

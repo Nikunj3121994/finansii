@@ -1,0 +1,32 @@
+section.main-container{
+  $padding-td: 3px 5px;
+  background: #FAFAFA;
+  padding: 10px;
+  position: absolute;
+  top: 50px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  overflow: auto;
+  .table {
+    tbody {
+      tr {
+        td {
+          padding: $padding-td;
+          white-space: nowrap;
+        }
+      }
+    }
+    thead {
+      tr {
+        th {
+          padding: $padding-td;
+        }
+      }
+    }
+  }
+  .pagination > li > a,
+  .pagination > li > span {
+    padding: 1px 8px;
+ }
+}

@@ -16,7 +16,9 @@ class ConfigController extends BaseController
                if($key!="fields" && $key!="name"){
                    $formsOutput=array_merge($formsOutput,array($key=>$value));
                }else if($key=="fields"){
+                   $fieldsOrder=array();
                    foreach($value as $field){
+
                        $fieldOutput=array();
                        foreach($field as $fieldKey=>$fieldValue){
                            if($fieldKey=="property"){
@@ -26,8 +28,9 @@ class ConfigController extends BaseController
                            }else $fieldOutput=array_merge($fieldOutput,array($fieldKey=>$fieldValue));
                        }
                        $fieldsOutput=array_merge($fieldsOutput,array($field['name']=>$fieldOutput));
+                       $fieldsOrder=array_merge($fieldsOrder,array($field['name']));
                    }
-                    $formsOutput=array_merge($formsOutput,$fieldsOutput);
+                   $formsOutput=array_merge($formsOutput,$fieldsOutput,array('order'=>$fieldsOrder));
                }
 
             }

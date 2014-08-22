@@ -1,60 +1,9 @@
+$header-height: 50px;
+$header-background:#f2f2f2;
 header {
-  background-color: $reverse;
-  @include box-shadow(0 1px 2px rgba(0, 0, 0, .1));
-
-  @media (min-width: $screen-sm) {
-  }
-
-  a:hover,
-  a:active,
-  a:focus {
-    text-decoration: none;
-  }
-
-  .logo {
-    float: left;
-    padding: 8px;
-    color: red;
-    font-size: 1.7em;
-
-    width: 220px;
-    color: #767676;
-    border-right: 1px solid #e9e9e9;
-    text-align: center;
-
-    a {
-      color: #767676;
-    }
-  }
-
-  .top-nav {
-    float: left;
-
-    ul {
-      margin: 0;
-    }
-
-    .nav-left {
-      float: left;
-
-      > li {
-        display: inline-block;
-        border-right: 1px solid #e9e9e9;
-      }
-
-      .nav-profile {
-        position: relative;
-        > a {
-          display: block;
-          padding: 12px 15px 8px 15px;
-        }
-
-      }
-    }
-
-    ul.dropdown-menu li a:hover {
-      background-color: #31c0be;
-      color: #fff;
-    }
-  }
+  position: relative;
+  display: block;
+  height: $header-height;
+  background:$header-background;
+  border-bottom: #ccc solid 1px;
 }

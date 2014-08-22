@@ -1,0 +1,13 @@
+.resources{
+  .resourcesNavigator{
+    background: #178acc;
+    color:#fff;
+    .resource{
+      padding: 10px;
+      cursor:pointer;
+    }
+    .resource:hover{
+      background: #1499d9;
+    }
+  }
+}

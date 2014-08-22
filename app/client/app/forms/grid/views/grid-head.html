@@ -6,8 +6,8 @@
         </label>
     </th>
 
-    <th ng-repeat="element in data.colsSettings | filter:{visible:true}:true" ng-click="orderColumn($index)" bindonce>
-        <span>{{element.header}}</span>
+    <th ng-repeat="element in config.order" ng-click="orderColumn($index)" bindonce>
+        <span>{{config[element].label}}</span>
         <span ng-class="{true: 'glyphicon-chevron-up', false: 'glyphicon-chevron-down'}[$parent.gridOrder.reverse]" class="glyphicon pull-right"
               ng-show="$parent.gridOrder.orderColumn==$index">
         </span>

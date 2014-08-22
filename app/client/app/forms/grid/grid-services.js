@@ -30,6 +30,43 @@ define([], function() {
 
             return deferred.promise;
         };
+        this.getConfig=function(resource){
+            var deferred = $q.defer();
+
+            var resourceUrl="http://localhost/finansii/api/public/config";
+            $http({
+                url: resourceUrl,
+                method: "GET"
+            })
+                .success(function (data) {
+                    deferred.resolve(data[resource]);
+                })
+                .error(function (data) {
+                    console.log("Error getting testform.json");
+                    deferred.reject("There was and error.");
+                });
+
+            return deferred.promise;
+        }
+
+        this.getResource=function(resource){
+            var deferred = $q.defer();
+
+            var resourceUrl="http://localhost/finansii/api/public/"+resource;
+            $http({
+                url: resourceUrl,
+                method: "GET"
+            })
+                .success(function (data) {
+                    deferred.resolve(data.body);
+                })
+                .error(function (data) {
+                    console.log("Error getting testform.json");
+                    deferred.reject("There was and error.");
+                });
+
+            return deferred.promise;
+        }
         return this;
     }]);
 

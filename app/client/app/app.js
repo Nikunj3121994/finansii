@@ -6,11 +6,10 @@ define([
 
     'global/translate/Translate',
 
-    'pages/dashboard/dashboard',
-    'pages/admin/admin',
     'pages/order/order',
     'pages/reports/report-page',
     'pages/autocomplete/AutoComplete',
+    'pages/resources/resources',
 
     'forms/grid/grid',
     'forms/summary/summary',
@@ -27,11 +26,10 @@ define([
 
             'app.global.translate',
 
-            'app.pages.dashboard',
-            'app.pages.admin',
             'app.pages.order',
             'app.pages.reports',
             'app.pages.autocomplete',
+            'app.pages.resources',
 
             'app.forms.grid',
             'app.forms.summary',
@@ -51,45 +49,43 @@ define([
                             template: 'navigationView init from Dashboard'
                         },
                         contentView: {
-                            templateUrl: 'app/pages/dashboard/dashboard.html'
+                            template:'dashboard'
                         }
                     }
-                }).state('admin', {
-                    url: '/admin',
+                }).state('finance', {
+                    url: '/finance',
                     abstract: true,
                     views: {
                         navigationView: {
                             template: 'navigationView init from Admin'
                         },
                         contentView: {
-                            templateUrl: 'app/pages/admin/admin.html'
+                            templateUrl: 'app/pages/finance/finance.html'
                         }
                     }
-                }).state('admin.start', {
+                }).state('finance.start', {
                     url: '',
-                    template: '<h2>Lista od site funcii ovde</h2>'
+                    templateUrl: 'app/pages/finance/finance.html'
+                }).state('finance.resources',{
+                    url:'/resources',
+                    template:'<div resources-page></div>'
+                }).state('finance.resources.resource',{
+                    url:'/resources/:resource',
+                    template:'<custom-grid grid-data="ordersData" grid-resource="{{resource}}" grid-data-url="test_api/testnalog.json" grid-options="smallGridOptions"></custom-grid>',
+
+                    controller:function($scope,$stateParams){
+                        $scope.resource=$stateParams.resource;
+                    }
                 }).state('admin.grid', {
                     url: '/grid/:gridName',
                     template: '<custom-grid check-fields-column="1" edit-id="{{editId}}" grid-data-url="test_api/testform.json"></custom-grid>',
                     controller: function ($scope, $stateParams) {
                         $scope.gridName = $stateParams.gridName;
                     }
-                }).state('admin.grid.edit', {
-                    url: '/edit/:id',
-                    template: '<form custom-form form-id="{{id}}"></form>',
-                    controller: function ($scope, $stateParams) {
-                        $scope.id = $stateParams.id;
-                    }
-                }).state('admin.grid.add', {
-                    url: '/add',
-                    template: '<form custom-form ></form>'
-                }).state('admin.order', {
-                    url: '/order',
-                    templateUrl: 'app/pages/order/order.html'
-                }).state('admin.reports', {
+                }).state('finance.reports', {
                     url: '/reports',
                     templateUrl: 'app/pages/reports/report-page.html'
-                }).state('admin.autocomplete', {
+                }).state('finance.autocomplete', {
                     url: '/autocomplete',
                     templateUrl: 'app/pages/autocomplete/auto-complete.html'
                 }).state('404', {

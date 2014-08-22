@@ -4,11 +4,13 @@
         <span></span>
     </label>
 </td>
-<td bindonce ng-repeat="element in row.cols" ng-show="$parent.data.colsSettings[$index].visible" ng-switch on="$parent.data.colsSettings[$index].type" >
-   <span ng-switch-when="text">{{element.val}}</span>
-   <span ng-switch-when="date">{{element.val|date:'dd.MM.yyyy'}}</span>
-
+<td data-ng-repeat="element in config.order" ng-switch on="config[element].type" >
+    <span ng-switch-when="text">{{row[element]}}</span>
+    <span ng-switch-when="number">{{row[element]}}</span>
+    <span ng-switch-when="autocomplete">{{row[config[element].resource][config[element].field]}}</span>
+    <span ng-switch-when="date">{{row[element]|date:'dd.MM.yyyy'}}</span>
 </td>
+
 <td ng-if="gridOptions.permissions.editResource">
     <button class="btn btn-primary btn-xs" ng-click="editDataRow(row.id,$index)">Edit</button>
 </td>
