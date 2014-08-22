@@ -15,11 +15,11 @@
                 <li role="presentation" ng-click="showAllColumns()">
                     <a role="menuitem" tabindex="-1">Show allcolumns</a>
                 </li>
-                <li role="presentation" ng-repeat="column in data.colsSettings">
+                <li role="presentation" ng-repeat="column in config.order">
                     <input type="checkbox"
-                           ng-checked="column.visible"
-                           ng-model="data.colsSettings[$index].visible">
-                    <span>{{ column.header }}</span>
+                           ng-checked="config[column].visible"
+                           ng-model="config[column].visible">
+                    <span>{{ config[column].label }}</span>
                 </li>
             </ul>
         </div>

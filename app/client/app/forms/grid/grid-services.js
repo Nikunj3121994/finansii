@@ -67,6 +67,42 @@ define([], function() {
 
             return deferred.promise;
         }
+        this.saveResource=function(resource,data){
+            var deferred = $q.defer();
+            var resourceUrl="http://localhost/finansii/api/public/"+resource;
+            $http({
+                url: resourceUrl,
+                data:data,
+                method: "POST"
+            })
+                .success(function (data) {
+                    deferred.resolve(data);
+                })
+                .error(function (data) {
+                    console.log("Error getting testform.json");
+                    deferred.reject("There was and error.");
+                });
+
+            return deferred.promise;
+        }
+        this.editResource=function(resource,data,id){
+            var deferred = $q.defer();
+            var resourceUrl="http://localhost/finansii/api/public/"+resource+"/"+id;
+            $http({
+                url: resourceUrl,
+                data:data,
+                method: "PUT"
+            })
+                .success(function (data) {
+                    deferred.resolve(data);
+                })
+                .error(function (data) {
+                    console.log("Error getting testform.json");
+                    deferred.reject("There was and error.");
+                });
+
+            return deferred.promise;
+        }
         return this;
     }]);
 

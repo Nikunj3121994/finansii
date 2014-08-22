@@ -23,11 +23,11 @@ define([], function() {
             });
 
             filtered.sort(function (a, b) {
-                if (!isNaN(a.cols[column].val)) {
+                if (!isNaN(a[column])) {
 
-                    return (parseFloat(a.cols[column].val) > parseFloat(b.cols[column].val) ? 1 : -1);
+                    return (parseFloat(a[column]) > parseFloat(b[column]) ? 1 : -1);
                 }
-                else return (a.cols[column].val > b.cols[column].val ? 1 : -1);
+                else return (a[column] > b[column] ? 1 : -1);
             });
 
             if (reverse) filtered.reverse();

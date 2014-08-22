@@ -1,4 +1,4 @@
-define([], function() {
+define([], function () {
     /**
      * @ngdoc overview
      * @name grid.module:controllers
@@ -19,12 +19,14 @@ define([], function() {
      * @description used for handling the resuouce that fills the grid, pagination, selection of rows
      */
     module.controller("gridController", function ($scope, $http, $filter, jsonGridDataService) {
-        jsonGridDataService.getConfig($scope.gridResource).then(function(data){
-            $scope.config=data;
+        jsonGridDataService.getConfig($scope.gridResource).then(function (data) {
+            $scope.config = data;
+            $scope.dataChangeTag = !$scope.dataChangeTag;
         });
-        jsonGridDataService.getResource($scope.gridResource).then(function(data){
-           $scope.resources=data;
+        jsonGridDataService.getResource($scope.gridResource).then(function (data) {
+            $scope.resources = data;
             console.log(data);
+            $scope.dataChangeTag = !$scope.dataChangeTag;
         });
         $scope.data = {};
         $scope.dataChangeTag = false;
@@ -78,15 +80,14 @@ define([], function() {
         ].toString();
         var wcArray = '[' + wcArray + ']';
         $scope.$watchCollection(wcArray, function () {
-                if (!$scope.data.rows) {
+                if (!$scope.resources || !$scope.config) {
                     $scope.filteredData = null;
                     return;
                 }
-                var temp = $scope.data.rows;
-
+                var temp = $scope.resources;
+                console.log($scope.searchField);
                 temp = $filter('filter')(temp, $scope.searchField);
                 temp = $filter('orderByColumn')(temp, $scope.gridOrder.orderColumn, $scope.gridOrder.reverse);
-
                 //Pagination is calculated before data is filtered by current page
                 $scope.pagination.totalItems = temp.length;
 
@@ -95,14 +96,7 @@ define([], function() {
 
             }
         );
-        $scope.$watch("gridDataUrl", function () {
-            //TODO ke se zemat ime na funkcija i servis od scope
-            jsonGridDataService["getData"]($scope.gridDataUrl).then(function (data) {
-                $scope.data = data;
-                $scope.dataChangeTag = !$scope.dataChangeTag;
 
-            });
-        });
     })
 
 
@@ -113,15 +107,13 @@ define([], function() {
      * @description controller that handles action made on the form, binding the data from the form and saving data
      */
 
-    module.controller("formController", function controller($scope) {
+    module.controller("formController", function controller($scope, jsonGridDataService) {
         var formName = $scope.gridOptions.formName;
         $scope.setFormData = function () {
             $scope.formData = {};
             var row = getRowById();
             if (row !== false) {
-                $.each($scope.data.colsSettings, function (i, v) {
-                    $scope.formData[v.submitName] = row.cols[i].val;
-                });
+                $scope.formData = _.clone(row);
             }
         };
         $scope.isFormValid = function () {
@@ -142,10 +134,23 @@ define([], function() {
         };
         function updateRow() {
             if ($scope[formName]) {
-                var rowId = getRowIndexById();
-                $.each($scope.data.colsSettings, function (i, v) {
-                    $scope.data.rows[rowId].cols[i].val = $scope.formData[v.submitName];
+                var postRequestData = {};
+                var formData = _.clone($scope.formData);
+                _($scope.config.order).each(function (column) {
+                    if ($scope.config[column].type == "autocomplete") {
+                        postRequestData[column] = $scope.formData[$scope.config[column].resource][column];
+                    } else postRequestData[column] = $scope.formData[column];
                 });
+                jsonGridDataService.editResource($scope.gridResource, postRequestData,formData.id).then(function (data) {
+
+                    if (data.code == 0) {
+                        var rowId = getRowIndexById();
+                        $scope.resources[rowId] = formData;
+                        $scope.dataChangeTag = !$scope.dataChangeTag;
+                    }
+                    alert(data.msg);
+                });
+
                 //TODO http post do server
             } else {
                 console.log('form is not valid');
@@ -153,17 +158,23 @@ define([], function() {
         }
 
         function addRow() {
-            var row = {};
-            row.id = Math.random() * (10000 - 100) + 100;
-            row.cols = [];
-            $.each($scope.data.colsSettings, function (i, v) {
-                row.cols.push({
-                        val: $scope.formData[v.submitName]
-                    }
-                );
+            var postRequestData = {};
+            var formData = _.clone($scope.formData);
+            _($scope.config.order).each(function (column) {
+                if ($scope.config[column].type == "autocomplete") {
+                    postRequestData[column] = $scope.formData[$scope.config[column].resource][column];
+                } else postRequestData[column] = $scope.formData[column];
             });
-            $scope.data.rows.push(row);
-            $scope.dataChangeTag = !$scope.dataChangeTag;
+            jsonGridDataService.saveResource($scope.gridResource, postRequestData).then(function (data) {
+
+                if (data.code == 0) {
+                    $scope.resources.push(formData);
+                    $scope.formData = null;
+                    $scope.dataChangeTag = !$scope.dataChangeTag;
+                }
+                alert(data.msg);
+            });
+
         }
 
 
@@ -180,17 +191,17 @@ define([], function() {
 
 
         function getRowById() {
-            for (var i = 0; i < $scope.data.rows.length; i++) {
-                if ($scope.data.rows[i].id == $scope.selectedRowId) {
-                    return $scope.data.rows[i];
+            for (var i = 0; i < $scope.resources.length; i++) {
+                if ($scope.resources[i].id == $scope.selectedRowId) {
+                    return $scope.resources[i];
                 }
             }
             return false;
         }
 
         function getRowIndexById() {
-            for (var i = 0; i < $scope.data.rows.length; i++) {
-                if ($scope.data.rows[i].id == $scope.selectedRowId) {
+            for (var i = 0; i < $scope.resources.length; i++) {
+                if ($scope.resources[i].id == $scope.selectedRowId) {
                     return i;
                 }
             }

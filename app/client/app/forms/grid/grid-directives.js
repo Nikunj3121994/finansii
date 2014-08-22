@@ -110,11 +110,11 @@ define([
              * function for ordering column based on the index of the column
              * @param {number} index - index of the column
              */
-            $scope.orderColumn = function (index) {
-                if (index == $scope.gridOrder.orderColumn) {
+            $scope.orderColumn = function (column) {
+                if (column == $scope.gridOrder.orderColumn) {
                     $scope.gridOrder.reverse = !$scope.gridOrder.reverse;
                 } else {
-                    $scope.gridOrder.orderColumn = index;
+                    $scope.gridOrder.orderColumn = column;
                 }
             };
             $scope.selectAllRows = function () {
@@ -158,7 +158,7 @@ define([
 
             //TODO da vidime dali morat watch
             scope.$watch('config', function () {
-                if (!(typeof scope.data.colsSettings === "undefined")) {
+                if (!(typeof scope.config === "undefined")) {
                     if (attrs.$attr.formId) {
                         scope.setFormData(attrs.formId);
                     }
@@ -176,15 +176,24 @@ define([
                                 tempInput = $('<input data-custom-input>');
                             } else if (tplData.type == "date") {
                                 tempInput = $('<input data-custom-date>');
-                            }else if (tplData.type == "number") {
+                            } else if (tplData.type == "number") {
                                 tempInput = $('<input data-custom-spinner>');
+                            } else if (tplData.type == "autocomplete") {
+                                tempInput = $('<input data-custom-auto-complete>');
+                                tempInput.attr('data-resource',tplData.resource);
+                                tempInput.attr('data-field',tplData.field);
                             }
-                        tempInput.attr('input-name', tplData.name);
-                        tempInput.attr('input-label', tplData.label);
-                        tempInput.attr('input-model', 'formData["' + tplData.name + '"]');
-                        tempInput.attr('input-required', tplData.required);
-                        tempInput.attr('input-pattern', tplData.regex);
-                        tempInput.attr('input-pattern-msg', tplData.regexMsg);
+                            tempInput.attr('input-name', tplData.name);
+                            tempInput.attr('input-label', tplData.label);
+                            if (tplData.type == "autocomplete") {
+                                tempInput.attr('input-model','formData["'+tplData.resource+'"]');
+                            }else{
+                                tempInput.attr('input-model', 'formData["'+tplData.name+'"]');
+                            }
+
+                            tempInput.attr('input-required', tplData.required);
+                            tempInput.attr('input-pattern', tplData.regex);
+                            tempInput.attr('input-pattern-msg', tplData.regexMsg);
 
                         if (tplData.contextGroup > -1) {
                             if (formGroups[tplData.contextGroup] == null) {

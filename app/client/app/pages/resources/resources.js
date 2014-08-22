@@ -10,6 +10,9 @@ define([], function() {
                     $scope.resources=[{
                         name:'Места',
                         resource:'settlements'
+                    },{
+                        name:'Општини',
+                        resource:'municipalities'
                     }]
             }
             return {
