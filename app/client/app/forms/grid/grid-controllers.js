@@ -84,7 +84,6 @@ define([], function () {
                     return;
                 }
                 var temp = $scope.resources;
-                console.log($scope.searchField);
                 temp = $filter('filter')(temp, $scope.searchField);
                 temp = $filter('orderByColumn')(temp, $scope.gridOrder.orderColumn, $scope.gridOrder.reverse);
                 //Pagination is calculated before data is filtered by current page
