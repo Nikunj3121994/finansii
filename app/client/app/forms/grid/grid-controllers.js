@@ -32,6 +32,7 @@ define([], function () {
         $scope.dataReady = false;
         $scope.selectedItems = {};
         $scope.protoModels = {};
+        $scope.requestInProgress=false;
 
         if (_.isUndefined($scope.gridOptions)) $scope.gridOptions = {};
 
@@ -106,8 +107,10 @@ define([], function () {
      */
 
     module.controller("formController", function controller($scope, jsonGridDataService) {
+        console.log('vo form controller');
         var formName = $scope.gridOptions.formName;
         $scope.setFormData = function () {
+            console.log('sdfdsf');
             $scope.formData = {};
             var row = getRowById();
             if (row !== false) {
@@ -131,13 +134,16 @@ define([], function () {
             $scope[formName].$setPristine();
         };
         function updateRow() {
+
             if ($scope[formName]) {
+                if($scope.formData==null) return;
+                $scope.requestInprogress=true;
                 var postRequestData = {};
                 var formData = _.clone($scope.formData);
                 _($scope.config.order).each(function (column) {
                     if ($scope.config[column].type == "autocomplete") {
-                        postRequestData[column] = $scope.formData[$scope.config[column].resource][column];
-                    } else postRequestData[column] = $scope.formData[column];
+                        postRequestData[column] = formData[$scope.config[column].resource][column];
+                    } else postRequestData[column] =formData[column];
                 });
                 jsonGridDataService.editResource($scope.gridResource, postRequestData,formData.id).then(function (data) {
 
@@ -147,6 +153,7 @@ define([], function () {
                         $scope.dataChangeTag = !$scope.dataChangeTag;
                     }
                     alert(data.msg);
+                    $scope.requestInprogress=false;
                 });
 
                 //TODO http post do server
@@ -156,11 +163,14 @@ define([], function () {
         }
 
         function addRow() {
+            if($scope.formData==null) return;
             var postRequestData = {};
             var formData = _.clone($scope.formData);
             _($scope.config.order).each(function (column) {
                 if ($scope.config[column].type == "autocomplete") {
-                    postRequestData[column] = $scope.formData[$scope.config[column].resource][column];
+                    if($scope.config[column].referencedColumn)
+                        postRequestData[column] = $scope.formData[$scope.config[column].resource][$scope.config[column].referencedColumn];
+                    else postRequestData[column] = $scope.formData[$scope.config[column].resource].id
                 } else postRequestData[column] = $scope.formData[column];
             });
             jsonGridDataService.saveResource($scope.gridResource, postRequestData).then(function (data) {

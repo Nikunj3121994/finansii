@@ -1,0 +1,14 @@
+<div >
+    <input class="form-control" type="text" dynamic-name="inputName"
+           ng-required="{{ inputRequired }}"
+           ng-model="inputModel"
+           placeholder="{{inputLabel}}"
+           typeahead="row as row[field] for row in getAutoCompleteData($viewValue)"
+           notification-messages>
+
+    <div class="notification-messages ntf-msg-inline">
+        <!-- Dependent of notification-messages directive in input -->
+        <p class="text-danger" ng-show="showRequiredMessage()">Required field</p>
+        <p class="text-danger" ng-show="showPatternMismatchedMessage()">{{ inputPatternMsg }}</p>
+    </div>
+</div>

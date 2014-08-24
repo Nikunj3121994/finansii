@@ -15,6 +15,7 @@ define([
      * @name app.forms.inputs.customtext.directive:customInput
      */
     module.directive('customInput', function () {
+
         return {
             restrict: 'EA',
             scope: {
@@ -27,7 +28,25 @@ define([
                 customMask: "@"
             },
             replace: true,
-            templateUrl: "app/forms/inputs/views/custom-text-input.html"
+            templateUrl: 'app/Forms/Inputs/views/custom-text-input.html'
+        }
+    });
+    module.directive('customInputInline', function () {
+
+        return {
+            restrict: 'EA',
+            scope: {
+                inputName: "@",
+                inputLabel: "@",
+                inputModel: "=",
+                inputRequired: "@?",
+                inputPattern: "@?",
+                inputPatternMsg: "@?",
+                customMask: "@"
+            },
+            replace: true,
+            templateUrl: 'app/Forms/Inputs/views/custom-text-input-inline.html'
+
         }
     });
 

@@ -1,15 +1,15 @@
-<tr>
-    <th ng-if="gridOptions.permissions.select">
+<div class="table-row">
+    <div class="table-head" ng-if="gridOptions.permissions.select">
         <label class="ui-checkbox">
             <input type="checkbox" ng-change="selectAllRows(event)" ng-model="protoModels.selectAllToggle">
             <span></span>
         </label>
-    </th>
+    </div>
 
-    <th ng-repeat="element in config.order" ng-click="orderColumn(element)" bindonce ng-show="config[element].visible==1">
+    <div class="table-head" ng-repeat="element in config.order" ng-click="orderColumn(element)" bindonce ng-show="config[element].visible==1">
         <span>{{config[element].label}}</span>
         <span ng-class="{true: 'glyphicon-chevron-up', false: 'glyphicon-chevron-down'}[$parent.gridOrder.reverse]" class="glyphicon pull-right"
               ng-show="$parent.gridOrder.orderColumn==$index">
         </span>
-    </th>
-</tr>
+    </div>
+</div>

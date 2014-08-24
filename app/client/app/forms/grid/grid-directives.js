@@ -33,7 +33,8 @@ define([
                 filterColumns: true,
                 addResource: true,
                 editResource: true,
-                deleteResource: true
+                deleteResource: true,
+                formInline:true
             },
             formName: "default-name",
             pageSize: 6
@@ -118,7 +119,7 @@ define([
                 }
             };
             $scope.selectAllRows = function () {
-                $.each($scope.data.rows, function (i, v) {
+                $.each($scope.resources, function (i, v) {
                     $scope.selectedItems[v.id] = $scope.protoModels.selectAllToggle;
                 })
             }
@@ -232,6 +233,58 @@ define([
             templateUrl: 'app/forms/grid/views/grid-form.html'
         }
     });
+    module.directive('customFormInline', function ($compile) {
+        function link(scope, element, attrs) {
+            scope.$watch('config', function () {
+                if (!(typeof scope.config === "undefined")) {
+                    if (attrs.$attr.formId) {
+                        scope.setFormData(attrs.formId);
+                    }
+                    var inputCont = element;
+                    for (var i = 0; i < scope.config.order.length; i++) {
+                        var inputGroup = $('<div class="table-cell"></div>');
+                        var tplData = scope.config[scope.config.order[i]];
+                        var tempInput;
+                        if (tplData)
+                            if (tplData.type == "text") {
+                                tempInput = $('<input data-custom-input-inline>');
+                            } else if (tplData.type == "date") {
+                                tempInput = $('<input data-custom-date-inline>');
+                            } else if (tplData.type == "number") {
+                                tempInput = $('<input data-custom-spinner-inline>');
+                            } else if (tplData.type == "autocomplete") {
+                                tempInput = $('<input data-custom-auto-complete-inline>');
+                                tempInput.attr('data-resource',tplData.resource);
+                                tempInput.attr('data-field',tplData.field);
+                            }
+                        tempInput.attr('input-name', tplData.name);
+                        tempInput.attr('input-label', tplData.label);
+                        if (tplData.type == "autocomplete") {
+                            tempInput.attr('input-model','formData["'+tplData.resource+'"]');
+                        }else{
+                            tempInput.attr('input-model', 'formData["'+tplData.name+'"]');
+                        }
 
+                        tempInput.attr('input-required', tplData.required);
+                        tempInput.attr('input-pattern', tplData.regex);
+                        tempInput.attr('input-pattern-msg', tplData.regexMsg);
+                        tempInput.attr('inline', scope.gridOptions.permissions.formInline);
+
+                        inputGroup.append(tempInput);
+                        inputGroup.insertBefore(inputCont.find('.js_submit_form'));
+                    }
+                    $compile(inputCont.contents())(scope);
+                }
+
+            });
+        }
+        return {
+            restrict: 'EA',
+            link: link,
+            controller: 'formController',
+            templateUrl: 'app/forms/grid/views/grid-form-inline.html',
+            replace:true
+        }
+    });
     return module;
 });

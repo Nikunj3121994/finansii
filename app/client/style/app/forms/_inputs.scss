@@ -9,12 +9,21 @@
 }
 
 .custom-spinner {
-
+  position: relative;
+  .spinner-btn-group{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 17px;
+  }
   button.btn-arrows {
     height: 17px;
-
+    width: 17px;
+    position: absolute;
+    top: 0;
     & + .btn-arrows {
       margin-top: 0;
+      top:17px;
     }
   }
 }

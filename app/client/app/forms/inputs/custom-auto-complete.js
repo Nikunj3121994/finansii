@@ -29,6 +29,32 @@ define([
             link:link
         }
     });
+    module.directive('customAutoCompleteInline',function($timeout,autoCompleteService){
+        function link($scope){
+            $scope.getAutoCompleteData=function(val){
+                return autoCompleteService.getAutoCompleteData($scope.resource,val).then(function(data){
+                    if(data.length>0) $scope.selectedRow=0;
+                    return data;
+                });
+            }
+        }
+        return {
+            restrict:'A',
+            scope:{
+                inputName: "@",
+                inputLabel: "@",
+                inputModel: "=",
+                inputRequired: "@?",
+                inputPattern: "@?",
+                inputPatternMsg: "@?",
+                resource:"@",
+                field:"@"
+            },
+            templateUrl:'app/Forms/Inputs/views/custom-auto-complete-inline.html',
+            replace: true,
+            link:link
+        }
+    });
     module.directive('autoCompleteModelCast',function(){
        function link($scope,element,attr,ngModelCtrl){
            ngModelCtrl.$formatters.unshift(function (modelValue) {

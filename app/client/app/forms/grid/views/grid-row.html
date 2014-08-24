@@ -1,16 +1,16 @@
-<td ng-if="gridOptions.permissions.select">
+<div class="table-cell" ng-if="gridOptions.permissions.select">
     <label class="ui-checkbox">
         <input type="checkbox" ng-model="selectedItems[row.id]">
         <span></span>
     </label>
-</td>
-<td data-ng-repeat="element in config.order" ng-switch on="config[element].type" ng-show="config[element].visible==1">
+</div>
+<div class="table-cell" data-ng-repeat="element in config.order" ng-switch on="config[element].type" ng-show="config[element].visible==1">
     <span ng-switch-when="text">{{row[element]}}</span>
     <span ng-switch-when="number">{{row[element]}}</span>
     <span ng-switch-when="autocomplete">{{row[config[element].resource][config[element].field]}}</span>
     <span ng-switch-when="date">{{row[element]|date:'dd.MM.yyyy'}}</span>
-</td>
+</div>
 
-<td ng-if="gridOptions.permissions.editResource">
+<div class="table-cell" ng-if="gridOptions.permissions.editResource">
     <button class="btn btn-primary btn-xs" ng-click="editDataRow(row.id,$index)">Edit</button>
-</td>
+</div>

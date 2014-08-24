@@ -17,6 +17,12 @@ define([
                 $event.stopPropagation();
                 $scope.opened = true;
             };
+            $scope.getContentUrl=function(){
+                if($scope.inline=='true'){
+                    return 'app/Forms/Inputs/views/custom-date-inline.html';
+                }
+                else return 'app/Forms/Inputs/views/custom-date.html';
+            }
         }
 
         return {
@@ -28,10 +34,42 @@ define([
                 inputModel: "=",
                 inputRequired: "@?",
                 inputPattern: "@?",
-                inputPatternMsg: "@?"
+                inputPatternMsg: "@?",
+                inline:"@?"
             },
             replace: true,
-            templateUrl: "app/Forms/Inputs/views/custom-date.html"
+            template: '<div ng-include="getContentUrl()"></div>'
+        }
+    });
+    module.directive('customDateInline', function ($filter) {
+        function link($scope, element, attr) {
+            /* Binded text input model and bootstrap datePicker model
+             * text input - parsedModel - string
+             * datePicker input - inputModel - Date object
+             * using bootstrap-ui dateParser service
+             */
+            $scope.openDatepicker = function ($event) {
+                $event.preventDefault();
+                $event.stopPropagation();
+                $scope.opened = true;
+            };
+
+        }
+
+        return {
+            restrict: 'EA',
+            link: link,
+            scope: {
+                inputName: "@",
+                inputLabel: "@",
+                inputModel: "=",
+                inputRequired: "@?",
+                inputPattern: "@?",
+                inputPatternMsg: "@?",
+                inline:"@?"
+            },
+            replace: true,
+            templateUrl: 'app/Forms/Inputs/views/custom-date-inline.html'
         }
     });
 

@@ -4,12 +4,13 @@
 
     <!--  THE TABLE  -->
     <div class="table-container">
-        <table class="table">
-            <thead data-grid-head></thead>
-            <tbody>
-            <tr data-grid-row data-ng-repeat="row in filteredData" ng-click="changeSelectedRow($index, row.id)"></tr>
-            </tbody>
-        </table>
+        <div class="table">
+            <div class="table-header-group" data-grid-head></div>
+            <div class="table-body-group">
+                <div data-custom-form-inline></div>
+                <div class="table-row" data-grid-row data-ng-repeat="row in filteredData" ng-click="changeSelectedRow($index, row.id)"></div>
+            </div>
+        </div>
     </div>
 
     <!--  PAGINATION  -->
@@ -19,5 +20,5 @@
             >
     </pagination>
 
-    <data-custom-form ng-show="gridOptions.permissions.editResource || gridOptions.permissions.addResource"></data-custom-form>
+    <data-custom-form ng-if="gridOptions.permissions.formInline!=true" ng-show="gridOptions.permissions.editResource || gridOptions.permissions.addResource"></data-custom-form>
 </div>

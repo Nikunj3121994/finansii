@@ -1,0 +1,39 @@
+<div class="custom-date">
+    <div class="input-group">
+        <div class="col-md-7 grid-no-padding">
+            <!--  Datepicker input  -->
+            <input class="form-control" ng-model="inputModel"
+                   dynamic-name="inputName"
+                   custom-pattern="{{ inputPattern }}"
+                   ng-required="{{ inputRequired }}"
+                   custom-mask="99.99.9999"
+                   placeholder="__.__.____"
+                   notification-messages
+                   add-days-inline=""
+                   datepicker-popup="dd.MM.yyyy"
+                   is-open="opened"
+                   placeholder="{{inputLabel}}"
+                    >
+            <!--  Datepicker popup holder  -->
+            <div   class="datepicker-holder"></div>
+        </div>
+        <div class="col-md-3 grid-no-padding">
+            <input class="form-control" ng-model="currentNumber" data-ng-disabled="true">
+        </div>
+        <div class="col-md-2 grid-no-padding">
+            <!--  Datepicker popup trigger button  -->
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="openDatepicker($event)">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                </span>
+        </div>
+    </div>
+
+    <div class="notification-messages">
+        <!-- Dependent of notification-messages directive in input -->
+        <p class="text-danger" ng-show="showRequiredMessage()">Required field</p>
+
+        <p class="text-danger" ng-show="showPatternMismatchedMessage()">{{ inputPatternMsg }}</p>
+    </div>
+</div>

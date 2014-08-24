@@ -30,6 +30,7 @@ define([], function() {
                 if (_.isUndefined($scope.inputModel)) $scope.inputModel = 0;
                 $scope.inputModel = (parseFloat($scope.inputModel) - 1).toString();
             };
+
         }
 
         return {
@@ -41,14 +42,51 @@ define([], function() {
                 inputRequired: "@?",
                 inputPattern: "@?",
                 inputPatternMsg: "@?",
-                customMask: "@"
+                customMask: "@",
+                inline:"@?"
             },
             replace: true,
-            templateUrl: "app/Forms/Inputs/views/custom-spinner-input.html",
+            templateUrl: 'app/Forms/Inputs/views/custom-spinner-input.html',
             link: link
         }
     });
 
+    module.directive('customSpinnerInline', function () {
+        function link($scope) {
+            var numberTest = /^(-?(\d+\.\d+|\d+|\d+\.|\.\d+)|-)$/;
+            $scope.$watch('inputModel', function (newVal, oldVal) {
+                if (!numberTest.test(newVal) && !_.isUndefined(newVal)) {
+                    if (numberTest.test(oldVal)) $scope.inputModel = oldVal;
+                    else $scope.inputModel = 0;
+                }
+            });
+            $scope.increment = function () {
+                if (_.isUndefined($scope.inputModel)) $scope.inputModel = 0;
+                $scope.inputModel = (parseFloat($scope.inputModel) + 1).toString();
+            };
+            $scope.decrement = function () {
+                if (_.isUndefined($scope.inputModel)) $scope.inputModel = 0;
+                $scope.inputModel = (parseFloat($scope.inputModel) - 1).toString();
+            };
+        }
+
+        return {
+            restrict: 'EA',
+            scope: {
+                inputName: "@",
+                inputLabel: "@",
+                inputModel: "=",
+                inputRequired: "@?",
+                inputPattern: "@?",
+                inputPatternMsg: "@?",
+                customMask: "@",
+                inline:"@?"
+            },
+            replace: true,
+            templateUrl: 'app/Forms/Inputs/views/custom-spinner-input-inline.html',
+            link: link
+        }
+    });
 
     return module;
 });

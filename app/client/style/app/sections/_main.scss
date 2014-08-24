@@ -9,6 +9,22 @@ section.main-container{
   left: 0;
   overflow: auto;
   .table {
+    .table-header-group{
+      display: table-header-group;
+    }
+    .table-body-group{
+      display: table-row-group;
+    }
+    .table-row{
+      display:table-row;
+      .table-cell{
+        display: table-cell;
+      }
+      .table-head{
+        display: table-cell;
+      }
+    }
+
     tbody {
       tr {
         td {
