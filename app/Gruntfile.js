@@ -103,7 +103,7 @@ module.exports = function (grunt) {
         express: {
             all: {
                 options: {
-                    port: 9000,
+                    port: 9001,
                     hostname: "localhost",
                     bases: ['client/'],
                     livereload: true

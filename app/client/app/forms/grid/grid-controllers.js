@@ -142,7 +142,9 @@ define([], function () {
                 var formData = _.clone($scope.formData);
                 _($scope.config.order).each(function (column) {
                     if ($scope.config[column].type == "autocomplete") {
-                        postRequestData[column] = formData[$scope.config[column].resource][column];
+                        if($scope.config[column].referencedColumn)
+                            postRequestData[column] = $scope.formData[$scope.config[column].resource][$scope.config[column].referencedColumn];
+                        else postRequestData[column] = $scope.formData[$scope.config[column].resource].id
                     } else postRequestData[column] =formData[column];
                 });
                 jsonGridDataService.editResource($scope.gridResource, postRequestData,formData.id).then(function (data) {
