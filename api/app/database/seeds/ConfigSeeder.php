@@ -88,7 +88,7 @@
                 'name'=>'settlement_code',
                 'label'=>'Settlement',
                 'visible'=>1,
-                'type'=>'text',
+                'type'=>'autocomplete',
                 'required'=>1,
                 'edit'=>1
             ));

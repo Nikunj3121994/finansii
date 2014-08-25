@@ -13,6 +13,30 @@ define([], function() {
                     },{
                         name:'Општини',
                         resource:'municipalities'
+                    },{
+                        name:'Улици',
+                        resource:'streets'
+                    },{
+                        name:'Банки',
+                        resource:'banks'
+                    },{
+                        name:'Оператори',
+                        resource:'operators'
+                    },{
+                        name:'Компании',
+                        resource:'companies'
+                    },{
+                        name:'Под конта',
+                        resource:'sub-accounts'
+                    },{
+                        name:'Конта',
+                        resource:'accounts'
+                    },{
+                        name:'Курс',
+                        resource:'currencies'
+                    },{
+                        name:'Курсни листи',
+                        resource:'exchange-rates'
                     }]
             }
             return {

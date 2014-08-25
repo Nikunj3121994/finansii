@@ -11,9 +11,9 @@ class StreetsController extends \BaseController {
 	public function index()
 	{
         if(Input::has('settlements')){
-            return ProcessResponse::process(Settlement::where('settlement_code','=',Input::get('settlements'))->toArray());
+            return ProcessResponse::process(Street::where('settlement_code','=',Input::get('settlements'))->toArray());
         }else{
-            return ProcessResponse::process(Settlement::with('settlements')->get()->toArray());
+            return ProcessResponse::process(Street::with('settlements')->get()->toArray());
         }
 	}
 
