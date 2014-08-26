@@ -40,8 +40,8 @@ class OrdersController extends \BaseController {
         if($validator->fails()){
             return ProcessResponse::getError( 1000,$validator->messages());
         }else{
-            if(Order::create(Input::all())){
-                return ProcessResponse::$success;
+            if($order=Order::create(Input::all())){
+                return ProcessResponse::process(array("id"=>$order->id));
             }else{
                 return ProcessResponse::getError( 1000,"Error");
             }

@@ -1,0 +1,18 @@
+<div class="row" ng-controller="ordersController">
+    <div class="col-lg-3">
+        <custom-grid  grid-resource="orders" selected-row-data="currentOrder" grid-data="orders" grid-options="defaultOptions"></custom-grid>
+    </div>
+    <div class="col-lg-9">
+       <form name="orderForm" novalidate>
+           <input custom-spinner input-model="orderData['order_type']" input-name="order_type" input-label="Тип на налог" input-required="1">
+           <input custom-spinner input-model="orderData['order_number']" input-name="order_number" input-label="Број на налог" input-required="1">
+           <input custom-date input-model="orderData['order_date']" input-name="order_date" input-label="Датум" input-required="1">
+           <input custom-auto-complete input-model="orderData['operators']" input-name="operator_id" resource="operators"
+                  field="operator_name" input-label="Оператор" input-required="1">
+           <button class="btn btn-primary btn-xs" data-ng-disabled="orderForm.$invalid" ng-click="saveData()">Submit</button>
+           <button class="btn btn-primary btn-xs"  ng-click="newOrder()">New</button>
+       </form>
+        <div ui-view class="ledgers-container"></div>
+    </div>
+</div>
+

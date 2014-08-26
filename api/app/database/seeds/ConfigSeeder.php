@@ -388,7 +388,7 @@
             $ordersTable->fields()->save(new Field(array(
                 'name'=>'order_date',
                 'label'=>'Date',
-                'visible'=>1,
+                'visible'=>0,
                 'type'=>'date',
                 'required'=>1,
                 'edit'=>1
@@ -396,7 +396,7 @@
             $ordersTable->fields()->save(new Field(array(
                 'name'=>'order_booking',
                 'label'=>'Booking',
-                'visible'=>1,
+                'visible'=>0,
                 'type'=>'date',
                 'required'=>1,
                 'edit'=>1
@@ -405,7 +405,7 @@
                 'name'=>'operator_id',
                 'label'=>'Operator',
                 'visible'=>1,
-                'type'=>'date',
+                'type'=>'autocomplete',
                 'required'=>1,
                 'edit'=>1
             ));
@@ -549,8 +549,8 @@
 
             $ledgersTable=FormConfig::create(array('name'=>'ledgers','edit'=>1,'delete'=>1,'add'=>1));
             $companyField=new Field(array(
-                'name'=>'currency_value',
-                'label'=>'Currency value',
+                'name'=>'company_code',
+                'label'=>'Company',
                 'visible'=>1,
                 'type'=>'autocomplete',
                 'required'=>1,
@@ -567,7 +567,7 @@
             )));
             $companyField->property()->save(new FieldConfig(array(
                 'key'=>'referencedColumn',
-                'value'=>'company_name'
+                'value'=>'company_code'
             )));
 
             $ledgersTable->fields()->save(new Field(array(
@@ -581,7 +581,7 @@
 
             $accountField=new Field(array(
                 'name'=>'sub_account',
-                'label'=>'Account',
+                'label'=>'Sub Account',
                 'visible'=>1,
                 'type'=>'autocomplete',
                 'required'=>1,
@@ -594,14 +594,21 @@
             )));
             $accountField->property()->save(new FieldConfig(array(
                 'key'=>'field',
-                'value'=>'accounts_name'
+                'value'=>'account_name'
             )));
-
             $ledgersTable->fields()->save(new Field(array(
                 'name'=>'date',
                 'label'=>'Date',
                 'visible'=>1,
                 'type'=>'date',
+                'required'=>1,
+                'edit'=>1
+            )));
+            $ledgersTable->fields()->save(new Field(array(
+                'name'=>'document_desc',
+                'label'=>'Document Description',
+                'visible'=>1,
+                'type'=>'text',
                 'required'=>1,
                 'edit'=>1
             )));
@@ -614,21 +621,14 @@
                 'edit'=>1
             )));
             $ledgersTable->fields()->save(new Field(array(
-                'name'=>'date',
-                'label'=>'document_desc',
+                'name'=>'document_date',
+                'label'=>'Document date',
                 'visible'=>1,
-                'type'=>'text',
+                'type'=>'date',
                 'required'=>0,
                 'edit'=>1
             )));
-            $ledgersTable->fields()->save(new Field(array(
-                'name'=>'date',
-                'label'=>'Date',
-                'visible'=>1,
-                'type'=>'date',
-                'required'=>1,
-                'edit'=>1
-            )));
+
             $ledgersTable->fields()->save(new Field(array(
                 'name'=>'booking_type',
                 'label'=>'Booking type',

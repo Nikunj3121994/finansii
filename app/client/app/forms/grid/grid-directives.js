@@ -40,10 +40,12 @@ define([
             pageSize: 6
         };
         var isolatedScope = {
-            data: "=?gridData",
+            resources: "=?gridData",
             gridName: "=",
             gridOptions: "=?",
             gridResource:"@",
+            gridParams:"=?",
+            selectedRowData:"=?selectedRowData",
             gridDataUrl: "@" // ova ne trebit ovde - vo servis
         };
 
@@ -86,6 +88,7 @@ define([
             element.click(function () {
                 $scope.$parent.selectedRow = $scope.$index;
                 $scope.$parent.selectedRowData = $scope.filteredData[$scope.$index];
+                $scope.$apply();
 
             })
 

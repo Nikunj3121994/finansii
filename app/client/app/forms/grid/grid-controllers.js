@@ -19,11 +19,11 @@ define([], function () {
      * @description used for handling the resuouce that fills the grid, pagination, selection of rows
      */
     module.controller("gridController", function ($scope, $http, $filter, jsonGridDataService) {
-        jsonGridDataService.getConfig($scope.gridResource).then(function (data) {
+        jsonGridDataService.getConfig($scope.gridResource,$scope.gridParams).then(function (data) {
             $scope.config = data;
             $scope.dataChangeTag = !$scope.dataChangeTag;
         });
-        jsonGridDataService.getResource($scope.gridResource).then(function (data) {
+        jsonGridDataService.getResource($scope.gridResource,$scope.gridParams).then(function (data) {
             $scope.resources = data;
             $scope.dataChangeTag = !$scope.dataChangeTag;
         });
@@ -147,7 +147,7 @@ define([], function () {
                         else postRequestData[column] = $scope.formData[$scope.config[column].resource].id
                     } else postRequestData[column] =formData[column];
                 });
-                jsonGridDataService.editResource($scope.gridResource, postRequestData,formData.id).then(function (data) {
+                jsonGridDataService.editResource($scope.gridResource, postRequestData,formData.id,$scope.gridParams).then(function (data) {
 
                     if (data.code == 0) {
                         var rowId = getRowIndexById();
@@ -175,7 +175,7 @@ define([], function () {
                     else postRequestData[column] = $scope.formData[$scope.config[column].resource].id
                 } else postRequestData[column] = $scope.formData[column];
             });
-            jsonGridDataService.saveResource($scope.gridResource, postRequestData).then(function (data) {
+            jsonGridDataService.saveResource($scope.gridResource, postRequestData,$scope.gridParams).then(function (data) {
 
                 if (data.code == 0) {
                     $scope.resources.push(formData);

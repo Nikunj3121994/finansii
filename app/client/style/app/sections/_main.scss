@@ -12,10 +12,17 @@ section.main-container{
     height: 25px;
     padding: 0 3px;
     font-size: 12px;
-    min-width: 100px;
-  }
 
+  }
+  button{
+    height: 25px;
+    padding: 4px 10px;
+  }
   .table {
+    white-space: nowrap;
+    input.form-control{
+      min-width: 100px;
+    }
     .table-header-group{
       display: table-header-group;
     }

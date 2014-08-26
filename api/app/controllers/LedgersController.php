@@ -10,16 +10,8 @@ class LedgersController extends \BaseController {
 	 */
 	public function index()
 	{
-		if(Input::has('order')){
-            $array=Ledger::with('company')->with('order')->with(array('currency'=>function($query){
-                    $query->with(array('exchangeRates'=>function($query1){
-                            $query1->whereRaw('exchange_date < ledgers.date');
-                            $query1->orderBy('exchange_date','desc');
-                            $query1->first();
-                        }));
-
-                }))->where('order_id','=',Input::get('order'))->get();
-
+		if(Input::has('order_id')){
+            $array=Ledger::with('company')->with('order')->with('currency')->where('order_id','=',Input::get('order_id'))->get();
             return ProcessResponse::process($array);
         }else{
             return ProcessResponse::getError(1000,"Order id required");

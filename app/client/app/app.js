@@ -6,7 +6,7 @@ define([
 
     'global/translate/Translate',
 
-    'pages/order/order',
+    'pages/orders/orders',
     'pages/reports/report-page',
     'pages/autocomplete/AutoComplete',
     'pages/resources/resources',
@@ -26,13 +26,14 @@ define([
 
             'app.global.translate',
 
-            'app.pages.order',
+            'app.pages.orders',
             'app.pages.reports',
             'app.pages.autocomplete',
             'app.pages.resources',
 
             'app.forms.grid',
             'app.forms.summary',
+
 
             'app.reports'
         ])
@@ -70,24 +71,22 @@ define([
                     url:'/resources',
                     template:'<div resources-page></div>'
                 }).state('finance.resources.resource',{
-                    url:'/resources/:resource',
-                    template:'<custom-grid grid-data="ordersData" grid-resource="{{resource}}" grid-data-url="test_api/testnalog.json" grid-options="smallGridOptions"></custom-grid>',
+                    url:'/:resource',
+                    template:'<custom-grid grid-resource="{{resource}}"></custom-grid>',
 
                     controller:function($scope,$stateParams){
                         $scope.resource=$stateParams.resource;
                     }
-                }).state('admin.grid', {
-                    url: '/grid/:gridName',
-                    template: '<custom-grid check-fields-column="1" edit-id="{{editId}}" grid-data-url="test_api/testform.json"></custom-grid>',
-                    controller: function ($scope, $stateParams) {
-                        $scope.gridName = $stateParams.gridName;
+                }).state('finance.orders',{
+                    url:'/orders',
+                    templateUrl:'app/pages/orders/orders.html'
+                }).state('finance.orders.ledgers',{
+                    url:'/:orderId',
+                    template:'<custom-grid grid-resource="ledgers" grid-params="params"></custom-grid>',
+
+                    controller:function($scope,$stateParams){
+                        $scope.params={order_id:$stateParams.orderId};
                     }
-                }).state('finance.reports', {
-                    url: '/reports',
-                    templateUrl: 'app/pages/reports/report-page.html'
-                }).state('finance.autocomplete', {
-                    url: '/autocomplete',
-                    templateUrl: 'app/pages/autocomplete/auto-complete.html'
                 }).state('404', {
                     url: '/404',
                     views: {

@@ -1,13 +1,29 @@
 .custom-date {
+  position: relative;
   .datepicker-holder {
+    float: left;
     margin-top: 25px;
   }
   .grid-no-padding {
     padding: 0;
 
   }
-}
 
+  .date-plus-number{
+    width:30px;
+    position:absolute;
+    right: 36px;
+    top: 0;
+  }
+  .date-btn{
+    position:absolute;
+    right: 0;
+    top: 0;
+  }
+}
+section.main-container .table input.form-control.date-input{
+  min-width: 140px;
+}
 .custom-spinner {
   position: relative;
   .spinner-btn-group{

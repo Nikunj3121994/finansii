@@ -3,12 +3,16 @@ define([], function() {
     var module = angular.module("app.forms.grid.services", [])
 
     module.factory('jsonGridDataService', ["$q", "$http" , function ($q, $http) {
-        this.getData = function (dataUrl) {
+        this.getData = function (dataUrl,params) {
+            if(_.isUndefined(params)){
+                params={};
+            }
             var deferred = $q.defer(),
                 start = new Date().getTime();
 
             $http({
                 url: dataUrl,
+                params:params,
                 method: "GET"
             })
                 .success(function (data) {
@@ -49,12 +53,15 @@ define([], function() {
             return deferred.promise;
         }
 
-        this.getResource=function(resource){
+        this.getResource=function(resource,params){
             var deferred = $q.defer();
-
+            if(_.isUndefined(params)){
+                params={};
+            }
             var resourceUrl="http://localhost/finansii/api/public/"+resource;
             $http({
                 url: resourceUrl,
+                params:params,
                 method: "GET"
             })
                 .success(function (data) {
@@ -67,7 +74,10 @@ define([], function() {
 
             return deferred.promise;
         }
-        this.saveResource=function(resource,data){
+        this.saveResource=function(resource,data,params){
+            if(!_.isUndefined(params)){
+                _.extend(data,params);
+            }
             var deferred = $q.defer();
             var resourceUrl="http://localhost/finansii/api/public/"+resource;
             $http({
@@ -85,7 +95,10 @@ define([], function() {
 
             return deferred.promise;
         }
-        this.editResource=function(resource,data,id){
+        this.editResource=function(resource,data,id,params){
+            if(!_.isUndefined(params)){
+                _.extend(data,params);
+            }
             var deferred = $q.defer();
             var resourceUrl="http://localhost/finansii/api/public/"+resource+"/"+id;
             $http({
