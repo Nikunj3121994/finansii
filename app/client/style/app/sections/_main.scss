@@ -8,6 +8,13 @@ section.main-container{
   right: 0;
   left: 0;
   overflow: auto;
+  input.form-control{
+    height: 25px;
+    padding: 0 3px;
+    font-size: 12px;
+    min-width: 100px;
+  }
+
   .table {
     .table-header-group{
       display: table-header-group;
@@ -21,10 +28,19 @@ section.main-container{
         display: table-cell;
         padding: 0 10px;
       }
+
+      .table-input{
+        display: table-cell;
+        padding: 0;
+      }
       .table-head{
         display: table-cell;
         padding: 0 10px;
+        border-bottom: 1px solid #999;
       }
+    }
+    .table-row:nth-child(2n){
+      background: rgba(255,255,255,0.9);
     }
 
     tbody {

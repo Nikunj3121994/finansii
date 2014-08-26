@@ -242,7 +242,7 @@ define([
                     }
                     var inputCont = element;
                     for (var i = 0; i < scope.config.order.length; i++) {
-                        var inputGroup = $('<div class="table-cell"></div>');
+                        var inputGroup = $('<div class="table-input"></div>');
                         var tplData = scope.config[scope.config.order[i]];
                         var tempInput;
                         if (tplData)

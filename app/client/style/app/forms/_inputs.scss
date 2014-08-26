@@ -17,13 +17,13 @@
     width: 17px;
   }
   button.btn-arrows {
-    height: 17px;
+    height: 25px;
     width: 17px;
     position: absolute;
     top: 0;
     & + .btn-arrows {
       margin-top: 0;
-      top:17px;
+      right:17px;
     }
   }
 }

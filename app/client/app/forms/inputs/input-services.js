@@ -12,7 +12,6 @@ define([
                 method: "GET"
             })
                 .success(function (data) {
-                    console.log(data,data.code);
                     if(data.code) deferred.resolve([]);
                     if(_.isArray(data.body)){
                         deferred.resolve(data.body);

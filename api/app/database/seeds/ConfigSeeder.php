@@ -149,7 +149,7 @@
             )));
             $operatorsTable=FormConfig::create(array('name'=>'operators','edit'=>1,'delete'=>1,'add'=>1));
             $operatorsTable->fields()->save(new Field(array(
-                'name'=>'operators_name',
+                'name'=>'operator_name',
                 'label'=>'Name',
                 'visible'=>1,
                 'type'=>'text',
@@ -157,7 +157,7 @@
                 'edit'=>1
             )));
             $operatorsTable->fields()->save(new Field(array(
-                'name'=>'operators_rang',
+                'name'=>'operator_rang',
                 'label'=>'Rang',
                 'visible'=>1,
                 'type'=>'text',
@@ -165,7 +165,7 @@
                 'edit'=>1
             )));
             $operatorsTable->fields()->save(new Field(array(
-                'name'=>'operators_pass',
+                'name'=>'operator_pass',
                 'label'=>'Password',
                 'visible'=>1,
                 'type'=>'text',
@@ -173,7 +173,7 @@
                 'edit'=>1
             )));
             $operatorsTable->fields()->save(new Field(array(
-                'name'=>'operators_telephone',
+                'name'=>'operator_telephone',
                 'label'=>'Telephone',
                 'visible'=>1,
                 'type'=>'text',
@@ -181,15 +181,7 @@
                 'edit'=>1
             )));
             $operatorsTable->fields()->save(new Field(array(
-                'name'=>'operators_telephone',
-                'label'=>'Telephone',
-                'visible'=>1,
-                'type'=>'text',
-                'required'=>0,
-                'edit'=>1
-            )));
-            $operatorsTable->fields()->save(new Field(array(
-                'name'=>'operators_mail',
+                'name'=>'operator_mail',
                 'label'=>'eMail',
                 'visible'=>1,
                 'type'=>'text',
@@ -197,7 +189,7 @@
                 'edit'=>1
             )));
 
-            $companyTable=FormConfig::create(array('name'=>'operators','edit'=>1,'delete'=>1,'add'=>1));
+            $companyTable=FormConfig::create(array('name'=>'companies','edit'=>1,'delete'=>1,'add'=>1));
             $companyTable->fields()->save(new Field(array(
                 'name'=>'company_code',
                 'label'=>'Code',
@@ -231,7 +223,7 @@
                 'edit'=>1
             )));
             $municipalitiesField1=new Field(array(
-                'name'=>'municipalities_code',
+                'name'=>'municipality_code',
                 'label'=>'Municipality',
                 'visible'=>1,
                 'type'=>'autocomplete',
@@ -283,15 +275,15 @@
                 'edit'=>1
             ));
             $companyTable->fields()->save($streetsField);
-            $settlementsField1->property()->save(new FieldConfig(array(
+            $streetsField->property()->save(new FieldConfig(array(
                 'key'=>'resource',
                 'value'=>'streets'
             )));
-            $settlementsField1->property()->save(new FieldConfig(array(
+            $streetsField->property()->save(new FieldConfig(array(
                 'key'=>'field',
                 'value'=>'street_name'
             )));
-            $settlementsField1->property()->save(new FieldConfig(array(
+            $streetsField->property()->save(new FieldConfig(array(
                 'key'=>'referencedColumn',
                 'value'=>'street_code'
             )));
