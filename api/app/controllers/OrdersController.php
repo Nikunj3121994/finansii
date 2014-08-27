@@ -10,7 +10,7 @@ class OrdersController extends \BaseController {
 	 */
 	public function index()
 	{
-        return ProcessResponse::process(Order::with('companies')->get());
+        return ProcessResponse::process(Order::with('companies')->where('archived','=',0)->get());
 	}
 
 	/**

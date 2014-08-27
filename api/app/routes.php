@@ -55,3 +55,4 @@ Route::resource('accounts', 'AccountsController',$excludedPaths);
 Route::resource('currencies', 'CurrenciesController',$excludedPaths);
 Route::resource('exchange-rates', 'ExchangeRatesController',$excludedPaths);
 Route::resource('ledgers', 'LedgersController',$excludedPaths);
+Route::resource('archive-ledgers', 'ArchiveLedgersController',$excludedPaths);

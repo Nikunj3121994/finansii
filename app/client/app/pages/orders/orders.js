@@ -59,6 +59,16 @@ define([], function () {
             $scope.orderData={};
             $scope.orderId=null;
         }
+        $scope.archiveOrder=function(){
+            ordersService.archiveOrder($scope.orderData.id,$scope.orderData.companies.company_code).then(function(data){
+               if(data.code==0){
+                   $scope.orderData={};
+                   $state.go('finance.orders');
+               } else{
+                   alert(data.toString());
+               }
+            });
+        }
 
     }).factory('ordersService', ["$q", "$http" , function ($q, $http) {
             this.saveOrder = function (data) {
@@ -99,6 +109,25 @@ define([], function () {
 
 
 
+                    })
+                    .error(function (data) {
+                        console.log("Error getting testform.json");
+                        deferred.reject("There was and error.");
+                    });
+
+                return deferred.promise;
+            };
+            this.archiveOrder = function (orderId,companyCode) {
+                var deferred = $q.defer();
+
+                var url = "http://localhost/finansii/api/public/archive-ledgers";
+                $http({
+                    url: url,
+                    data: {orderId:orderId,companyCode:companyCode},
+                    method: "POST"
+                })
+                    .success(function (data) {
+                        deferred.resolve(data);
                     })
                     .error(function (data) {
                         console.log("Error getting testform.json");
