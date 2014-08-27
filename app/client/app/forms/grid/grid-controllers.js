@@ -106,7 +106,7 @@ define([], function () {
      * @description controller that handles action made on the form, binding the data from the form and saving data
      */
 
-    module.controller("formController", function controller($scope, jsonGridDataService) {
+    module.controller("formController", function controller($scope, jsonGridDataService,$filter) {
         console.log('vo form controller');
         var formName = $scope.gridOptions.formName;
         $scope.setFormData = function () {
@@ -145,6 +145,8 @@ define([], function () {
                         if($scope.config[column].referencedColumn)
                             postRequestData[column] = $scope.formData[$scope.config[column].resource][$scope.config[column].referencedColumn];
                         else postRequestData[column] = $scope.formData[$scope.config[column].resource].id
+                    } else if($scope.config[column].type == "date"){
+                        postRequestData[column] =$filter('date')(formData[column],"yyyy-MM-dd HH:mm:ss");
                     } else postRequestData[column] =formData[column];
                 });
                 jsonGridDataService.editResource($scope.gridResource, postRequestData,formData.id,$scope.gridParams).then(function (data) {
@@ -173,6 +175,8 @@ define([], function () {
                     if($scope.config[column].referencedColumn)
                         postRequestData[column] = $scope.formData[$scope.config[column].resource][$scope.config[column].referencedColumn];
                     else postRequestData[column] = $scope.formData[$scope.config[column].resource].id
+                } else if($scope.config[column].type == "date"){
+                    postRequestData[column] =$filter('date')(formData[column],"yyyy-MM-dd HH:mm:ss");
                 } else postRequestData[column] = $scope.formData[column];
             });
             jsonGridDataService.saveResource($scope.gridResource, postRequestData,$scope.gridParams).then(function (data) {

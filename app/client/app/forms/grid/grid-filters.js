@@ -1,6 +1,6 @@
 define([], function() {
 
-    var module = angular.module("app.forms.grid.filters", []);
+    var module = angular.module("app.forms.grid.filters", ['ui.bootstrap.dateparser']);
 
 
     module.filter('range', function () {
@@ -47,6 +47,24 @@ define([], function() {
                 filtered.push(items[i]);
             }
             return filtered;
+        }
+    });
+
+    module.filter('customDate', function (dateParser) {
+        return function (item, format) {
+            console.log('sdfsdfsdfsdf',item,format);
+
+                var model=dateParser.parse(item.split(' ')[0],"yyyy-MM-dd");
+                if(!_.isUndefined(model)){
+                    return $filter('date')(item, format);
+                }else{
+                    return model;
+                }
+
+
+                console.log('padna');
+                return $filter('date')(item,format);
+
         }
     });
 

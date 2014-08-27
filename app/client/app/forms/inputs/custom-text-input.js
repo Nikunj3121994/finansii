@@ -164,6 +164,10 @@ define([
             }
 
             function unMaskValue(maskedValue, maskValidation) {
+                if(_.isUndefined(maskedValue)){
+                    maskedValue=attr.placeholder;
+                }
+                console.log(maskedValue);
                 maskedValue = maskedValue.replace(/_/g, '');
                 var tmpMaskedValue = maskedValue;
                 var trueValueLength = maskedValue.length;
@@ -194,12 +198,27 @@ define([
 
             ctrl.$formatters.unshift(function (modelValue) {
                 if ($scope.inputType == "date") {
-                    return $filter('date')(modelValue, attr.datepickerPopup);
+                    try{
+                        var model=dateParser.parse(modelValue.split(' ')[0],"yyyy-MM-dd");
+                        if(!_.isUndefined(model)){
+                            return $filter('date')(model, attr.datepickerPopup);
+                        }else{
+                            return model;
+                        }
+
+                    }catch(ex) {
+                        return $filter('date')(modelValue, attr.datepickerPopup);
+                    }
+
+
                 }
                 if (_.isUndefined(modelValue)) return '';
                 return modelValue;
             });
             ctrl.$parsers.unshift(function (viewValue) {
+                if(viewValue instanceof Date && !isNaN(viewValue.valueOf())){
+                    viewValue = $filter('date')(viewValue, attr.datepickerPopup);
+                };
                 if (!_.isNaN(Date.parse(viewValue)) && element[0].selectionStart > $scope.maskValidation.length - 1) {
                     viewValue = $filter('date')(viewValue, attr.datepickerPopup);
                 }
