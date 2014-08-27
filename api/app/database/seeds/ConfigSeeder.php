@@ -43,7 +43,7 @@
                 'edit'=>1
             )));
             $municipalitiesField=new Field(array(
-                'name'=>'municipalities_code',
+                'name'=>'municipality_code',
                 'label'=>'Municipality',
                 'visible'=>1,
                 'type'=>'autocomplete',
