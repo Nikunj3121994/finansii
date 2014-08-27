@@ -259,6 +259,10 @@ define([
                                 tempInput = $('<input data-custom-auto-complete-inline>');
                                 tempInput.attr('data-resource',tplData.resource);
                                 tempInput.attr('data-field',tplData.field);
+                                if(!_.isUndefined(tplData.dependencyModel)){
+                                    tempInput.attr('data-dependency-model','formData["'+tplData.dependencyModel+'"]');
+                                    tempInput.attr('data-dependency-field',tplData.dependencyField);
+                                }
                             }
                         tempInput.attr('input-name', tplData.name);
                         tempInput.attr('input-label', tplData.label);

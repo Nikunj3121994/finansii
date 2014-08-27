@@ -14,9 +14,9 @@ class AddConstraintToCompaniesTable extends Migration {
 	{
 		Schema::table('companies', function(Blueprint $table)
 		{
-            $table->foreign('municipality_code')->references('municipality_code')->on('municipalities')->onDelete('cascade');
-            $table->foreign('settlement_code')->references('settlement_code')->on('settlements')->onDelete('cascade');
-            $table->foreign('street_code')->references('street_code')->on('streets')->onDelete('cascade');
+            $table->foreign('municipality_code')->references('municipality_code')->on('municipalities')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('settlement_code')->references('settlement_code')->on('settlements')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('street_code')->references('street_code')->on('streets')->onDelete('cascade')->onUpdate('cascade');
 		});
 	}
 

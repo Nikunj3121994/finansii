@@ -18,6 +18,7 @@ class CreateCurrenciesTable extends Migration {
 			$table->string('currency_shrt_name', 5);
 			$table->string('currency_name', 40);
 			$table->string('currency_country', 40);
+            $table->integer('currency_unit');
 			$table->timestamps();
 		});
 	}

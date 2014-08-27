@@ -10,8 +10,10 @@ class SettlementsController extends \BaseController {
 	 */
 	public function index()
 	{
-		if(Input::has('municipalities')){
-            return ProcessResponse::process(Settlement::where('municipality_code','=',Input::get('municipalities'))->toArray());
+
+		if(Input::has('municipality_code')){
+            return ProcessResponse::process(Settlement::where('municipality_code','=',Input::get('municipality_code'))
+                ->whereRaw('settlement_name LIKE ?',array("%".Input::get('val')."%"))->get());
         }else if(Input::has('val')){
             return ProcessResponse::process(Settlement::where('settlement_name','like',"%".Input::get('val')."%")->take(5)->get());
         } else{

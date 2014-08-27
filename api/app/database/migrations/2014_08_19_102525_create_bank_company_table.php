@@ -16,9 +16,9 @@ class CreateBankCompanyTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('bank_id')->unsigned()->index();
-			$table->foreign('bank_id')->references('id')->on('banks')->onDelete('cascade');
+			$table->foreign('bank_id')->references('id')->on('banks')->onDelete('cascade')->onUpdate('cascade');
 			$table->integer('company_id')->unsigned()->index();
-			$table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+			$table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
             $table->string('bank_account',15);
             $table->integer('rang');
 			$table->timestamps();

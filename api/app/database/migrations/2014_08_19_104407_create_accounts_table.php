@@ -18,7 +18,7 @@ class CreateAccountsTable extends Migration {
 			$table->string('account_name', 50);
 			$table->integer('account_type');
 			$table->integer('sub_account_code')->unsigned()->index();
-            $table->foreign('sub_account_code')->references('sub_account_code')->on('sub_accounts')->onDelete('cascade');
+            $table->foreign('sub_account_code')->references('sub_account_code')->on('sub_accounts')->onDelete('cascade')->onUpdate('cascade');
 			$table->timestamps();
 		});
 	}

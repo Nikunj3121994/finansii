@@ -19,7 +19,7 @@ class CreateSettlementsTable extends Migration {
 			$table->string('settlement_name', 100);
 			$table->integer('ptt_code');
 			$table->integer('municipality_code')->unsigned()->index();
-            $table->foreign('municipality_code')->references('municipality_code')->on('municipalities')->onDelete('cascade');
+            $table->foreign('municipality_code')->references('municipality_code')->on('municipalities')->onDelete('cascade')->onUpdate('cascade');
 			$table->timestamps();
 		});
 	}

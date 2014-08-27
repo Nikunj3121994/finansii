@@ -18,7 +18,7 @@ class CreateStreetsTable extends Migration {
 			$table->integer('street_code')->unsigned()->index();
 			$table->string('street_name', 50);
 			$table->integer('settlement_code')->unsigned()->index();
-            $table->foreign('settlement_code')->references('settlement_code')->on('settlements')->onDelete('cascade');
+            $table->foreign('settlement_code')->references('settlement_code')->on('settlements')->onDelete('cascade')->onUpdate('cascade');
 			$table->timestamps();
 		});
 	}

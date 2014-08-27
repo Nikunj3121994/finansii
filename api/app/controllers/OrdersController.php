@@ -10,7 +10,7 @@ class OrdersController extends \BaseController {
 	 */
 	public function index()
 	{
-        return ProcessResponse::process(Order::with('operators')->get());
+        return ProcessResponse::process(Order::with('companies')->get());
 	}
 
 	/**
@@ -35,7 +35,7 @@ class OrdersController extends \BaseController {
         $validator = Validator::make(Input::all(), array(
             "order_type" => "required|numeric",
             "order_number" => "required|numeric",
-            "operator_id" => "required|numeric"
+            "company_code" => "required|numeric"
         ));
         if($validator->fails()){
             return ProcessResponse::getError( 1000,$validator->messages());

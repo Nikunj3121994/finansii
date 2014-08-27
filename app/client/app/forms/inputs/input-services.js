@@ -2,13 +2,16 @@ define([
 ], function () {
     var module = angular.module("app.forms.inputs.services",[]);
     module.factory('autoCompleteService', ["$q", "$http" , function ($q, $http) {
-        this.getAutoCompleteData = function (resource,value) {
+        this.getAutoCompleteData = function (resource,value,extraParams) {
             var deferred = $q.defer();
-
+            var params={val:value};
+            if(!_.isUndefined(extraParams)){
+                _.extend(params,extraParams);
+            }
             var url="http://localhost/finansii/api/public/"+resource;
             $http({
                 url: url,
-                params:{val:value},
+                params:params,
                 method: "GET"
             })
                 .success(function (data) {

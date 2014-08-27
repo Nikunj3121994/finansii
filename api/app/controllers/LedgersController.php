@@ -1,7 +1,11 @@
 <?php
 
 class LedgersController extends \BaseController {
-
+    public function pluralToSingular($string){
+        $pluralPrefix = substr($string, -3);
+        if($pluralPrefix=="ies") return substr_replace($string,"",-3);
+        else return substr_replace($string,"",-1);
+    }
 	/**
 	 * Display a listing of the resource.
 	 * GET /ledgers
@@ -11,8 +15,22 @@ class LedgersController extends \BaseController {
 	public function index()
 	{
 		if(Input::has('order_id')){
-            $array=Ledger::with('company')->with('order')->with('currency')->where('order_id','=',Input::get('order_id'))->get();
-            return ProcessResponse::process($array);
+            $array=Ledger::with('currencies')->with(array('accounts'=>function($query){
+                    $query->with('subAccounts');
+                }))->where('order_id','=',Input::get('order_id'))->get();
+            $output=array();
+            foreach($array as $ledger){
+               // Log::info(var_dump($ledger));
+                $subAccount=$ledger['accounts']['sub_accounts'];
+                $tableData=DB::select( "SELECT *,".$this->pluralToSingular($subAccount['sub_account_table'])."_name as name ,".
+                    $this->pluralToSingular($subAccount['sub_account_table'])."_code as code FROM ".
+                    $subAccount['sub_account_table']." where ".
+                    $this->pluralToSingular($subAccount['sub_account_table'])."_code = ".$ledger['sub_account']." limit 1");
+                $ledger['sub-accounts']=$tableData[0];
+                array_push($output,$ledger);
+
+            }
+            return ProcessResponse::process($output);
         }else{
             return ProcessResponse::getError(1000,"Order id required");
         }

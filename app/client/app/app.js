@@ -81,11 +81,14 @@ define([
                     url:'/orders',
                     templateUrl:'app/pages/orders/orders.html'
                 }).state('finance.orders.ledgers',{
-                    url:'/:orderId',
+                    url:'/:companyCode/:orderId',
                     template:'<custom-grid grid-resource="ledgers" grid-params="params"></custom-grid>',
 
                     controller:function($scope,$stateParams){
-                        $scope.params={order_id:$stateParams.orderId};
+                        $scope.params={
+                            order_id:$stateParams.orderId,
+                            company_code:$stateParams.companyCode
+                        };
                     }
                 }).state('404', {
                     url: '/404',

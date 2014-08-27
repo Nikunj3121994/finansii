@@ -14,10 +14,12 @@ class Ledger extends \Eloquent {
     public function order(){
         return $this->belongsTo('Order','order_id','id');
     }
-    public function account(){
-        return $this->belongsTo('Account','sub_account','id');
+    public function accounts(){
+        return $this->belongsTo('Account','account','id');
+    }public function subAccount(){
+        return $this->belongsTo('SubAccount','sub_account','id');
     }
-    public function currency(){
+    public function currencies(){
         return $this->belongsTo('Currency','currency_code','id');
     }
 }

@@ -31,8 +31,19 @@ define([
     });
     module.directive('customAutoCompleteInline',function($timeout,autoCompleteService){
         function link($scope){
+            $scope.dependencyValid=function(){
+                if(_.isUndefined($scope.dependencyModel) && !_.isUndefined($scope.dependencyField)){
+                    return true;
+                }
+                return false;
+            }
             $scope.getAutoCompleteData=function(val){
-                return autoCompleteService.getAutoCompleteData($scope.resource,val).then(function(data){
+                var extraParams={};
+
+                if(!_.isUndefined($scope.dependencyModel)){
+                    extraParams[$scope.dependencyField]=$scope.dependencyModel[$scope.dependencyField];
+                }
+                return autoCompleteService.getAutoCompleteData($scope.resource,val,extraParams).then(function(data){
                     if(data.length>0) $scope.selectedRow=0;
                     return data;
                 });
@@ -48,7 +59,9 @@ define([
                 inputPattern: "@?",
                 inputPatternMsg: "@?",
                 resource:"@",
-                field:"@"
+                field:"@",
+                dependencyModel:"=?",
+                dependencyField:"@?"
             },
             templateUrl:'app/Forms/Inputs/views/custom-auto-complete-inline.html',
             replace: true,

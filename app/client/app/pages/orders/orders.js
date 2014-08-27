@@ -23,13 +23,13 @@ define([], function () {
             orderData.order_type=$scope.orderData.order_type;
             orderData.order_number=$scope.orderData.order_number;
             orderData.order_date=$scope.orderData.order_date;
-            orderData.operator_id=$scope.orderData.operators.id;
+            orderData.company_code=$scope.orderData.companies.company_code;
             if($scope.orderId!=null){
                 ordersService.editOrder(orderData,$scope.orderId).then(function(data){
                     $scope.currentOrder= _.clone($scope.orderData);
                 });
             } else ordersService.saveOrder(orderData).then(function(data){
-                    $state.go('finance.orders.ledgers',{orderId:data.id});
+                    $state.go('finance.orders.ledgers',{orderId:data.id,companyCode:$scope.orderData.companies.company_code});
                     $scope.orders.unshift($scope.orderData);
                 });
         }
@@ -37,7 +37,7 @@ define([], function () {
             if(_.isUndefined($scope.currentOrder)) return;
             $scope.orderData= _.clone($scope.currentOrder);
             $scope.orderId=$scope.orderData.id;
-            $state.go('finance.orders.ledgers',{orderId:$scope.orderData.id});
+            $state.go('finance.orders.ledgers',{orderId:$scope.orderData.id,companyCode:$scope.orderData.companies.company_code});
         });
         function findResourceById(id){
            for(var i=0;i<$scope.orders.length;i++){

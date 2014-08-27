@@ -2,6 +2,11 @@
 
 class SubAccountsController extends \BaseController {
 
+    public function pluralToSingular($string){
+        $pluralPrefix = substr($string, -3);
+        if($pluralPrefix=="ies") return substr_replace($string,"",-3);
+        else return substr_replace($string,"",-1);
+    }
 	/**
 	 * Display a listing of the resource.
 	 * GET /subaccounts
@@ -10,11 +15,14 @@ class SubAccountsController extends \BaseController {
 	 */
 	public function index()
 	{
-        $skip=0;
-        if(Input::has('skip')){
-            $skip=Input::has('skip');
-        }
-        return ProcessResponse::process(SubAccount::take(20)->skip($skip)->get());
+        if(Input::has('sub_account_code')){
+            $subAccount=SubAccount::where('sub_account_code','=',Input::get('sub_account_code'))->first();
+            $tableData=DB::select( "SELECT *,".$this->pluralToSingular($subAccount->sub_account_table)."_name as name ,".
+                $this->pluralToSingular($subAccount->sub_account_table)."_code as code FROM ".
+                $subAccount->sub_account_table." where ".
+                $this->pluralToSingular($subAccount->sub_account_table)."_name like '%".Input::get('val')."%'");
+            return ProcessResponse::process($tableData);
+        } else return ProcessResponse::process(SubAccount::all()->toArray());
 	}
 
 	/**

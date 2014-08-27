@@ -265,9 +265,17 @@
                 'key'=>'referencedColumn',
                 'value'=>'settlement_code'
             )));
+            $settlementsField1->property()->save(new FieldConfig(array(
+                'key'=>'dependencyModel',
+                'value'=>'municipalities'
+            )));
+            $settlementsField1->property()->save(new FieldConfig(array(
+                'key'=>'dependencyField',
+                'value'=>'municipality_code'
+            )));
 
             $streetsField=new Field(array(
-                'name'=>'streets_code',
+                'name'=>'street_code',
                 'label'=>'Street',
                 'visible'=>1,
                 'type'=>'autocomplete',
@@ -286,6 +294,14 @@
             $streetsField->property()->save(new FieldConfig(array(
                 'key'=>'referencedColumn',
                 'value'=>'street_code'
+            )));
+            $streetsField->property()->save(new FieldConfig(array(
+                'key'=>'dependencyModel',
+                'value'=>'settlements'
+            )));
+            $streetsField->property()->save(new FieldConfig(array(
+                'key'=>'dependencyField',
+                'value'=>'settlement_code'
             )));
             $companyTable->fields()->save(new Field(array(
                 'name'=>'telephone1',
@@ -401,22 +417,26 @@
                 'required'=>1,
                 'edit'=>1
             )));
-            $operatorField=new Field(array(
-                'name'=>'operator_id',
-                'label'=>'Operator',
+            $companyField1=new Field(array(
+                'name'=>'company_code',
+                'label'=>'Company',
                 'visible'=>1,
                 'type'=>'autocomplete',
                 'required'=>1,
                 'edit'=>1
             ));
-            $ordersTable->fields()->save($operatorField);
-            $operatorField->property()->save(new FieldConfig(array(
+            $ordersTable->fields()->save($companyField1);
+            $companyField1->property()->save(new FieldConfig(array(
                 'key'=>'resource',
-                'value'=>'operators'
+                'value'=>'companies'
             )));
-            $operatorField->property()->save(new FieldConfig(array(
+            $companyField1->property()->save(new FieldConfig(array(
                 'key'=>'field',
-                'value'=>'operator_name'
+                'value'=>'company_name'
+            )));
+            $companyField1->property()->save(new FieldConfig(array(
+                'key'=>'referencedColumn',
+                'value'=>'company_code'
             )));
 
 
@@ -449,7 +469,7 @@
             $accountsTable=FormConfig::create(array('name'=>'accounts','edit'=>1,'delete'=>1,'add'=>1));
             $accountsTable->fields()->save(new Field(array(
                 'name'=>'account_name',
-                'label'=>'Table',
+                'label'=>'Name',
                 'visible'=>1,
                 'type'=>'text',
                 'required'=>1,
@@ -457,7 +477,7 @@
             )));
             $accountsTable->fields()->save(new Field(array(
                 'name'=>'account_type',
-                'label'=>'Table',
+                'label'=>'Type',
                 'visible'=>1,
                 'type'=>'number',
                 'required'=>1,
@@ -468,7 +488,7 @@
                 'name'=>'sub_account_code',
                 'label'=>'Sub Account',
                 'visible'=>1,
-                'type'=>'number',
+                'type'=>'autocomplete',
                 'required'=>1,
                 'edit'=>1
             ));
@@ -479,10 +499,10 @@
             )));
             $subAccountsField->property()->save(new FieldConfig(array(
                 'key'=>'field',
-                'value'=>'sub_account_code'
+                'value'=>'sub_account_name'
             )));
             $subAccountsField->property()->save(new FieldConfig(array(
-                'key'=>'referencedField',
+                'key'=>'referencedColumn',
                 'value'=>'sub_account_code'
             )));
 
@@ -548,40 +568,9 @@
             )));
 
             $ledgersTable=FormConfig::create(array('name'=>'ledgers','edit'=>1,'delete'=>1,'add'=>1));
-            $companyField=new Field(array(
-                'name'=>'company_code',
-                'label'=>'Company',
-                'visible'=>1,
-                'type'=>'autocomplete',
-                'required'=>1,
-                'edit'=>1
-            ));
-            $ledgersTable->fields()->save($companyField);
-            $companyField->property()->save(new FieldConfig(array(
-                'key'=>'resource',
-                'value'=>'companies'
-            )));
-            $companyField->property()->save(new FieldConfig(array(
-                'key'=>'field',
-                'value'=>'company_name'
-            )));
-            $companyField->property()->save(new FieldConfig(array(
-                'key'=>'referencedColumn',
-                'value'=>'company_code'
-            )));
-
-            $ledgersTable->fields()->save(new Field(array(
+            $accountField=new Field(array(
                 'name'=>'account',
                 'label'=>'Account',
-                'visible'=>1,
-                'type'=>'text',
-                'required'=>1,
-                'edit'=>1
-            )));
-
-            $accountField=new Field(array(
-                'name'=>'sub_account',
-                'label'=>'Sub Account',
                 'visible'=>1,
                 'type'=>'autocomplete',
                 'required'=>1,
@@ -596,14 +585,36 @@
                 'key'=>'field',
                 'value'=>'account_name'
             )));
-            $ledgersTable->fields()->save(new Field(array(
-                'name'=>'date',
-                'label'=>'Date',
+            $subAccountField=new Field(array(
+                'name'=>'sub_account',
+                'label'=>'Sub Account',
                 'visible'=>1,
-                'type'=>'date',
+                'type'=>'autocomplete',
                 'required'=>1,
                 'edit'=>1
+            ));
+            $ledgersTable->fields()->save($subAccountField);
+            $subAccountField->property()->save(new FieldConfig(array(
+                'key'=>'resource',
+                'value'=>'sub-accounts'
             )));
+            $subAccountField->property()->save(new FieldConfig(array(
+                'key'=>'field',
+                'value'=>'name'
+            )));
+            $subAccountField->property()->save(new FieldConfig(array(
+                'key'=>'referencedColumn',
+                'value'=>'code'
+            )));
+            $subAccountField->property()->save(new FieldConfig(array(
+                'key'=>'dependencyModel',
+                'value'=>'accounts'
+            )));
+            $subAccountField->property()->save(new FieldConfig(array(
+                'key'=>'dependencyField',
+                'value'=>'sub_account_code'
+            )));
+
             $ledgersTable->fields()->save(new Field(array(
                 'name'=>'document_desc',
                 'label'=>'Document Description',
