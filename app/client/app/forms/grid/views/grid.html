@@ -8,7 +8,7 @@
             <div class="table-header-group" data-grid-head></div>
             <div class="table-body-group">
                 <div data-custom-form-inline></div>
-                <div class="table-row" data-grid-row data-ng-repeat="row in filteredData" ng-click="changeSelectedRow($index, row.id)"></div>
+                <div class="table-row" ng-class="{true:'selected'}[$parent.selectedRow==$index]"  data-grid-row data-ng-repeat="row in filteredData" ng-click="changeSelectedRow($index, row.id)"></div>
             </div>
         </div>
     </div>

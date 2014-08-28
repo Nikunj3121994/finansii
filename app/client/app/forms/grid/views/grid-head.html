@@ -1,10 +1,13 @@
 <div class="table-row">
     <div class="table-head" ng-if="gridOptions.permissions.select">
-        <label class="ui-checkbox">
-            <input type="checkbox" ng-change="selectAllRows(event)" ng-model="protoModels.selectAllToggle">
-            <span></span>
-        </label>
+        <div class="input-control checkbox nopadding">
+            <label>
+                <input type="checkbox" ng-change="selectAllRows(event)" ng-model="protoModels.selectAllToggle" />
+                <span class="check"></span>
+            </label>
+        </div>
     </div>
+
 
     <div class="table-head" ng-repeat="element in config.order" ng-click="orderColumn(element)" bindonce ng-show="config[element].visible==1">
         <span>{{config[element].label}}</span>

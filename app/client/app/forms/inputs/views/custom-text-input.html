@@ -1,12 +1,14 @@
 <div class="row">
     <div class="col-sm-2">
-        <label>{{ inputLabel }}</label>
+        <p>{{ inputLabel }}</p>
     </div>
     <div class="col-sm-4">
-        <input class="form-control" type="text" dynamic-name="inputName"
-               ng-required="{{ inputRequired }}" custom-pattern="{{ inputPattern }}"
-               ng-model="inputModel"
-               notification-messages>
+        <div class="input-control text">
+            <input class="form-control" type="text" dynamic-name="inputName"
+                   ng-required="{{ inputRequired }}" custom-pattern="{{ inputPattern }}"
+                   ng-model="inputModel"
+                   notification-messages>
+        </div>
 
         <div class="notification-messages">
             <!-- Dependent of notification-messages directive in input -->

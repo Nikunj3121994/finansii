@@ -1,10 +1,12 @@
 <div class="table-cell" ng-if="gridOptions.permissions.select">
-    <label class="ui-checkbox">
-        <input type="checkbox" ng-model="selectedItems[row.id]">
-        <span></span>
-    </label>
+    <div class="input-control checkbox nopadding">
+        <label>
+            <input type="checkbox" ng-model="selectedItems[row.id]" />
+            <span class="check"></span>
+        </label>
+    </div>
 </div>
-<div class="table-cell" data-ng-repeat="element in config.order" ng-switch on="config[element].type" ng-show="config[element].visible==1">
+<div class="table-cell" data-ng-repeat="element in config.order"  ng-switch on="config[element].type" ng-show="config[element].visible==1">
     <span ng-switch-when="text">{{row[element]}}</span>
     <span ng-switch-when="number">{{row[element]}}</span>
     <span ng-switch-when="dependency">{{row[element]|number}}</span>

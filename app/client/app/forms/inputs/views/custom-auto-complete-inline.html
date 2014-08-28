@@ -1,11 +1,13 @@
 <div >
-    <input class="form-control" type="text" dynamic-name="inputName"
-           ng-required="{{ inputRequired }}"
-           ng-model="inputModel"
-           placeholder="{{inputLabel}}"
-           typeahead="row as row[field] for row in getAutoCompleteData($viewValue)"
-           notification-messages
-           data-ng-disabled="dependencyValid()">
+    <div class="input-control text">
+        <input class="form-control" type="text" dynamic-name="inputName"
+               ng-required="{{ inputRequired }}"
+               ng-model="inputModel"
+               placeholder="{{inputLabel}}"
+               typeahead="row as row[field] for row in getAutoCompleteData($viewValue)"
+               notification-messages
+               data-ng-disabled="dependencyValid()">
+    </div>
 
     <div class="notification-messages ntf-msg-inline">
         <!-- Dependent of notification-messages directive in input -->

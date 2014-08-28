@@ -1,9 +1,12 @@
 <div>
-    <input class="form-control" type="text" dynamic-name="inputName"
-           ng-required="{{ inputRequired }}" custom-pattern="{{ inputPattern }}"
-           ng-model="inputModel"
-           notification-messages
-           placeholder="{{inputLabel}}">
+    <div class="input-control text">
+        <input class="form-control" type="text" dynamic-name="inputName"
+               ng-required="{{ inputRequired }}" custom-pattern="{{ inputPattern }}"
+               ng-model="inputModel"
+               notification-messages
+               placeholder="{{inputLabel}}">
+    </div>
+
 
     <div class="notification-messages">
         <!-- Dependent of notification-messages directive in input -->

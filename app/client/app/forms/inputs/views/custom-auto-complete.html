@@ -3,11 +3,13 @@
         <label>{{ inputLabel }}</label>
     </div>
     <div class="col-sm-4">
-        <input class="form-control" type="text" dynamic-name="inputName"
-               ng-required="{{ inputRequired }}"
-               ng-model="inputModel"
-               typeahead="row as row[field] for row in getAutoCompleteData($viewValue)"
-               notification-messages>
+        <div class="input-control text">
+            <input class="form-control" type="text" dynamic-name="inputName"
+                   ng-required="{{ inputRequired }}"
+                   ng-model="inputModel"
+                   typeahead="row as row[field] for row in getAutoCompleteData($viewValue)"
+                   notification-messages>
+        </div>
 
         <div class="notification-messages">
             <!-- Dependent of notification-messages directive in input -->

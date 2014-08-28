@@ -1,18 +1,20 @@
 <div class="custom-date">
 
     <!--  Datepicker input  -->
-    <input class="form-control date-input" ng-model="inputModel"
-           dynamic-name="inputName"
-           custom-pattern="{{ inputPattern }}"
-           ng-required="{{ inputRequired }}"
-           custom-mask="99.99.9999"
-           placeholder="__.__.____"
-           notification-messages
-           add-days-inline=""
-           datepicker-popup="dd.MM.yyyy"
-           is-open="opened"
-           placeholder="{{inputLabel}}"
-            >
+    <div class="input-control text">
+        <input class="form-control date-input" ng-model="inputModel"
+               dynamic-name="inputName"
+               custom-pattern="{{ inputPattern }}"
+               ng-required="{{ inputRequired }}"
+               custom-mask="99.99.9999"
+               placeholder="__.__.____"
+               notification-messages
+               add-days-inline=""
+               datepicker-popup="dd.MM.yyyy"
+               is-open="opened"
+               placeholder="{{inputLabel}}"
+                >
+    </div>
     <!--  Datepicker popup holder  -->
     <div   class="datepicker-holder"></div>
 
