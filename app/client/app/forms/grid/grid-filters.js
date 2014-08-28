@@ -50,20 +50,19 @@ define([], function() {
         }
     });
 
-    module.filter('customDate', function (dateParser) {
+    module.filter('customDate', function ($filter,dateParser) {
         return function (item, format) {
-            console.log('sdfsdfsdfsdf',item,format);
-
+            try{
                 var model=dateParser.parse(item.split(' ')[0],"yyyy-MM-dd");
                 if(!_.isUndefined(model)){
-                    return $filter('date')(item, format);
+                    return $filter('date')(model, format);
                 }else{
                     return model;
                 }
-
-
-                console.log('padna');
+            }catch(ex){
                 return $filter('date')(item,format);
+            }
+
 
         }
     });

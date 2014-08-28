@@ -2,7 +2,7 @@ define([], function () {
 
     var module = angular.module('app.pages.orders', []);
 
-    module.controller('ordersController',function ($scope, ordersService,$state) {
+    module.controller('ordersController',function ($scope, ordersService,$state,$filter) {
         $scope.defaultOptions = {
             permissions: {
                 search: true,
@@ -14,7 +14,7 @@ define([], function () {
                 formInline: true
             },
             formName: "default-name",
-            pageSize: 15
+            pageSize: 10
 
         };
         $scope.orderData={};
@@ -22,20 +22,21 @@ define([], function () {
             var orderData={};
             orderData.order_type=$scope.orderData.order_type;
             orderData.order_number=$scope.orderData.order_number;
-            orderData.order_date=$scope.orderData.order_date;
+            orderData.order_date=$filter('date')($scope.orderData.order_date,"yyyy-MM-dd HH:mm:ss");
             orderData.company_code=$scope.orderData.companies.company_code;
             if($scope.orderId!=null){
                 ordersService.editOrder(orderData,$scope.orderId).then(function(data){
-                    $scope.currentOrder= _.clone($scope.orderData);
+                    $scope.currentOrder= $scope.orderData;
                 });
             } else ordersService.saveOrder(orderData).then(function(data){
-                    $state.go('finance.orders.ledgers',{orderId:data.id,companyCode:$scope.orderData.companies.company_code});
                     $scope.orders.unshift($scope.orderData);
+                    $state.go('finance.orders.ledgers',{orderId:data.id,companyCode:$scope.orderData.companies.company_code});
+
                 });
         }
         $scope.$watch('currentOrder',function(){
             if(_.isUndefined($scope.currentOrder)) return;
-            $scope.orderData= _.clone($scope.currentOrder);
+            $scope.orderData= $scope.currentOrder;
             $scope.orderId=$scope.orderData.id;
             $state.go('finance.orders.ledgers',{orderId:$scope.orderData.id,companyCode:$scope.orderData.companies.company_code});
         });
@@ -50,7 +51,6 @@ define([], function () {
                 if(_.isUndefined($scope.orders)) return;
                 $scope.orderData=findResourceById($state.params.orderId);
                 $scope.orderId=$scope.orderData.id;
-                console.log($scope.orderData);
             });
 
         }

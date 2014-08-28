@@ -17,12 +17,6 @@ define([
                 $event.stopPropagation();
                 $scope.opened = true;
             };
-            $scope.getContentUrl=function(){
-                if($scope.inline=='true'){
-                    return 'app/Forms/Inputs/views/custom-date-inline.html';
-                }
-                else return 'app/Forms/Inputs/views/custom-date.html';
-            }
         }
 
         return {
@@ -38,7 +32,7 @@ define([
                 inline:"@?"
             },
             replace: true,
-            template: '<div ng-include="getContentUrl()"></div>'
+            templateUrl: 'app/Forms/Inputs/views/custom-date.html'
         }
     });
     module.directive('customDateInline', function ($filter) {

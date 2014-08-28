@@ -404,7 +404,7 @@
             $ordersTable->fields()->save(new Field(array(
                 'name'=>'order_date',
                 'label'=>'Date',
-                'visible'=>0,
+                'visible'=>1,
                 'type'=>'date',
                 'required'=>1,
                 'edit'=>1
@@ -412,7 +412,7 @@
             $ordersTable->fields()->save(new Field(array(
                 'name'=>'order_booking',
                 'label'=>'Booking',
-                'visible'=>0,
+                'visible'=>1,
                 'type'=>'date',
                 'required'=>1,
                 'edit'=>1
@@ -648,13 +648,22 @@
                 'required'=>0,
                 'edit'=>1
             )));
-            $ledgersTable->fields()->save(new Field(array(
+            $amountField=new Field(array(
                 'name'=>'amount',
                 'label'=>'Amount',
                 'visible'=>1,
-                'type'=>'number',
+                'type'=>'dependency',
                 'required'=>1,
                 'edit'=>1
+            ));
+            $ledgersTable->fields()->save($amountField);
+            $amountField->property()->save(new FieldConfig(array(
+                'key'=>'mathFunction',
+                'value'=>'{"formula":"mul","funcArgs":{"val1":"amount_currency","val2":"currency_value"}}'
+            )));
+            $amountField->property()->save(new FieldConfig(array(
+                'key'=>'watches',
+                'value'=>'["formData.amount_currency"]'
             )));
             $currencyField1=new Field(array(
                 'name'=>'currency_code',
@@ -673,13 +682,30 @@
                 'key'=>'field',
                 'value'=>'currency_shrt_name'
             )));
-            $ledgersTable->fields()->save(new Field(array(
+            $currencyField1->property()->save(new FieldConfig(array(
+                'key'=>'dependencyModel',
+                'value'=>'document_date'
+            )));
+            $currencyField1->property()->save(new FieldConfig(array(
+                'key'=>'dependencyField',
+                'value'=>'document_date'
+            )));
+            $amountCurrency=new Field(array(
                 'name'=>'amount_currency',
                 'label'=>'Amount currency',
                 'visible'=>1,
-                'type'=>'number',
+                'type'=>'dependency',
                 'required'=>1,
                 'edit'=>1
+            ));
+            $ledgersTable->fields()->save($amountCurrency);
+            $amountCurrency->property()->save(new FieldConfig(array(
+                'key'=>'mathFunction',
+                'value'=>'{"formula":"divSameVal","funcArgs":{"val1":"amount","val2":"currency_value"}}'
+            )));
+            $amountCurrency->property()->save(new FieldConfig(array(
+                'key'=>'watches',
+                'value'=>'["formData.amount","formData.currencies"]'
             )));
         }
     }

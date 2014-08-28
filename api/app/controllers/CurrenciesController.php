@@ -10,6 +10,14 @@ class CurrenciesController extends \BaseController {
 	 */
 	public function index()
 	{
+        if(Input::has('document_date')){
+            return ProcessResponse::process(Currency::with(array('exchangeRates'=>function($query){
+                    $query->where('exchange_date','<',Input::get('document_date'));
+                    $query->orderBy('exchange_date','DESC');
+                    $query->first();
+                }))->where('currency_shrt_name','like','%'.Input::get('val').'%')->get());
+
+        }
         $skip=0;
         if(Input::has('skip')){
             $skip=Input::has('skip');

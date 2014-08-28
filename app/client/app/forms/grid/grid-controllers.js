@@ -76,7 +76,8 @@ define([], function () {
             'pagination.pageSize',
             'gridOrder.orderColumn',
             'gridOrder.reverse',
-            'dataChangeTag'
+            'dataChangeTag',
+            'resources.length'
         ].toString();
         var wcArray = '[' + wcArray + ']';
         $scope.$watchCollection(wcArray, function () {
@@ -107,7 +108,6 @@ define([], function () {
      */
 
     module.controller("formController", function controller($scope, jsonGridDataService,$filter) {
-        console.log('vo form controller');
         var formName = $scope.gridOptions.formName;
         $scope.setFormData = function () {
             console.log('sdfdsf');

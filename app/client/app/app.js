@@ -13,6 +13,7 @@ define([
 
     'forms/grid/grid',
     'forms/summary/summary',
+    'forms/inputs/custom-dependency-input',
 
     'reports/reports'
 ], function () {
@@ -33,6 +34,7 @@ define([
 
             'app.forms.grid',
             'app.forms.summary',
+            'app.forms.inputs.dependency',
 
 
             'app.reports'
@@ -50,7 +52,7 @@ define([
                             template: '<h3>Dashboard</h3>'
                         },
                         contentView: {
-                            template:'dashboard'
+                            template:'<div>dashboard</div>'
                         }
                     }
                 }).state('finance', {
@@ -58,7 +60,7 @@ define([
                     abstract: true,
                     views: {
                         headerView: {
-                            template: '<h3><div class="btn" ui-sref="dashboard"><i class="glyphicon glyphicon-chevron-left"></i> </div> Finance</h3>'
+                            template: '<div><div class="btn" ui-sref="dashboard"><i class="glyphicon glyphicon-chevron-left"></i> </div> Finance</div>'
                         },
                         contentView: {
                             templateUrl: 'app/pages/finance/finance.html'

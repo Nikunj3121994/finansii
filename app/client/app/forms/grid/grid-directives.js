@@ -263,6 +263,11 @@ define([
                                     tempInput.attr('data-dependency-model','formData["'+tplData.dependencyModel+'"]');
                                     tempInput.attr('data-dependency-field',tplData.dependencyField);
                                 }
+                            }else if (tplData.type == "dependency") {
+                                tempInput = $('<input data-custom-dependency-inline>');
+                                tempInput.attr('form-data', 'formData');
+                                tempInput.attr('math-function', tplData.mathFunction);
+                                tempInput.attr('dependency-watch', tplData.watches);
                             }
                         tempInput.attr('input-name', tplData.name);
                         tempInput.attr('input-label', tplData.label);

@@ -29,7 +29,7 @@ define([
             link:link
         }
     });
-    module.directive('customAutoCompleteInline',function($timeout,autoCompleteService){
+    module.directive('customAutoCompleteInline',function($timeout,autoCompleteService,$filter){
         function link($scope){
             $scope.dependencyValid=function(){
                 if(_.isUndefined($scope.dependencyModel) && !_.isUndefined($scope.dependencyField)){
@@ -41,7 +41,12 @@ define([
                 var extraParams={};
 
                 if(!_.isUndefined($scope.dependencyModel)){
-                    extraParams[$scope.dependencyField]=$scope.dependencyModel[$scope.dependencyField];
+                    if($scope.dependencyModel instanceof Date && !isNaN($scope.dependencyModel.valueOf())){
+                        extraParams[$scope.dependencyField]=$filter('date')($scope.dependencyModel,"yyyy-MM-dd HH:mm:ss");
+                    }
+                    else if(_.isObject($scope.dependencyModel))
+                        extraParams[$scope.dependencyField]=$scope.dependencyModel[$scope.dependencyField];
+                    else extraParams[$scope.dependencyField]=$scope.dependencyModel;
                 }
                 return autoCompleteService.getAutoCompleteData($scope.resource,val,extraParams).then(function(data){
                     if(data.length>0) $scope.selectedRow=0;

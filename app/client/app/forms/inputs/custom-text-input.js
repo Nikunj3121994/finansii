@@ -167,7 +167,6 @@ define([
                 if(_.isUndefined(maskedValue)){
                     maskedValue=attr.placeholder;
                 }
-                console.log(maskedValue);
                 maskedValue = maskedValue.replace(/_/g, '');
                 var tmpMaskedValue = maskedValue;
                 var trueValueLength = maskedValue.length;
