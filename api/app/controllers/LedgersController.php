@@ -15,7 +15,7 @@ class LedgersController extends \BaseController {
 	public function index()
 	{
 		if(Input::has('order_id')){
-            $array=Ledger::with('currencies')->with(array('accounts'=>function($query){
+            $array=Ledger::with(array('accounts'=>function($query){
                     $query->with('subAccounts');
                 }))->where('order_id','=',Input::get('order_id'))->get();
             $output=array();
@@ -27,6 +27,11 @@ class LedgersController extends \BaseController {
                     $subAccount['sub_account_table']." where ".
                     $this->pluralToSingular($subAccount['sub_account_table'])."_code = ".$ledger['sub_account']." limit 1");
                 $ledger['sub-accounts']=$tableData[0];
+                $ledger['currencies']=Currency::with(array('exchangeRates'=>function($query) use ($ledger){
+                        $query->where('exchange_date','<',$ledger->document_date);
+                        $query->orderBy('exchange_date','DESC');
+                        $query->first();
+                    }))->where('id','=',$ledger->currency_code)->first();
                 array_push($output,$ledger);
 
             }
