@@ -94,6 +94,9 @@ define([
                             company_code:$stateParams.companyCode
                         };
                     }
+                }).state('finance.reports',{
+                    url:'/reports',
+                    templateUrl:'app/pages/reports/reports.html'
                 }).state('404', {
                     url: '/404',
                     views: {

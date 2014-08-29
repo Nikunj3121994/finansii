@@ -1,0 +1,29 @@
+<div class="reports-container" ng-controller="reportsController">
+    <div class="reports-navigator col-lg-2">
+        <div class="reports" ng-class="{true:'selected'}[$parent.selectedReport==$index]"
+             data-ng-repeat="item in reports"
+             ng-click="$parent.selectedReport=$index;currentReport=item">
+            {{item.label}}
+            <i ng-class="{true:'fa fa-angle-right'}[$parent.selectedReport==$index]"></i>
+        </div>
+    </div>
+    <div class="col-lg-10">
+        <form name="filtersForm" class="filtersForm">
+            <input custom-auto-complete input-model="filterData['companies']" input-name="companyCode" resource="companies"
+                   field="company_name" input-label="Компанија" input-required="1">
+            <input ng-if="currentReport.filters.indexOf('orderFrom')>-1" custom-spinner
+                   input-model="filterData['orderFrom']" input-name="orderFrom"
+                   input-label="Од налог" input-required="1">
+            <input ng-if="currentReport.filters.indexOf('orderTo')>-1" custom-spinner
+                   input-model="filterData['orderTo']" input-name="orderTo"
+                   input-label="До налог" input-required="1">
+            <input ng-if="currentReport.filters.indexOf('dateFrom')>-1" custom-date
+                   input-model="filterData['dateFrom']" input-name="dateFrom"
+                   input-label="Датум од" input-required="1">
+            <input ng-if="currentReport.filters.indexOf('dateTo')>-1" custom-date
+                   input-model="filterData['dateTo']" input-name="dateTo"
+                   input-label="Датум до" input-required="1">
+        </form>
+        <button class="info" ng-click="getReport()">Print</button>
+    </div>
+</div>
