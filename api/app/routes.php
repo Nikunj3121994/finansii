@@ -60,3 +60,4 @@ Route::resource('archive-ledgers', 'ArchiveLedgersController',$excludedPaths);
 /**
  * Restful controllers
  */
+Route::controller('reports', 'ReportsController');
