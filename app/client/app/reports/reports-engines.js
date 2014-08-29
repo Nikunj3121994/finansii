@@ -151,7 +151,7 @@ define([
     });
 
 
-    module.directive('dynamicPages2', function () {
+    module.directive('dynamicReport', function () {
         function link($scope, element) {
 
             var printConfig=function(){
@@ -201,15 +201,58 @@ define([
                 return tmp;
             }();
 
-            var dataRows = [];
-            for (var i = 0; i < 10000; ++i) {
-                dataRows[i] = {};
-                for (var j = 0; j < 5; ++j) {
-                    dataRows[i][j] = Math.random();
+            var dataRows = generateData($scope.reportData,$scope.reportConfig);
+            function generateData(data,config){
+                console.log(config);
+                if(!config.groups || !config.sums) return data;
+                var dataTmp=[];
+                var groups={};
+                var sums={};
+                for(var i=0;i<config.groups.length;i++){
+                    groups[config.groups[i].name]=null;
+                    sums[config.groups[i].name]={};
+                    for(var m=0;m<config.sums.length;m++){
+                        sums[config.groups[i].name][config.sums[m].field]=0;
+                    }
                 }
+                for(var k=0;k<data.length;k++){
+                    for(var j=0;j<config.groups.length;j++){
+                        var tmpRow={};
+                        var group=Math.round(data[k][config.groups[j].field]/Math.pow(10,config.groups[j].group));
+                        if(groups[config.groups[j].name]!=null){
+                            if(groups[config.groups[j].name]!=group){
+                                tmpRow[config.groups[j].name]=group;
+                                for(var n=0;n<config.sums.length;n++){
+                                    tmpRow[config.sums[n].field]=sums[config.groups[j].name][config.sums[n].field];
+                                    sums[config.groups[j].name][config.sums[n].field]=0;
+                                }
+                                dataTmp.push(tmpRow);
+                                tmpRow={};
+                                groups[config.groups[j].name]=group;
+                            }
+                        }else{
+                            groups[config.groups[j].name]=group
+                        }
+                        for(var n=0;n<config.sums.length;n++){
+                            sums[config.groups[j].name][config.sums[n].field]+=parseFloat(data[k][config.sums[n].field]);
+
+                        }
+                    }
+                    dataTmp.push(data[k]);
+                }
+                for(var j=0;j<config.groups.length;j++){
+                    tmpRow={};
+                    tmpRow[config.groups[j].name]=groups[config.groups[j].name];
+                    for(var n=0;n<config.sums.length;n++){
+                        tmpRow[config.sums[n].field]=sums[config.groups[j].name][config.sums[n].field];
+                    }
+                    dataTmp.push(tmpRow);
+                }
+
+                return dataTmp;
             }
-            console.log(printConfig);
-            createPages();
+            console.log(dataRows);
+            //createPages();
             function createPages() {
                 var perfTime = new Date().getTime();
                 var pages = [];
@@ -262,7 +305,11 @@ define([
 
         return {
             restrict: 'A',
-            link: link
+            link: link,
+            scope:{
+                reportConfig:"=",
+                reportData:"="
+            }
         }
     });
 
