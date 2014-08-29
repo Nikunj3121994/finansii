@@ -42,7 +42,7 @@ section.main-container{
       display:table-row;
       .table-cell{
         display: table-cell;
-        padding: 0 10px;
+        padding: 1px 10px;
       }
 
       .table-input{
@@ -82,5 +82,31 @@ section.main-container{
   .pagination > li > a,
   .pagination > li > span {
     padding: 1px 8px;
- }
+  }
+  .loading-animation{
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    border: solid 1px #ccc;
+    border-radius:50%;
+    padding: 20px;
+    background: #fff;
+    display:none;
+    z-index: 999;
+    i{
+      font-size:30px;
+      -webkit-animation-name: loading;
+      -webkit-animation-duration: 1s;
+      -webkit-animation-timing-function:linear;
+      -webkit-animation-delay: 0s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-play-state: running;
+      color: rgb(131, 170, 255);
+    }
+  }
+
+}
+@-webkit-keyframes loading {
+  from  { -webkit-transform: rotate(0deg);}
+  to { -webkit-transform: rotate(360deg);}
 }

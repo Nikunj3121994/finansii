@@ -1,9 +1,14 @@
 $header-height: 50px;
-$header-background:#f2f2f2;
+$header-background:#4390df;
 header {
   position: relative;
   display: block;
   height: $header-height;
   background:$header-background;
-  border-bottom: #ccc solid 1px;
+  font-size: 1.7em;
+  color:#fff;
+  i{
+    font-size: 1.5em;
+  }
 }
+

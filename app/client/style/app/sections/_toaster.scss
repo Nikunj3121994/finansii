@@ -1,0 +1,16 @@
+.toaster-container{
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  z-index: 9999;
+  color:#fff;
+  font-size: 1.1em;
+  .notice{
+    margin: 5px;
+    display:none;
+    i{
+      font-size: 1.2em;
+      padding: 5px;
+    }
+  }
+}

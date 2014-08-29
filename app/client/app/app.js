@@ -3,6 +3,7 @@ define([
 
     'sections/header/Header',
     'sections/navigation/Navigation',
+    'sections/toaster/toaster-services',
 
     'global/translate/Translate',
 
@@ -24,6 +25,7 @@ define([
 
             'app.header',
             'app.navigation',
+            'app.toaster',
 
             'app.global.translate',
 
@@ -60,7 +62,7 @@ define([
                     abstract: true,
                     views: {
                         headerView: {
-                            template: '<div><div class="btn" ui-sref="dashboard"><i class="glyphicon glyphicon-chevron-left"></i> </div> Finance</div>'
+                            template: '<div><div class="btn" ui-sref="finance.start"><i class="fa fa-angle-left"></i> </div> Finance</div>'
                         },
                         contentView: {
                             templateUrl: 'app/pages/finance/finance.html'

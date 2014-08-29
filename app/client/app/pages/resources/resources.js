@@ -2,8 +2,8 @@ define([], function() {
 
         var module=angular.module('app.pages.resources',[]);
 
-        module.controller('resourcesPageController',function(){
-
+        module.controller('resourcesPageController',function($scope){
+            $scope.selectedResource=-1;
         })
         module.directive('resourcesPage',function(){
             function link($scope){

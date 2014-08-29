@@ -1,24 +1,26 @@
-<div class="custom-grid-container">
-    <!--  TABLE HEADER  -->
-    <data-grid-actions></data-grid-actions>
+<div class="custom-grid-container panel">
+    <div class="panel-content">
+        <!--  TABLE HEADER  -->
+        <data-grid-actions></data-grid-actions>
 
-    <!--  THE TABLE  -->
-    <div class="table-container">
-        <div class="table">
-            <div class="table-header-group" data-grid-head></div>
-            <div class="table-body-group">
-                <div data-custom-form-inline></div>
-                <div class="table-row" ng-class="{true:'selected'}[$parent.selectedRow==$index]"  data-grid-row data-ng-repeat="row in filteredData" ng-click="changeSelectedRow($index, row.id)"></div>
+        <!--  THE TABLE  -->
+        <div class="table-container">
+            <div class="table">
+                <div class="table-header-group" data-grid-head></div>
+                <div class="table-body-group">
+                    <div data-custom-form-inline></div>
+                    <div class="table-row" ng-class="{true:'selected'}[$parent.selectedRow==$index]"  data-grid-row data-ng-repeat="row in filteredData" ng-click="changeSelectedRow($index, row.id)"></div>
+                </div>
             </div>
         </div>
+
+        <!--  PAGINATION  -->
+        <pagination boundary-links="true" max-size="5" items-per-page="pagination.pageSize"
+                    num-pages="pagination.numPages" ng-show="pagination.numPages > 1"
+                    total-items="pagination.totalItems" ng-model="pagination.currentPage"
+                >
+        </pagination>
+
+        <data-custom-form ng-if="gridOptions.permissions.formInline!=true" ng-show="gridOptions.permissions.editResource || gridOptions.permissions.addResource"></data-custom-form>
     </div>
-
-    <!--  PAGINATION  -->
-    <pagination boundary-links="true" max-size="5" items-per-page="pagination.pageSize"
-                num-pages="pagination.numPages" ng-show="pagination.numPages > 1"
-                total-items="pagination.totalItems" ng-model="pagination.currentPage"
-            >
-    </pagination>
-
-    <data-custom-form ng-if="gridOptions.permissions.formInline!=true" ng-show="gridOptions.permissions.editResource || gridOptions.permissions.addResource"></data-custom-form>
 </div>

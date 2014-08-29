@@ -8,7 +8,7 @@
             <div class="col-md-7 grid-no-padding">
                 <!--  Datepicker input  -->
                 <div class="input-control text">
-                    <input class="form-control" ng-model="inputModel"
+                    <input ng-model="inputModel"
                            dynamic-name="inputName"
                            custom-pattern="{{ inputPattern }}"
                            ng-required="{{ inputRequired }}"
@@ -24,15 +24,17 @@
                 <div   class="datepicker-holder"></div>
             </div>
             <div class="col-md-3 grid-no-padding">
-                <input class="form-control" ng-model="currentNumber" data-ng-disabled="true">
+                <div class="input-control text">
+                    <input  ng-model="currentNumber" data-ng-disabled="true">
+                </div>
             </div>
             <div class="col-md-2 grid-no-padding">
                 <!--  Datepicker popup trigger button  -->
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="openDatepicker($event)">
-                            <i class="glyphicon glyphicon-calendar"></i>
-                        </button>
-                    </span>
+                <div class="toolbar transparent">
+                    <button type="button" class="btn btn-default" tabindex="-1" ng-click="openDatepicker($event)">
+                        <i class="fa fa-calendar"></i>
+                    </button>
+                </div>
             </div>
         </div>
 

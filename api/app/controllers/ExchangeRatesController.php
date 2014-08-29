@@ -14,7 +14,7 @@ class ExchangeRatesController extends \BaseController {
         if(Input::has('skip')){
             $skip=Input::has('skip');
         }
-        return ProcessResponse::process(ExchangeRate::take(20)->skip($skip)->with('currency')->get());
+        return ProcessResponse::process(ExchangeRate::take(20)->skip($skip)->with('currencies')->get());
 	}
 
 	/**

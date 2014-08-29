@@ -1,8 +1,8 @@
 <form name="{{ gridOptions.formName }}" ng-show="formData" class="js-input-container table-row" novalidate>
     <div class="table-cell"></div>
     <div class="table-cell js_submit_form">
-        <button ng-disabled="isFormValid()" type="submit" class="btn btn-primary btn-xs" ng-click="submitForm()" >Submit
+        <button ng-disabled="isFormValid()" type="submit" class="info" ng-click="submitForm()" >Submit
         </button>
-        <button data-ng-disabled="requestInProgress" type="button" class="btn btn-warning btn-xs" ng-click="cancelForm()">Cancel</button>
+        <button data-ng-disabled="requestInProgress" type="button" class="warning" ng-click="cancelForm()">Cancel</button>
     </div>
 </form>

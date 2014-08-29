@@ -21,10 +21,12 @@
     <input ng-model="currentNumber" data-ng-disabled="true" class="date-plus-number">
 
     <!--  Datepicker popup trigger button  -->
+    <div class="toolbar transparent date-btn">
+        <button type="button" ng-click="openDatepicker($event)">
+            <i class="fa fa-calendar"></i>
+        </button>
+    </div>
 
-    <button type="button" class="btn btn-default date-btn" ng-click="openDatepicker($event)">
-        <i class="glyphicon glyphicon-calendar"></i>
-    </button>
 
     <div class="notification-messages">
         <!-- Dependent of notification-messages directive in input -->
