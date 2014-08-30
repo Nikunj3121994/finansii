@@ -8,6 +8,12 @@ section.main-container{
   right: 0;
   left: 0;
   overflow: auto;
+  .dropdown-menu ul li a{
+    color:#fff;
+  }
+  .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus{
+    background: rgba(104, 178, 253, 0.27);
+  }
   .custom-grid-container{
     border: solid 1px #ccc;
     padding: 10px;

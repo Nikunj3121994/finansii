@@ -21,8 +21,10 @@
     font-family: serif;
   }
   .header-container,
-  .main-viewport {
-    display: none;
+  .main-viewport,
+  .main-container,
+  header{
+    display: none !important;
   }
 }
 
@@ -44,14 +46,25 @@
     .print-table{
       display: table;
       font-size:12pt;
+      width: 100%;
     }
     .print-table-row {
       display: table-row;
       margin:0;
     }
+    .print-table-row.account{
+      border-top:1px solid #666;
+    }
+    .print-table-row.class{
+      border-top:2px solid #666;
+    }
+    .print-table-row.print-table-header{
+      border-bottom:2px solid #666;
+    }
 
     .print-table-cell {
       display: table-cell;
+      padding: 2px 5px;
     }
   }
   .print-page:nth-child(2n) {

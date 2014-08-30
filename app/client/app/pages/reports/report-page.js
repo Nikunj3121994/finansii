@@ -1,47 +1,81 @@
-define([], function() {
+define([], function () {
     var module = angular.module('app.pages.reports', []);
 
-    module.controller('reportsController', ['$scope','reportService','$compile', function ($scope,reportService,$compile) {
-        $scope.reports = [{
-            name: 'accounts',
-            label:'Accounts Report',
-            fields: [
-                'account',
-                'document_desc',
-                'document_number',
-                'owes',
-                'asks'
-            ],
-            groups:[{
-                field:'account',
-                name:'account',
-                group:3
-            },{
-                field:'account',
-                name:'class',
-                group:5
-            }],
-            sums:[{
-                field:'owes'
-            },{
-                field:'asks'
-            }],
-            filters:['orderFrom','orderTo','dateFrom','dateTo']
-        }];
-        $scope.reportEngineDirective='<div dynamic-report report-config="reports[selectedReport]" report-data="data"></div>';
-        $scope.currentReport=$scope.reports[0];
-        $scope.selectedReport=0;
-        $scope.getReport=function(){
-            $scope.filterData.companyCode=$scope.filterData.companies['company_code'];
-            var filterData={};
-            for(key in $scope.filterData){
-                if(!_.isObject($scope.filterData[key])){
-                    filterData[key]=$scope.filterData[key];
+    module.controller('reportsController', ['$scope', 'reportService', '$compile','$filter','toasterService'
+        , function ($scope, reportService, $compile,$filter,toasterService) {
+        $scope.reports = [
+            {
+                name: 'accounts',
+                label: 'Accounts Report',
+                fields: [
+                    {name:'account',label:"Account"},
+                    {name:'document_desc',label:'Description'},
+                    {name:'document_number',label:"Number"},
+                    {name:'owes',label:'Owes'},
+                    {name:'asks',label:'Asks'}
+                ],
+                groups: [
+                    {
+                        field: 'account',
+                        name: 'account',
+                        group: 3
+                    },
+                    {
+                        field: 'account',
+                        name: 'class',
+                        group: 5
+                    }
+                ],
+                sums: [
+                    {
+                        field: 'owes'
+                    },
+                    {
+                        field: 'asks'
+                    }
+                ],
+                filters: ['orderFrom', 'orderTo', 'dateFrom', 'dateTo'],
+                filtersConfig:{
+                    orderFrom:{
+                        label: 'Orders from'
+                    },
+                    orderTo:{
+                        label:'Order to'
+                    },
+                    dateFrom:{
+                        label:'Date from'
+                    },
+                    dateTo:{
+                        label:'Date to'
+                    }
                 }
             }
-            reportService.getReport(filterData,$scope.currentReport.name).then(function(data){
-                console.log(data);
-                $scope.data=data.body;
+        ];
+        $scope.reportEngineDirective = '<div dynamic-report report-config="reports[selectedReport]" report-data="data" header="header"></div>';
+        $scope.currentReport = $scope.reports[0];
+        $scope.selectedReport = 0;
+        $scope.getReport = function () {
+            if(_.isUndefined($scope.filterData.companies)){
+                toasterService.setWarning('Company is required');
+                return;
+            }
+            $scope.filterData.companyCode = $scope.filterData.companies['company_code'];
+            var filterData = {};
+            var filterConfig= _.clone($scope.currentReport.filtersConfig);
+            for (key in $scope.filterData) {
+
+                if ($scope.filterData[key] instanceof Date && !isNaN($scope.filterData[key].valueOf())) {
+                    filterData[key]=$filter('date')($scope.filterData[key],"yyyy-MM-dd HH:mm:ss");
+                    filterConfig[key].value=$filter('date')($scope.filterData[key],"yyyy-MM-dd HH:mm:ss");
+                } else if (!_.isObject($scope.filterData[key])) {
+                    filterData[key] = $scope.filterData[key];
+                    if(!_.isUndefined(filterConfig[key])) filterConfig[key].value=$scope.filterData[key];
+                }
+            }
+            reportService.getReport(filterData, $scope.currentReport.name).then(function (data) {
+                $scope.data = data.body;
+                $scope.header=data.header;
+                $scope.header['filters']=filterConfig;
                 $compile($scope.reportEngineDirective)($scope);
             });
         }

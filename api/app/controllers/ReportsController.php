@@ -14,6 +14,9 @@ class ReportsController extends \BaseController
             DB::raw('(case when archive_ledgers.booking_type=1 then archive_ledgers.amount else 0 end) as owes'),
             DB::raw('(case when archive_ledgers.booking_type!=1 then archive_ledgers.amount else 0 end) as asks'));
         if (Input::has('companyCode')) {
+            $header=Company::where('company_code','=',Input::get('companyCode'))->select(array('company_name','company_code'))->first();
+            $header['title']='Kartica';
+            $header['subTitle']='Sub title';
             $accounts = array();
             $accounts['from'] = 0;
             $accounts['to'] = 999999;
@@ -21,31 +24,31 @@ class ReportsController extends \BaseController
             if (Input::has('accountTo')) $accounts['to'] = Input::get('accountTo');
             if (Input::has('dateFrom')) {
                 if (Input::has('dateTo')) {
-                    return ProcessResponse::process(ArchiveLedger::where('accounts.account_type', '<=', $accounts['to'])
+                    return ProcessResponse::processReport(ArchiveLedger::where('accounts.account_type', '<=', $accounts['to'])
                         ->join('accounts',function($join){
                             $join->on('archive_ledgers.account','=','accounts.id');
                         })
                         ->where('account', '>=', $accounts['from'])
                         ->where('document_date', '<=', Input::get('dateTo'))
                         ->where('document_date', '>=', Input::get('dateFrom'))
-                        ->get());
+                        ->get(),$header);
                 } else {
-                    return ProcessResponse::process(ArchiveLedger::where('accounts.account_type', '<=', $accounts['to'])
+                    return ProcessResponse::processReport(ArchiveLedger::where('accounts.account_type', '<=', $accounts['to'])
                         ->where('account', '>=', $accounts['from'])
                         ->where('document_date', '>=', Input::get('dateFrom'))
                         ->join('accounts',function($join){
                             $join->on('archive_ledgers.account','=','accounts.id');
                         })
                         ->select($columns)
-                        ->get());
+                        ->get(),$header);
                 }
-            } else return ProcessResponse::process(ArchiveLedger::where('accounts.account_type', '<=', $accounts['to'])
+            } else return ProcessResponse::processReport(ArchiveLedger::where('accounts.account_type', '<=', $accounts['to'])
                 ->where('account', '>=', $accounts['from'])
                 ->join('accounts',function($join){
                     $join->on('archive_ledgers.account','=','accounts.id');
                 })
                 ->select($columns)
-                ->get());
+                ->get(),$header);
         } else {
             return ProcessResponse::getError('1000', 'Company is required');
         }

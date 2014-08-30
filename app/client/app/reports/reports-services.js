@@ -13,10 +13,18 @@ define([
                 method: "GET"
             })
                 .success(function (data) {
-                    if(data.code>0){
-                        toasterService.setWarning(data.msg);
-                    }else {
-                        toasterService.setInfo(data.msg);
+                    if(data.code)
+                        if(data.code>0){
+                            toasterService.setWarning(data.msg);
+                        }else {
+                            toasterService.setInfo(data.msg);
+                        }
+                    else{
+                        if(data.error.code>0){
+                            toasterService.setWarning(data.error.msg);
+                        }else {
+                            toasterService.setInfo(data.error.msg);
+                        }
                     }
                     deferred.resolve(data);
                     $('.loading-animation').fadeOut();

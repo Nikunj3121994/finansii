@@ -1,6 +1,6 @@
 define([
 ], function () {
-    var module = angular.module('app.reports.engines', ['ui.bootstrap']);
+    var module = angular.module('app.reports.engines', ['ui.bootstrap','app.reports.elements.headers.directives']);
 
     module.directive('dynamicPages', function () {
         function link($scope, element, attrs) {
@@ -151,18 +151,21 @@ define([
     });
 
 
-    module.directive('dynamicReport', function () {
+    module.directive('dynamicReport', function ($compile) {
         function link($scope, element) {
 
-            var printConfig=function(){
+            var printConfig=function(config,scope){
                 var tmp={};
                 tmp.printViewport=$('.print-viewport');
-                tmp.header=$('<div class="print-header">Simple header</div>');
+                tmp.header=function(){
+                    var header=$compile('<div report-header></div>')($scope);
+                    return header;
+                }();
                 tmp.gridHeader=function(){
 
-                    var gridHeader=['<div class="print-table-row">'];
-                    for (var i = 0; i < 5; ++i) {
-                        gridHeader.push('<div class="print-table-cell">head'+i+'</div>');
+                    var gridHeader=['<div class="print-table-row print-table-header">'];
+                    for (var i = 0; i < config.fields.length; ++i) {
+                        gridHeader.push('<div class="print-table-cell">'+config.fields[i].label+'</div>');
                     }
                     gridHeader.push('</div>');
                     return $(gridHeader.join(''));
@@ -199,11 +202,11 @@ define([
                     return obj;
                 }();
                 return tmp;
-            }();
+            }($scope.reportConfig,$scope);
 
             var dataRows = generateData($scope.reportData,$scope.reportConfig);
+
             function generateData(data,config){
-                console.log(config);
                 if(!config.groups || !config.sums) return data;
                 var dataTmp=[];
                 var groups={};
@@ -218,10 +221,11 @@ define([
                 for(var k=0;k<data.length;k++){
                     for(var j=0;j<config.groups.length;j++){
                         var tmpRow={};
-                        var group=Math.round(data[k][config.groups[j].field]/Math.pow(10,config.groups[j].group));
+                        var group=Math.floor(data[k][config.groups[j].field]/Math.pow(10,config.groups[j].group));
                         if(groups[config.groups[j].name]!=null){
                             if(groups[config.groups[j].name]!=group){
-                                tmpRow[config.groups[j].name]=group;
+                                tmpRow[config.groups[j].field]=group;
+                                tmpRow.class=config.groups[j].name;
                                 for(var n=0;n<config.sums.length;n++){
                                     tmpRow[config.sums[n].field]=sums[config.groups[j].name][config.sums[n].field];
                                     sums[config.groups[j].name][config.sums[n].field]=0;
@@ -242,7 +246,8 @@ define([
                 }
                 for(var j=0;j<config.groups.length;j++){
                     tmpRow={};
-                    tmpRow[config.groups[j].name]=groups[config.groups[j].name];
+                    tmpRow[config.groups[j].field]=groups[config.groups[j].name];
+                    tmpRow.class=config.groups[j].name;
                     for(var n=0;n<config.sums.length;n++){
                         tmpRow[config.sums[n].field]=sums[config.groups[j].name][config.sums[n].field];
                     }
@@ -251,19 +256,25 @@ define([
 
                 return dataTmp;
             }
-            console.log(dataRows);
-            //createPages();
-            function createPages() {
+            createPages($scope.reportConfig);
+            //print();
+            function createPages(config) {
                 var perfTime = new Date().getTime();
                 var pages = [];
                 var numPage = 0;
                 var numItems = 0;
                 pages[numPage] = [];
 
-                for (var i = 0; i < 100; i++) {
-                    var row = ['<div class="print-table-row">'];
-                    for (var col in dataRows[i]) {
-                        row.push('<div class="print-table-cell">' + dataRows[i][col] + '</div>');
+                for (var i = 0; i < dataRows.length; i++) {
+                    var row=[]
+                    if(dataRows[i].class){
+                        row.push('<div class="print-table-row '+dataRows[i].class+'">');
+                    }else{
+                        row.push('<div class="print-table-row">');
+                    }
+
+                    for (var j=0;j<config.fields.length;j++) {
+                        row.push('<div class="print-table-cell">' + (dataRows[i][config.fields[j].name] || '') + '</div>');
                     }
                     row.push('</div>');
                     pages[numPage].push(row.join(''));
@@ -308,7 +319,8 @@ define([
             link: link,
             scope:{
                 reportConfig:"=",
-                reportData:"="
+                reportData:"=",
+                header:"="
             }
         }
     });
