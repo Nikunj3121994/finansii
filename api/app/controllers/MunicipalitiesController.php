@@ -9,6 +9,9 @@ class MunicipalitiesController extends \BaseController {
 	 */
 	public function index()
 	{
+        if(Input::has('val')){
+            return ProcessResponse::process(Municipality::where('municipality_name','like','%'.Input::get('val').'%')->take(5)->get());
+        }
         return ProcessResponse::process(Municipality::all()->toArray());
 	}
 

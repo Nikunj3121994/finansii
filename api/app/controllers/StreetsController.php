@@ -13,7 +13,9 @@ class StreetsController extends \BaseController {
         if(Input::has('settlement_code')){
             return ProcessResponse::process(Street::where('settlement_code','=',Input::get('settlement_code'))
                 ->whereRaw('street_name LIKE ?',array("%".Input::get('val')."%"))->get());
-        }else{
+        }else if(Input::has('val')){
+            return ProcessResponse::process(Street::whereRaw('street_name LIKE ?',array("%".Input::get('val')."%"))->get());
+        }else {
             return ProcessResponse::process(Street::with('settlements')->get()->toArray());
         }
 	}
