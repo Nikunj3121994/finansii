@@ -56,6 +56,14 @@ Route::resource('currencies', 'CurrenciesController',$excludedPaths);
 Route::resource('exchange-rates', 'ExchangeRatesController',$excludedPaths);
 Route::resource('ledgers', 'LedgersController',$excludedPaths);
 Route::resource('archive-ledgers', 'ArchiveLedgersController',$excludedPaths);
+Route::resource('tariffs', 'TariffsController',$excludedPaths);
+Route::resource('units', 'UnitsController',$excludedPaths);
+Route::resource('articles', 'ArticlesController',$excludedPaths);
+Route::resource('business-units', 'BusinessUnitsController',$excludedPaths);
+Route::resource('partners', 'PartnersController',$excludedPaths);
+Route::resource('calculation-headers', 'CalculationHeadersController',$excludedPaths);
+Route::resource('calculation-types', 'CalculationTypesController',$excludedPaths);
+Route::resource('calculation-details', 'CalculationDetailsController',$excludedPaths);
 
 /**
  * Restful controllers
