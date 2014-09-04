@@ -10,7 +10,7 @@ class CalculationTypesController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+        return ProcessResponse::process(CalculationType::all());
 	}
 
 	/**
@@ -21,7 +21,7 @@ class CalculationTypesController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+
 	}
 
 	/**
@@ -32,7 +32,19 @@ class CalculationTypesController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+        $validator = Validator::make(Input::all(), array(
+            "calculation_type_code" => "required|numeric",
+            "calculation_type_name" => "required"
+        ));
+        if($validator->fails()){
+            return ProcessResponse::getError(1000,$validator->messages());
+        }else{
+            if(CalculationType::create(Input::all())){
+                return ProcessResponse::$success;
+            }else{
+                return ProcessResponse::getError( 1000,"Error");
+            }
+        }
 	}
 
 	/**
@@ -44,7 +56,7 @@ class CalculationTypesController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		ProcessResponse::process(CalculationType::find($id)->first());
 	}
 
 	/**
@@ -68,7 +80,20 @@ class CalculationTypesController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+        $validator = Validator::make(Input::all(), array(
+            "calculation_type_code" => "numeric"
+        ));
+        if($validator->fails()){
+            return ProcessResponse::getError(1000,$validator->messages());
+        }else{
+            $model=CalculationType::find($id);
+            $model->fill(Input::all());
+            if($model->save()){
+                return ProcessResponse::$success;
+            }else{
+                return ProcessResponse::getError( 1000,"Error");
+            }
+        }
 	}
 
 	/**
@@ -80,7 +105,7 @@ class CalculationTypesController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		CalculationType::destroy($id);
 	}
 
 }

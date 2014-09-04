@@ -10,7 +10,7 @@ class ArticlesController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+        return ProcessResponse::process(Article::with('tariffs')->with('units')->get());
 	}
 
 	/**
@@ -32,7 +32,20 @@ class ArticlesController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+        $validator = Validator::make(Input::all(), array(
+            "tariff_code" => "required|numeric",
+            "unit_id" => "required|numeric",
+            "article_name" => "required"
+        ));
+        if($validator->fails()){
+            return ProcessResponse::getError(1000,$validator->messages());
+        }else{
+            if(Article::create(Input::all())){
+                return ProcessResponse::$success;
+            }else{
+                return ProcessResponse::getError( 1000,"Error");
+            }
+        }
 	}
 
 	/**
@@ -44,7 +57,7 @@ class ArticlesController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+        return ProcessResponse::process(Article::find($id)->with('tariffs')->with('units')->first());
 	}
 
 	/**
@@ -68,7 +81,21 @@ class ArticlesController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+        $validator = Validator::make(Input::all(), array(
+            "tariff_code" => "numeric",
+            "unit_id" => "numeric"
+        ));
+        if($validator->fails()){
+            return ProcessResponse::getError(1000,$validator->messages());
+        }else{
+            $model=Article::find($id);
+            $model->fill(Input::all());
+            if($model->save()){
+                return ProcessResponse::$success;
+            }else{
+                return ProcessResponse::getError( 1000,"Error");
+            }
+        }
 	}
 
 	/**
@@ -80,7 +107,7 @@ class ArticlesController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		Article::destroy($id);
 	}
 
 }

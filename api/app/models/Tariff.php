@@ -1,5 +1,5 @@
 <?php
 
 class Tariff extends \Eloquent {
-	protected $fillable = [];
+	protected $fillable = array('tariff_code','tariff_rate','tariff_name');
 }

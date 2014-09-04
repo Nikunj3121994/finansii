@@ -10,7 +10,7 @@ class TariffsController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+        return ProcessResponse::process(Tariff::all()->toArray());
 	}
 
 	/**
@@ -32,7 +32,19 @@ class TariffsController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+        $validator = Validator::make(Input::all(), array(
+            "tariff_code" => "required|numeric",
+            "tariff_name" => "required"
+        ));
+        if($validator->fails()){
+            return ProcessResponse::getError(1000,$validator->messages());
+        }else{
+            if(Tariff::create(Input::all())){
+                return ProcessResponse::$success;
+            }else{
+                return ProcessResponse::getError( 1000,"Error");
+            }
+        }
 	}
 
 	/**
@@ -44,7 +56,7 @@ class TariffsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+        return ProcessResponse::process(Tariff::find($id)->first());
 	}
 
 	/**
@@ -68,7 +80,20 @@ class TariffsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+        $validator = Validator::make(Input::all(), array(
+            "tariff_code" => "numeric"
+        ));
+        if($validator->fails()){
+            return ProcessResponse::getError(1000,$validator->messages());
+        }else{
+            $model=Tariff::find($id);
+            $model->fill(Input::all());
+            if($model->save()){
+                return ProcessResponse::$success;
+            }else{
+                return ProcessResponse::getError( 1000,"Error");
+            }
+        }
 	}
 
 	/**
@@ -80,7 +105,12 @@ class TariffsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+        $model=Tariff::find($id);
+        if ( $model->delete()){
+            return ProcessResponse::$success;
+        } else {
+            return ProcessResponse::getError(1000, "Error");
+        }
 	}
 
 }

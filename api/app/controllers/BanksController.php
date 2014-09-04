@@ -56,7 +56,7 @@ class BanksController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		return ProcessResponse::process(Bank::find($id)->first()->get());
+		return ProcessResponse::process(Bank::find($id)->first());
     }
 
 	/**

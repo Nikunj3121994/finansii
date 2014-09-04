@@ -10,7 +10,7 @@ class UnitsController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+        return ProcessResponse::process(Unit::all()->toArray());
 	}
 
 	/**
@@ -21,7 +21,7 @@ class UnitsController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+
 	}
 
 	/**
@@ -32,7 +32,19 @@ class UnitsController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+        $validator = Validator::make(Input::all(), array(
+            "unit_name" => "required",
+            "unit_desc" => "required"
+        ));
+        if($validator->fails()){
+            return ProcessResponse::getError(1000,$validator->messages());
+        }else{
+            if(Unit::create(Input::all())){
+                return ProcessResponse::$success;
+            }else{
+                return ProcessResponse::getError( 1000,"Error");
+            }
+        }
 	}
 
 	/**
@@ -44,7 +56,7 @@ class UnitsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+        return ProcessResponse::process(Unit::find($id)->first());
 	}
 
 	/**
@@ -68,7 +80,19 @@ class UnitsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+        $validator = Validator::make(Input::all(), array(
+        ));
+        if($validator->fails()){
+            return ProcessResponse::getError(1000,$validator->messages());
+        }else{
+            $model=Unit::find($id);
+            $model->fill(Input::all());
+            if($model->save()){
+                return ProcessResponse::$success;
+            }else{
+                return ProcessResponse::getError( 1000,"Error");
+            }
+        }
 	}
 
 	/**
@@ -80,7 +104,8 @@ class UnitsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		Unit::destroy($id);
+        return ProcessResponse::$success;
 	}
 
 }

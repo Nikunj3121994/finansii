@@ -1,5 +1,5 @@
 <?php
 
 class Unit extends \Eloquent {
-	protected $fillable = [];
+	protected $fillable = array('unit_name','unit_desc');
 }

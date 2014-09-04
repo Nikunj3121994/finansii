@@ -10,7 +10,11 @@ class CalculationDetailsController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		If(Input::has('calculation_header_id')){
+            return ProcessResponse::process(CalculationDetail::with('articles')
+                ->where('calculation_header_id','=',Input::has('calculation_header_id'))->get());
+
+        } else ProcessResponse::getError(1000,"Calculation header is required");
 	}
 
 	/**
@@ -32,7 +36,31 @@ class CalculationDetailsController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+        $validator = Validator::make(Input::all(), array(
+            "calculation_header_id" => "required|numeric",
+            "article_id" => "required|numeric",
+            "quantity" => "required|numeric",
+            "rabat" => "required|numeric",
+            "price_input1" => "required|numeric",
+            "tariff_rate_input"=>"required|numeric",
+            "tax_input" => "required|numeric",
+            "tax_output" => "required|numeric",
+            "price_output2" => "required|numeric",
+            "margin"=>"required|numeric",
+            "price_output3" => "required|numeric",
+            "price_output4" => "required|numeric",
+            "tariff_code" => "required|numeric",
+            "debit_credit"=>"required|numeric",
+        ));
+        if($validator->fails()){
+            return ProcessResponse::getError(1000,$validator->messages());
+        }else{
+            if(CalculationDetail::create(Input::all())){
+                return ProcessResponse::$success;
+            }else{
+                return ProcessResponse::getError( 1000,"Error");
+            }
+        }
 	}
 
 	/**
@@ -44,7 +72,7 @@ class CalculationDetailsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+        return ProcessResponse::process(CalculationDetail::find($id)->with('articles')->first());
 	}
 
 	/**
@@ -68,7 +96,33 @@ class CalculationDetailsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+        $validator = Validator::make(Input::all(), array(
+            "calculation_header_id" => "numeric",
+            "article_id" => "numeric",
+            "quantity" => "numeric",
+            "rabat" => "numeric",
+            "price_input1" => "numeric",
+            "tariff_rate_input"=>"numeric",
+            "tax_input" => "numeric",
+            "tax_output" => "numeric",
+            "price_output2" => "numeric",
+            "margin"=>"numeric",
+            "price_output3" => "numeric",
+            "price_output4" => "numeric",
+            "tariff_code" => "numeric",
+            "debit_credit"=>"numeric",
+        ));
+        if($validator->fails()){
+            return ProcessResponse::getError(1000,$validator->messages());
+        }else{
+            $model=CalculationDetail::find($id);
+            if($model->fill(Input::all())){
+                $model->save();
+                return ProcessResponse::$success;
+            }else{
+                return ProcessResponse::getError( 1000,"Error");
+            }
+        }
 	}
 
 	/**
@@ -80,7 +134,8 @@ class CalculationDetailsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		CalculationHeader::destroy($id);
+        return ProcessResponse::$success;
 	}
 
 }

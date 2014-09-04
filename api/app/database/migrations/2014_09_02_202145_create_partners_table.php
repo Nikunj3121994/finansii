@@ -17,7 +17,7 @@ class CreatePartnersTable extends Migration {
 			$table->increments('id');
 			$table->integer('partner_code')->unsigned()->index();
 			$table->string('partner_name', 50);
-			$table->string('partner_adress', 50);
+			$table->string('partner_address', 50);
 			$table->integer('municipality_code')->unsigned()->index();
 			$table->foreign('municipality_code')->references('municipality_code')->on('municipalities');
 			$table->integer('settlement_code')->unsigned()->index();
