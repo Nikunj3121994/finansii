@@ -807,7 +807,7 @@
                 'edit'=>1
             )));
 
-            $businessUnitsTable=FormConfig::create(array('name'=>'articles','edit'=>1,'delete'=>1,'add'=>1));
+            $businessUnitsTable=FormConfig::create(array('name'=>'business-units','edit'=>1,'delete'=>1,'add'=>1));
             $companyFieldBU=new Field(array(
                 'name'=>'company_code',
                 'label'=>'Company',

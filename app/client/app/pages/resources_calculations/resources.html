@@ -1,0 +1,14 @@
+<div class="resources" ng-controller="resourcesCalculationsPageController">
+    <div class="resourcesNavigator col-lg-2">
+        <div class="resource " ng-class="{true:'selected'}[$parent.selectedResource==$index]"
+             data-ng-repeat="item in resources"
+             ui-sref="calculations.resources.resource({resource:item.resource})"
+             ng-click="$parent.selectedResource=$index">
+            {{item.name}}
+            <i ng-class="{true:'fa fa-angle-right'}[$parent.selectedResource==$index]"></i>
+        </div>
+    </div>
+    <div ui-view class="col-lg-10">
+           <h1>Се наогјате во ресурси</h1>
+    </div>
+</div>

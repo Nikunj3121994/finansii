@@ -11,6 +11,7 @@ define([
     'pages/reports/report-page',
     'pages/autocomplete/AutoComplete',
     'pages/resources/resources',
+    'pages/resources_calculations/resources',
 
     'forms/grid/grid',
     'forms/summary/summary',
@@ -33,6 +34,7 @@ define([
             'app.pages.reports',
             'app.pages.autocomplete',
             'app.pages.resources',
+            'app.pages.resources.calculations',
 
             'app.forms.grid',
             'app.forms.summary',
@@ -116,6 +118,30 @@ define([
                         contentView: {
                             templateUrl: 'app/pages/user/signin.html'
                         }
+                    }
+                }).state('calculations', {
+                    url: '/calculations',
+                    abstract: true,
+                    views: {
+                        headerView: {
+                            template: '<div><div class="btn" ui-sref="calculations.start"><i class="fa fa-angle-left"></i> </div> Calculations</div>'
+                        },
+                        contentView: {
+                            templateUrl: 'app/pages/finance/finance.html'
+                        }
+                    }
+                }).state('calculations.start', {
+                    url: '',
+                    templateUrl: 'app/pages/finance/finance.html'
+                }).state('calculations.resources',{
+                    url:'/resources',
+                    template:'<div resources-calculations-page></div>'
+                }).state('calculations.resources.resource',{
+                    url:'/:resource',
+                    template:'<custom-grid grid-resource="{{resource}}"></custom-grid>',
+
+                    controller:function($scope,$stateParams){
+                        $scope.resource=$stateParams.resource;
                     }
                 });
             }
