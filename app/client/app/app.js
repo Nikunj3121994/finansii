@@ -11,7 +11,8 @@ define([
     'pages/reports/report-page',
     'pages/autocomplete/AutoComplete',
     'pages/resources/resources',
-    'pages/resources_calculations/resources',
+    'pages/resources_retail/resources',
+    'pages/calculations/calculations',
 
     'forms/grid/grid',
     'forms/summary/summary',
@@ -34,7 +35,8 @@ define([
             'app.pages.reports',
             'app.pages.autocomplete',
             'app.pages.resources',
-            'app.pages.resources.calculations',
+            'app.pages.resources.retail',
+            'app.pages.calculations',
 
             'app.forms.grid',
             'app.forms.summary',
@@ -119,30 +121,33 @@ define([
                             templateUrl: 'app/pages/user/signin.html'
                         }
                     }
-                }).state('calculations', {
-                    url: '/calculations',
+                }).state('retail', {
+                    url: '/retail',
                     abstract: true,
                     views: {
                         headerView: {
-                            template: '<div><div class="btn" ui-sref="calculations.start"><i class="fa fa-angle-left"></i> </div> Calculations</div>'
+                            template: '<div><div class="btn" ui-sref="retail.start"><i class="fa fa-angle-left"></i> </div> Calculations</div>'
                         },
                         contentView: {
                             templateUrl: 'app/pages/finance/finance.html'
                         }
                     }
-                }).state('calculations.start', {
+                }).state('retail.start', {
                     url: '',
                     templateUrl: 'app/pages/finance/finance.html'
-                }).state('calculations.resources',{
+                }).state('retail.resources',{
                     url:'/resources',
                     template:'<div resources-calculations-page></div>'
-                }).state('calculations.resources.resource',{
+                }).state('retail.resources.resource',{
                     url:'/:resource',
                     template:'<custom-grid grid-resource="{{resource}}"></custom-grid>',
 
                     controller:function($scope,$stateParams){
                         $scope.resource=$stateParams.resource;
                     }
+                }).state('retail.calculationHeader',{
+                    url:'/calculations',
+                    templateUrl:'app/pages/calculations/calculations.html'
                 });
             }
         ]).run(['$rootScope', 'DSCacheFactory', function ($rootScope) {

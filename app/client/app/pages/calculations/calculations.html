@@ -1,27 +1,31 @@
 <div class="row" ng-controller="calculationsController">
     <div class="col-lg-6">
-        <custom-grid  grid-resource="calculation-header" selected-row-data="currentCalculationHeader" grid-data="calculations" grid-options="defaultOptions"></custom-grid>
+        <custom-grid  grid-resource="calculation-headers" selected-row-data="currentCalculationHeader" grid-data="calculations" grid-options="defaultOptions"></custom-grid>
     </div>
     <div class="col-lg-6">
        <form name="calculationHeaderForm" class="orders-form" novalidate>
-           <input custom-auto-complete input-model="calculationHeaderData['businessUnits']" input-name="business_unit_id" resource="business-units"
-                  field="business_unit_name" input-label="Business unit" input-required="1">
-           <input custom-spinner input-model="calculationHeaderData['calculation_number']" input-name="calculation_number" input-label="Calculation number" input-required="1">
-           <input custom-spinner input-model="calculationHeaderData['document_number']" input-name="document_number" input-label="Document number" input-required="1">
-           <input custom-auto-complete input-model="calculationHeaderData['partners']" input-name="partner_code" resource="partners"
-                  field="partner_name" input-label="Partner" input-required="1">
-           <input custom-date input-model="calculationHeaderData['calculation_date']" input-name="calculation_date" input-label="Date" input-required="1">
-           <input custom-date input-model="calculationHeaderData['calculation_ddo']" input-name="calculation_ddo" input-label="Date ddo" input-required="1">
-           <input custom-date input-model="calculationHeaderData['calculation_booked']" input-name="calculation_booked" input-label="Date booked" input-required="1">
-           <input custom-auto-complete input-model="calculationHeaderData['currencies']" input-name="currency_code" resource="currencies"
-                  field="currency_shrt_name" input-label="Currency" input-required="1">
-           <input custom-spinner input-model="calculationHeaderData['currency_value']" input-name="currency_value" input-label="Currency value" input-required="1">
-           <input custom-auto-complete input-model="calculationHeaderData['calculationTypes']" input-name="calculation_type_code" resource="calculation-types"
-                  field="calculation_type_code" input-label="Calculation type" input-required="1">
+           <div class="col-lg-6">
+               <input custom-auto-complete input-model="calculationHeaderData['businessUnits']" input-name="business_unit_id" resource="business-units"
+                      field="business_unit_name" input-label="Business unit" input-required="1">
+               <input custom-spinner input-model="calculationHeaderData['calculation_number']" input-name="calculation_number" input-label="Calculation number" input-required="1">
+               <input custom-spinner input-model="calculationHeaderData['document_number']" input-name="document_number" input-label="Document number" input-required="1">
+               <input custom-auto-complete input-model="calculationHeaderData['partners']" input-name="partner_code" resource="partners"
+                      field="partner_name" input-label="Partner" input-required="1">
+               <input custom-date input-model="calculationHeaderData['calculation_date']" input-name="calculation_date" input-label="Date" input-required="1">
+           </div>
+           <div class="col-lg-6">
+               <input custom-date input-model="calculationHeaderData['calculation_ddo']" input-name="calculation_ddo" input-label="Date ddo" input-required="1">
+               <input custom-date input-model="calculationHeaderData['calculation_booked']" input-name="calculation_booked" input-label="Date booked" input-required="1">
+               <input custom-auto-complete input-model="calculationHeaderData['currencies']" input-name="currency_code" resource="currencies"
+                      field="currency_shrt_name" input-label="Currency" input-required="1">
+               <input custom-spinner input-model="calculationHeaderData['currency_value']" input-name="currency_value" input-label="Currency value" input-required="1">
+               <input custom-auto-complete input-model="calculationHeaderData['calculationTypes']" input-name="calculation_type_code" resource="calculation-types"
+                      field="calculation_type_code" input-label="Calculation type" input-required="1">
 
-           <button class="info" data-ng-disabled="calculationHeaderForm.$invalid" ng-click="saveData()">Submit</button>
-           <button class="success"  ng-click="newOrder()">New</button>
-           <button class="warning"  ng-click="archiveOrder()">Archive order</button>
+               <button class="info" data-ng-disabled="calculationHeaderForm.$invalid" ng-click="saveData()">Submit</button>
+               <button class="success"  ng-click="newOrder()">New</button>
+               <button class="warning"  ng-click="archiveOrder()">Archive order</button>
+           </div>
        </form>
 
     </div>

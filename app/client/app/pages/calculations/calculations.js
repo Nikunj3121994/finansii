@@ -69,7 +69,7 @@ define([], function () {
 
 
     }).factory('calculationService', ["$q", "$http" , function ($q, $http) {
-            this.saveOrder = function (data) {
+            this.saveCalculation = function (data) {
                 var deferred = $q.defer();
 
                 var url = "http://localhost/finansii/api/public/calculation-headers";
@@ -92,7 +92,7 @@ define([], function () {
 
                 return deferred.promise;
             };
-            this.editOrder = function (data,id) {
+            this.editCalculation = function (data,id) {
                 var deferred = $q.defer();
 
                 var url = "http://localhost/finansii/api/public/calculation-headers/"+id;

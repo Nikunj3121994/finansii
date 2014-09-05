@@ -1,6 +1,6 @@
 define([], function() {
 
-        var module=angular.module('app.pages.resources.calculations',[]);
+        var module=angular.module('app.pages.resources.retail',[]);
 
         module.controller('resourcesCalculationsPageController',function($scope){
             $scope.selectedResource=-1;
@@ -46,7 +46,7 @@ define([], function() {
             return {
                 restrict:'EA',
                 link:link,
-                templateUrl:"app/pages/resources_calculations/resources.html"
+                templateUrl:"app/pages/resources_retail/resources.html"
             }
         });
 
