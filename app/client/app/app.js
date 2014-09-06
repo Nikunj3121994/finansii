@@ -148,6 +148,15 @@ define([
                 }).state('retail.calculationHeader',{
                     url:'/calculations',
                     templateUrl:'app/pages/calculations/calculations.html'
+                }).state('retail.calculationHeader.calculations',{
+                    url:'/:calculationHeaderId',
+                    template:'<custom-grid grid-resource="calculation-details" grid-params="params"></custom-grid>',
+
+                    controller:function($scope,$stateParams){
+                        $scope.params={
+                            calculation_header_id:$stateParams.calculationHeaderId
+                        };
+                    }
                 });
             }
         ]).run(['$rootScope', 'DSCacheFactory', function ($rootScope) {

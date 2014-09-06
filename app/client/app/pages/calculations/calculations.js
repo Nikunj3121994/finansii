@@ -37,15 +37,15 @@ define([], function () {
                 });
             } else calculationService.saveCalculation(calculationData).then(function(data){
                     $scope.calculations.unshift($scope.calculationHeaderData);
-                    $state.go('retail.calculation.calculations',{calculationHeaderId:data.id});
+                    $state.go('retail.calculationHeader.calculations',{calculationHeaderId:data.id});
 
                 });
         };
-        $scope.$watch('currentCalculation',function(){
+        $scope.$watch('currentCalculationHeader',function(){
             if(_.isUndefined($scope.currentCalculationHeader)) return;
             $scope.calculationHeaderData= $scope.currentCalculationHeader;
             $scope.calculationHeaderId=$scope.currentCalculationHeader.id;
-            $state.go('retail.calculation.calculations',{calculationHeaderId:$scope.calculationHeaderData.id});
+            $state.go('retail.calculationHeader.calculations',{calculationHeaderId:$scope.calculationHeaderData.id});
         });
         function findResourceById(id){
            for(var i=0;i<$scope.calculations.length;i++){

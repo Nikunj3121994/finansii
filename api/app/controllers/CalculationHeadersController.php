@@ -47,8 +47,8 @@ class CalculationHeadersController extends \BaseController {
         if($validator->fails()){
             return ProcessResponse::getError(1000,$validator->messages());
         }else{
-            if(CalculationHeader::create(Input::all())){
-                return ProcessResponse::$success;
+            if($model=CalculationHeader::create(Input::all())){
+                return ProcessResponse::process(array("id"=>$model->id));
             }else{
                 return ProcessResponse::getError( 1000,"Error");
             }
