@@ -13,13 +13,13 @@ class DatabaseSeeder extends Seeder {
 
 		$this->call('ConfigSeeder');
 
-        DB::table('streets')->delete();
-        DB::table('settlements')->delete();
-        DB::table('municipalities')->delete();
-        DB::table('banks')->delete();
-
-
-        DB::unprepared(file_get_contents(app_path().'\database\seeds\ResourcesSeed.sql'));
+//        DB::table('streets')->delete();
+//        DB::table('settlements')->delete();
+//        DB::table('municipalities')->delete();
+//        DB::table('banks')->delete();
+//
+//
+//        DB::unprepared(file_get_contents(app_path().'\database\seeds\ResourcesSeed.sql'));
 	}
 
 }

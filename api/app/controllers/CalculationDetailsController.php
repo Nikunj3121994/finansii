@@ -45,10 +45,10 @@ class CalculationDetailsController extends \BaseController {
             "tariff_rate_input"=>"required|numeric",
             "tax_input" => "required|numeric",
             "tax_output" => "required|numeric",
-            "price_output2" => "required|numeric",
+            "price_input2" => "required|numeric",
             "margin"=>"required|numeric",
-            "price_output3" => "required|numeric",
-            "price_output4" => "required|numeric",
+            "price_output1" => "required|numeric",
+            "price_output2" => "required|numeric",
             "tariff_code" => "required|numeric",
             "debit_credit"=>"required|numeric",
         ));

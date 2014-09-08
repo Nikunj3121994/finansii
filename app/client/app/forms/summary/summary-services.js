@@ -72,7 +72,32 @@ define([], function() {
             if(_.isNaN(val1)) return '';
             if(_.isNaN(val2)) return Math.round(val1*1000000)/1000000;;
             return Math.round((val1/val2)*1000000)/1000000;
-        }
+        };
+        formulas.percentageBase=function(args,data){
+            var base=parseFloat(formulas.extractKey(data,args.baseField));
+            var percentage=parseFloat(formulas.extractKey(data,args.percentage));
+            if(_.isNaN(percentage)) return 0;
+            return base/(1+(percentage/100));
+        };
+        formulas.percentageAdded=function(args,data){
+            var base=parseFloat(formulas.extractKey(data,args.baseField));
+            var percentage=parseFloat(formulas.extractKey(data,args.percentage));
+            if(_.isNaN(percentage)) return 0;
+            return base*(1+(percentage/100));
+        };
+        formulas.diffFields=function(args,data){
+            var val1=parseFloat(formulas.extractKey(data,args.val1));
+            var val2=parseFloat(formulas.extractKey(data,args.val2));
+            if(_.isNaN(val1)) return 0;
+            if(_.isNaN(val2)) return val1;
+            return val1-val2;
+        };
+        formulas.percentage=function(args,data){
+            var base=parseFloat(formulas.extractKey(data,args.base));
+            var percentage=parseFloat(formulas.extractKey(data,args.percentage));
+            if(_.isNaN(percentage)) return 0;
+            return base*(percentage/100);
+        };
         formulas.calculate = function callculate(args,data) {
 
             var formula = args.formula;
@@ -83,7 +108,6 @@ define([], function() {
                     funcArgs[key] = formulas.calculate(args.funcArgs[key],data);
                 }
             }
-
             return formulas[formula](funcArgs,data);
         };
         return formulas;

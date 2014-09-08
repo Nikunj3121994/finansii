@@ -22,13 +22,13 @@ class CreateCalculationDetailsTable extends Migration {
 			$table->decimal('quantity', 15,4);
 			$table->decimal('rabat', 5,2);
 			$table->decimal('price_input1', 15,4);
+            $table->decimal('price_input2', 15,4);
 			$table->decimal('tariff_rate_input', 5,2);
 			$table->decimal('tax_input', 15,4);
 			$table->decimal('tax_output', 15,4);
-			$table->decimal('price_output2', 15,4);
 			$table->decimal('margin', 7,2);
-			$table->decimal('price_output3', 15,4);
-			$table->decimal('price_output4',15,4);
+			$table->decimal('price_output1', 15,4);
+			$table->decimal('price_output2',15,4);
 			$table->integer('tariff_code');
 			$table->string('debit_credit', 1);
 			$table->timestamps();

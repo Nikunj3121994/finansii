@@ -1223,14 +1223,59 @@
                 'required'=>1,
                 'edit'=>1
             )));
-            $calculationDetailsTable->fields()->save(new Field(array(
+            $priceInput1Field=new Field(array(
                 'name'=>'price_input1',
-                'label'=>'Price input 1',
+                'label'=>'Price input without tax',
                 'visible'=>1,
-                'type'=>'number',
+                'type'=>'dependency',
                 'required'=>1,
                 'edit'=>1
+            ));
+            $calculationDetailsTable->fields()->save($priceInput1Field);
+            $priceInput1Field->property()->save(new FieldConfig(array(
+                'key'=>'mathFunction',
+                'value'=>'{"formula":"percentageBase","funcArgs":{"baseField":"price_input2","percentage":"tariff_rate"}}'
             )));
+            $priceInput1Field->property()->save(new FieldConfig(array(
+                'key'=>'watches',
+                'value'=>'["formData.price_input2","formData.tariffs"]'
+            )));
+            $priceInput2Field=new Field(array(
+                'name'=>'price_input2',
+                'label'=>'Price input with tax ',
+                'visible'=>1,
+                'type'=>'dependency',
+                'required'=>1,
+                'edit'=>1
+            ));
+            $calculationDetailsTable->fields()->save($priceInput2Field);
+            $priceInput2Field->property()->save(new FieldConfig(array(
+                'key'=>'mathFunction',
+                'value'=>'{"formula":"percentageAdded","funcArgs":{"baseField":"price_input1","percentage":"tariff_rate"}}'
+            )));
+            $priceInput2Field->property()->save(new FieldConfig(array(
+                'key'=>'watches',
+                'value'=>'["formData.price_input1"]'
+            )));
+
+            $taxInputField=new Field(array(
+                'name'=>'tax_input',
+                'label'=>'Tax input',
+                'visible'=>1,
+                'type'=>'dependency',
+                'required'=>1,
+                'edit'=>1
+            ));
+            $calculationDetailsTable->fields()->save($taxInputField);
+            $taxInputField->property()->save(new FieldConfig(array(
+                'key'=>'mathFunction',
+                'value'=>'{"formula":"percentage","funcArgs":{"base":"price_input1","percentage":"tariff_rate"}}'
+            )));
+            $taxInputField->property()->save(new FieldConfig(array(
+                'key'=>'watches',
+                'value'=>'["formData.price_input1"]'
+            )));
+
             $calculationDetailsTable->fields()->save(new Field(array(
                 'name'=>'tariff_rate_input',
                 'label'=>'Tariff rate input',
@@ -1239,53 +1284,75 @@
                 'required'=>1,
                 'edit'=>1
             )));
-            $calculationDetailsTable->fields()->save(new Field(array(
-                'name'=>'tax_input',
-                'label'=>'Tax input',
-                'visible'=>1,
-                'type'=>'number',
-                'required'=>1,
-                'edit'=>1
-            )));
-            $calculationDetailsTable->fields()->save(new Field(array(
-                'name'=>'tax_output',
-                'label'=>'Tax output',
-                'visible'=>1,
-                'type'=>'number',
-                'required'=>1,
-                'edit'=>1
-            )));
-            $calculationDetailsTable->fields()->save(new Field(array(
-                'name'=>'price_output2',
-                'label'=>'Price output 2',
-                'visible'=>1,
-                'type'=>'number',
-                'required'=>1,
-                'edit'=>1
-            )));
-            $calculationDetailsTable->fields()->save(new Field(array(
+
+            $marginField=new Field(array(
                 'name'=>'margin',
                 'label'=>'Margin',
                 'visible'=>1,
-                'type'=>'number',
+                'type'=>'dependency',
                 'required'=>1,
                 'edit'=>1
+            ));
+            $calculationDetailsTable->fields()->save($marginField);
+            $marginField->property()->save(new FieldConfig(array(
+                'key'=>'mathFunction',
+                'value'=>'{"formula":"diffFields","funcArgs":{"val1":"price_output2","val2":"price_input2"}}'
             )));
-            $calculationDetailsTable->fields()->save(new Field(array(
-                'name'=>'price_output3',
-                'label'=>'Price output 3',
-                'visible'=>1,
-                'type'=>'number',
-                'required'=>1,
-                'edit'=>1
+            $marginField->property()->save(new FieldConfig(array(
+                'key'=>'watches',
+                'value'=>'["formData.price_output2","formData.price_input2"]'
             )));
-            $calculationDetailsTable->fields()->save(new Field(array(
-                'name'=>'price_output4',
-                'label'=>'Price output 4',
+            $priceOutput1Field=new Field(array(
+                'name'=>'price_output1',
+                'label'=>'Price output without tax',
                 'visible'=>1,
-                'type'=>'number',
+                'type'=>'dependency',
                 'required'=>1,
                 'edit'=>1
+            ));
+            $calculationDetailsTable->fields()->save($priceOutput1Field);
+            $priceOutput1Field->property()->save(new FieldConfig(array(
+                'key'=>'mathFunction',
+                'value'=>'{"formula":"percentageBase","funcArgs":{"baseField":"price_output2","percentage":"tariff_rate"}}'
+            )));
+            $priceOutput1Field->property()->save(new FieldConfig(array(
+                'key'=>'watches',
+                'value'=>'["formData.price_output2","formData.tariffs"]'
+            )));
+            $priceOutput2Field=new Field(array(
+                'name'=>'price_output2',
+                'label'=>'Price output with tax ',
+                'visible'=>1,
+                'type'=>'dependency',
+                'required'=>1,
+                'edit'=>1
+            ));
+            $calculationDetailsTable->fields()->save($priceOutput2Field);
+            $priceOutput2Field->property()->save(new FieldConfig(array(
+                'key'=>'mathFunction',
+                'value'=>'{"formula":"percentageAdded","funcArgs":{"baseField":"price_output1","percentage":"tariff_rate"}}'
+            )));
+            $priceOutput2Field->property()->save(new FieldConfig(array(
+                'key'=>'watches',
+                'value'=>'["formData.price_output1"]'
+            )));
+
+            $taxOutputField=new Field(array(
+                'name'=>'tax_output',
+                'label'=>'Tax output',
+                'visible'=>1,
+                'type'=>'dependency',
+                'required'=>1,
+                'edit'=>1
+            ));
+            $calculationDetailsTable->fields()->save($taxOutputField);
+            $taxOutputField->property()->save(new FieldConfig(array(
+                'key'=>'mathFunction',
+                'value'=>'{"formula":"percentage","funcArgs":{"base":"price_output1","percentage":"tariff_rate"}}'
+            )));
+            $taxOutputField->property()->save(new FieldConfig(array(
+                'key'=>'watches',
+                'value'=>'["formData.price_output1"]'
             )));
             $calculationDetailsTable->fields()->save(new Field(array(
                 'name'=>'tariff_code',
