@@ -1,7 +1,9 @@
 define([
     'forms/inputs/custom-text-input',
     'forms/inputs/custom-date',
-    'forms/inputs/custom-spinner'
+    'forms/inputs/custom-spinner',
+    'forms/inputs/custom-auto-complete',
+    'forms/inputs/input-services'
 ], function () {
     /**
      * @ngdoc overview
@@ -14,6 +16,8 @@ define([
         "app.forms.inputs.customText",
         "app.forms.inputs.customDate",
         "app.forms.inputs.customSpinner",
+        'app.forms.inputs.customAutoComplete',
+        'app.forms.inputs.services',
         "ui.mask"
     ]);
 

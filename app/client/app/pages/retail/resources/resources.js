@@ -46,7 +46,7 @@ define([], function() {
             return {
                 restrict:'EA',
                 link:link,
-                templateUrl:"app/pages/resources_retail/resources.html"
+                templateUrl:"app/pages/retail/resources/resources.html"
             }
         });
 

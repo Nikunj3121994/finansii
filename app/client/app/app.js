@@ -7,12 +7,11 @@ define([
 
     'global/translate/Translate',
 
-    'pages/orders/orders',
-    'pages/reports/report-page',
-    'pages/autocomplete/AutoComplete',
-    'pages/resources/resources',
-    'pages/resources_retail/resources',
-    'pages/calculations/calculations',
+    'pages/finance/orders/orders',
+    'pages/finance/reports/report-page',
+    'pages/finance/resources/resources',
+    'pages/retail/resources/resources',
+    'pages/retail/calculations/calculations',
 
     'forms/grid/grid',
     'forms/summary/summary',
@@ -33,7 +32,6 @@ define([
 
             'app.pages.orders',
             'app.pages.reports',
-            'app.pages.autocomplete',
             'app.pages.resources',
             'app.pages.resources.retail',
             'app.pages.calculations',
@@ -87,7 +85,7 @@ define([
                     }
                 }).state('finance.orders',{
                     url:'/orders',
-                    templateUrl:'app/pages/orders/orders.html'
+                    templateUrl:'app/pages/finance/orders/orders.html'
                 }).state('finance.orders.ledgers',{
                     url:'/:companyCode/:orderId',
                     template:'<custom-grid grid-resource="ledgers" grid-params="params"></custom-grid>',
@@ -100,7 +98,7 @@ define([
                     }
                 }).state('finance.reports',{
                     url:'/reports',
-                    templateUrl:'app/pages/reports/reports.html'
+                    templateUrl:'app/pages/finance/reports/reports.html'
                 }).state('404', {
                     url: '/404',
                     views: {
@@ -129,12 +127,12 @@ define([
                             template: '<div><div class="btn" ui-sref="retail.start"><i class="fa fa-angle-left"></i> </div> Calculations</div>'
                         },
                         contentView: {
-                            templateUrl: 'app/pages/finance/finance.html'
+                            templateUrl: 'app/pages/retail/retail.html'
                         }
                     }
                 }).state('retail.start', {
                     url: '',
-                    templateUrl: 'app/pages/finance/finance.html'
+                    templateUrl: 'app/pages/retail/retail.html'
                 }).state('retail.resources',{
                     url:'/resources',
                     template:'<div resources-calculations-page></div>'
@@ -147,7 +145,7 @@ define([
                     }
                 }).state('retail.calculationHeader',{
                     url:'/calculations',
-                    templateUrl:'app/pages/calculations/calculations.html'
+                    templateUrl:'app/pages/retail/calculations/calculations.html'
                 }).state('retail.calculationHeader.calculations',{
                     url:'/:calculationHeaderId',
                     template:'<custom-grid grid-resource="calculation-details" grid-params="params"></custom-grid>',
