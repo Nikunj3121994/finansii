@@ -1225,7 +1225,7 @@
             )));
             $priceInput1Field=new Field(array(
                 'name'=>'price_input1',
-                'label'=>'Price input without tax',
+                'label'=>'Prc. in. no tax',
                 'visible'=>1,
                 'type'=>'dependency',
                 'required'=>1,
@@ -1242,7 +1242,7 @@
             )));
             $priceInput2Field=new Field(array(
                 'name'=>'price_input2',
-                'label'=>'Price input with tax ',
+                'label'=>'Prc in. tax ',
                 'visible'=>1,
                 'type'=>'dependency',
                 'required'=>1,
@@ -1304,7 +1304,7 @@
             )));
             $priceOutput1Field=new Field(array(
                 'name'=>'price_output1',
-                'label'=>'Price output without tax',
+                'label'=>'Prc op. no tax',
                 'visible'=>1,
                 'type'=>'dependency',
                 'required'=>1,
@@ -1321,7 +1321,7 @@
             )));
             $priceOutput2Field=new Field(array(
                 'name'=>'price_output2',
-                'label'=>'Price output with tax ',
+                'label'=>'Prc op. tax ',
                 'visible'=>1,
                 'type'=>'dependency',
                 'required'=>1,

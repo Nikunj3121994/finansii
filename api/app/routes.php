@@ -64,6 +64,7 @@ Route::resource('partners', 'PartnersController',$excludedPaths);
 Route::resource('calculation-headers', 'CalculationHeadersController',$excludedPaths);
 Route::resource('calculation_types', 'CalculationTypesController',$excludedPaths);
 Route::resource('calculation-details', 'CalculationDetailsController',$excludedPaths);
+Route::resource('archive-calculations', 'ArchiveCalculationsController');
 
 /**
  * Restful controllers
