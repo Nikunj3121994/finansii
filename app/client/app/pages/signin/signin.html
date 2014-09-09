@@ -1,0 +1,25 @@
+<div class="signin panel">
+    <div class="panel-body">
+        <fieldset>
+            <label>Email</label>
+            <div class="input-control text" data-role="input-control">
+                <input type="text" placeholder="Email" ng-model="username">
+            </div>
+            <label>Password</label>
+            <div class="input-control password" data-role="input-control">
+                <input type="password" placeholder="Password" ng-model="password">
+            </div>
+            <div class="input-control checkbox" data-role="input-control">
+                <label>
+                    Remember me
+                    <input type="checkbox" >
+                    <span class="check"></span>
+
+                </label>
+            </div>
+            <div>
+                <button class="info" ng-click="login()">Submit</button>
+            </div>
+        </fieldset>
+    </div>
+</div>

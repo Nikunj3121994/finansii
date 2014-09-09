@@ -12,6 +12,7 @@ define([
     'pages/finance/resources/resources',
     'pages/retail/resources/resources',
     'pages/retail/calculations/calculations',
+    'pages/signin/signin',
 
     'forms/grid/grid',
     'forms/summary/summary',
@@ -35,6 +36,7 @@ define([
             'app.pages.resources',
             'app.pages.resources.retail',
             'app.pages.calculations',
+            'app.pages.login',
 
             'app.forms.grid',
             'app.forms.summary',
@@ -44,7 +46,10 @@ define([
             'app.reports'
         ])
         .config([
-            '$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouter) {
+            '$httpProvider','$stateProvider', '$urlRouterProvider', function ($httpProvider,$stateProvider, $urlRouter) {
+
+                $httpProvider.interceptors.push('httpRequestInterceptor');
+                console.log($httpProvider.interceptors);
                 $urlRouter.when('', '/dashboard');
                 $urlRouter.otherwise('/dashboard');
 
@@ -57,6 +62,17 @@ define([
                         },
                         contentView: {
                             template:'<div>dashboard</div>'
+                        }
+                    }
+                }).state('login', {
+                    url: '/login',
+                    views: {
+                        headerView: {
+                            template: '<div class="signin-header">Sign In</div>'
+                        },
+                        contentView: {
+                            templateUrl:'app/pages/signin/signin.html',
+                            controller:'loginController'
                         }
                     }
                 }).state('finance', {
@@ -172,6 +188,20 @@ define([
                 }
             );
         }]);
+        app.factory('httpRequestInterceptor', function ($injector) {
+            return {
+
+                response:function(response){
+                    if(response.data.code==405){
+                        $injector.get('$state').go('login');
+                        response.data={error:response.data};
+                        return response;
+                    }else {
+                        return response;
+                    }
+                }
+            };
+        });
 
     return app;
 });

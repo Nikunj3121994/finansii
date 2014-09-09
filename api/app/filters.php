@@ -20,11 +20,11 @@ App::before(function($request)
         return Response::make('', 200, $headers);
     }
     else{
-        $token=Session::get('token');
-        Log::info($token);
-        if($token){
-            $request->headers->set('X-Auth-Token',$token);
-        }
+       // $token=Session::get('token');
+       // Log::info($token);
+       // if($token){
+       //     $request->headers->set('X-Auth-Token',$token);
+       // }
     }
 
 });

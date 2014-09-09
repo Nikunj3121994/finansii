@@ -35,38 +35,39 @@ Route::post('auth', 'Tappleby\AuthToken\AuthTokenController@store');
 Route::delete('auth', 'Tappleby\AuthToken\AuthTokenController@destroy');
 
 
+Route::group(array('before'=>'auth.token'),function(){
+    /**
+     * Route resources
+     */
+    $excludedPaths=array('except' =>array('edit','create'));
+    Route::resource('municipalities', 'MunicipalitiesController',$excludedPaths);
+    Route::resource('settlements', 'SettlementsController',$excludedPaths);
+    Route::resource('streets', 'StreetsController',$excludedPaths);
 
-/**
- * Route resources
- */
-$excludedPaths=array('except' =>array('edit','create'));
-Route::resource('municipalities', 'MunicipalitiesController',$excludedPaths);
-Route::resource('settlements', 'SettlementsController',$excludedPaths);
-Route::resource('streets', 'StreetsController',$excludedPaths);
+    Route::post('companies/add-bank','CompaniesController@addBank',$excludedPaths);
+    Route::resource('companies', 'CompaniesController',$excludedPaths);
+    Route::resource('orders', 'OrdersController',$excludedPaths);
+    Route::resource('banks', 'BanksController',$excludedPaths);
+    Route::resource('operators', 'OperatorsController',$excludedPaths);
+    Route::resource('orders', 'OrdersController',$excludedPaths);
+    Route::resource('sub_accounts', 'SubAccountsController',$excludedPaths);
+    Route::resource('accounts', 'AccountsController',$excludedPaths);
+    Route::resource('currencies', 'CurrenciesController',$excludedPaths);
+    Route::resource('exchange_rates', 'ExchangeRatesController',$excludedPaths);
+    Route::resource('ledgers', 'LedgersController',$excludedPaths);
+    Route::resource('archive-ledgers', 'ArchiveLedgersController',$excludedPaths);
+    Route::resource('tariffs', 'TariffsController',$excludedPaths);
+    Route::resource('units', 'UnitsController',$excludedPaths);
+    Route::resource('articles', 'ArticlesController',$excludedPaths);
+    Route::resource('business_units', 'BusinessUnitsController',$excludedPaths);
+    Route::resource('partners', 'PartnersController',$excludedPaths);
+    Route::resource('calculation-headers', 'CalculationHeadersController',$excludedPaths);
+    Route::resource('calculation_types', 'CalculationTypesController',$excludedPaths);
+    Route::resource('calculation-details', 'CalculationDetailsController',$excludedPaths);
+    Route::resource('archive-calculations', 'ArchiveCalculationsController');
 
-Route::post('companies/add-bank','CompaniesController@addBank',$excludedPaths);
-Route::resource('companies', 'CompaniesController',$excludedPaths);
-Route::resource('orders', 'OrdersController',$excludedPaths);
-Route::resource('banks', 'BanksController',$excludedPaths);
-Route::resource('operators', 'OperatorsController',$excludedPaths);
-Route::resource('orders', 'OrdersController',$excludedPaths);
-Route::resource('sub_accounts', 'SubAccountsController',$excludedPaths);
-Route::resource('accounts', 'AccountsController',$excludedPaths);
-Route::resource('currencies', 'CurrenciesController',$excludedPaths);
-Route::resource('exchange_rates', 'ExchangeRatesController',$excludedPaths);
-Route::resource('ledgers', 'LedgersController',$excludedPaths);
-Route::resource('archive-ledgers', 'ArchiveLedgersController',$excludedPaths);
-Route::resource('tariffs', 'TariffsController',$excludedPaths);
-Route::resource('units', 'UnitsController',$excludedPaths);
-Route::resource('articles', 'ArticlesController',$excludedPaths);
-Route::resource('business_units', 'BusinessUnitsController',$excludedPaths);
-Route::resource('partners', 'PartnersController',$excludedPaths);
-Route::resource('calculation-headers', 'CalculationHeadersController',$excludedPaths);
-Route::resource('calculation_types', 'CalculationTypesController',$excludedPaths);
-Route::resource('calculation-details', 'CalculationDetailsController',$excludedPaths);
-Route::resource('archive-calculations', 'ArchiveCalculationsController');
-
-/**
- * Restful controllers
- */
-Route::controller('reports', 'ReportsController');
+    /**
+     * Restful controllers
+     */
+    Route::controller('reports', 'ReportsController');
+});

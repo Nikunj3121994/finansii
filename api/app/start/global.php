@@ -82,13 +82,13 @@ require app_path().'/filters.php';
 
 App::error(function(\Tappleby\AuthToken\Exceptions\NotAuthorizedException $exception,$code){
     return array(
-        'error' => 1,
+        'code' => 405,
         'msg'=>'Not authorized access'
     );
 });
 
 Event::listen('auth.token.created', function($user, $token)
 {
-    Session::put('token',AuthToken::publicToken($token));
+    //Session::put('token',AuthToken::publicToken($token));
     return array("msg"=>"event fired");
 });
