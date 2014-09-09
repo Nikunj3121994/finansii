@@ -49,7 +49,6 @@ define([
             '$httpProvider','$stateProvider', '$urlRouterProvider', function ($httpProvider,$stateProvider, $urlRouter) {
 
                 $httpProvider.interceptors.push('httpRequestInterceptor');
-                console.log($httpProvider.interceptors);
                 $urlRouter.when('', '/dashboard');
                 $urlRouter.otherwise('/dashboard');
 
@@ -188,12 +187,16 @@ define([
                 }
             );
         }]);
-        app.factory('httpRequestInterceptor', function ($injector) {
+        app.factory('httpRequestInterceptor', function ($injector,$rootScope) {
             return {
 
                 response:function(response){
                     if(response.data.code==405){
-                        $injector.get('$state').go('login');
+                        if($injector.get('$state').current.name!='login'){
+                            $rootScope.previousStateParams= _.clone($injector.get('$stateParams'));
+                            $rootScope.previousState= $injector.get('$state').current.name;
+                            $injector.get('$state').go('login');
+                        }
                         response.data={error:response.data};
                         return response;
                     }else {

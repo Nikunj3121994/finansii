@@ -1,11 +1,13 @@
 define([], function () {
 
     var module = angular.module('app.pages.login', []);
-    module.controller('loginController',function($scope,loginService,$http,$state){
+    module.controller('loginController',function($scope,loginService,$http,$state,$rootScope){
+
         $scope.login=function(){
             loginService.login($scope.username,$scope.password).then(function(data){
                 $http.defaults.headers.common['X-Auth-Token']=data.token;
-                $state.go('dashboard');
+                if(!_.isUndefined($rootScope.previousState)) $state.go($rootScope.previousState,$rootScope.previousStateParams);
+                else $state.go('dashboard');
             });
         }
     });

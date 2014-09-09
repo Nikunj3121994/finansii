@@ -2,12 +2,12 @@
     <div class="table-cell"></div>
     <div class="table-cell js_submit_form">
         <div>
-            <button ng-disabled="isFormValid()" type="submit" class="info" ng-click="submitForm()">Submit</button>
+            <button class="bg-lightBlue fg-white" ng-disabled="isFormValid()" type="submit" class="info" ng-click="submitForm()">Submit</button>
+            <div class="transparent" style="display:inline-block">
+                <button data-ng-disabled="requestInProgress" type="button" class="bg-amber" ng-click="cancelForm()">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
         </div>
-        <div>
-            <button data-ng-disabled="requestInProgress" type="button" class="warning" ng-click="cancelForm()">Cancel
-            </button>
-        </div>
-
     </div>
 </form>

@@ -110,7 +110,6 @@ define([], function () {
     module.controller("formController", function controller($scope, jsonGridDataService,$filter) {
         var formName = $scope.gridOptions.formName;
         $scope.setFormData = function () {
-            console.log('sdfdsf');
             $scope.formData = {};
             var row = getRowById();
             if (row !== false) {
