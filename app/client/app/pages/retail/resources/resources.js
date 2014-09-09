@@ -21,10 +21,10 @@ define([], function() {
                         resource:'articles'
                     },{
                         name:'Тип калкулација',
-                        resource:'calculation-types'
+                        resource:'calculation_types'
                     },{
                         name:'Бизнис единици',
-                        resource:'business-units'
+                        resource:'business_units'
                     },{
                         name:'Партнери',
                         resource:'partners'

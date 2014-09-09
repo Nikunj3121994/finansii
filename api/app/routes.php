@@ -50,19 +50,19 @@ Route::resource('orders', 'OrdersController',$excludedPaths);
 Route::resource('banks', 'BanksController',$excludedPaths);
 Route::resource('operators', 'OperatorsController',$excludedPaths);
 Route::resource('orders', 'OrdersController',$excludedPaths);
-Route::resource('sub-accounts', 'SubAccountsController',$excludedPaths);
+Route::resource('sub_accounts', 'SubAccountsController',$excludedPaths);
 Route::resource('accounts', 'AccountsController',$excludedPaths);
 Route::resource('currencies', 'CurrenciesController',$excludedPaths);
-Route::resource('exchange-rates', 'ExchangeRatesController',$excludedPaths);
+Route::resource('exchange_rates', 'ExchangeRatesController',$excludedPaths);
 Route::resource('ledgers', 'LedgersController',$excludedPaths);
 Route::resource('archive-ledgers', 'ArchiveLedgersController',$excludedPaths);
 Route::resource('tariffs', 'TariffsController',$excludedPaths);
 Route::resource('units', 'UnitsController',$excludedPaths);
 Route::resource('articles', 'ArticlesController',$excludedPaths);
-Route::resource('business-units', 'BusinessUnitsController',$excludedPaths);
+Route::resource('business_units', 'BusinessUnitsController',$excludedPaths);
 Route::resource('partners', 'PartnersController',$excludedPaths);
 Route::resource('calculation-headers', 'CalculationHeadersController',$excludedPaths);
-Route::resource('calculation-types', 'CalculationTypesController',$excludedPaths);
+Route::resource('calculation_types', 'CalculationTypesController',$excludedPaths);
 Route::resource('calculation-details', 'CalculationDetailsController',$excludedPaths);
 
 /**

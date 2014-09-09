@@ -27,7 +27,7 @@ define([], function() {
                         resource:'companies'
                     },{
                         name:'Под конта',
-                        resource:'sub-accounts'
+                        resource:'sub_accounts'
                     },{
                         name:'Конта',
                         resource:'accounts'
@@ -36,7 +36,7 @@ define([], function() {
                         resource:'currencies'
                     },{
                         name:'Курсни листи',
-                        resource:'exchange-rates'
+                        resource:'exchange_rates'
                     }]
             }
             return {

@@ -440,7 +440,7 @@
             )));
 
 
-            $subAccountsTable=FormConfig::create(array('name'=>'sub-accounts','edit'=>1,'delete'=>1,'add'=>1));
+            $subAccountsTable=FormConfig::create(array('name'=>'sub_accounts','edit'=>1,'delete'=>1,'add'=>1));
             $subAccountsTable->fields()->save(new Field(array(
                 'name'=>'sub_account_code',
                 'label'=>'Code',
@@ -495,7 +495,7 @@
             $accountsTable->fields()->save($subAccountsField);
             $subAccountsField->property()->save(new FieldConfig(array(
                 'key'=>'resource',
-                'value'=>'sub-accounts'
+                'value'=>'sub_accounts'
             )));
             $subAccountsField->property()->save(new FieldConfig(array(
                 'key'=>'field',
@@ -532,7 +532,7 @@
                 'edit'=>1
             )));
 
-            $exchangeRatesTable=FormConfig::create(array('name'=>'exchange-rates','edit'=>1,'delete'=>1,'add'=>1));
+            $exchangeRatesTable=FormConfig::create(array('name'=>'exchange_rates','edit'=>1,'delete'=>1,'add'=>1));
             $exchangeRatesTable->fields()->save(new Field(array(
                 'name'=>'exchange_date',
                 'label'=>'Exchange Date',
@@ -596,7 +596,7 @@
             $ledgersTable->fields()->save($subAccountField);
             $subAccountField->property()->save(new FieldConfig(array(
                 'key'=>'resource',
-                'value'=>'sub-accounts'
+                'value'=>'sub_accounts'
             )));
             $subAccountField->property()->save(new FieldConfig(array(
                 'key'=>'field',
@@ -807,7 +807,7 @@
                 'edit'=>1
             )));
 
-            $businessUnitsTable=FormConfig::create(array('name'=>'business-units','edit'=>1,'delete'=>1,'add'=>1));
+            $businessUnitsTable=FormConfig::create(array('name'=>'business_units','edit'=>1,'delete'=>1,'add'=>1));
             $companyFieldBU=new Field(array(
                 'name'=>'company_code',
                 'label'=>'Company',
@@ -1059,7 +1059,7 @@
                 'edit'=>1
             )));
 
-            $calculationTypesTable=FormConfig::create(array('name'=>'calculation-types','edit'=>1,'delete'=>1,'add'=>1));
+            $calculationTypesTable=FormConfig::create(array('name'=>'calculation_types','edit'=>1,'delete'=>1,'add'=>1));
             $calculationTypesTable->fields()->save(new Field(array(
                 'name'=>'calculation_type_code',
                 'label'=>'Code',
@@ -1089,7 +1089,7 @@
             $calculationHeaderTable->fields()->save($businessUnitField);
             $businessUnitField->property()->save(new FieldConfig(array(
                 'key'=>'resource',
-                'value'=>'business-units'
+                'value'=>'business_units'
             )));
             $businessUnitField->property()->save(new FieldConfig(array(
                 'key'=>'field',
@@ -1177,7 +1177,7 @@
             $calculationHeaderTable->fields()->save($calculationTypeField);
             $calculationTypeField->property()->save(new FieldConfig(array(
                 'key'=>'resource',
-                'value'=>'calculation-types'
+                'value'=>'calculation_types'
             )));
             $calculationTypeField->property()->save(new FieldConfig(array(
                 'key'=>'field',
