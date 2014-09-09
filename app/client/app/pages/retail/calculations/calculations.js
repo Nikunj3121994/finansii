@@ -2,7 +2,7 @@ define([], function () {
 
     var module = angular.module('app.pages.calculations', []);
 
-    module.controller('calculationsController',function ($scope, calculationService,$state,$filter) {
+    module.controller('calculationsController',function ($scope, calculationService,$state,$filter,toasterService) {
         $scope.defaultOptions = {
             permissions: {
                 search: true,
@@ -20,10 +20,10 @@ define([], function () {
         $scope.calculationHeaderData={};
         $scope.saveData = function () {
             var calculationData={};
-            calculationData.business_unit_id=$scope.calculationHeaderData.businessUnits.id;
+            calculationData.business_unit_id=$scope.calculationHeaderData.business_units.id;
             calculationData.partner_code=$scope.calculationHeaderData.partners.partner_code;
             calculationData.currency_code=$scope.calculationHeaderData.currencies.id;
-            calculationData.calculation_type_code=$scope.calculationHeaderData.calculationTypes.calculation_type_code;
+            calculationData.calculation_type_code=$scope.calculationHeaderData.calculation_types.calculation_type_code;
             calculationData.calculation_number=$scope.calculationHeaderData.calculation_number;
             calculationData.document_number=$scope.calculationHeaderData.document_number;
             calculationData.currency_value=$scope.calculationHeaderData.currency_value;
@@ -66,6 +66,16 @@ define([], function () {
             $scope.calculationHeaderData={};
             $scope.calculationHeaderId=null;
         }
+        $scope.archiveCalculation=function(){
+            calculationService.archiveCalculation($scope.calculationHeaderId).then(function(data){
+                if(data.code==0){
+                    $scope.calculationHeaderData={};
+                    $state.go('retail.calculationHeader');
+                } else{
+                    toasterService.setError(data.msg);
+                }
+            });
+        }
 
 
     }).factory('calculationService', ["$q", "$http" , function ($q, $http) {
@@ -81,9 +91,6 @@ define([], function () {
                     .success(function (data) {
                         if (data.code) deferred.resolve(data);
                         else deferred.resolve(data.body);
-
-
-
                     })
                     .error(function (data) {
                         console.log("Error getting testform.json");
@@ -107,6 +114,25 @@ define([], function () {
 
 
 
+                    })
+                    .error(function (data) {
+                        console.log("Error getting testform.json");
+                        deferred.reject("There was and error.");
+                    });
+
+                return deferred.promise;
+            };
+            this.archiveCalculation = function (calculationHeaderId) {
+                var deferred = $q.defer();
+
+                var url = "http://localhost/finansii/api/public/archive-calculations";
+                $http({
+                    url: url,
+                    data: {calculationHeaderId:calculationHeaderId},
+                    method: "POST"
+                })
+                    .success(function (data) {
+                        deferred.resolve(data);
                     })
                     .error(function (data) {
                         console.log("Error getting testform.json");

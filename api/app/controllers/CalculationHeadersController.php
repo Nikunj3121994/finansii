@@ -10,7 +10,8 @@ class CalculationHeadersController extends \BaseController {
 	 */
 	public function index()
 	{
-        return ProcessResponse::process(CalculationHeader::with('businessUnits')->with('partners')->with('calculationTypes')->with('currencies')->get());
+        return ProcessResponse::process(CalculationHeader::where('archived','!=',1)->with('businessUnits')
+            ->with('partners')->with('calculationTypes')->with('currencies')->get());
 	}
 
 	/**

@@ -32,7 +32,15 @@ class ArchiveCalculationsController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+        if(Input::has('calculationHeaderId')){
+            DB::statement('INSERT INTO archive_calculations select * from calculation_details where calculation_header_id = ?',
+                array(Input::get('calculationHeaderId')));
+            CalculationDetail::where('calculation_header_id','=',Input::get('calculationHeaderId'))->delete();
+            $CalculationHeader=CalculationHeader::find(Input::get('calculationHeaderId'));
+            $CalculationHeader->archived=1;
+            $CalculationHeader->save();
+            return ProcessResponse::$success;
+        } else return ProcessResponse::getError(1000,"Calculation header is not presented");
 	}
 
 	/**

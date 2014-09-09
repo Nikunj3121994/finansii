@@ -2,7 +2,7 @@ define([], function () {
 
     var module = angular.module('app.pages.orders', []);
 
-    module.controller('ordersController',function ($scope, ordersService,$state,$filter) {
+    module.controller('ordersController',function ($scope, ordersService,$state,$filter,toasterService) {
         $scope.defaultOptions = {
             permissions: {
                 search: true,
@@ -65,7 +65,7 @@ define([], function () {
                    $scope.orderData={};
                    $state.go('finance.orders');
                } else{
-                   alert(data.toString());
+                   toasterService.setError(data.msg);
                }
             });
         }
