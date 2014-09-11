@@ -153,7 +153,7 @@ define([
 
     module.directive('dynamicReport', function ($compile) {
         function link($scope, element) {
-
+            console.log($scope.reportData);
             var printConfig=function(config,scope){
                 var tmp={};
                 tmp.printViewport=$('.print-viewport');
