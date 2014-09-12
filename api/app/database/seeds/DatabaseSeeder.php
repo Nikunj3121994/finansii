@@ -11,16 +11,18 @@ class DatabaseSeeder extends Seeder {
 	{
 		Eloquent::unguard();
 
-		$this->call('ConfigSeeder');
-        $this->call('UserTableSeeder');
+//		$this->call('ConfigSeeder');
+//        $this->call('UserTableSeeder');
 
 //        DB::table('streets')->delete();
 //        DB::table('settlements')->delete();
 //        DB::table('municipalities')->delete();
 //        DB::table('banks')->delete();
-//
-//
-//        DB::unprepared(file_get_contents(app_path().'\database\seeds\ResourcesSeed.sql'));
+
+
+      //  DB::unprepared(file_get_contents(app_path().'\database\seeds\ResourcesSeed.sql'));
+      //exec('mysql -u root -p finansii < '.file_get_contents(app_path().'\database\seeds\ResourceSeedAdvanced.sql'),$output,$worked);
+      DB::statement(file_get_contents(app_path().'\database\seeds\ResourceSeedAdvanced.sql'));
 	}
 
 }

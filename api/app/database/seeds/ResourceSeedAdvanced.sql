@@ -6,7 +6,7 @@
 -- Generation Time: Sep 12, 2014 at 12:00 AM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
-
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -19,14 +19,14 @@ SET time_zone = "+00:00";
 --
 -- Database: `finance`
 --
-CREATE DATABASE IF NOT EXISTS `finance` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `finance`;
+
+USE `finansii`;
 
 --
 -- Dumping data for table `companies`
 --
 
-INSERT INTO `companies` (`company_code`, `company_name`, `company_short_name`, `company_address`, `municipality_code`, `settelment_code`, `street_code`, `telephone1`, `telephone2`, `telephax`, `mail`, `owner`, `authorized`, `activity`, `id_number`, `tax_code`, `tax_payer`) VALUES
+INSERT INTO `companies` (`company_code`, `company_name`, `company_short_name`, `company_address`, `municipality_code`, `settlement_code`, `street_code`, `telephone1`, `telephone2`, `fax`, `mail`, `owner`, `authorized`, `activity`, `id_number`, `tax_code`, `tax_payer`) VALUES
 ('002', 'Company 002', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 ('010', 'Company 010', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 ('030', 'Company 030', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -38,10 +38,10 @@ INSERT INTO `companies` (`company_code`, `company_name`, `company_short_name`, `
 ('082', 'Company 082', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 --
--- Dumping data for table `ledger`
+-- Dumping data for table `ledgers`
 --
 
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (1, '051', 1456, '011001', '   ', '59', 'PO FAKTURA  BR', '2013-04-01 00:00:00', 'D', '6166560.000000', NULL, '6166560.000000'),
 (2, '051', 1436, '011001', '   ', NULL, NULL, '2013-12-31 00:00:00', 'D', '1077086.000000', NULL, '1077086.000000'),
 (3, '051', 1308, '012001', '   ', '*', 'Poc. sost.', '2013-01-01 00:00:00', 'D', '52542.000000', NULL, '52542.000000'),
@@ -444,7 +444,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (400, '051', 1313, '100000', '   ', '217', 'BANKOV  IZVOD  BR', '2013-11-20 00:00:00', 'D', '3000.000000', NULL, '3000.000000'),
 (401, '051', 1313, '100000', '   ', '218', 'BANKOV  IZVOD  BR', '2013-11-21 00:00:00', 'D', '4870.000000', NULL, '4870.000000'),
 (402, '051', 1313, '100000', '   ', '219', 'BANKOV  IZVOD  BR', '2013-11-22 00:00:00', 'D', '8680.000000', NULL, '8680.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (403, '051', 1314, '100000', '   ', '220', 'BANKOV  IZVOD  BR', '2013-11-25 00:00:00', 'D', '7320.000000', NULL, '7320.000000'),
 (404, '051', 1315, '100000', '   ', '221', 'BANKOV  IZVOD  BR', '2013-11-29 00:00:00', 'D', '8000.000000', NULL, '8000.000000'),
 (405, '051', 1315, '100000', '   ', '222', 'BANKOV  IZVOD  BR', '2013-11-30 00:00:00', 'P', '350.000000', NULL, '350.000000'),
@@ -849,7 +849,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (804, '010', 972, '100900', '   ', NULL, 'BANKOV IZVOD BR', '2013-02-06 00:00:00', 'P', '5270.000000', NULL, '5270.000000'),
 (805, '010', 972, '100900', '   ', NULL, 'BANKOV IZVOD BR', '2013-02-07 00:00:00', 'P', '12710.000000', NULL, '12710.000000'),
 (806, '010', 972, '100900', '   ', NULL, 'BANKOV IZVOD BR', '2013-02-09 00:00:00', 'P', '6510.000000', NULL, '6510.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (807, '010', 1021, '100900', '   ', NULL, NULL, '2013-02-06 00:00:00', 'D', '379062.000000', NULL, '379062.000000'),
 (808, '010', 973, '100900', '   ', NULL, 'BANKOV IZVOD BR', '2013-02-07 00:00:00', 'P', '315.000000', NULL, '315.000000'),
 (809, '010', 973, '100900', '   ', NULL, 'BANKOV IZVOD BR', '2013-02-12 00:00:00', 'P', '2275.000000', NULL, '2275.000000'),
@@ -1259,7 +1259,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (1213, '010', 1070, '120000', '00231', '258/2013', 'F-ra br.', '2013-06-17 00:00:00', 'D', '25040.000000', NULL, '25040.000000'),
 (1214, '010', 1075, '120000', '00231', '309', 'F-ra br.', '2013-07-11 00:00:00', 'D', '9200.000000', NULL, '9200.000000'),
 (1215, '010', 1018, '120000', '00231', NULL, 'F-ra br.', '2013-09-25 00:00:00', 'P', '15000.000000', NULL, '15000.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (1216, '010', 1052, '120000', '00231', '585/2013', 'F-ra br.', '2013-12-10 00:00:00', 'D', '2580.000000', NULL, '2580.000000'),
 (1217, '010', 1046, '120000', '00284', '21/2012', 'F-ra br.', '2013-01-25 00:00:00', 'D', '16430.000000', NULL, '16430.000000'),
 (1218, '010', 974, '120000', '00284', '21/2012', 'F-ra br.', '2013-02-13 00:00:00', 'P', '16430.000000', NULL, '16430.000000'),
@@ -1669,7 +1669,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (1622, '072', 1601, '220100', '09959', '*', 'Poc. sost.', '2013-01-01 00:00:00', 'P', '161799.000000', NULL, '161799.000000'),
 (1623, '072', 1614, '220100', '09959', NULL, 'BANKOV IZVOD BR', '2013-01-24 00:00:00', 'D', '52952.000000', NULL, '52952.000000'),
 (1624, '072', 1660, '220100', '09959', '100-54', 'Po f-ra. br.', '2013-02-20 00:00:00', 'P', '47290.000000', NULL, '47290.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (1625, '072', 1671, '220100', '09959', '100-286', 'Po f-ra. br.', '2013-06-01 00:00:00', 'P', '64740.000000', NULL, '64740.000000'),
 (1626, '072', 1633, '220100', '09959', NULL, 'F-ra br.', '2013-07-18 00:00:00', 'D', '7770.000000', NULL, '7770.000000'),
 (1627, '072', 1674, '220100', '09959', '100-549', 'Po f-ra. br.', '2013-09-30 00:00:00', 'P', '64710.000000', NULL, '64710.000000'),
@@ -2079,7 +2079,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (2031, '056', 1510, '253000', '03001', NULL, 'BANKOV IZVOD BR', '2013-01-18 00:00:00', 'P', '51000.000000', NULL, '51000.000000'),
 (2032, '056', 1510, '253000', '03001', NULL, 'BANKOV IZVOD BR', '2013-01-21 00:00:00', 'D', '195000.000000', NULL, '195000.000000'),
 (2033, '056', 1510, '253000', '03001', NULL, 'BANKOV IZVOD BR', '2013-01-23 00:00:00', 'D', '93000.000000', NULL, '93000.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (2034, '056', 1510, '253000', '03001', NULL, 'BANKOV IZVOD BR', '2013-01-24 00:00:00', 'D', '5360.000000', NULL, '5360.000000'),
 (2035, '056', 1510, '253000', '03001', NULL, 'BANKOV IZVOD BR', '2013-02-19 00:00:00', 'D', '681.000000', NULL, '681.000000'),
 (2036, '056', 1510, '253000', '03001', NULL, 'BANKOV IZVOD BR', '2013-02-20 00:00:00', 'D', '17000.000000', NULL, '17000.000000'),
@@ -2487,7 +2487,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (2438, '056', 1576, '401100', '   ', NULL, NULL, '2013-03-11 00:00:00', 'D', '1000.000000', NULL, '1000.000000'),
 (2439, '056', 1576, '401100', '   ', NULL, NULL, '2012-12-04 00:00:00', 'D', '2000.000000', NULL, '2000.000000'),
 (2440, '056', 1579, '401100', '   ', NULL, NULL, '2013-04-30 00:00:00', 'D', '1356.000000', NULL, '1356.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (2441, '056', 1584, '401100', '   ', NULL, 'PO FAKTURA  BR', '2013-06-11 00:00:00', 'D', '2000.000000', NULL, '2000.000000'),
 (2442, '056', 1585, '401100', '   ', NULL, NULL, '2013-07-24 00:00:00', 'D', '1271.000000', NULL, '1271.000000'),
 (2443, '056', 1586, '401100', '   ', NULL, NULL, '2013-09-30 00:00:00', 'D', '2288.000000', NULL, '2288.000000'),
@@ -2911,7 +2911,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (2861, '051', 1446, '701018', '   ', NULL, NULL, '2013-12-31 00:00:00', 'D', '-65888.000000', NULL, '-65888.000000'),
 (2862, '051', 1498, '701018', '   ', '*', 'Zaklu~en nalog', '2013-12-31 00:00:00', 'P', '897898.500000', NULL, '897898.500000'),
 (2863, '051', 1498, '707000', '   ', '*', 'Zaklu~en nalog', '2013-12-31 00:00:00', 'D', '9997457.500000', NULL, '9997457.500000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (2864, '051', 1498, '707000', '   ', '*', 'Zaklu~en nalog', '2013-12-31 00:00:00', 'P', '9997457.500000', NULL, '9997457.500000'),
 (2865, '051', 1356, '730005', '   ', NULL, NULL, '2013-10-19 00:00:00', 'P', '476.000000', NULL, '476.000000'),
 (2866, '051', 1498, '730005', '   ', '*', 'Zaklu~en nalog', '2013-12-31 00:00:00', 'D', '476.000000', NULL, '476.000000'),
@@ -3333,7 +3333,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (3282, '072', 1613, '100000', '   ', '3', 'BANKOV IZVOD BR', '2013-02-01 00:00:00', 'P', '220.000000', NULL, '220.000000'),
 (3283, '072', 1613, '100000', '   ', '4', 'BANKOV IZVOD BR', '2013-02-11 00:00:00', 'D', '4694.000000', NULL, '4694.000000'),
 (3284, '072', 1617, '100000', '   ', '6', 'BANKOV IZVOD BR', '2013-03-27 00:00:00', 'P', '5700.000000', NULL, '5700.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (3285, '072', 1620, '100000', '   ', '5', 'BANKOV IZVOD', '2013-03-01 00:00:00', 'P', '20.000000', NULL, '20.000000'),
 (3286, '072', 1622, '100000', '   ', '7', 'BANKOV IZVOD BR', '2013-04-01 00:00:00', 'P', '20.000000', NULL, '20.000000'),
 (3287, '072', 1626, '100000', '   ', '8', 'BANKOV IZVOD', '2013-04-11 00:00:00', 'D', '42640.000000', NULL, '42640.000000'),
@@ -3731,7 +3731,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (3679, '010', 1078, '664018', '01000', NULL, NULL, '2013-08-30 00:00:00', 'D', '31751.000000', NULL, '31751.000000'),
 (3680, '010', 1184, '664018', '01000', '301/13', NULL, '2013-09-05 00:00:00', 'P', '3667.000000', NULL, '3667.000000'),
 (3681, '010', 1187, '664018', '01000', '325/13', 'Po kalk. br.', '2013-09-06 00:00:00', 'P', '15587.000000', NULL, '15587.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (3682, '010', 1179, '664018', '01000', '276/13', 'Po kalk. br.', '2013-08-29 00:00:00', 'P', '2563.000000', NULL, '2563.000000'),
 (3683, '010', 1179, '664018', '01000', '277/13', 'Po kalk. br.', '2013-08-29 00:00:00', 'P', '1046.000000', NULL, '1046.000000'),
 (3684, '010', 1179, '664018', '01000', '278/13', 'Po kalk. br.', '2013-08-10 00:00:00', 'P', '2433.000000', NULL, '2433.000000'),
@@ -4133,7 +4133,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (4080, '056', 1600, '419200', '   ', '*', 'Zaklu~en nalog', '2013-12-31 00:00:00', 'P', '3348.000000', NULL, '3348.000000'),
 (4081, '056', 1600, '419201', '   ', '*', 'Zaklu~en nalog', '2013-12-31 00:00:00', 'P', '1200.000000', NULL, '1200.000000'),
 (4082, '056', 1600, '419300', '   ', '*', 'Zaklu~en nalog', '2013-12-31 00:00:00', 'P', '5545.500000', NULL, '5545.500000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (4083, '056', 1600, '419400', '   ', '*', 'Zaklu~en nalog', '2013-12-31 00:00:00', 'P', '4000.000000', NULL, '4000.000000'),
 (4084, '056', 1600, '419404', '   ', '*', 'Zaklu~en nalog', '2013-12-31 00:00:00', 'P', '2500.000000', NULL, '2500.000000'),
 (4085, '056', 1600, '419500', '   ', '*', 'Zaklu~en nalog', '2013-12-31 00:00:00', 'P', '24000.000000', NULL, '24000.000000'),
@@ -4541,7 +4541,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (4487, '039', 1282, '100001', '   ', '18', 'BANKOV  IZVOD  BR', '2013-04-30 00:00:00', 'D', '4.000000', NULL, '4.000000'),
 (4488, '039', 1284, '100001', '   ', '19', 'BANKOV  IZVOD  BR', '2013-05-07 00:00:00', 'D', '75563.000000', NULL, '75563.000000'),
 (4489, '039', 1284, '100001', '   ', '20', 'BANKOV  IZVOD  BR', '2013-05-08 00:00:00', 'P', '126332.000000', NULL, '126332.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (4490, '039', 1284, '100001', '   ', '21', 'BANKOV  IZVOD  BR', '2013-05-13 00:00:00', 'P', '317.000000', NULL, '317.000000'),
 (4491, '039', 1284, '100001', '   ', '22', 'BANKOV  IZVOD  BR', '2013-05-14 00:00:00', 'D', '5000.000000', NULL, '5000.000000'),
 (4492, '039', 1284, '100001', '   ', '23', 'BANKOV  IZVOD  BR', '2013-05-16 00:00:00', 'D', '569000.000000', NULL, '569000.000000'),
@@ -4953,7 +4953,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (4898, '010', 1047, '230018', '   ', NULL, NULL, '2013-10-17 00:00:00', 'P', '4613.000000', NULL, '4613.000000'),
 (4899, '010', 1047, '230018', '   ', NULL, NULL, '2013-10-14 00:00:00', 'P', '4880.000000', NULL, '4880.000000'),
 (4900, '010', 1047, '230018', '   ', NULL, NULL, '2013-10-14 00:00:00', 'P', '302.000000', NULL, '302.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (4901, '010', 1047, '230018', '   ', NULL, NULL, '2013-10-14 00:00:00', 'P', '2133.000000', NULL, '2133.000000'),
 (4902, '010', 1047, '230018', '   ', NULL, NULL, '2013-10-14 00:00:00', 'P', '1512.000000', NULL, '1512.000000'),
 (4903, '010', 1047, '230018', '   ', NULL, NULL, '2013-10-16 00:00:00', 'P', '4318.000000', NULL, '4318.000000'),
@@ -5368,7 +5368,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (5312, '010', 988, '447000', '   ', NULL, 'BANKOV IZVOD BR', '2013-04-22 00:00:00', 'D', '145.000000', NULL, '145.000000'),
 (5313, '010', 988, '447000', '   ', NULL, 'BANKOV IZVOD BR', '2013-04-23 00:00:00', 'D', '100.000000', NULL, '100.000000'),
 (5314, '010', 988, '447000', '   ', NULL, 'BANKOV IZVOD BR', '2013-04-24 00:00:00', 'D', '130.000000', NULL, '130.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (5315, '010', 988, '447000', '   ', NULL, 'BANKOV IZVOD BR', '2013-04-25 00:00:00', 'D', '130.000000', NULL, '130.000000'),
 (5316, '010', 988, '447000', '   ', NULL, 'BANKOV IZVOD BR', '2013-04-26 00:00:00', 'D', '319.000000', NULL, '319.000000'),
 (5317, '010', 988, '447000', '   ', NULL, 'BANKOV IZVOD BR', '2013-04-29 00:00:00', 'D', '135.000000', NULL, '135.000000'),
@@ -5805,7 +5805,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (5748, '051', 1361, '230018', '   ', NULL, 'PO FAKTURA  BR', '2013-12-30 00:00:00', 'P', '504.000000', NULL, '504.000000'),
 (5749, '051', 1351, '230018', '   ', NULL, NULL, '2013-12-31 00:00:00', 'P', '72872.000000', NULL, '72872.000000'),
 (5750, '051', 1351, '230018', '   ', NULL, NULL, '2013-12-31 00:00:00', 'P', '135195.000000', NULL, '135195.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (5751, '051', 1351, '230018', '   ', NULL, NULL, '2013-12-31 00:00:00', 'P', '56839.000000', NULL, '56839.000000'),
 (5752, '051', 1351, '230018', '   ', NULL, NULL, '2013-12-31 00:00:00', 'P', '1068.000000', NULL, '1068.000000'),
 (5753, '051', 1441, '230018', '   ', NULL, NULL, '2013-12-31 00:00:00', 'P', '51188.000000', NULL, '51188.000000'),
@@ -6211,7 +6211,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (6153, '010', 1240, '131018', '   ', NULL, NULL, '2013-06-30 00:00:00', 'D', '253.000000', NULL, '253.000000'),
 (6154, '010', 1240, '131018', '   ', NULL, NULL, '2013-06-30 00:00:00', 'D', '66.000000', NULL, '66.000000'),
 (6155, '010', 1240, '131018', '   ', NULL, NULL, '2013-07-03 00:00:00', 'D', '334.000000', NULL, '334.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (6156, '010', 1240, '131018', '   ', NULL, NULL, '2013-07-05 00:00:00', 'D', '112.000000', NULL, '112.000000'),
 (6157, '010', 1240, '131018', '   ', NULL, NULL, '2013-07-04 00:00:00', 'D', '553.000000', NULL, '553.000000'),
 (6158, '010', 1242, '131018', '   ', NULL, NULL, '2013-07-31 00:00:00', 'D', '104.000000', NULL, '104.000000'),
@@ -6617,7 +6617,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (6558, '010', 997, '220100', '02774', NULL, 'F-ra br.', '2013-06-05 00:00:00', 'D', '20000.000000', NULL, '20000.000000'),
 (6559, '010', 997, '220100', '02774', NULL, 'F-ra br.', '2013-06-07 00:00:00', 'D', '20000.000000', NULL, '20000.000000'),
 (6560, '010', 1141, '220100', '02774', '17485', 'Po f-ra. br.', '2013-05-08 00:00:00', 'P', '85347.000000', NULL, '85347.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (6561, '010', 1144, '220100', '02774', '1-1/18523', 'Po f-ra. br.', '2013-05-29 00:00:00', 'P', '3599.000000', NULL, '3599.000000'),
 (6562, '010', 1144, '220100', '02774', '1-1/18571', 'Po f-ra. br.', '2013-05-29 00:00:00', 'P', '3078.000000', NULL, '3078.000000'),
 (6563, '010', 998, '220100', '02774', NULL, 'F-ra br.', '2013-06-12 00:00:00', 'D', '25347.000000', NULL, '25347.000000'),
@@ -7017,7 +7017,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (6957, '010', 980, '100900', '   ', NULL, 'BANKOV IZVOD BR', '2013-03-26 00:00:00', 'P', '14765.000000', NULL, '14765.000000'),
 (6958, '010', 981, '100900', '   ', NULL, 'BANKOV IZVOD BR', '2013-03-26 00:00:00', 'P', '7612.000000', NULL, '7612.000000'),
 (6959, '010', 981, '100900', '   ', NULL, 'BANKOV IZVOD BR', '2013-03-27 00:00:00', 'P', '17361.000000', NULL, '17361.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (6960, '010', 981, '100900', '   ', NULL, 'BANKOV IZVOD BR', '2013-03-28 00:00:00', 'P', '14405.000000', NULL, '14405.000000'),
 (6961, '010', 981, '100900', '   ', NULL, 'BANKOV IZVOD BR', '2013-03-29 00:00:00', 'P', '14875.000000', NULL, '14875.000000'),
 (6962, '010', 981, '100900', '   ', NULL, 'BANKOV IZVOD BR', '2013-03-30 00:00:00', 'P', '11585.000000', NULL, '11585.000000'),
@@ -7425,7 +7425,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (7364, '010', 962, '120000', '00545', NULL, 'BANKOV IZVOD BR', '2013-11-28 00:00:00', 'P', '151390.000000', NULL, '151390.000000'),
 (7365, '010', 1079, '120000', '00573', '405', 'F-ra br.', '2013-09-07 00:00:00', 'D', '1250.000000', NULL, '1250.000000'),
 (7366, '010', 1053, '120000', '00661', '603', 'F-ra br.', '2013-12-17 00:00:00', 'D', '22640.000000', NULL, '22640.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (7367, '010', 1051, '120000', '00682', '541', 'F-ra br.', '2013-11-13 00:00:00', 'D', '2380.000000', NULL, '2380.000000'),
 (7368, '010', 1066, '120000', '00714', '184', 'F-ra br.', '2013-05-21 00:00:00', 'D', '480.000000', NULL, '480.000000'),
 (7369, '010', 997, '120000', '00714', '184/2013', 'F-ra br.', '2013-06-05 00:00:00', 'P', '480.000000', NULL, '480.000000'),
@@ -7840,7 +7840,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (7778, '010', 1023, '663018', '01000', NULL, NULL, '2013-10-24 00:00:00', 'P', '44475.000000', NULL, '44475.000000'),
 (7779, '010', 1023, '663018', '01000', NULL, NULL, '2013-10-25 00:00:00', 'P', '108623.000000', NULL, '108623.000000'),
 (7780, '010', 1023, '663018', '01000', NULL, NULL, '2013-10-26 00:00:00', 'P', '53415.000000', NULL, '53415.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (7781, '010', 1023, '663018', '01000', NULL, NULL, '2013-10-28 00:00:00', 'P', '100229.000000', NULL, '100229.000000'),
 (7782, '010', 1023, '663018', '01000', NULL, NULL, '2013-10-29 00:00:00', 'P', '41968.000000', NULL, '41968.000000'),
 (7783, '010', 1023, '663018', '01000', NULL, NULL, '2013-10-30 00:00:00', 'P', '55620.000000', NULL, '55620.000000'),
@@ -8248,7 +8248,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (8185, '051', 1424, '220100', '00089', '1/2013', 'PO FAKTURA  BR', '2013-01-31 00:00:00', 'P', '1209.000000', NULL, '1209.000000'),
 (8186, '051', 1325, '220100', '00089', NULL, 'BANKOV IZVOD BR', '2013-02-11 00:00:00', 'D', '1016.000000', NULL, '1016.000000'),
 (8187, '051', 1457, '220100', '00089', '2/13', 'PO FAKTURA BR', '2013-02-01 00:00:00', 'P', '1305.000000', NULL, '1305.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (8188, '051', 1326, '220100', '00089', NULL, 'BANKOV IZVOD BR', '2013-03-05 00:00:00', 'D', '1209.000000', NULL, '1209.000000'),
 (8189, '051', 1463, '220100', '00089', '3/13', 'PO FAKTURA BR', '2013-03-31 00:00:00', 'P', '583.000000', NULL, '583.000000'),
 (8190, '051', 1463, '220100', '00089', '3/13', 'PO FAKTURA BR', '2013-03-31 00:00:00', 'P', '342.000000', NULL, '342.000000'),
@@ -8650,7 +8650,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (8586, '051', 1462, '220100', '02646', '2/13', 'F-ra br.', '2013-03-26 00:00:00', 'P', '12314.000000', NULL, '12314.000000'),
 (8587, '051', 1331, '220100', '02646', '2013', 'F-ra br.', '2013-03-27 00:00:00', 'D', '12314.000000', NULL, '12314.000000'),
 (8588, '051', 1464, '220100', '02646', '3', 'F-ra br.', '2013-03-31 00:00:00', 'P', '18191.000000', NULL, '18191.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (8589, '051', 1335, '220100', '02646', '03/2013', 'F-ra br.', '2013-04-22 00:00:00', 'D', '18191.000000', NULL, '18191.000000'),
 (8590, '051', 1471, '220100', '02646', '4/13', 'F-ra br.', '2013-05-31 00:00:00', 'P', '12542.500000', NULL, '12542.500000'),
 (8591, '051', 1337, '220100', '02646', '4/2013', 'F-ra br.', '2013-05-20 00:00:00', 'D', '12543.000000', NULL, '12543.000000'),
@@ -9065,7 +9065,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (9000, '010', 979, '100000', '   ', NULL, 'BANKOV IZVOD BR', '2013-03-25 00:00:00', 'P', '21551.000000', NULL, '21551.000000'),
 (9001, '010', 979, '100000', '   ', '57', 'BANKOV IZVOD BR', '2013-03-16 00:00:00', 'D', '18111.000000', NULL, '18111.000000'),
 (9002, '010', 979, '100000', '   ', '58', 'BANKOV IZVOD BR', '2013-03-18 00:00:00', 'D', '141836.000000', NULL, '141836.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (9003, '010', 979, '100000', '   ', NULL, 'BANKOV IZVOD BR', '2013-03-18 00:00:00', 'P', '86130.000000', NULL, '86130.000000'),
 (9004, '010', 979, '100000', '   ', '59', 'BANKOV IZVOD BR', '2013-03-19 00:00:00', 'D', '9120.000000', NULL, '9120.000000'),
 (9005, '010', 979, '100000', '   ', NULL, 'BANKOV IZVOD BR', '2013-03-19 00:00:00', 'P', '143982.000000', NULL, '143982.000000'),
@@ -9464,7 +9464,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (9398, '010', 995, '100008', '   ', '67', 'BANKOV IZVOD BR', '2013-05-28 00:00:00', 'D', '394.000000', NULL, '394.000000'),
 (9399, '010', 995, '100008', '   ', '68', 'BANKOV IZVOD BR', '2013-05-30 00:00:00', 'D', '611.000000', NULL, '611.000000'),
 (9400, '010', 995, '100008', '   ', NULL, 'BANKOV IZVOD BR', '2013-05-30 00:00:00', 'P', '2425.000000', NULL, '2425.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (9401, '010', 999, '100008', '   ', '76', 'BANKOV IZVOD BR', '2013-06-12 00:00:00', 'P', '1805.000000', NULL, '1805.000000'),
 (9402, '010', 999, '100008', '   ', '77', 'BANKOV IZVOD BR', '2013-06-13 00:00:00', 'D', '24087.000000', NULL, '24087.000000'),
 (9403, '010', 999, '100008', '   ', NULL, 'BANKOV IZVOD BR', '2013-06-13 00:00:00', 'P', '24100.000000', NULL, '24100.000000'),
@@ -9869,7 +9869,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (9802, '010', 1124, '130018', '01000', '031/13', 'Po f-ra. br.', '2013-03-09 00:00:00', 'D', '4154.000000', NULL, '4154.000000'),
 (9803, '010', 1124, '130018', '01000', '145', 'Po f-ra. br.', '2013-03-13 00:00:00', 'D', '16765.000000', NULL, '16765.000000'),
 (9804, '010', 1124, '130018', '01000', '15440', 'Po f-ra. br.', '2013-03-20 00:00:00', 'D', '1443.000000', NULL, '1443.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (9805, '010', 1124, '130018', '01000', '15440', 'Po f-ra. br.', '2013-03-20 00:00:00', 'D', '418.000000', NULL, '418.000000'),
 (9806, '010', 1124, '130018', '01000', '104', 'Po f-ra. br.', '2013-03-26 00:00:00', 'D', '4549.000000', NULL, '4549.000000'),
 (9807, '010', 1124, '130018', '01000', '126', 'Po f-ra. br.', '2013-03-22 00:00:00', 'D', '915.000000', NULL, '915.000000'),
@@ -10265,7 +10265,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (10197, '010', 1039, '663018', '01000', NULL, NULL, '2013-07-20 00:00:00', 'P', '45000.000000', NULL, '45000.000000'),
 (10198, '010', 1039, '663018', '01000', NULL, NULL, '2013-07-22 00:00:00', 'P', '52000.000000', NULL, '52000.000000'),
 (10199, '010', 1039, '663018', '01000', NULL, NULL, '2013-07-23 00:00:00', 'P', '45000.000000', NULL, '45000.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (10200, '010', 1039, '663018', '01000', NULL, NULL, '2013-07-24 00:00:00', 'P', '35000.000000', NULL, '35000.000000'),
 (10201, '010', 1039, '663018', '01000', NULL, NULL, '2013-07-25 00:00:00', 'P', '30224.000000', NULL, '30224.000000'),
 (10202, '010', 1174, '663018', '01000', '240/13', 'Po kalk. br.', '2013-07-23 00:00:00', 'D', '17335.000000', NULL, '17335.000000'),
@@ -10673,7 +10673,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (10604, '010', 1049, '663018', '01000', NULL, NULL, '2013-11-02 00:00:00', 'P', '3600.000000', NULL, '3600.000000'),
 (10605, '010', 1049, '663018', '01000', NULL, NULL, '2013-10-24 00:00:00', 'P', '520.000000', NULL, '520.000000'),
 (10606, '010', 1049, '663018', '01000', NULL, NULL, '2013-10-26 00:00:00', 'P', '1920.000000', NULL, '1920.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (10607, '010', 1049, '663018', '01000', NULL, NULL, '2013-11-04 00:00:00', 'P', '20770.000000', NULL, '20770.000000'),
 (10608, '010', 1049, '663018', '01000', NULL, NULL, '2013-11-05 00:00:00', 'P', '36610.000000', NULL, '36610.000000'),
 (10609, '010', 1049, '663018', '01000', NULL, NULL, '2013-11-05 00:00:00', 'P', '32000.000000', NULL, '32000.000000'),
@@ -11077,7 +11077,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (11007, '010', 1049, '120000', '08344', '481', 'F-ra br.', '2013-10-24 00:00:00', 'D', '48624.000000', NULL, '48624.000000'),
 (11008, '010', 1049, '120000', '08345', '509', 'F-ra br.', '2013-11-06 00:00:00', 'D', '2665.000000', NULL, '2665.000000'),
 (11009, '010', 1224, '120000', '08345', NULL, NULL, '2013-12-31 00:00:00', 'P', '2665.000000', NULL, '2665.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (11010, '010', 1051, '120000', '08362', '550', 'F-ra br.', '2013-11-22 00:00:00', 'D', '1110.000000', NULL, '1110.000000'),
 (11011, '010', 1052, '120000', '08384', '561/2013', 'F-ra br.', '2013-11-30 00:00:00', 'D', '8474.000000', NULL, '8474.000000'),
 (11012, '010', 1052, '120000', '08385', '575/2013', 'F-ra br.', '2013-12-06 00:00:00', 'D', '169440.000000', NULL, '169440.000000'),
@@ -11466,7 +11466,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (11395, '010', 1087, '130018', '01000', '3201/1', 'Po f-ra. br.', '2013-10-31 00:00:00', 'D', '4565.000000', NULL, '4565.000000'),
 (11396, '010', 1087, '130018', '01000', '37/13', 'Po f-ra. br.', '2013-10-31 00:00:00', 'D', '1144.000000', NULL, '1144.000000'),
 (11397, '010', 1087, '130018', '01000', '262/2013', 'Po f-ra. br.', '2013-10-22 00:00:00', 'D', '10739.000000', NULL, '10739.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (11398, '010', 1091, '130018', '01000', '0751', 'Po f-ra. br.', '2013-11-04 00:00:00', 'D', '296.000000', NULL, '296.000000'),
 (11399, '010', 1092, '130018', '01000', '187', 'Po f-ra. br.', '2013-11-05 00:00:00', 'D', '1684.000000', NULL, '1684.000000'),
 (11400, '010', 1092, '130018', '01000', '4779', 'Po f-ra. br.', '2013-11-05 00:00:00', 'D', '10188.000000', NULL, '10188.000000'),
@@ -11866,7 +11866,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (11794, '051', 1308, '120000', '05752', '*', 'Poc. sost.', '2013-01-01 00:00:00', 'D', '23140.000000', NULL, '23140.000000'),
 (11795, '051', 1321, '120000', '05752', '1/2013', 'F-ra br.', '2013-02-05 00:00:00', 'P', '5000.000000', NULL, '5000.000000'),
 (11796, '051', 1321, '120000', '05752', '1/2013', 'F-ra br.', '2013-02-06 00:00:00', 'P', '12980.000000', NULL, '12980.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (11797, '051', 1378, '120000', '05752', '1/13', 'F-ra br.', '2013-01-03 00:00:00', 'D', '17980.000000', NULL, '17980.000000'),
 (11798, '051', 1363, '120000', '05752', '32/2013', 'F-ra br.', '2013-02-12 00:00:00', 'D', '11820.000000', NULL, '11820.000000'),
 (11799, '051', 1363, '120000', '05752', '52/2013', 'F-ra br.', '2013-03-08 00:00:00', 'D', '10320.000000', NULL, '10320.000000'),
@@ -12269,7 +12269,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (12196, '010', 1249, '470000', '   ', NULL, 'PRES L D ZA 10', '2013-10-31 00:00:00', 'D', '45965.000000', NULL, '45965.000000'),
 (12197, '010', 1250, '470000', '   ', NULL, 'PRS ZA LD 11/2013', '2013-11-30 00:00:00', 'D', '45965.000000', NULL, '45965.000000'),
 (12198, '010', 1251, '470000', '   ', NULL, 'PRES ZA LD 12/13', '2013-12-31 00:00:00', 'D', '45965.000000', NULL, '45965.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (12199, '010', 1259, '470000', '   ', '*', 'Zaklu~en nalog', '2013-12-31 00:00:00', 'P', '436478.000000', NULL, '436478.000000'),
 (12200, '010', 1248, '470100', '   ', NULL, 'PRES ZA LD 01/2013', '2013-01-31 00:00:00', 'D', '13979.000000', NULL, '13979.000000'),
 (12201, '010', 1252, '470100', '   ', NULL, 'PRES L D ZA 2', '2013-02-28 00:00:00', 'D', '13979.000000', NULL, '13979.000000'),
@@ -12680,7 +12680,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (12606, '010', 1140, '663018', '01000', '127/13', 'Po kalk. br.', '2013-05-15 00:00:00', 'D', '89550.000000', NULL, '89550.000000'),
 (12607, '010', 1140, '663018', '01000', '128/13', 'Po kalk. br.', '2013-05-15 00:00:00', 'D', '235490.000000', NULL, '235490.000000'),
 (12608, '010', 1140, '663018', '01000', '129/13', 'Po kalk. br.', '2013-05-15 00:00:00', 'D', '72780.000000', NULL, '72780.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (12609, '010', 1140, '663018', '01000', '130/13', 'Po kalk. br.', '2013-05-15 00:00:00', 'D', '7200.000000', NULL, '7200.000000'),
 (12610, '010', 1140, '663018', '01000', '131/13', 'Po kalk. br.', '2013-05-20 00:00:00', 'D', '5760.000000', NULL, '5760.000000'),
 (12611, '010', 1140, '663018', '01000', '132/13', 'Po kalk. br.', '2013-05-22 00:00:00', 'D', '23000.000000', NULL, '23000.000000'),
@@ -13079,7 +13079,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (13004, '010', 989, '220100', '04305', NULL, 'F-ra br.', '2013-05-02 00:00:00', 'D', '12633.000000', NULL, '12633.000000'),
 (13005, '010', 997, '220100', '04305', NULL, 'F-ra br.', '2013-06-10 00:00:00', 'D', '7666.000000', NULL, '7666.000000'),
 (13006, '010', 1144, '220100', '04305', '055/2013', 'Po f-ra. br.', '2013-05-27 00:00:00', 'P', '17615.000000', NULL, '17615.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (13007, '010', 1204, '220100', '04305', '071', 'Po f-ra. br.', '2013-07-19 00:00:00', 'P', '31700.000000', NULL, '31700.000000'),
 (13008, '010', 1010, '220100', '04305', NULL, 'F-ra br.', '2013-07-29 00:00:00', 'D', '15000.000000', NULL, '15000.000000'),
 (13009, '010', 1010, '220100', '04305', NULL, 'F-ra br.', '2013-07-31 00:00:00', 'D', '16701.000000', NULL, '16701.000000'),
@@ -13481,7 +13481,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (13405, '056', 1543, '120000', '01256', '007/2013', 'F-ra br.', '2013-01-28 00:00:00', 'D', '13027.000000', NULL, '13027.000000'),
 (13406, '056', 1543, '120000', '01256', '008/2013', NULL, '2013-01-28 00:00:00', 'D', '11894.000000', NULL, '11894.000000'),
 (13407, '056', 1544, '120000', '01256', '027', 'F-ra br.', '2013-07-01 00:00:00', 'D', '9346.000000', NULL, '9346.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (13408, '056', 1544, '120000', '01256', '071', 'F-ra br.', '2013-07-01 00:00:00', 'D', '9346.000000', NULL, '9346.000000'),
 (13409, '056', 1544, '120000', '01256', '113', 'F-ra br.', '2013-07-01 00:00:00', 'D', '9346.000000', NULL, '9346.000000'),
 (13410, '056', 1524, '120000', '01256', '418.27.113', 'F-ra br.', '2013-08-14 00:00:00', 'P', '25000.000000', NULL, '25000.000000'),
@@ -13884,7 +13884,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (13807, '056', 1525, '120000', '05096', '123', 'F-ra br.', '2013-09-19 00:00:00', 'P', '3540.000000', NULL, '3540.000000'),
 (13808, '056', 1509, '120000', '05118', '20/2012', 'F-ra br.', '2013-01-22 00:00:00', 'P', '17436.000000', NULL, '17436.000000'),
 (13809, '056', 1570, '120000', '05118', NULL, 'F-ra br.', '2013-12-31 00:00:00', 'P', '-17436.000000', NULL, '-17436.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (13810, '056', 1523, '120000', '05207', NULL, 'F-ra br.', '2013-07-31 00:00:00', 'P', '4425.000000', NULL, '4425.000000'),
 (13811, '056', 1543, '120000', '05207', '258/2013', 'F-ra br.', '2013-07-30 00:00:00', 'D', '4425.000000', NULL, '4425.000000'),
 (13812, '056', 1545, '120000', '05207', '260', 'F-ra br.', '2013-08-26 00:00:00', 'D', '840.000000', NULL, '840.000000'),
@@ -14286,7 +14286,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (14208, '072', 1653, '663018', '07200', NULL, NULL, '2013-04-04 00:00:00', 'P', '24110.000000', NULL, '24110.000000'),
 (14209, '072', 1658, '663018', '07200', NULL, NULL, '2013-04-20 00:00:00', 'D', '-49380.000000', NULL, '-49380.000000'),
 (14210, '072', 1669, '663018', '07200', '3/13', 'Po kalk. br.', '2013-05-08 00:00:00', 'D', '169440.000000', NULL, '169440.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (14211, '072', 1654, '663018', '07200', NULL, NULL, '2013-05-15 00:00:00', 'P', '20430.000000', NULL, '20430.000000'),
 (14212, '072', 1670, '663018', '07200', '4/13EDB', 'Po kalk. br.', '2013-05-21 00:00:00', 'D', '179500.000000', NULL, '179500.000000'),
 (14213, '072', 1671, '663018', '07200', '5/13EDB', 'Po kalk. br.', '2013-06-01 00:00:00', 'D', '349130.000000', NULL, '349130.000000'),
@@ -14682,7 +14682,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (14603, '030', 1276, '274101', '   ', NULL, 'PRES ZA LD 07/2013', '2013-07-31 00:00:00', 'P', '1117.000000', NULL, '1117.000000'),
 (14604, '030', 1276, '274101', '   ', NULL, 'PRES ZA LD 08/2013', '2013-08-31 00:00:00', 'P', '1117.000000', NULL, '1117.000000'),
 (14605, '030', 1276, '274101', '   ', NULL, 'PRES ZA LD 09/2013', '2013-09-30 00:00:00', 'P', '1117.000000', NULL, '1117.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (14606, '030', 1265, '274101', '   ', '08/2013', 'BANKOV IZVOD BR', '2013-09-03 00:00:00', 'D', '1117.000000', NULL, '1117.000000'),
 (14607, '030', 1265, '274101', '   ', '09/2013', 'BANKOV IZVOD BR', '2013-10-01 00:00:00', 'D', '1117.000000', NULL, '1117.000000'),
 (14608, '030', 1265, '274101', '   ', '10/2013', 'BANKOV IZVOD BR', '2013-11-04 00:00:00', 'D', '1117.000000', NULL, '1117.000000'),
@@ -15087,7 +15087,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (15007, '056', 1538, '230005', '   ', NULL, NULL, '2013-04-01 00:00:00', 'P', '600.000000', NULL, '600.000000'),
 (15008, '056', 1539, '230005', '   ', NULL, NULL, '2013-04-17 00:00:00', 'P', '1000.000000', NULL, '1000.000000'),
 (15009, '056', 1539, '230005', '   ', NULL, NULL, '2013-04-29 00:00:00', 'P', '600.000000', NULL, '600.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (15010, '056', 1539, '230005', '   ', NULL, NULL, '2013-05-28 00:00:00', 'P', '1854.000000', NULL, '1854.000000'),
 (15011, '056', 1542, '230005', '   ', NULL, NULL, '2013-06-30 00:00:00', 'P', '9150.000000', NULL, '9150.000000'),
 (15012, '056', 1542, '230005', '   ', NULL, NULL, '2013-06-30 00:00:00', 'P', '14000.000000', NULL, '14000.000000'),
@@ -15526,7 +15526,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (15445, '056', 1523, '253000', '02641', NULL, 'F-ra br.', '2013-07-10 00:00:00', 'D', '9739.000000', NULL, '9739.000000'),
 (15446, '056', 1523, '253000', '02641', NULL, 'F-ra br.', '2013-07-14 00:00:00', 'P', '33000.000000', NULL, '33000.000000'),
 (15447, '056', 1523, '253000', '02641', NULL, 'F-ra br.', '2013-07-17 00:00:00', 'D', '33000.000000', NULL, '33000.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (15448, '056', 1524, '253000', '02641', NULL, 'F-ra br.', '2013-08-01 00:00:00', 'D', '9789.000000', NULL, '9789.000000'),
 (15449, '056', 1524, '253000', '02641', NULL, 'F-ra br.', '2013-08-27 00:00:00', 'P', '67000.000000', NULL, '67000.000000'),
 (15450, '056', 1524, '253000', '02641', NULL, 'F-ra br.', '2013-08-30 00:00:00', 'D', '9739.000000', NULL, '9739.000000'),
@@ -15924,7 +15924,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (15842, '072', 1624, '100900', '   ', NULL, 'BANKOV IZVOD BR', '2013-05-15 00:00:00', 'P', '2049.000000', NULL, '2049.000000'),
 (15843, '072', 1631, '100900', '   ', NULL, 'BANKOV IZVOD BR', '2013-05-28 00:00:00', 'P', '3119.000000', NULL, '3119.000000'),
 (15844, '072', 1631, '100900', '   ', NULL, 'BANKOV IZVOD BR', '2013-05-31 00:00:00', 'P', '1958.000000', NULL, '1958.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (15845, '072', 1625, '100900', '   ', NULL, 'BANKOV IZVOD BR', '2013-05-16 00:00:00', 'P', '5004.000000', NULL, '5004.000000'),
 (15846, '072', 1625, '100900', '   ', NULL, 'BANKOV IZVOD BR', '2013-05-16 00:00:00', 'P', '6000.000000', NULL, '6000.000000'),
 (15847, '072', 1625, '100900', '   ', NULL, 'BANKOV IZVOD BR', '2013-05-17 00:00:00', 'P', '886.000000', NULL, '886.000000'),
@@ -16330,7 +16330,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (16247, '010', 1011, '220100', '02556', NULL, 'F-ra br.', '2013-08-19 00:00:00', 'D', '50000.000000', NULL, '50000.000000'),
 (16248, '010', 1011, '220100', '02774', NULL, 'F-ra br.', '2013-08-15 00:00:00', 'D', '11294.000000', NULL, '11294.000000'),
 (16249, '010', 1011, '220100', '02774', NULL, 'F-ra br.', '2013-08-19 00:00:00', 'D', '21916.000000', NULL, '21916.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (16250, '010', 1011, '220100', '02828', NULL, 'F-ra br.', '2013-08-06 00:00:00', 'D', '90000.000000', NULL, '90000.000000'),
 (16251, '010', 1011, '220100', '02828', NULL, 'F-ra br.', '2013-08-09 00:00:00', 'D', '40000.000000', NULL, '40000.000000'),
 (16252, '010', 1011, '220100', '02828', NULL, 'F-ra br.', '2013-08-19 00:00:00', 'D', '50000.000000', NULL, '50000.000000'),
@@ -16744,7 +16744,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (16660, '056', 1524, '447000', '   ', NULL, 'BANKOV IZVOD', '2013-08-29 00:00:00', 'D', '24.000000', NULL, '24.000000'),
 (16661, '056', 1524, '447000', '   ', NULL, 'BANKOV IZVOD', '2013-08-30 00:00:00', 'D', '76.000000', NULL, '76.000000'),
 (16662, '056', 1524, '447000', '   ', NULL, 'BANKOV IZVOD', '2013-08-31 00:00:00', 'D', '200.000000', NULL, '200.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (16663, '056', 1519, '447000', '   ', NULL, NULL, '2013-07-02 00:00:00', 'D', '248.000000', NULL, '248.000000'),
 (16664, '056', 1519, '447000', '   ', NULL, NULL, '2013-07-24 00:00:00', 'D', '100.000000', NULL, '100.000000'),
 (16665, '056', 1519, '447000', '   ', NULL, NULL, '2013-07-31 00:00:00', 'D', '280.000000', NULL, '280.000000'),
@@ -17170,7 +17170,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (17085, '056', 1543, '731418', '   ', NULL, NULL, '2012-12-26 00:00:00', 'P', '12340.000000', NULL, '12340.000000'),
 (17086, '056', 1543, '731418', '   ', NULL, 'F-ra br.', '2013-01-28 00:00:00', 'P', '11040.000000', NULL, '11040.000000'),
 (17087, '056', 1543, '731418', '   ', NULL, NULL, '2013-01-28 00:00:00', 'P', '10080.000000', NULL, '10080.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (17088, '056', 1543, '731418', '   ', NULL, NULL, '2013-01-28 00:00:00', 'P', '9200.000000', NULL, '9200.000000'),
 (17089, '056', 1543, '731418', '   ', NULL, NULL, '2013-02-27 00:00:00', 'P', '9200.000000', NULL, '9200.000000'),
 (17090, '056', 1543, '731418', '   ', NULL, NULL, '2013-02-27 00:00:00', 'P', '2460.000000', NULL, '2460.000000'),
@@ -17593,7 +17593,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (17507, '010', 950, '220100', '06402', '*', 'Poc. sost.', '2013-01-01 00:00:00', 'P', '25858.500000', NULL, '25858.500000'),
 (17508, '010', 950, '220100', '06519', '*', 'Poc. sost.', '2013-01-01 00:00:00', 'P', '3626.500000', NULL, '3626.500000'),
 (17509, '010', 950, '220100', '06557', '*', 'Poc. sost.', '2013-01-01 00:00:00', 'D', '31109.000000', NULL, '31109.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (17510, '010', 950, '220100', '06568', '*', 'Poc. sost.', '2013-01-01 00:00:00', 'D', '1570.000000', NULL, '1570.000000'),
 (17511, '010', 950, '220100', '06676', '*', 'Poc. sost.', '2013-01-01 00:00:00', 'P', '25073.000000', NULL, '25073.000000'),
 (17512, '010', 950, '220100', '06707', '*', 'Poc. sost.', '2013-01-01 00:00:00', 'P', '61179.000000', NULL, '61179.000000'),
@@ -18004,7 +18004,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (17917, '010', 1235, '220100', '05306', '331/2013', 'F-ra br.', '2013-03-31 00:00:00', 'P', '1180.000000', NULL, '1180.000000'),
 (17918, '010', 1235, '220100', '05306', '661/2013', 'F-ra br.', '2013-05-31 00:00:00', 'P', '1180.000000', NULL, '1180.000000'),
 (17919, '010', 1235, '220100', '05443', '0882777', 'F-ra br.', '2013-06-06 00:00:00', 'P', '3080.000000', NULL, '3080.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (17920, '010', 1235, '220100', '05805', '03/2013', 'F-ra br.', '2013-03-31 00:00:00', 'P', '356.000000', NULL, '356.000000'),
 (17921, '010', 1235, '220100', '05805', '05/2013', 'F-ra br.', '2013-05-31 00:00:00', 'P', '382.000000', NULL, '382.000000'),
 (17922, '010', 1235, '220100', '06568', '75/2013', 'F-ra br.', '2013-05-31 00:00:00', 'P', '750.000000', NULL, '750.000000'),
@@ -18423,7 +18423,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (18335, '002', 886, '447000', '   ', NULL, 'BANKOV IZVOD BR', '2013-11-05 00:00:00', 'D', '23.000000', NULL, '23.000000'),
 (18336, '002', 886, '447000', '   ', NULL, 'BANKOV IZVOD BR', '2013-11-05 00:00:00', 'D', '23.000000', NULL, '23.000000'),
 (18337, '002', 886, '447000', '   ', NULL, 'BANKOV IZVOD BR', '2013-11-05 00:00:00', 'D', '23.000000', NULL, '23.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (18338, '002', 886, '447000', '   ', NULL, 'BANKOV IZVOD BR', '2013-11-05 00:00:00', 'D', '23.000000', NULL, '23.000000'),
 (18339, '002', 886, '447000', '   ', NULL, 'BANKOV IZVOD BR', '2013-11-05 00:00:00', 'D', '12.000000', NULL, '12.000000'),
 (18340, '002', 886, '447000', '   ', NULL, 'BANKOV IZVOD BR', '2013-11-05 00:00:00', 'D', '28.000000', NULL, '28.000000'),
@@ -18840,7 +18840,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (18751, '051', 1425, '410401', '   ', NULL, 'PO FAKTURA  BR', '2013-10-25 00:00:00', 'D', '190.000000', NULL, '190.000000'),
 (18752, '051', 1425, '410401', '   ', NULL, 'PO FAKTURA  BR', '2013-10-25 00:00:00', 'D', '820.000000', NULL, '820.000000'),
 (18753, '051', 1425, '410401', '   ', NULL, 'PO FAKTURA  BR', '2013-10-25 00:00:00', 'D', '1788.000000', NULL, '1788.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (18754, '051', 1430, '410401', '   ', NULL, 'BANKOV IZVOD  BR', '2013-10-31 00:00:00', 'D', '695.000000', NULL, '695.000000'),
 (18755, '051', 1430, '410401', '   ', NULL, 'BANKOV IZVOD  BR', '2013-10-31 00:00:00', 'D', '190.000000', NULL, '190.000000'),
 (18756, '051', 1430, '410401', '   ', NULL, 'BANKOV IZVOD  BR', '2013-10-31 00:00:00', 'D', '15988.500000', NULL, '15988.500000'),
@@ -19253,7 +19253,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (19163, '051', 1488, '470100', '   ', NULL, 'PRES L D ZA 10', '2013-10-30 00:00:00', 'D', '84711.000000', NULL, '84711.000000'),
 (19164, '051', 1489, '470100', '   ', NULL, 'PRES L D ZA 11', '2013-11-30 00:00:00', 'D', '62585.000000', NULL, '62585.000000'),
 (19165, '051', 1444, '470100', '   ', NULL, NULL, '2013-12-31 00:00:00', 'D', '-99.000000', NULL, '-99.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (19166, '051', 1490, '470100', '   ', NULL, 'PRES L D ZA 12', '2013-12-31 00:00:00', 'D', '34763.000000', NULL, '34763.000000'),
 (19167, '051', 1498, '470100', '   ', '*', 'Zaklu~en nalog', '2013-12-31 00:00:00', 'P', '859045.000000', NULL, '859045.000000'),
 (19168, '051', 1335, '474000', '   ', NULL, 'BANKOV IZVOD BR', '2013-04-11 00:00:00', 'D', '49550.000000', NULL, '49550.000000'),
@@ -19661,7 +19661,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (19570, '010', 1222, '029410', '   ', NULL, 'Amortizacija', '2013-12-31 00:00:00', 'P', '4431.000000', NULL, '4431.000000'),
 (19571, '010', 1222, '029411', '   ', NULL, 'Amortizacija', '2013-12-31 00:00:00', 'P', '7501.000000', NULL, '7501.000000'),
 (19572, '010', 1222, '029412', '   ', NULL, 'Amortizacija', '2013-12-31 00:00:00', 'P', '6188.000000', NULL, '6188.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (19573, '010', 971, '100000', '   ', '1', 'BANKOV IZVOD BR', '2013-01-02 00:00:00', 'D', '2210.000000', NULL, '2210.000000'),
 (19574, '010', 971, '100000', '   ', NULL, 'BANKOV IZVOD BR', '2013-01-02 00:00:00', 'P', '58036.000000', NULL, '58036.000000'),
 (19575, '010', 971, '100000', '   ', '2', 'BANKOV IZVOD BR', '2013-01-04 00:00:00', 'D', '11030.000000', NULL, '11030.000000'),
@@ -20055,7 +20055,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (19963, '010', 963, '100000', '   ', '264', 'BANKOV IZVOD', '2013-12-17 00:00:00', 'D', '29622.000000', NULL, '29622.000000'),
 (19964, '010', 963, '100000', '   ', NULL, 'BANKOV IZVOD', '2013-12-17 00:00:00', 'P', '20060.000000', NULL, '20060.000000'),
 (19965, '010', 963, '100000', '   ', '265', 'BANKOV IZVOD', '2013-12-18 00:00:00', 'D', '37472.000000', NULL, '37472.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (19966, '010', 963, '100000', '   ', NULL, 'BANKOV IZVOD', '2013-12-18 00:00:00', 'P', '25060.000000', NULL, '25060.000000'),
 (19967, '010', 1226, '100000', '   ', NULL, NULL, '2013-12-31 00:00:00', 'D', '334.000000', NULL, '334.000000'),
 (19968, '010', 960, '100008', '   ', '7', 'BANKOV IZVOD BR', '2013-01-23 00:00:00', 'D', '453.000000', NULL, '453.000000'),
@@ -20444,7 +20444,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (20351, '010', 1179, '669100', '01000', '285/13', 'Po kalk. br.', '2013-08-22 00:00:00', 'P', '1356.000000', NULL, '1356.000000'),
 (20352, '010', 1179, '669100', '01000', '286/13', 'Po kalk. br.', '2013-08-21 00:00:00', 'P', '1445.000000', NULL, '1445.000000'),
 (20353, '010', 1179, '669100', '01000', '286/13', 'Po kalk. br.', '2013-08-21 00:00:00', 'P', '2251.000000', NULL, '2251.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (20354, '010', 1179, '669100', '01000', '287/13', 'Po kalk. br.', '2013-08-30 00:00:00', 'P', '198.000000', NULL, '198.000000'),
 (20355, '010', 1179, '669100', '01000', '287/13', 'Po kalk. br.', '2013-08-30 00:00:00', 'P', '51.000000', NULL, '51.000000'),
 (20356, '010', 1179, '669100', '01000', '288/13', 'Po kalk. br.', '2013-08-21 00:00:00', 'P', '635.000000', NULL, '635.000000'),
@@ -20844,7 +20844,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (20750, '010', 1047, '230018', '   ', NULL, NULL, '2013-10-10 00:00:00', 'P', '1109.000000', NULL, '1109.000000'),
 (20751, '010', 1047, '230018', '   ', NULL, NULL, '2013-10-10 00:00:00', 'P', '4560.000000', NULL, '4560.000000'),
 (20752, '010', 1047, '230018', '   ', NULL, NULL, '2013-10-10 00:00:00', 'P', '4584.000000', NULL, '4584.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (20753, '010', 1047, '230018', '   ', NULL, NULL, '2013-10-10 00:00:00', 'P', '1679.000000', NULL, '1679.000000'),
 (20754, '010', 1047, '230018', '   ', NULL, NULL, '2013-10-10 00:00:00', 'P', '66.000000', NULL, '66.000000'),
 (20755, '010', 1047, '230018', '   ', NULL, NULL, '2013-10-10 00:00:00', 'P', '2165.000000', NULL, '2165.000000'),
@@ -21257,7 +21257,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (21162, '010', 983, '447000', '   ', NULL, 'BANKOV IZVOD BR', '2013-03-14 00:00:00', 'D', '20.000000', NULL, '20.000000'),
 (21163, '010', 978, '447000', '   ', NULL, 'BANKOV IZVOD BR', '2013-03-15 00:00:00', 'D', '70.000000', NULL, '70.000000'),
 (21164, '010', 978, '447000', '   ', NULL, 'BANKOV IZVOD BR', '2013-03-19 00:00:00', 'D', '45.000000', NULL, '45.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (21165, '010', 979, '447000', '   ', NULL, 'BANKOV IZVOD BR', '2013-03-25 00:00:00', 'D', '110.000000', NULL, '110.000000'),
 (21166, '010', 979, '447000', '   ', NULL, 'BANKOV IZVOD BR', '2013-03-18 00:00:00', 'D', '160.000000', NULL, '160.000000'),
 (21167, '010', 979, '447000', '   ', NULL, 'BANKOV IZVOD BR', '2013-03-19 00:00:00', 'D', '110.000000', NULL, '110.000000'),
@@ -21663,7 +21663,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (21567, '010', 1046, '120000', '03492', '11/2013', 'F-ra br.', '2013-01-23 00:00:00', 'D', '270.000000', NULL, '270.000000'),
 (21568, '010', 968, '120000', '03492', '11/2013', 'F-ra br.', '2013-01-28 00:00:00', 'P', '270.000000', NULL, '270.000000'),
 (21569, '010', 1058, '120000', '03492', '67/2013', 'F-ra br.', '2013-03-05 00:00:00', 'D', '1670.000000', NULL, '1670.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (21570, '010', 1063, '120000', '03492', '152', 'F-ra br.', '2013-04-10 00:00:00', 'D', '580.000000', NULL, '580.000000'),
 (21571, '010', 988, '120000', '03492', '152/2013', 'F-ra br.', '2013-04-26 00:00:00', 'P', '580.000000', NULL, '580.000000'),
 (21572, '010', 1069, '120000', '03492', '252/2013', 'F-ra br.', '2013-05-27 00:00:00', 'D', '885.000000', NULL, '885.000000'),
@@ -22066,7 +22066,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (21969, '010', 1066, '120000', '06657', '190', 'F-ra br.', '2013-05-16 00:00:00', 'D', '2200.000000', NULL, '2200.000000'),
 (21970, '010', 1001, '120000', '06657', NULL, 'F-ra br.', '2013-06-24 00:00:00', 'P', '2200.000000', NULL, '2200.000000'),
 (21971, '010', 1071, '120000', '06773', NULL, NULL, '2013-06-30 00:00:00', 'P', '-4650.000000', NULL, '-4650.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (21972, '010', 1224, '120000', '06773', NULL, NULL, '2013-12-31 00:00:00', 'P', '4650.000000', NULL, '4650.000000'),
 (21973, '010', 1052, '120000', '06845', '590/2013', 'F-ra br.', '2013-12-11 00:00:00', 'D', '3465.000000', NULL, '3465.000000'),
 (21974, '010', 963, '120000', '06845', '590', 'F-ra br.', '2013-12-12 00:00:00', 'P', '3465.000000', NULL, '3465.000000'),
@@ -22467,7 +22467,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (22369, '051', 1317, '220100', '05306', '164/2012', 'F-ra br.', '2013-01-25 00:00:00', 'D', '4720.000000', NULL, '4720.000000'),
 (22370, '051', 1424, '220100', '05306', '4/2013', 'F-ra br.', '2013-01-31 00:00:00', 'P', '3540.000000', NULL, '3540.000000'),
 (22371, '051', 1325, '220100', '05306', '04/2013', 'F-ra br.', '2013-02-19 00:00:00', 'D', '3540.000000', NULL, '3540.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (22372, '051', 1455, '220100', '05306', '1466/13', 'F-ra br.', '2013-09-21 00:00:00', 'P', '5900.000000', NULL, '5900.000000'),
 (22373, '051', 1454, '220100', '05306', '1632/13', 'F-ra br.', '2013-10-31 00:00:00', 'P', '9440.000000', NULL, '9440.000000'),
 (22374, '051', 1328, '220100', '05306', '1466/13', 'F-ra br.', '2013-10-14 00:00:00', 'D', '5900.000000', NULL, '5900.000000'),
@@ -22872,7 +22872,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (22773, '010', 955, '447000', '   ', NULL, 'BANKOV IZVOD BR', '2013-11-08 00:00:00', 'D', '30.000000', NULL, '30.000000'),
 (22774, '010', 955, '447000', '   ', NULL, 'BANKOV IZVOD BR', '2013-11-11 00:00:00', 'D', '77.000000', NULL, '77.000000'),
 (22775, '010', 957, '447000', '   ', NULL, 'BANKOV IZVOD', '2013-11-13 00:00:00', 'D', '139.000000', NULL, '139.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (22776, '010', 957, '447000', '   ', NULL, 'BANKOV IZVOD', '2013-11-14 00:00:00', 'D', '197.000000', NULL, '197.000000'),
 (22777, '010', 957, '447000', '   ', NULL, 'BANKOV IZVOD', '2013-11-15 00:00:00', 'D', '136.000000', NULL, '136.000000'),
 (22778, '010', 957, '447000', '   ', NULL, 'BANKOV IZVOD', '2013-11-18 00:00:00', 'D', '55.000000', NULL, '55.000000'),
@@ -23282,7 +23282,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (23182, '010', 1066, '663018', '01000', NULL, NULL, '2013-05-08 00:00:00', 'P', '6840.000000', NULL, '6840.000000'),
 (23183, '010', 1066, '663018', '01000', NULL, NULL, '2013-05-02 00:00:00', 'P', '7260.000000', NULL, '7260.000000'),
 (23184, '010', 1066, '663018', '01000', NULL, NULL, '2013-05-08 00:00:00', 'P', '11540.000000', NULL, '11540.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (23185, '010', 1066, '663018', '01000', NULL, NULL, '2013-05-09 00:00:00', 'P', '6240.000000', NULL, '6240.000000'),
 (23186, '010', 1066, '663018', '01000', NULL, NULL, '2013-05-09 00:00:00', 'P', '32970.000000', NULL, '32970.000000'),
 (23187, '010', 1066, '663018', '01000', NULL, NULL, '2013-05-10 00:00:00', 'P', '21670.000000', NULL, '21670.000000'),
@@ -23690,7 +23690,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (23589, '002', 901, '120000', '08203', '4/2013', 'F-ra br.', '2013-09-25 00:00:00', 'D', '36690.000000', NULL, '36690.000000'),
 (23590, '002', 902, '120000', '08203', '6/2013', NULL, '2013-11-27 00:00:00', 'D', '79750.000000', NULL, '79750.000000'),
 (23591, '002', 924, '120000', '08203', NULL, NULL, '2013-12-30 00:00:00', 'P', '197880.000000', NULL, '197880.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (23592, '002', 903, '120000', '08203', '7/2013', NULL, '2013-12-31 00:00:00', 'D', '81440.000000', NULL, '81440.000000'),
 (23593, '002', 890, '130000', '06981', NULL, 'F-ra br.', '2013-03-06 00:00:00', 'P', '15490.000000', NULL, '15490.000000'),
 (23594, '002', 926, '130000', '06981', NULL, NULL, '2013-12-30 00:00:00', 'P', '-15490.000000', NULL, '-15490.000000'),
@@ -24100,7 +24100,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (23998, '002', 889, '447000', '   ', NULL, 'BANKOV IZVOD BR', '2013-01-04 00:00:00', 'D', '23.000000', NULL, '23.000000'),
 (23999, '002', 889, '447000', '   ', NULL, 'BANKOV IZVOD BR', '2013-01-04 00:00:00', 'D', '23.000000', NULL, '23.000000'),
 (24000, '002', 889, '447000', '   ', NULL, 'BANKOV IZVOD BR', '2013-01-08 00:00:00', 'D', '27.000000', NULL, '27.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (24001, '002', 889, '447000', '   ', NULL, 'BANKOV IZVOD BR', '2013-01-08 00:00:00', 'D', '600.000000', NULL, '600.000000'),
 (24002, '002', 889, '447000', '   ', NULL, 'BANKOV IZVOD BR', '2013-01-11 00:00:00', 'D', '25.000000', NULL, '25.000000'),
 (24003, '002', 889, '447000', '   ', NULL, 'BANKOV IZVOD BR', '2013-01-11 00:00:00', 'D', '13.000000', NULL, '13.000000'),
@@ -24503,7 +24503,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (24400, '010', 1047, '120000', '04304', '473/2013', 'F-ra br.', '2013-10-15 00:00:00', 'D', '4088.000000', NULL, '4088.000000'),
 (24401, '010', 957, '120000', '04304', NULL, 'F-ra br.', '2013-11-20 00:00:00', 'P', '4080.000000', NULL, '4080.000000'),
 (24402, '010', 1052, '120000', '04304', '567/2013', 'F-ra br.', '2013-11-26 00:00:00', 'D', '960.000000', NULL, '960.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (24403, '010', 963, '120000', '04304', NULL, 'F-ra br.', '2013-12-18 00:00:00', 'P', '960.000000', NULL, '960.000000'),
 (24404, '010', 1046, '120000', '04314', '20/2013', 'F-ra br.', '2013-01-23 00:00:00', 'D', '11450.000000', NULL, '11450.000000'),
 (24405, '010', 961, '120000', '04314', NULL, 'F-ra br.', '2013-01-25 00:00:00', 'P', '16800.000000', NULL, '16800.000000'),
@@ -24913,7 +24913,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (24809, '002', 884, '021703', '   ', '*', 'Poc. sost.', '2013-01-01 00:00:00', 'D', '190180.000000', NULL, '190180.000000'),
 (24810, '002', 884, '021716', '   ', '*', 'Poc. sost.', '2013-01-01 00:00:00', 'D', '48080.000000', NULL, '48080.000000'),
 (24811, '002', 939, '022421', '   ', NULL, NULL, '2013-02-19 00:00:00', 'D', '14358.000000', NULL, '14358.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (24812, '002', 922, '025101', '   ', NULL, 'F-RA BR', '2013-02-11 00:00:00', 'D', '8546.500000', NULL, '8546.500000'),
 (24813, '002', 922, '025101', '   ', NULL, 'F-RA BR', '2013-01-25 00:00:00', 'D', '12579.000000', NULL, '12579.000000'),
 (24814, '002', 922, '025101', '   ', NULL, 'F-RA BR', '2013-01-31 00:00:00', 'D', '4276.000000', NULL, '4276.000000'),
@@ -25322,7 +25322,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (25217, '002', 889, '100900', '   ', NULL, 'BANKOV IZVOD BR', '2013-02-18 00:00:00', 'P', '300.000000', NULL, '300.000000'),
 (25218, '002', 889, '100900', '   ', NULL, 'BANKOV IZVOD BR', '2013-02-18 00:00:00', 'P', '590.000000', NULL, '590.000000'),
 (25219, '002', 889, '100900', '   ', NULL, 'BANKOV IZVOD BR', '2013-02-18 00:00:00', 'P', '14350.000000', NULL, '14350.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (25220, '002', 889, '100900', '   ', NULL, 'BANKOV IZVOD BR', '2013-02-19 00:00:00', 'P', '1050.000000', NULL, '1050.000000'),
 (25221, '002', 889, '100900', '   ', NULL, 'BANKOV IZVOD BR', '2013-02-20 00:00:00', 'P', '690.000000', NULL, '690.000000'),
 (25222, '002', 889, '100900', '   ', NULL, 'BANKOV IZVOD BR', '2013-02-20 00:00:00', 'P', '590.000000', NULL, '590.000000'),
@@ -25747,7 +25747,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (25641, '051', 1473, '131018', '   ', NULL, 'PO FAKTURA BR', '2013-05-31 00:00:00', 'D', '108.000000', NULL, '108.000000'),
 (25642, '051', 1473, '131018', '   ', NULL, 'PO FAKTURA BR', '2013-05-31 00:00:00', 'D', '2383.000000', NULL, '2383.000000'),
 (25643, '051', 1473, '131018', '   ', NULL, 'PO FAKTURA BR', '2013-05-31 00:00:00', 'D', '702.000000', NULL, '702.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (25644, '051', 1473, '131018', '   ', NULL, 'PO FAKTURA BR', '2013-05-31 00:00:00', 'D', '864.000000', NULL, '864.000000'),
 (25645, '051', 1399, '131018', '   ', NULL, 'PO FAKTURA  BR', '2013-06-30 00:00:00', 'D', '1126.000000', NULL, '1126.000000'),
 (25646, '051', 1399, '131018', '   ', NULL, 'PO FAKTURA  BR', '2013-06-30 00:00:00', 'D', '1656.000000', NULL, '1656.000000'),
@@ -26162,7 +26162,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (26055, '010', 962, '220100', '02892', '27/2013', 'F-ra br.', '2013-12-03 00:00:00', 'D', '12387.000000', NULL, '12387.000000'),
 (26056, '010', 962, '220100', '02892', NULL, 'F-ra br.', '2013-12-04 00:00:00', 'D', '10000.000000', NULL, '10000.000000'),
 (26057, '010', 1213, '220100', '02892', '117/13', 'F-ra br.', '2013-12-04 00:00:00', 'P', '22387.000000', NULL, '22387.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (26058, '010', 1215, '220100', '02892', '130/13', 'F-ra br.', '2013-12-24 00:00:00', 'P', '549.000000', NULL, '549.000000'),
 (26059, '010', 968, '220100', '03099', NULL, 'F-ra br.', '2013-02-04 00:00:00', 'D', '3670.000000', NULL, '3670.000000'),
 (26060, '010', 972, '220100', '03099', NULL, 'F-ra br.', '2013-02-06 00:00:00', 'D', '3000.000000', NULL, '3000.000000'),
@@ -26563,7 +26563,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (26455, '010', 954, '220100', '06519', NULL, 'F-ra br.', '2013-10-22 00:00:00', 'D', '4000.000000', NULL, '4000.000000'),
 (26456, '010', 954, '220100', '06519', NULL, 'F-ra br.', '2013-10-23 00:00:00', 'D', '4251.000000', NULL, '4251.000000'),
 (26457, '010', 1088, '220100', '06519', '115/2013', 'Po f-ra. br.', '2013-11-04 00:00:00', 'P', '3625.000000', NULL, '3625.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (26458, '010', 1213, '220100', '06519', '135/2013', 'F-ra br.', '2013-12-12 00:00:00', 'P', '3625.000000', NULL, '3625.000000'),
 (26459, '010', 1236, '220100', '06527', '5/13', 'F-ra br.', '2013-05-31 00:00:00', 'P', '600.000000', NULL, '600.000000'),
 (26460, '010', 998, '220100', '06527', NULL, 'F-ra br.', '2013-06-14 00:00:00', 'D', '600.000000', NULL, '600.000000'),
@@ -26962,7 +26962,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (26853, '010', 1233, '131018', '   ', NULL, NULL, '2013-04-30 00:00:00', 'D', '140.000000', NULL, '140.000000'),
 (26854, '010', 1233, '131018', '   ', NULL, NULL, '2013-04-30 00:00:00', 'D', '255.000000', NULL, '255.000000'),
 (26855, '010', 1233, '131018', '   ', NULL, NULL, '2013-04-30 00:00:00', 'D', '109.000000', NULL, '109.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (26856, '010', 1233, '131018', '   ', NULL, NULL, '2013-04-30 00:00:00', 'D', '360.000000', NULL, '360.000000'),
 (26857, '010', 1236, '131018', '   ', NULL, NULL, '2013-05-31 00:00:00', 'D', '231.000000', NULL, '231.000000'),
 (26858, '010', 1236, '131018', '   ', NULL, NULL, '2013-05-31 00:00:00', 'D', '739.000000', NULL, '739.000000'),
@@ -27366,7 +27366,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (27256, '010', 1112, '220100', '02633', '1-2306', 'Po f-ra. br.', '2013-12-24 00:00:00', 'P', '33193.000000', NULL, '33193.000000'),
 (27257, '010', 974, '220100', '02774', NULL, 'F-ra br.', '2013-02-14 00:00:00', 'D', '10000.000000', NULL, '10000.000000'),
 (27258, '010', 976, '220100', '02774', NULL, 'F-ra br.', '2013-01-20 00:00:00', 'D', '10000.000000', NULL, '10000.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (27259, '010', 979, '220100', '02774', NULL, 'F-ra br.', '2013-03-25 00:00:00', 'D', '20000.000000', NULL, '20000.000000'),
 (27260, '010', 1124, '220100', '02774', '1-1/15088', 'Po f-ra. br.', '2013-03-08 00:00:00', 'P', '3112.000000', NULL, '3112.000000'),
 (27261, '010', 1124, '220100', '02774', '15440', 'Po f-ra. br.', '2013-03-20 00:00:00', 'P', '9462.000000', NULL, '9462.000000'),
@@ -27756,7 +27756,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (27645, '010', 1177, '669100', '01000', '266/13', 'Po kalk. br.', '2013-08-07 00:00:00', 'P', '977.000000', NULL, '977.000000'),
 (27646, '010', 1177, '669100', '01000', '266/13', 'Po kalk. br.', '2013-08-07 00:00:00', 'P', '4400.000000', NULL, '4400.000000'),
 (27647, '010', 1177, '669100', '01000', '267/13', 'Po kalk. br.', '2013-08-07 00:00:00', 'P', '313.000000', NULL, '313.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (27648, '010', 1177, '669100', '01000', '267/13', 'Po kalk. br.', '2013-08-07 00:00:00', 'P', '1365.000000', NULL, '1365.000000'),
 (27649, '010', 1177, '669100', '01000', '269/13', 'Po kalk. br.', '2013-08-09 00:00:00', 'P', '567.000000', NULL, '567.000000'),
 (27650, '010', 1177, '669100', '01000', '269/13', 'Po kalk. br.', '2013-08-09 00:00:00', 'P', '305.000000', NULL, '305.000000'),
@@ -28155,7 +28155,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (28043, '010', 1111, '663018', '01000', '448/13', 'Po kalk. br.', '2013-12-12 00:00:00', 'D', '7440.000000', NULL, '7440.000000'),
 (28044, '010', 1111, '663018', '01000', '449/13', 'Po kalk. br.', '2013-12-10 00:00:00', 'D', '33610.000000', NULL, '33610.000000'),
 (28045, '010', 1027, '663018', '01000', NULL, NULL, '2013-12-11 00:00:00', 'P', '28314.000000', NULL, '28314.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (28046, '010', 1027, '663018', '01000', NULL, NULL, '2013-12-12 00:00:00', 'P', '32000.000000', NULL, '32000.000000'),
 (28047, '010', 1027, '663018', '01000', NULL, NULL, '2013-12-13 00:00:00', 'P', '48000.000000', NULL, '48000.000000'),
 (28048, '010', 1027, '663018', '01000', NULL, NULL, '2013-12-14 00:00:00', 'P', '42000.000000', NULL, '42000.000000'),
@@ -28551,7 +28551,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (28438, '010', 1179, '664018', '01000', '284/13', 'Po kalk. br.', '2013-08-20 00:00:00', 'P', '523.000000', NULL, '523.000000'),
 (28439, '010', 1179, '664018', '01000', '285/13', 'Po kalk. br.', '2013-08-22 00:00:00', 'P', '1098.000000', NULL, '1098.000000'),
 (28440, '010', 1179, '664018', '01000', '286/13', 'Po kalk. br.', '2013-08-21 00:00:00', 'P', '3007.000000', NULL, '3007.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (28441, '010', 1179, '664018', '01000', '287/13', 'Po kalk. br.', '2013-08-30 00:00:00', 'P', '247.000000', NULL, '247.000000'),
 (28442, '010', 1179, '664018', '01000', '288/13', 'Po kalk. br.', '2013-08-21 00:00:00', 'P', '1281.000000', NULL, '1281.000000'),
 (28443, '010', 1179, '664018', '01000', '289/13', 'Po kalk. br.', '2013-08-21 00:00:00', 'P', '7029.000000', NULL, '7029.000000'),
@@ -28951,7 +28951,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (28837, '056', 1501, '120000', '07287', '368', 'F-ra br.', '2013-11-21 00:00:00', 'P', '924.000000', NULL, '924.000000'),
 (28838, '056', 1580, '120000', '07288', NULL, NULL, '2013-03-31 00:00:00', 'P', '-4960.000000', NULL, '-4960.000000'),
 (28839, '056', 1513, '120000', '07288', NULL, 'F-ra br.', '2013-03-25 00:00:00', 'P', '1240.000000', NULL, '1240.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (28840, '056', 1513, '120000', '07288', NULL, 'F-ra br.', '2013-03-25 00:00:00', 'P', '1240.000000', NULL, '1240.000000'),
 (28841, '056', 1578, '120000', '07288', NULL, NULL, '2013-04-25 00:00:00', 'P', '2480.000000', NULL, '2480.000000'),
 (28842, '056', 1512, '120000', '07477', '1 RATA', 'F-ra br.', '2013-02-28 00:00:00', 'P', '700.000000', NULL, '700.000000'),
@@ -29375,7 +29375,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (29260, '056', 1523, '220100', '00198', NULL, NULL, '2013-07-19 00:00:00', 'D', '139.000000', NULL, '139.000000'),
 (29261, '056', 1586, '220100', '00198', '6', NULL, '2013-09-30 00:00:00', 'P', '74.000000', NULL, '74.000000'),
 (29262, '056', 1561, '220100', '00198', '07/2013', 'F-RA BR', '2013-07-31 00:00:00', 'P', '74.000000', NULL, '74.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (29263, '056', 1561, '220100', '00198', '10/2013', 'F-RA BR', '2013-10-31 00:00:00', 'P', '123.000000', NULL, '123.000000'),
 (29264, '056', 1507, '220100', '00198', NULL, 'BANKOV IZVOD BR', '2013-12-05 00:00:00', 'D', '271.000000', NULL, '271.000000'),
 (29265, '056', 1568, '220100', '00198', '11/2013', NULL, '2013-11-30 00:00:00', 'P', '139.000000', NULL, '139.000000'),
@@ -29775,7 +29775,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 (29659, '056', 1507, '100000', '   ', NULL, 'BANKOV IZVOD BR', '2013-12-10 00:00:00', 'P', '30012.000000', NULL, '30012.000000'),
 (29660, '056', 1507, '100000', '   ', '217', 'BANKOV IZVOD BR', '2013-12-12 00:00:00', 'D', '20159.000000', NULL, '20159.000000'),
 (29661, '056', 1507, '100000', '   ', NULL, 'F-ra br.', '2013-12-12 00:00:00', 'P', '11019.000000', NULL, '11019.000000');
-INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
+INSERT INTO `ledgers` (`id`, `company_code`, `order_id`, `account`, `sub_account`, `document_number`, `document_desc`, `document_date`, `booking_type`, `amount`, `currency_code`, `amount_currency`) VALUES
 (29662, '056', 1507, '100000', '   ', '218', 'BANKOV IZVOD BR', '2013-12-13 00:00:00', 'D', '19900.000000', NULL, '19900.000000'),
 (29663, '056', 1507, '100000', '   ', NULL, 'BANKOV IZVOD BR', '2013-12-13 00:00:00', 'P', '44600.000000', NULL, '44600.000000'),
 (29664, '056', 1507, '100000', '   ', '219', 'BANKOV IZVOD BR', '2013-12-16 00:00:00', 'P', '9150.000000', NULL, '9150.000000'),
@@ -30177,7 +30177,7 @@ INSERT INTO `ledger` (`ledger_id`, `company_code`, `order_id`, `account`, `sub_a
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`order_id`, `company_code`, `order_type`, `order_number`, `order_date`, `order_booking`, `operator_id`) VALUES
+INSERT INTO `orders` (`id`, `company_code`, `order_type`, `order_number`, `order_date`, `order_booking`, `operator_id`) VALUES
 (884, '002', '001', '002/1', '2013-01-01', '2013-01-01', NULL),
 (885, '002', '100', '1/1', '2013-12-31', '2013-12-31', NULL),
 (886, '002', '100', '1/10', '2013-11-12', '2013-11-12', NULL),
@@ -30973,7 +30973,7 @@ INSERT INTO `orders` (`order_id`, `company_code`, `order_type`, `order_number`, 
 (1676, '072', '700', '7/1', '2013-01-31', '2013-01-31', NULL),
 (1677, '072', '700', '7/10', '2013-10-31', '2013-10-31', NULL),
 (1678, '072', '700', '7/10MAT', '2013-11-30', '2013-11-30', NULL);
-INSERT INTO `orders` (`order_id`, `company_code`, `order_type`, `order_number`, `order_date`, `order_booking`, `operator_id`) VALUES
+INSERT INTO `orders` (`id`, `company_code`, `order_type`, `order_number`, `order_date`, `order_booking`, `operator_id`) VALUES
 (1679, '072', '700', '7/11', '2013-11-07', '2013-11-07', NULL),
 (1680, '072', '700', '7/11-1', '2013-11-15', '2013-11-15', NULL),
 (1681, '072', '700', '7/11-2', '2013-11-30', '2013-11-30', NULL),
@@ -31092,3 +31092,4 @@ INSERT INTO `sub_accounts` (`sub_account_code`, `sub_account_name`, `sub_account
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+SET FOREIGN_KEY_CHECKS=1;

@@ -15,7 +15,8 @@ class CreateOrdersTable extends Migration {
 		Schema::create('orders', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('order_type', 5);
+			$table->integer('order_type')->unsigned()->index();
+            $table->foreign('order_type')->references('order_type')->on('order_types')->onDelete('cascade')->onUpdate('cascade');
 			$table->integer('order_number');
 			$table->timestamp('order_date');
 			$table->timestamp('order_booking');

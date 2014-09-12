@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateLadgersTable extends Migration {
+class CreateLedgersTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -42,7 +42,7 @@ class CreateLadgersTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('ladgers');
+		Schema::drop('ledgers');
 	}
 
 }
