@@ -20,7 +20,7 @@ class LedgersController extends \BaseController {
                 }))->where('order_id','=',Input::get('order_id'))->get();
             $output=array();
             foreach($array as $ledger){
-               // Log::info(var_dump($ledger));
+
                 $subAccount=$ledger['accounts']['sub_accounts'];
                 $tableData=DB::select( "SELECT *,".$this->pluralToSingular($subAccount['sub_account_table'])."_name as name ,".
                     $this->pluralToSingular($subAccount['sub_account_table'])."_code as code FROM ".
