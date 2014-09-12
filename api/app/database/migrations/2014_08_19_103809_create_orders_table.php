@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration {
 			$table->increments('id');
 			$table->integer('order_type')->unsigned()->index();
             $table->foreign('order_type')->references('order_type')->on('order_types')->onDelete('cascade')->onUpdate('cascade');
-			$table->integer('order_number');
+			$table->string('order_number',20);
 			$table->timestamp('order_date');
 			$table->timestamp('order_booking');
 			$table->integer('company_code')->unsigned()->index();
