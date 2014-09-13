@@ -172,20 +172,12 @@ define([
                     }
                 });
             }
-        ]).run(['$rootScope', 'DSCacheFactory', function ($rootScope) {
+        ]).run(['$http', function ($http) {
+            var token=localStorage.getItem('token');
+            if(token) {
+                $http.defaults.headers.common['X-Auth-Token']=token;
+            }
 
-            // Maximize app on specific pages
-            $rootScope.$on('$stateChangeSuccess',
-                function (event, toState) {
-                    var current = toState.url;
-                    var specific = [
-                        '/404',
-                        '/signin'
-                    ];
-                    $rootScope.shouldMaximize = _.contains(specific, current);
-                    $rootScope.currentUiState = toState;
-                }
-            );
         }]);
         app.factory('httpRequestInterceptor', function ($injector,$rootScope) {
             return {

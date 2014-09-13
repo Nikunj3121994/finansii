@@ -6,6 +6,7 @@ define([], function () {
         $scope.login=function(){
             loginService.login($scope.username,$scope.password).then(function(data){
                 $http.defaults.headers.common['X-Auth-Token']=data.token;
+                localStorage.setItem('token',data.token);
                 if(!_.isUndefined($rootScope.previousState)) $state.go($rootScope.previousState,$rootScope.previousStateParams);
                 else $state.go('dashboard');
             });

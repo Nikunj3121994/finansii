@@ -56,8 +56,10 @@ class ArchiveLedgersController extends \BaseController {
 	public function store()
 	{
         if(Input::has('orderId') && Input::has('companyCode')){
+            DB::statement('SET foreign_key_checks = 0;');
             DB::statement('INSERT INTO archive_ledgers select * from ledgers where order_id = ? and company_code = ?',
                 array(Input::get('orderId'),Input::get('companyCode')));
+            DB::statement('SET foreign_key_checks = 1;');
             Ledger::where('order_id','=',Input::get('orderId'))->where('company_code','=',Input::get('companyCode'))->delete();
             $order=Order::find(Input::get('orderId'));
             $order->archived=1;

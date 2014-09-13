@@ -21,7 +21,7 @@ class CreateLedgersTable extends Migration {
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade');
 			$table->string('sub_account', 10);
 			$table->integer('account')->unsigned()->index();
-            $table->foreign('account')->references('id')->on('accounts')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('account')->references('account')->on('accounts')->onDelete('cascade')->onUpdate('cascade');
 			$table->string('document_number', 20);
 			$table->string('document_desc', 30);
 			$table->timestamp('document_date');

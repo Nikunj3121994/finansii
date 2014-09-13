@@ -15,7 +15,7 @@ class ArchiveLedger extends \Eloquent {
         return $this->belongsTo('Order','order_id','id');
     }
     public function accounts(){
-        return $this->belongsTo('Account','account','id');
+        return $this->belongsTo('Account','account','account');
     }public function subAccount(){
         return $this->belongsTo('SubAccount','sub_account','id');
     }

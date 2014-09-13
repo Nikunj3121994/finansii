@@ -25,21 +25,24 @@ class DatabaseSeeder extends Seeder
         DB::unprepared(file_get_contents(app_path().'\database\seeds\ResourcesSeed.sql'));
         //exec('mysql -u root -p finansii < '.file_get_contents(app_path().'\database\seeds\ResourceSeedAdvanced.sql'),$output,$worked);
         DB::unprepared(file_get_contents(app_path() . '\database\seeds\CompaniesSeed.sql'));
-        echo 'Companies seeded\n';
+        print 'Companies seeded';
+        DB::unprepared(file_get_contents(app_path() . '\database\seeds\AccountsSeed.sql'));
+        print 'Accounts seeded';
         DB::unprepared(file_get_contents(app_path() . '\database\seeds\OrderSeed.sql'));
-        echo 'Orders seeded\n';
+        print 'Orders seeded';
         DB::unprepared(file_get_contents(app_path() . '\database\seeds\LedgerSeed1.sql'));
-        echo 'Ledger1 seeded\n';
+        print 'Ledger1 seeded';
         DB::unprepared(file_get_contents(app_path() . '\database\seeds\LedgerSeed2.sql'));
-        echo 'Ledger2 seeded\n';
+        print 'Ledger2 seeded';
         DB::unprepared(file_get_contents(app_path() . '\database\seeds\LedgerSeed3.sql'));
-        echo 'Ledger3 seeded\n';
+        print 'Ledger3 seeded';
         DB::unprepared(file_get_contents(app_path() . '\database\seeds\LedgerSeed4.sql'));
-        echo 'Ledger4 seeded\n';
+        print 'Ledger4 seeded';
         DB::unprepared(file_get_contents(app_path() . '\database\seeds\LedgerSeed5.sql'));
-        echo 'Ledger5 seeded\n';
+        print 'Ledger5 seeded';
         DB::unprepared(file_get_contents(app_path() . '\database\seeds\LedgerSeed6.sql'));
-        echo 'Ledger6 seeded\n';
+        print 'Ledger6 seeded';
+        DB::table('ledgers')->update(array('currency_code' => 1));
     }
 
 }

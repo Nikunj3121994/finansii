@@ -9,7 +9,7 @@ class ReportsController extends \BaseController
 
     public function getAccounts()
     {
-        $columns=array('accounts.account_type as account','archive_ledgers.document_desc',
+        $columns=array('accounts.account','archive_ledgers.document_desc',
             'archive_ledgers.document_number','archive_ledgers.document_date',
             DB::raw('(case when archive_ledgers.booking_type=1 then archive_ledgers.amount else 0 end) as owes'),
             DB::raw('(case when archive_ledgers.booking_type!=1 then archive_ledgers.amount else 0 end) as asks'),
@@ -29,22 +29,22 @@ class ReportsController extends \BaseController
                 if (Input::has('dateTo')) {
                     return ProcessResponse::processReport(ArchiveLedger::where('accounts.account_type', '<=', $accounts['to'])
                         ->join('accounts',function($join){
-                            $join->on('archive_ledgers.account','=','accounts.id');
+                            $join->on('archive_ledgers.account','=','accounts.account');
                         })
                         ->join('orders',function($join){
                             $join->on('orders.id','=','archive_ledgers.order_id');
                         })
-                        ->where('account', '>=', $accounts['from'])
+                        ->where('archive_ledgers.account', '>=', $accounts['from'])
                         ->where('document_date', '<=', Input::get('dateTo'))
                         ->where('document_date', '>=', Input::get('dateFrom'))
                         ->select($columns)
                         ->get(),$header);
                 } else {
                     return ProcessResponse::processReport(ArchiveLedger::where('accounts.account_type', '<=', $accounts['to'])
-                        ->where('account', '>=', $accounts['from'])
+                        ->where('archive_ledgers.account', '>=', $accounts['from'])
                         ->where('document_date', '>=', Input::get('dateFrom'))
                         ->join('accounts',function($join){
-                            $join->on('archive_ledgers.account','=','accounts.id');
+                            $join->on('archive_ledgers.account','=','accounts.account');
                         })
                         ->join('orders',function($join){
                             $join->on('orders.id','=','archive_ledgers.order_id');
@@ -53,9 +53,9 @@ class ReportsController extends \BaseController
                         ->get(),$header);
                 }
             } else return ProcessResponse::processReport(ArchiveLedger::where('accounts.account_type', '<=', $accounts['to'])
-                ->where('account', '>=', $accounts['from'])
+                ->where('archive_ledgers.account', '>=', $accounts['from'])
                 ->join('accounts',function($join){
-                    $join->on('archive_ledgers.account','=','accounts.id');
+                    $join->on('archive_ledgers.account','=','accounts.account');
                 })
                 ->join('orders',function($join){
                     $join->on('orders.id','=','archive_ledgers.order_id');

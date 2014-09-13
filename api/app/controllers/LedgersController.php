@@ -22,11 +22,14 @@ class LedgersController extends \BaseController {
             foreach($array as $ledger){
 
                 $subAccount=$ledger['accounts']['sub_accounts'];
-                $tableData=DB::select( "SELECT *,".$this->pluralToSingular($subAccount['sub_account_table'])."_name as name ,".
-                    $this->pluralToSingular($subAccount['sub_account_table'])."_code as code FROM ".
-                    $subAccount['sub_account_table']." where ".
-                    $this->pluralToSingular($subAccount['sub_account_table'])."_code = ".$ledger['sub_account']." limit 1");
-                $ledger['sub-accounts']=$tableData[0];
+                if($subAccount!==NULL)
+                {
+                    $tableData=DB::select( "SELECT *,".$this->pluralToSingular($subAccount['sub_account_table'])."_name as name ,".
+                        $this->pluralToSingular($subAccount['sub_account_table'])."_code as code FROM ".
+                        $subAccount['sub_account_table']." where ".
+                        $this->pluralToSingular($subAccount['sub_account_table'])."_code = ".$ledger['sub_account']." limit 1");
+                    $ledger['sub-accounts']=$tableData[0] || NULL;
+                }
                 $ledger['currencies']=Currency::with(array('exchangeRates'=>function($query) use ($ledger){
                         $query->where('exchange_date','<',$ledger->document_date);
                         $query->orderBy('exchange_date','DESC');

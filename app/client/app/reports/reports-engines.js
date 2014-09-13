@@ -153,7 +153,6 @@ define([
 
     module.directive('dynamicReport', function ($compile) {
         function link($scope, element) {
-            console.log($scope.reportData);
             var printConfig=function(config,scope){
                 var tmp={};
                 tmp.printViewport=$('.print-viewport');
@@ -220,22 +219,35 @@ define([
                 }
                 for(var k=0;k<data.length;k++){
                     for(var j=0;j<config.groups.length;j++){
-                        var tmpRow={};
-                        var group=Math.floor(data[k][config.groups[j].field]/Math.pow(10,config.groups[j].group));
+                        var group=null;
+                        if(config.groups[j].groupType=='number') group=Math.floor(data[k][config.groups[j].field]/Math.pow(10,config.groups[j].group));
+                        else if(config.groups[j].groupType=='text') group=data[k][config.groups[j].field];
                         if(groups[config.groups[j].name]!=null){
+                            var tmpRow={};
                             if(groups[config.groups[j].name]!=group){
-                                tmpRow[config.groups[j].field]=group;
-                                tmpRow.class=config.groups[j].name;
-                                for(var n=0;n<config.sums.length;n++){
-                                    tmpRow[config.sums[n].field]=sums[config.groups[j].name][config.sums[n].field];
-                                    sums[config.groups[j].name][config.sums[n].field]=0;
+                                //console.log(group);
+                                if(config.groups[j].type=='header'){
+                                    tmpRow[config.groups[j].fieldPosition]=groups[config.groups[j].name];
+                                    console.log(tmpRow);
+                                }else{
+                                    tmpRow[config.groups[j].field]=groups[config.groups[j].name];
+                                    tmpRow.class=config.groups[j].name;
+                                    for(var n=0;n<config.sums.length;n++){
+                                        tmpRow[config.sums[n].field]=sums[config.groups[j].name][config.sums[n].field];
+                                        sums[config.groups[j].name][config.sums[n].field]=0;
+                                    }
                                 }
                                 dataTmp.push(tmpRow);
-                                tmpRow={};
                                 groups[config.groups[j].name]=group;
                             }
                         }else{
+                            var tmpRow={};
                             groups[config.groups[j].name]=group
+                            if(config.groups[j].type=='header'){
+                                tmpRow[config.groups[j].fieldPosition]=groups[config.groups[j].name];
+                                dataTmp.push(tmpRow);
+                            }
+
                         }
                         for(var n=0;n<config.sums.length;n++){
                             sums[config.groups[j].name][config.sums[n].field]+=parseFloat(data[k][config.sums[n].field]);
@@ -245,6 +257,7 @@ define([
                     dataTmp.push(data[k]);
                 }
                 for(var j=0;j<config.groups.length;j++){
+                    if(config.groups[j].type=='header') continue;
                     tmpRow={};
                     tmpRow[config.groups[j].field]=groups[config.groups[j].name];
                     tmpRow.class=config.groups[j].name;

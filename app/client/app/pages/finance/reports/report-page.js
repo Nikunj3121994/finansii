@@ -18,12 +18,22 @@ define([], function () {
                         {
                             field: 'account',
                             name: 'account',
-                            group: 3
+                            group: 3,
+                            groupType:'number'
                         },
                         {
                             field: 'account',
                             name: 'class',
-                            group: 5
+                            group: 5,
+                            groupType:'number'
+                        },
+                        {
+                            field: 'order_number',
+                            name: 'order',
+                            group: 0,
+                            type:'header',
+                            groupType:'text',
+                            fieldPosition:'account'
                         }
                     ],
                     sums: [
