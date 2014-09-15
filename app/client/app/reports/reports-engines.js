@@ -155,7 +155,7 @@ define([
         function link($scope, element) {
             var printConfig=function(config,scope){
                 var tmp={};
-                tmp.printViewport=$('.print-viewport');
+                tmp.printViewport=$('.print-viewport').html('');
                 tmp.header=function(){
                     var header=$compile('<div report-header></div>')($scope);
                     return header;
@@ -225,12 +225,12 @@ define([
                         if(groups[config.groups[j].name]!=null){
                             var tmpRow={};
                             if(groups[config.groups[j].name]!=group){
-                                //console.log(group);
+                                var prefix=config.groups[j].groupPrefix || '';
+                                var field=config.groups[j].fieldPosition || config.groups[j].field;
                                 if(config.groups[j].type=='header'){
-                                    tmpRow[config.groups[j].fieldPosition]=groups[config.groups[j].name];
-                                    console.log(tmpRow);
+                                    tmpRow[field]=prefix+groups[config.groups[j].name];
                                 }else{
-                                    tmpRow[config.groups[j].field]=groups[config.groups[j].name];
+                                    tmpRow[field]=prefix+groups[config.groups[j].name];
                                     tmpRow.class=config.groups[j].name;
                                     for(var n=0;n<config.sums.length;n++){
                                         tmpRow[config.sums[n].field]=sums[config.groups[j].name][config.sums[n].field];
@@ -257,9 +257,11 @@ define([
                     dataTmp.push(data[k]);
                 }
                 for(var j=0;j<config.groups.length;j++){
+                    var prefix=config.groups[j].groupPrefix || '';
+                    var field=config.groups[j].fieldPosition || config.groups[j].field;
                     if(config.groups[j].type=='header') continue;
                     tmpRow={};
-                    tmpRow[config.groups[j].field]=groups[config.groups[j].name];
+                    tmpRow[field]=prefix+groups[config.groups[j].name];
                     tmpRow.class=config.groups[j].name;
                     for(var n=0;n<config.sums.length;n++){
                         tmpRow[config.sums[n].field]=sums[config.groups[j].name][config.sums[n].field];

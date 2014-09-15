@@ -2,7 +2,7 @@
     <div class="reports-navigator col-lg-2">
         <div class="reports" ng-class="{true:'selected'}[$parent.selectedReport==$index]"
              data-ng-repeat="item in reports"
-             ng-click="$parent.selectedReport=$index;currentReport=item">
+             ng-click="$parent.selectedReport=$index;$parent.currentReport=item">
             {{item.label}}
             <i ng-class="{true:'fa fa-angle-right'}[$parent.selectedReport==$index]"></i>
         </div>
