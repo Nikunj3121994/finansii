@@ -162,17 +162,34 @@ define([
                 }();
                 tmp.gridHeader=function(){
 
-                    var gridHeader=['<div class="print-table-row print-table-header">'];
-                    for (var i = 0; i < config.fields.length; ++i) {
-                        gridHeader.push('<div class="print-table-cell">'+config.fields[i].label+'</div>');
+                    var headerSettingsDefault={levels:1};
+                    if(_.isUndefined(config.headerSettings)) config.headerSettings=headerSettingsDefault;
+                    config.fieldsOrder=[];
+                    function appendToHeader(fields,level,numLevels){
+                        for (var i = 0; i < fields.length; ++i) {
+                            if(fields[i].type=="group"){
+                                gridHeader.find('tr:nth-child('+(numLevels-level+1)+')')
+                                    .append('<th colspan="'+fields[i].fields.length+'">'+fields[i].label+'</th>');
+                                appendToHeader(fields[i].fields,level-1,numLevels);
+                            }
+                            else {
+                                gridHeader.find('tr:nth-child('+(numLevels-level+1)+')')
+                                .append('<th rowspan="'+level+'">'+fields[i].label+'</th>');
+                                config.fieldsOrder.push(fields[i].name);
+                            }
+                        }
                     }
-                    gridHeader.push('</div>');
-                    return $(gridHeader.join(''));
+                    var gridHeader=$('<div>');
+                    for(var i=0;i<config.headerSettings.levels;i++){
+                        gridHeader.append('<tr></tr>');
+                    }
+                    appendToHeader(config.fields,config.headerSettings.levels,config.headerSettings.levels);
+                    return gridHeader;
                 }();
                 tmp.printSizes=function(){
                     var testPage=$('<div>').addClass('print-page');
-                    var testTable=$('<div class="print-table"></div>');
-                    var testRow=$('<div class="print-table-row"><div class="print-table-cell">test</div></div>');
+                    var testTable=$('<table></table>');
+                    var testRow=$('<tr><td>test</td></tr>');
                     testTable[0].appendChild(tmp.gridHeader[0]);
                     testTable[0].appendChild(testRow[0]);
                     testPage[0].appendChild(tmp.header[0]);
@@ -283,22 +300,22 @@ define([
                 for (var i = 0; i < dataRows.length; i++) {
                     var row=[]
                     if(dataRows[i].class){
-                        row.push('<div class="print-table-row '+dataRows[i].class+'">');
+                        row.push('<tr class="'+dataRows[i].class+'">');
                     }else{
-                        row.push('<div class="print-table-row">');
+                        row.push('<tr>');
                     }
 
-                    for (var j=0;j<config.fields.length;j++) {
-                        row.push('<div class="print-table-cell">' + (dataRows[i][config.fields[j].name] || '') + '</div>');
+                    for (var j=0;j<config.fieldsOrder.length;j++) {
+                        row.push('<td>' + (dataRows[i][config.fieldsOrder[j]] || '') + '</td>');
                     }
-                    row.push('</div>');
+                    row.push('</tr>');
                     pages[numPage].push(row.join(''));
                     numItems++;
 
                     if (numItems == printConfig.printSizes.contentSize) {
                         numItems = 0;
                         var page=$('<div>').addClass('print-page');
-                        var content = $('<div class="print-table"></div>').append(printConfig.gridHeader.clone()).append(pages[numPage].join(''));
+                        var content = $('<table></table>').append(printConfig.gridHeader.html()).append(pages[numPage].join(''));
                         page.append(printConfig.header.clone()).append(content);
                         printConfig.printViewport.append(page);
                         var excludedItems = clearOverflow(content);
@@ -307,9 +324,10 @@ define([
                         i -= excludedItems;
                     }
                 }
+
                 if(numItems<printConfig.printSizes.contentSize){
                     var page=$('<div>').addClass('print-page');
-                    var content = $('<div class="print-table"></div>').append(printConfig.gridHeader.clone()).append(pages[numPage].join(''));
+                    var content = $('<table></table>').append(printConfig.gridHeader.html()).append(pages[numPage].join(''));
                     page.append(printConfig.header.clone()).append(content);
                     printConfig.printViewport.append(page);
                 }
@@ -321,7 +339,7 @@ define([
             function clearOverflow(container) {
                 var height = container[0].offsetHeight;
                 if (height > printConfig.printSizes.contentHeight) {
-                    container.find('.print-table-row:last').remove();
+                    container.find('tr:last').remove();
                     return 1 + clearOverflow(container);
                 } else {
                     return 0;

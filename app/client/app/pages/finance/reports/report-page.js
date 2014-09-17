@@ -196,8 +196,12 @@ define([], function () {
                     label: 'Gross balance analytics',
                     fields: [
                         {name: 'account', label: "Account"},
-                        {name: 'owes', label: 'Owes'},
-                        {name: 'asks', label: 'Asks'},
+                        {name:'group1',label:"Group 1",type:"group",
+                            fields:[
+                                {name: 'owes', label: 'Owes'},
+                                {name: 'asks', label: 'Asks'}
+                            ]
+                        },
                         {name:'total',label:'Total'}
                     ],
                     groups: [
@@ -222,6 +226,9 @@ define([], function () {
                             groupPrefix:'Total'
                         }
                     ],
+                    headerSettings:{
+                        levels:2
+                    },
                     sums: [
                         {
                             field: 'owes'
