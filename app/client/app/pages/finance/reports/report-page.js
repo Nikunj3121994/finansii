@@ -1,7 +1,7 @@
 define([], function () {
-    var module = angular.module('app.pages.reports', []);
+    var module = angular.module('app.pages.finance.reports', []);
 
-    module.controller('reportsController', ['$scope', 'reportService', '$compile', '$filter', 'toasterService'
+    module.controller('reportsFinanceController', ['$scope', 'reportService', '$compile', '$filter', 'toasterService'
         , function ($scope, reportService, $compile, $filter, toasterService) {
             $scope.reports = [
                 {

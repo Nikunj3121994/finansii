@@ -9,6 +9,7 @@ define([
 
     'pages/finance/orders/orders',
     'pages/finance/reports/report-page',
+    'pages/retail/reports/report-page',
     'pages/finance/resources/resources',
     'pages/retail/resources/resources',
     'pages/retail/calculations/calculations',
@@ -32,7 +33,8 @@ define([
             'app.global.translate',
 
             'app.pages.orders',
-            'app.pages.reports',
+            'app.pages.finance.reports',
+            'app.pages.retail.reports',
             'app.pages.resources',
             'app.pages.resources.retail',
             'app.pages.calculations',
@@ -170,6 +172,9 @@ define([
                             calculation_header_id:$stateParams.calculationHeaderId
                         };
                     }
+                }).state('retail.reports',{
+                    url:'/reports',
+                    templateUrl:'app/pages/retail/reports/reports.html'
                 });
             }
         ]).run(['$http', function ($http) {
