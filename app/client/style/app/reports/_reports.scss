@@ -43,27 +43,28 @@
     .print-header {
 
     }
-    .print-table{
-      display: table;
+    table{
+
       font-size:12pt;
       width: 100%;
     }
-    .print-table-row {
-      display: table-row;
+    th{
+      border:1px solid #666;
+    }
+    tr {
       margin:0;
     }
-    .print-table-row.account{
+    tr.account{
       border-top:1px solid #666;
     }
-    .print-table-row.class{
+    tr.class{
       border-top:2px solid #666;
     }
-    .print-table-row.print-table-header{
+    tr.print-table-header{
       border-bottom:2px solid #666;
     }
 
-    .print-table-cell {
-      display: table-cell;
+    td {
       padding: 2px 5px;
     }
   }

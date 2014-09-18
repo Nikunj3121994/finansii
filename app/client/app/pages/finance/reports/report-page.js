@@ -255,6 +255,108 @@ define([], function () {
                             label: 'Date to'
                         }
                     }
+                },{
+                    name: 'gross-balance-synthetics',
+                    label: 'Finished sheet',
+                    fields: [
+                        {name: 'account', label: "Account"},
+                        {name: 'owes', label: 'Owes'},
+                        {name: 'asks', label: 'Asks'},
+                        {name:'total',label:'Total'}
+                    ],
+                    groups: [
+                        {
+                            field: 'account',
+                            name: 'group',
+                            group: 1,
+                            groupType:'number',
+                            groupPrefix:'Group'
+                        },{
+                            field: 'account',
+                            name: 'class',
+                            group: 2,
+                            groupType:'number',
+                            groupPrefix:'Class'
+                        },
+                        {
+                            field: 'account',
+                            name: 'total',
+                            group: 3,
+                            groupType:'number',
+                            groupPrefix:'Total'
+                        }
+                    ],
+                    sums: [
+                        {
+                            field: 'owes'
+                        },
+                        {
+                            field: 'asks'
+                        },
+                        {
+                            field: 'total'
+                        }
+                    ],
+                    filters: ['orderFrom', 'orderTo', 'dateFrom', 'dateTo'],
+                    filtersConfig: {
+                        orderFrom: {
+                            label: 'Orders from'
+                        },
+                        orderTo: {
+                            label: 'Order to'
+                        },
+                        dateFrom: {
+                            label: 'Date from'
+                        },
+                        dateTo: {
+                            label: 'Date to'
+                        }
+                    }
+                },{
+                    name: 'account-specification',
+                    label: 'Account specification',
+                    fields: [
+                        {name: 'account', label: "Account"},
+                        {name: 'account_name', label: "Account Name"},
+                        {name: 'owes', label: 'Owes'},
+                        {name: 'asks', label: 'Asks'},
+                        {name:'total',label:'Total'}
+                    ],
+                    groups: [
+                        {
+                            field: 'account',
+                            name: 'total',
+                            group: 6,
+                            groupType:'number',
+                            groupPrefix:'Total'
+                        }
+                    ],
+                    sums: [
+                        {
+                            field: 'owes'
+                        },
+                        {
+                            field: 'asks'
+                        },
+                        {
+                            field: 'total'
+                        }
+                    ],
+                    filters: ['orderFrom', 'orderTo', 'dateFrom', 'dateTo'],
+                    filtersConfig: {
+                        orderFrom: {
+                            label: 'Orders from'
+                        },
+                        orderTo: {
+                            label: 'Order to'
+                        },
+                        dateFrom: {
+                            label: 'Date from'
+                        },
+                        dateTo: {
+                            label: 'Date to'
+                        }
+                    }
                 }
             ];
             $scope.reportEngineDirective = '<div dynamic-report report-config="reports[selectedReport]" report-data="data" header="header"></div>';

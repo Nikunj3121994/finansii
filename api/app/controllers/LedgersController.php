@@ -28,7 +28,8 @@ class LedgersController extends \BaseController {
                         $this->pluralToSingular($subAccount['sub_account_table'])."_code as code FROM ".
                         $subAccount['sub_account_table']." where ".
                         $this->pluralToSingular($subAccount['sub_account_table'])."_code = ".$ledger['sub_account']." limit 1");
-                    $ledger['sub-accounts']=$tableData[0] || NULL;
+                    if(!empty($tableData))
+                        $ledger['sub-accounts']=$tableData[0] || NULL;
                 }
                 $ledger['currencies']=Currency::with(array('exchangeRates'=>function($query) use ($ledger){
                         $query->where('exchange_date','<',$ledger->document_date);

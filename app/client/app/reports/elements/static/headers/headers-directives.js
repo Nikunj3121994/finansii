@@ -10,8 +10,8 @@ define([
             element.find('.js_subTitle').text($scope.header.subTitle);
             for(var key in $scope.header.filters){
                 if(!$scope.header.filters[key].value) continue;
-                element.find('.js_filters').append('<div class="print-table-row"><span class="print-table-cell"> '+$scope.header.filters[key].label
-                    +'</span><strong class="print-table-cell">'+$scope.header.filters[key].value+'</strong></div>');
+                element.find('.js_filters').append('<tr><td> '+$scope.header.filters[key].label
+                    +'</td><td><strong>'+$scope.header.filters[key].value+'</strong></td></tr>');
 
             }
         }

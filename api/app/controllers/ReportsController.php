@@ -59,6 +59,7 @@ class ReportsController extends \BaseController
             DB::raw('(case when archive_ledgers.booking_type=1 then sum(archive_ledgers.amount) else 0 end) as owes'),
             DB::raw('(case when archive_ledgers.booking_type!=1 then sum(archive_ledgers.amount) else 0 end) as asks'),
             'archive_ledgers.amount as total','orders.order_number','orders.order_type');
+        $columns3='order_number, document_desc, document_date, document_number, account, sum(s1.owes) as owes, sum(s1.asks) as asks, sum(s1.owes) - sum(s1.asks) as total';
         if (Input::has('companyCode')) {
             $header=Company::where('company_code','=',Input::get('companyCode'))
 
@@ -75,27 +76,32 @@ class ReportsController extends \BaseController
                     $join->on('orders.id','=','archive_ledgers.order_id');
                 })
                 ->select($columns)
-                ->orderBy('orders.order_number', DB::raw('left(archive_ledgers.account,3)'))
-                ->groupBy('orders.order_number')
-                ->groupBy( DB::raw('left(archive_ledgers.account,3)'));
+                ->orderBy('orders.order_number','archive_ledgers.booking_type', DB::raw('left(archive_ledgers.account,3)'))
+                ->groupBy('orders.order_number','archive_ledgers.booking_type',DB::raw('left(archive_ledgers.account,3)'));
             if (Input::has('accountFrom')) $accounts['from'] = Input::get('accountFrom');
             if (Input::has('accountTo')) $accounts['to'] = Input::get('accountTo');
             if (Input::has('dateFrom')) {
                 if (Input::has('dateTo')) {
-                    return ProcessResponse::processReport($query->where('accounts.account_type', '<=', $accounts['to'])
+                   $query->where('accounts.account_type', '<=', $accounts['to'])
                         ->where('archive_ledgers.account', '>=', $accounts['from'])
                         ->where('document_date', '<=', Input::get('dateTo'))
-                        ->where('document_date', '>=', Input::get('dateFrom'))
-                        ->get(),$header);
+                        ->where('document_date', '>=', Input::get('dateFrom'));
+                    return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query->toSql().') s1 group by s1.account, s1.order_number',array($accounts['to'],
+                        $accounts['from'],Input::get('dateTo'),Input::get('dateFrom'))),$header);
                 } else {
-                    return ProcessResponse::processReport($query->where('accounts.account_type', '<=', $accounts['to'])
+                   $query->where('accounts.account_type', '<=', $accounts['to'])
                         ->where('archive_ledgers.account', '>=', $accounts['from'])
-                        ->where('document_date', '>=', Input::get('dateFrom'))
-                        ->get(),$header);
+                        ->where('document_date', '>=', Input::get('dateFrom'));
+
+                    return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query->toSql().') s1 group by s1.account, s1.order_number',array($accounts['to'],
+                        $accounts['from'],Input::get('dateFrom'))),$header);
                 }
-            } else return ProcessResponse::processReport($query->where('accounts.account_type', '<=', $accounts['to'])
-                ->where('archive_ledgers.account', '>=', $accounts['from'])
-                ->get(),$header);
+            } else {
+                $query->where('accounts.account_type', '<=', $accounts['to'])
+                ->where('archive_ledgers.account', '>=', $accounts['from']);
+                return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query->toSql().') s1 group by s1.account, s1.order_number',array($accounts['to'],
+                    $accounts['from'])),$header);
+            }
         } else {
             return ProcessResponse::getError('1000', 'Company is required');
         }
@@ -212,4 +218,59 @@ class ReportsController extends \BaseController
             return ProcessResponse::getError('1000', 'Company is required');
         }
     }
+    public function getAccountSpecification(){
+        $columns=array( DB::raw('archive_ledgers.account as account'),'accounts.account_name',
+            DB::raw('(case when archive_ledgers.booking_type=1 then sum(archive_ledgers.amount) else 0 end) as owes'),
+            DB::raw('(case when archive_ledgers.booking_type!=1 then sum(archive_ledgers.amount) else 0 end) as asks')
+        );
+        $columns3='account, account_name, sum(s1.owes) as owes, sum(s1.asks) as asks, sum(s1.owes) - sum(s1.asks) as total';
+
+        if (Input::has('companyCode')) {
+            $header=Company::where('company_code','=',Input::get('companyCode'))
+
+                ->select(array('company_name','company_code'))->first();
+            $header['title']='Kartica';
+            $header['subTitle']='Sub title';
+            $accounts = array();
+            $accounts['from'] = 0;
+            $accounts['to'] = 999999;
+            $query1=ArchiveLedger::join('accounts',function($join){
+                $join->on('archive_ledgers.account','=','accounts.account');
+            })
+                ->join('orders',function($join){
+                    $join->on('orders.id','=','archive_ledgers.order_id');
+                })
+                ->select($columns)
+                ->orderBy('archive_ledgers.booking_type',DB::raw('archive_ledgers.account'))
+                ->groupBy('archive_ledgers.booking_type',DB::raw('archive_ledgers.account'));
+            if (Input::has('accountFrom')) $accounts['from'] = Input::get('accountFrom');
+            if (Input::has('accountTo')) $accounts['to'] = Input::get('accountTo');
+            if (Input::has('dateFrom')) {
+                if (Input::has('dateTo')) {
+                    $query1->where('accounts.account_type', '<=', $accounts['to'])
+                        ->where('archive_ledgers.account', '>=', $accounts['from'])
+                        ->where('document_date', '<=', Input::get('dateTo'))
+                        ->where('document_date', '>=', Input::get('dateFrom'));
+
+                    return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query1->toSql().') s1 group by s1.account',array($accounts['to'],
+                        $accounts['from'],Input::get('dateTo'),Input::get('dateFrom'))),$header);
+                } else {
+                    $query1->where('accounts.account_type', '<=', $accounts['to'])
+                        ->where('archive_ledgers.account', '>=', $accounts['from'])
+                        ->where('document_date', '>=', Input::get('dateFrom'));
+                    return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query1->toSql().') s1 group by s1.account',array($accounts['to'],
+                        $accounts['from'],Input::get('dateFrom'))),$header);
+                }
+            } else
+            {
+                $query1->where('accounts.account_type', '<=', $accounts['to'])
+                    ->where('archive_ledgers.account', '>=', $accounts['from']);
+                return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query1->toSql().') s1 group by s1.account',array($accounts['to'],
+                    $accounts['from'])),$header);
+            }
+        } else {
+            return ProcessResponse::getError('1000', 'Company is required');
+        }
+    }
+
 }
