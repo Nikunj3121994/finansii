@@ -151,7 +151,7 @@ define([
     });
 
 
-    module.directive('dynamicReport', function ($compile) {
+    module.directive('dynamicReport', function ($compile,$filter) {
         function link($scope, element) {
             var printConfig=function(config,scope){
                 var tmp={};
@@ -175,7 +175,7 @@ define([
                             else {
                                 gridHeader.find('tr:nth-child('+(numLevels-level+1)+')')
                                 .append('<th rowspan="'+level+'">'+fields[i].label+'</th>');
-                                config.fieldsOrder.push(fields[i].name);
+                                config.fieldsOrder.push({name:fields[i].name,format:fields[i].format || null});
                             }
                         }
                     }
@@ -250,7 +250,8 @@ define([
                                     tmpRow[field]=prefix+groups[config.groups[j].name];
                                     tmpRow.class=config.groups[j].name;
                                     for(var n=0;n<config.sums.length;n++){
-                                        tmpRow[config.sums[n].field]=sums[config.groups[j].name][config.sums[n].field];
+                                        tmpRow[config.sums[n].field]=sums[config.groups[j].name][config.sums[n].field].toFixed(2);
+                                       // console.log(tmpRow[config.sums[n].field]=sums[config.groups[j].name],sums[config.groups[j].name][config.sums[n].field]);
                                         sums[config.groups[j].name][config.sums[n].field]=0;
                                     }
                                 }
@@ -281,7 +282,7 @@ define([
                     tmpRow[field]=prefix+groups[config.groups[j].name];
                     tmpRow.class=config.groups[j].name;
                     for(var n=0;n<config.sums.length;n++){
-                        tmpRow[config.sums[n].field]=sums[config.groups[j].name][config.sums[n].field];
+                        tmpRow[config.sums[n].field]=sums[config.groups[j].name][config.sums[n].field].toFixed(2);
                     }
                     dataTmp.push(tmpRow);
                 }
@@ -306,7 +307,11 @@ define([
                     }
 
                     for (var j=0;j<config.fieldsOrder.length;j++) {
-                        row.push('<td>' + (dataRows[i][config.fieldsOrder[j]] || '') + '</td>');
+                        if(config.fieldsOrder[j].format=="text")
+                            row.push('<td>' + (dataRows[i][config.fieldsOrder[j].name] || '') + '</td>');
+                        else{
+                            row.push('<td class="align-right">' + $filter('number')(dataRows[i][config.fieldsOrder[j].name] || 0,2) + '</td>');
+                        }
                     }
                     row.push('</tr>');
                     pages[numPage].push(row.join(''));

@@ -109,13 +109,16 @@ class ReportsController extends \BaseController
     public function getGrossBalanceSynthetics(){
         $columns=array( DB::raw('left(archive_ledgers.account,3) as account'),
             DB::raw('(case when archive_ledgers.booking_type=1 then sum(archive_ledgers.amount) else 0 end) as owes'),
-            DB::raw('(case when archive_ledgers.booking_type!=1 then sum(archive_ledgers.amount) else 0 end) as asks')
+            DB::raw('(case when archive_ledgers.booking_type!=1 then sum(archive_ledgers.amount) else 0 end) as asks'),
+            DB::raw('(case when (archive_ledgers.booking_type=1 and date_format(orders.order_date,"%Y-%m-%d")=makedate(year(orders.order_date),1)) then sum(archive_ledgers.amount) else 0 end) as start_owes'),
+            DB::raw('(case when (archive_ledgers.booking_type!=1 and date_format(orders.order_date,"%Y-%m-%d")=makedate(year(orders.order_date),1)) then sum(archive_ledgers.amount) else 0 end) as start_asks'),
+            DB::raw('(case when date_format(orders.order_date,"%Y-%m-%d")=makedate(year(orders.order_date),1) then 1 else 0 end) as grouping')
            );
-        $columns2=array('account',
-            DB::raw('sum(s1.owes) as owes'),
-            DB::raw('sum(s1.asks) as asks'),
-            DB::raw('s1.owes - s1.asks as total'));
-        $columns3='account, sum(s1.owes) as owes, sum(s1.asks) as asks, sum(s1.owes) - sum(s1.asks) as total';
+
+        $columns3='account,ROUND(sum(start_owes),2) as start_owes, ROUND(sum(start_asks),2)
+            as start_asks, ROUND(sum(s1.owes),2) as owes, ROUND(sum(s1.asks),2) as asks,
+            ROUND(sum(s1.start_owes) - sum(s1.owes),2) as total_owes,
+            ROUND( sum(s1.start_asks) - sum(s1.asks),2) as total_asks';
        
         if (Input::has('companyCode')) {
             $header=Company::where('company_code','=',Input::get('companyCode'))
@@ -133,8 +136,8 @@ class ReportsController extends \BaseController
                     $join->on('orders.id','=','archive_ledgers.order_id');
                 })
                 ->select($columns)
-                ->orderBy('archive_ledgers.booking_type',DB::raw('left(archive_ledgers.account,3)'))
-                ->groupBy('archive_ledgers.booking_type',DB::raw('left(archive_ledgers.account,3)'));
+                ->orderBy('archive_ledgers.booking_type','grouping',DB::raw('left(archive_ledgers.account,3)'))
+                ->groupBy('archive_ledgers.booking_type','grouping',DB::raw('left(archive_ledgers.account,3)'));
             if (Input::has('accountFrom')) $accounts['from'] = Input::get('accountFrom');
             if (Input::has('accountTo')) $accounts['to'] = Input::get('accountTo');
             if (Input::has('dateFrom')) {

@@ -8,9 +8,9 @@ define([], function () {
                     name: 'accounts',
                     label: 'Accounts Report',
                     fields: [
-                        {name: 'account', label: "Account"},
-                        {name: 'document_desc', label: 'Description'},
-                        {name: 'document_number', label: "Number"},
+                        {name: 'account', label: "Account",format:'text'},
+                        {name: 'document_desc', label: 'Description',format:'text'},
+                        {name: 'document_number', label: "Number",format:'text'},
                         {name: 'owes', label: 'Owes'},
                         {name: 'asks', label: 'Asks'}
                     ],
@@ -64,10 +64,10 @@ define([], function () {
                     name: 'main-book',
                     label: 'Main book',
                     fields: [
-                        {name: 'order_number', label: "Order number"},
-                        {name: 'account', label: "Account"},
-                        {name: 'document_desc', label: 'Description'},
-                        {name: 'document_number', label: "Number"},
+                        {name: 'order_number', label: "Order number",format:'text'},
+                        {name: 'account', label: "Account",format:'text'},
+                        {name: 'document_desc', label: 'Description',format:'text'},
+                        {name: 'document_number', label: "Number",format:'text'},
                         {name: 'owes', label: 'Owes'},
                         {name: 'asks', label: 'Asks'}
                     ],
@@ -107,11 +107,11 @@ define([], function () {
                     name: 'accounts',
                     label: 'Analytic card',
                     fields: [
-                        {name: 'order_number', label: "Order number"},
-                        {name: 'document_date', label: "Date"},
-                        {name: 'account', label: "Account"},
-                        {name: 'document_desc', label: 'Description'},
-                        {name: 'document_number', label: "Number"},
+                        {name: 'order_number', label: "Order number",format:'text'},
+                        {name: 'document_date', label: "Date",format:'text'},
+                        {name: 'account', label: "Account",format:'text'},
+                        {name: 'document_desc', label: 'Description',format:'text'},
+                        {name: 'document_number', label: "Number",format:'text'},
                         {name: 'owes', label: 'Owes'},
                         {name: 'asks', label: 'Asks'}
                     ],
@@ -152,10 +152,13 @@ define([], function () {
                     name: 'gross-balance-synthetics',
                     label: 'Gross balance synthetics',
                     fields: [
-                        {name: 'account', label: "Account"},
+                        {name: 'account', label: "Account",format:'text'},
+                        {name: 'start_owes', label: 'Start owes'},
+                        {name: 'start_asks', label: 'Start Asks'},
                         {name: 'owes', label: 'Owes'},
                         {name: 'asks', label: 'Asks'},
-                        {name:'total',label:'Total'}
+                        {name:'total_owes',label:'Total owes'},
+                        {name:'total_asks',label:'Total asks'}
                     ],
                     groups: [
                         {
@@ -167,13 +170,22 @@ define([], function () {
                     ],
                     sums: [
                         {
+                            field: 'start_owes'
+                        },
+                        {
+                            field: 'start_asks'
+                        },
+                        {
                             field: 'owes'
                         },
                         {
                             field: 'asks'
                         },
                         {
-                            field:'total'
+                            field:'total_asks'
+                        },
+                        {
+                            field:'total_owes'
                         }
                     ],
                     filters: ['orderFrom', 'orderTo', 'dateFrom', 'dateTo'],
@@ -195,7 +207,7 @@ define([], function () {
                     name: 'gross-balance-analytics',
                     label: 'Gross balance analytics',
                     fields: [
-                        {name: 'account', label: "Account"},
+                        {name: 'account', label: "Account",format:'text'},
                         {name:'group1',label:"Group 1",type:"group",
                             fields:[
                                 {name: 'owes', label: 'Owes'},
@@ -259,10 +271,13 @@ define([], function () {
                     name: 'gross-balance-synthetics',
                     label: 'Finished sheet',
                     fields: [
-                        {name: 'account', label: "Account"},
+                        {name: 'account', label: "Account",format:'text'},
+                        {name: 'start_owes', label: 'Start Owes'},
+                        {name: 'start_asks', label: 'Start Asks'},
                         {name: 'owes', label: 'Owes'},
                         {name: 'asks', label: 'Asks'},
-                        {name:'total',label:'Total'}
+                        {name:'total_owes',label:'Total owes'} ,
+                        {name:'total_asks',label:'Total asks'}
                     ],
                     groups: [
                         {
@@ -270,13 +285,13 @@ define([], function () {
                             name: 'group',
                             group: 1,
                             groupType:'number',
-                            groupPrefix:'Group'
+                            groupPrefix:'G.'
                         },{
                             field: 'account',
                             name: 'class',
                             group: 2,
                             groupType:'number',
-                            groupPrefix:'Class'
+                            groupPrefix:'C.'
                         },
                         {
                             field: 'account',
@@ -288,13 +303,22 @@ define([], function () {
                     ],
                     sums: [
                         {
+                            field: 'start_owes'
+                        },
+                        {
+                            field: 'start_asks'
+                        },
+                        {
                             field: 'owes'
                         },
                         {
                             field: 'asks'
                         },
                         {
-                            field: 'total'
+                            field: 'total_owes'
+                        },
+                        {
+                            field: 'total_asks'
                         }
                     ],
                     filters: ['orderFrom', 'orderTo', 'dateFrom', 'dateTo'],
@@ -316,8 +340,8 @@ define([], function () {
                     name: 'account-specification',
                     label: 'Account specification',
                     fields: [
-                        {name: 'account', label: "Account"},
-                        {name: 'account_name', label: "Account Name"},
+                        {name: 'account', label: "Account",format:'text'},
+                        {name: 'account_name', label: "Account Name",format:'text'},
                         {name: 'owes', label: 'Owes'},
                         {name: 'asks', label: 'Asks'},
                         {name:'total',label:'Total'}
@@ -384,6 +408,7 @@ define([], function () {
                     $scope.data = data.body;
                     $scope.header = data.header;
                     $scope.header['filters'] = filterConfig;
+                    $scope.header.title=$scope.currentReport.label;
                     $compile($scope.reportEngineDirective)($scope);
                 });
             }

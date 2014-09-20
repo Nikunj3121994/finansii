@@ -38,7 +38,6 @@
     width: 210mm;
     height: 296mm;
     padding: 10px;
-    border: 1px solid #000;
     page-break-after: always;
     .print-header {
 
@@ -60,6 +59,9 @@
     tr.class{
       border-top:2px solid #666;
     }
+    tr.group{
+      border-top:1px solid #666;
+    }
     tr.print-table-header{
       border-bottom:2px solid #666;
     }
@@ -67,12 +69,15 @@
     td {
       padding: 2px 5px;
     }
+    td.align-right{
+      text-align: right;
+    }
   }
   .print-page:nth-child(2n) {
     color: red;
   }
   td{
-    font-size:12pt !important;
+    font-size:10pt !important;
   }
 
 }
