@@ -1234,7 +1234,7 @@
             $calculationDetailsTable->fields()->save($priceInput1Field);
             $priceInput1Field->property()->save(new FieldConfig(array(
                 'key'=>'mathFunction',
-                'value'=>'{"formula":"percentageBase","funcArgs":{"baseField":"price_input2","percentage":"tariff_rate"}}'
+                'value'=>'{"formula":"percentageBase","funcArgs":{"baseType":"number","baseField":{"formula":"rabatBase","funcArgs":{"base":"price_input2","percentage":"rabat"}},"percentage":"tariff_rate"}}'
             )));
             $priceInput1Field->property()->save(new FieldConfig(array(
                 'key'=>'watches',
@@ -1251,11 +1251,11 @@
             $calculationDetailsTable->fields()->save($priceInput2Field);
             $priceInput2Field->property()->save(new FieldConfig(array(
                 'key'=>'mathFunction',
-                'value'=>'{"formula":"percentageAdded","funcArgs":{"baseField":"price_input1","percentage":"tariff_rate"}}'
+                'value'=>'{"formula":"percentageAdded","funcArgs":{"baseType":"number","baseField":{"formula":"rabat","funcArgs":{"base":"price_input1","percentage":"rabat"}},"percentage":"tariff_rate"}}'
             )));
             $priceInput2Field->property()->save(new FieldConfig(array(
                 'key'=>'watches',
-                'value'=>'["formData.price_input1"]'
+                'value'=>'["formData.price_input1","formData.rabat"]'
             )));
 
             $taxInputField=new Field(array(
@@ -1269,7 +1269,7 @@
             $calculationDetailsTable->fields()->save($taxInputField);
             $taxInputField->property()->save(new FieldConfig(array(
                 'key'=>'mathFunction',
-                'value'=>'{"formula":"percentage","funcArgs":{"base":"price_input1","percentage":"tariff_rate"}}'
+                'value'=>'{"formula":"percentage","funcArgs":{"baseType":"number","base":{"formula":"rabat","funcArgs":{"base":"price_input1","percentage":"rabat"}},"percentage":"tariff_rate"}}'
             )));
             $taxInputField->property()->save(new FieldConfig(array(
                 'key'=>'watches',

@@ -2,6 +2,9 @@ define([], function() {
     var module = angular.module("app.forms.summary.services", []);
     module.factory('summaryService',function(){
         var formulas = {};
+        formulas.resolveFloat=function(val){
+            return parseFloat(val.toFixed(6));
+        };
         formulas.extractKey=function(obj,key){
             for(key1 in obj){
                 if(key1==key){
@@ -53,17 +56,17 @@ define([], function() {
             return this.sumColumn(args.column1,data) - this.sumColumn(args.column2,data);
         };
         formulas.diff = function (args,data) {
-            return args.val1 - args.val2;
+            return formulas.resolveFloat(args.val1 - args.val2);
         };
         formulas.diffKeys = function (args,data) {
-            return formulas.extractKey(data,args.val1) - formulas.extractKey(data,args.val2);
+            return formulas.resolveFloat(formulas.extractKey(data,args.val1) - formulas.extractKey(data,args.val2));
         };
         formulas.mul = function (args,data) {
             var val1=parseFloat(formulas.extractKey(data,args.val1));
             var val2=parseFloat(formulas.extractKey(data,args.val2));
             if(_.isNaN(val1)) return '';
             if(_.isNaN(val2)) return Math.round(val1*1000000)/1000000;
-            return Math.round((val1 * val2)*1000000)/1000000;
+            return formulas.resolveFloat(Math.round((val1 * val2)*1000000)/1000000);
         };
         formulas.divSameVal = function(args,data){
             var val1=parseFloat(formulas.extractKey(data,args.val1));
@@ -71,32 +74,51 @@ define([], function() {
 
             if(_.isNaN(val1)) return '';
             if(_.isNaN(val2)) return Math.round(val1*1000000)/1000000;;
-            return Math.round((val1/val2)*1000000)/1000000;
+            return formulas.resolveFloat(Math.round((val1/val2)*1000000)/1000000);
         };
         formulas.percentageBase=function(args,data){
-            var base=parseFloat(formulas.extractKey(data,args.baseField));
+            var base=0;
+            if(args.baseType=="number") base=args.baseField;
+            else base=parseFloat(formulas.extractKey(data,args.baseField) || args.baseFiled);
             var percentage=parseFloat(formulas.extractKey(data,args.percentage));
             if(_.isNaN(percentage)) return 0;
-            return base/(1+(percentage/100));
+            return formulas.resolveFloat(base/(1+(percentage/100)));
         };
         formulas.percentageAdded=function(args,data){
-            var base=parseFloat(formulas.extractKey(data,args.baseField));
+            var base=0;
+            if(args.baseType=="number") base=args.baseField;
+            else base=parseFloat(formulas.extractKey(data,args.baseField) || args.baseFiled);
             var percentage=parseFloat(formulas.extractKey(data,args.percentage));
             if(_.isNaN(percentage)) return 0;
-            return base*(1+(percentage/100));
+            return formulas.resolveFloat(base*(1+(percentage/100)));
         };
+
         formulas.diffFields=function(args,data){
             var val1=parseFloat(formulas.extractKey(data,args.val1));
             var val2=parseFloat(formulas.extractKey(data,args.val2));
             if(_.isNaN(val1)) return 0;
             if(_.isNaN(val2)) return val1;
-            return val1-val2;
+            return formulas.resolveFloat(val1-val2);
         };
         formulas.percentage=function(args,data){
-            var base=parseFloat(formulas.extractKey(data,args.base));
+            var base=0;
+            if(args.baseType=="number") base=args.base;
+            else base=parseFloat(formulas.extractKey(data,args.base));
             var percentage=parseFloat(formulas.extractKey(data,args.percentage));
             if(_.isNaN(percentage)) return 0;
-            return base*(percentage/100);
+            return formulas.resolveFloat(base*(percentage/100));
+        };
+        formulas.rabat=function(args,data){
+            var base=parseFloat(formulas.extractKey(data,args.base));
+            var percentage=parseFloat(formulas.extractKey(data,args.percentage));
+            if(_.isNaN(percentage)) return base;
+            return formulas.resolveFloat(base*(1-percentage/100));
+        };
+        formulas.rabatBase=function(args,data){
+            var base=parseFloat(formulas.extractKey(data,args.base));
+            var percentage=parseFloat(formulas.extractKey(data,args.percentage));
+            if(_.isNaN(percentage)) return base;
+            return formulas.resolveFloat(base/(1-percentage/100));
         };
         formulas.calculate = function callculate(args,data) {
 

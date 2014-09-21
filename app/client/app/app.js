@@ -59,10 +59,10 @@ define([
                     url: '/dashboard',
                     views: {
                         headerView: {
-                            template: '<h3>Dashboard</h3>'
+                            template: '<div class="signin-header">Dashboard</div>'
                         },
                         contentView: {
-                            template:'<div>dashboard</div>'
+                            templateUrl:'app/pages/dashboard/dashboard.html'
                         }
                     }
                 }).state('login', {
@@ -141,7 +141,7 @@ define([
                     abstract: true,
                     views: {
                         headerView: {
-                            template: '<div><div class="btn" ui-sref="retail.start"><i class="fa fa-angle-left"></i> </div> Calculations</div>'
+                            template: '<div><div class="btn" ui-sref="retail.start"><i class="fa fa-angle-left"></i> </div> Retail</div>'
                         },
                         contentView: {
                             templateUrl: 'app/pages/retail/retail.html'
