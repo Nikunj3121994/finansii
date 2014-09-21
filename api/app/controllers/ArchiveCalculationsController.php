@@ -53,6 +53,14 @@ class ArchiveCalculationsController extends \BaseController
                     DB::raw('(case when rabat>0 then sum(quantity*(price_input1*(rabat/100))) else 0 end) as rabat'),
                     DB::raw('sum(quantity*margin) as margin'))->get();
 
+            $currentCalculation=CalculationHeader::find(Input::get('calculationHeaderId'));
+            $order=new Order();
+            $order->order_type=669;
+            $order->order_number=$currentCalculation->calculation_number;
+            $order->order_date=$currentCalculation->calculation_date;
+            $order->order_booking=$currentCalculation->calculation_booked;
+            $order->company_code=$currentCalculation->partner_code;
+            $order->save();
 
 
             CalculationDetail::where('calculation_header_id', '=', Input::get('calculationHeaderId'))->delete();
