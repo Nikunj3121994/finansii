@@ -2,42 +2,49 @@ define([
     'angularCache',
 
     'sections/header/Header',
-    'sections/navigation/Navigation',
     'sections/toaster/toaster-services',
 
     'global/translate/Translate',
 
+    'pages/dashboard/dashboard',
+    'pages/finance/finance',
     'pages/finance/orders/orders',
     'pages/finance/reports/report-page',
-    'pages/retail/reports/report-page',
-    'pages/finance/resources/resources',
-    'pages/retail/resources/resources',
+    'pages/finance//resources/resources',
+    'pages/retail/retail',
     'pages/retail/calculations/calculations',
+    'pages/retail/reports/report-page',
+    'pages/retail/resources/resources',
     'pages/signin/signin',
 
     'forms/grid/grid',
     'forms/summary/summary',
     'forms/inputs/custom-dependency-input',
 
-    'reports/reports'
+    'reports/reports',
+
+    'services/navigation-service'
 ], function () {
     var app = angular.module('app',
         [
             'angular-data.DSCacheFactory',
             'ui.router',
 
-            'app.header',
-            'app.navigation',
-            'app.toaster',
+            'app.sections.header',
+            'app.sections.toaster',
 
             'app.global.translate',
 
-            'app.pages.orders',
+            'app.pages.dashboard',
+            'app.pages.finance',
+            'app.pages.finance.orders',
             'app.pages.finance.reports',
+            'app.pages.finance.resources',
+
+            'app.pages.retail',
+            'app.pages.retail.calculations',
             'app.pages.retail.reports',
-            'app.pages.resources',
-            'app.pages.resources.retail',
-            'app.pages.calculations',
+            'app.pages.retail.resources',
             'app.pages.login',
 
             'app.forms.grid',
@@ -45,7 +52,9 @@ define([
             'app.forms.inputs.dependency',
 
 
-            'app.reports'
+            'app.reports',
+
+            'app.services.navigation'
         ])
         .config([
             '$httpProvider','$stateProvider', '$urlRouterProvider', function ($httpProvider,$stateProvider, $urlRouter) {
@@ -59,7 +68,7 @@ define([
                     url: '/dashboard',
                     views: {
                         headerView: {
-                            template: '<div class="signin-header">Dashboard</div>'
+                            template: '<div data-custom-header></div>'
                         },
                         contentView: {
                             templateUrl:'app/pages/dashboard/dashboard.html'
@@ -76,46 +85,6 @@ define([
                             controller:'loginController'
                         }
                     }
-                }).state('finance', {
-                    url: '/finance',
-                    abstract: true,
-                    views: {
-                        headerView: {
-                            template: '<div><div class="btn" ui-sref="finance.start"><i class="fa fa-angle-left"></i> </div> Finance</div>'
-                        },
-                        contentView: {
-                            templateUrl: 'app/pages/finance/finance.html'
-                        }
-                    }
-                }).state('finance.start', {
-                    url: '',
-                    templateUrl: 'app/pages/finance/finance.html'
-                }).state('finance.resources',{
-                    url:'/resources',
-                    template:'<div resources-page></div>'
-                }).state('finance.resources.resource',{
-                    url:'/:resource',
-                    template:'<custom-grid grid-resource="{{resource}}"></custom-grid>',
-
-                    controller:function($scope,$stateParams){
-                        $scope.resource=$stateParams.resource;
-                    }
-                }).state('finance.orders',{
-                    url:'/orders',
-                    templateUrl:'app/pages/finance/orders/orders.html'
-                }).state('finance.orders.ledgers',{
-                    url:'/:companyCode/:orderId',
-                    template:'<custom-grid grid-resource="ledgers" grid-params="params"></custom-grid>',
-
-                    controller:function($scope,$stateParams){
-                        $scope.params={
-                            order_id:$stateParams.orderId,
-                            company_code:$stateParams.companyCode
-                        };
-                    }
-                }).state('finance.reports',{
-                    url:'/reports',
-                    templateUrl:'app/pages/finance/reports/reports.html'
                 }).state('404', {
                     url: '/404',
                     views: {
@@ -136,46 +105,7 @@ define([
                             templateUrl: 'app/pages/user/signin.html'
                         }
                     }
-                }).state('retail', {
-                    url: '/retail',
-                    abstract: true,
-                    views: {
-                        headerView: {
-                            template: '<div><div class="btn" ui-sref="retail.start"><i class="fa fa-angle-left"></i> </div> Retail</div>'
-                        },
-                        contentView: {
-                            templateUrl: 'app/pages/retail/retail.html'
-                        }
-                    }
-                }).state('retail.start', {
-                    url: '',
-                    templateUrl: 'app/pages/retail/retail.html'
-                }).state('retail.resources',{
-                    url:'/resources',
-                    template:'<div resources-calculations-page></div>'
-                }).state('retail.resources.resource',{
-                    url:'/:resource',
-                    template:'<custom-grid grid-resource="{{resource}}"></custom-grid>',
-
-                    controller:function($scope,$stateParams){
-                        $scope.resource=$stateParams.resource;
-                    }
-                }).state('retail.calculationHeader',{
-                    url:'/calculations',
-                    templateUrl:'app/pages/retail/calculations/calculations.html'
-                }).state('retail.calculationHeader.calculations',{
-                    url:'/:calculationHeaderId',
-                    template:'<custom-grid grid-resource="calculation-details" grid-params="params"></custom-grid>',
-
-                    controller:function($scope,$stateParams){
-                        $scope.params={
-                            calculation_header_id:$stateParams.calculationHeaderId
-                        };
-                    }
-                }).state('retail.reports',{
-                    url:'/reports',
-                    templateUrl:'app/pages/retail/reports/reports.html'
-                });
+                })
             }
         ]).run(['$http', function ($http) {
             var token=localStorage.getItem('token');

@@ -1,6 +1,14 @@
 define([], function () {
 
     var module = angular.module('app.pages.login', []);
+    module.run(function(navigationService){
+        var state={
+            label:'Sign in',
+            name:'login',
+            parent:null
+        }
+        navigationService.addState(state,state.name,state.parent);
+    });
     module.controller('loginController',function($scope,loginService,$http,$state,$rootScope){
 
         $scope.login=function(){

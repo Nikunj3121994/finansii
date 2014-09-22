@@ -7,8 +7,20 @@ header {
   background:$header-background;
   font-size: 1.7em;
   color:#fff;
-  i{
-    font-size: 1.5em;
+
+  .navigate{
+    display: inline-block;
+    color: #fff;
+    font-size: 0.6em;
+    position: absolute;
+    top: 7px;
+    i{
+      font-size: 1.8em;
+    }
+  }
+  .state-label{
+    font-size: 1.6em;
+    text-align: center;
   }
 }
 

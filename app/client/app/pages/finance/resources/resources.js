@@ -1,7 +1,14 @@
 define([], function() {
 
-        var module=angular.module('app.pages.resources',[]);
-
+        var module=angular.module('app.pages.finance.resources',[]);
+        module.run(function(navigationService){
+            var state={
+                label:'Resources',
+                name:'finance.resources',
+                parent:'finance.start'
+            }
+            navigationService.addState(state,state.name,state.parent);
+        });
         module.controller('resourcesPageController',function($scope){
             $scope.selectedResource=-1;
         })

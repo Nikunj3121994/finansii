@@ -1,7 +1,20 @@
 define([], function () {
 
-    var module = angular.module('app.pages.calculations', []);
-
+    var module = angular.module('app.pages.retail.calculations', []);
+    module.run(function(navigationService){
+        var state={
+            label:'Calculations',
+            name:'retail.calculationHeader',
+            parent:'retail.start'
+        };
+        navigationService.addState(state,state.name,state.parent);
+        var state={
+            label:'Calculations Edit',
+            name:'retail.calculationHeader.calculations',
+            parent:'retail.calculationHeader'
+        };
+        navigationService.addState(state,state.name,state.parent);
+    });
     module.controller('calculationsController',function ($scope, calculationService,$state,$filter,toasterService) {
         $scope.defaultOptions = {
             permissions: {
@@ -32,11 +45,12 @@ define([], function () {
             calculationData.calculation_booked=$filter('date')($scope.calculationHeaderData.calculation_booked,"yyyy-MM-dd HH:mm:ss");
             calculationData.company_code=$scope.calculationHeaderData;
             if($scope.orderId!=null){
-                calculationService.editCalculation(calculationData,$scope.calculationId).then(function(data){
+                calculationService.editCalculation(calculationData,$scope.calculationHeaderId).then(function(data){
                     $scope.currentCalculationHeader= $scope.calculationHeaderData;
                 });
             } else calculationService.saveCalculation(calculationData).then(function(data){
                     $scope.calculations.unshift($scope.calculationHeaderData);
+                    $scope.currentCalculationHeader=$scope.calculationHeaderData;
                     $state.go('retail.calculationHeader.calculations',{calculationHeaderId:data.id});
 
                 });
@@ -53,22 +67,30 @@ define([], function () {
            }
            return null;
         }
+        function removeResourceById(id){
+            for(var i=0;i<$scope.calculations.length;i++){
+                if($scope.calculations[i].id==id) { $scope.calculations.splice(i,1); return null;}
+            }
+            return null;
+        }
         if($state.params.calculationHeaderId){
             $scope.$watch('calculations',function(){
                 if(_.isUndefined($scope.calculations)) return;
-                $scope.calculationHeaderData=findResourceById($state.params.calculationHeaderId);
-                $scope.calculationID=$scope.calculationHeaderData.id;
+                $scope.currentCalculationHeader=findResourceById($state.params.calculationHeaderId);
             });
 
         }
         $scope.newCalculation=function(){
-            $state.go('retail.calculation');
+            $state.go('retail.calculationHeader');
             $scope.calculationHeaderData={};
             $scope.calculationHeaderId=null;
+            $scope.currentCalculationHeader=undefined;
         }
         $scope.archiveCalculation=function(){
             calculationService.archiveCalculation($scope.calculationHeaderId).then(function(data){
                 if(data.code==0){
+                    removeResourceById($scope.calculationHeaderId);
+                    $scope.calculationHeaderId=null;
                     $scope.calculationHeaderData={};
                     $state.go('retail.calculationHeader');
                 } else{

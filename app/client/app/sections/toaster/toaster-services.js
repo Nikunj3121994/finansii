@@ -1,6 +1,6 @@
 define([], function() {
 
-    var module=angular.module('app.toaster',[]);
+    var module=angular.module('app.sections.toaster',[]);
     module.factory('toasterService',function(){
         var toaster={};
         toaster.container=$('.toaster-container');

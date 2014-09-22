@@ -1,6 +1,13 @@
 define([], function () {
     var module = angular.module('app.pages.retail.reports', []);
-
+    module.run(function(navigationService){
+        var state={
+            label:'Reports',
+            name:'retail.reports',
+            parent:'retail.start'
+        }
+        navigationService.addState(state,state.name,state.parent);
+    });
     module.controller('reportsRetailController', ['$scope', 'reportService', '$compile', '$filter', 'toasterService'
         , function ($scope, reportService, $compile, $filter, toasterService) {
             $scope.reports = [

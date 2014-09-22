@@ -35,6 +35,7 @@ Route::post('auth', 'Tappleby\AuthToken\AuthTokenController@store');
 Route::delete('auth', 'Tappleby\AuthToken\AuthTokenController@destroy');
 
 
+
 Route::group(array('before'=>'auth.token'),function(){
     /**
      * Route resources
@@ -70,4 +71,5 @@ Route::group(array('before'=>'auth.token'),function(){
      * Restful controllers
      */
     Route::controller('reports', 'ReportsController');
+    Route::controller('reports-retail', 'ReportsRetailController');
 });

@@ -1,7 +1,20 @@
 define([], function () {
 
-    var module = angular.module('app.pages.orders', []);
-
+    var module = angular.module('app.pages.finance.orders', []);
+    module.run(function(navigationService){
+        var state={
+            label:'Orders',
+            name:'finance.orders',
+            parent:'finance.start'
+        }
+        navigationService.addState(state,state.name,state.parent);
+        var state={
+            label:'Order edit',
+            name:'finance.orders.ledgers',
+            parent:'finance.orders'
+        }
+        navigationService.addState(state,state.name,state.parent);
+    });
     module.controller('ordersController',function ($scope, ordersService,$state,$filter,toasterService) {
         $scope.defaultOptions = {
             permissions: {
@@ -46,11 +59,18 @@ define([], function () {
            }
            return null;
         }
+        function removeResourceById(id){
+            console.log(id);
+            for(var i=0;i<$scope.orders.length;i++){
+                if($scope.orders[i].id==id) {console.log('sdfdsf'); $scope.orders.splice(i,1); return null;}
+            }
+            return null;
+        }
         if($state.params.orderId){
             $scope.$watch('orders',function(){
                 if(_.isUndefined($scope.orders)) return;
-                $scope.orderData=findResourceById($state.params.orderId);
-                $scope.orderId=$scope.orderData.id;
+                $scope.currentOrder=findResourceById($state.params.orderId);
+
             });
 
         }
@@ -63,6 +83,9 @@ define([], function () {
             ordersService.archiveOrder($scope.orderData.id,$scope.orderData.companies.company_code).then(function(data){
                if(data.code==0){
                    $scope.orderData={};
+                   $scope.currentOrder=undefined;
+                   removeResourceById($scope.orderId);
+                   $scope.orderId=null;
                    $state.go('finance.orders');
                } else{
                    toasterService.setError(data.msg);

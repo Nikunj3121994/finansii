@@ -8,4 +8,7 @@ class Order extends \Eloquent {
     public function companies(){
         return $this->belongsTo('Company','company_code','company_code');
     }
+    public function ledgers(){
+        return $this->hasMany('Ledger','order_id','id');
+    }
 }

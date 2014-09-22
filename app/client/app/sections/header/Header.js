@@ -1,10 +1,11 @@
 define([
-    'sections/header/HeaderDirectives',
-    'sections/header/HeaderControllers'
+    'sections/header/HeaderControllers',
+
 ], function () {
-    var module = angular.module('app.header', [
-        'app.header.directives',
-        'app.header.controllers'
+    var module = angular.module('app.sections.header', [
+
+        'app.sections.header.controllers',
+
     ])
     return module;
 });
