@@ -8,6 +8,12 @@ define([], function() {
                 parent:'retail.start'
             }
             navigationService.addState(state,state.name,state.parent);
+            state={
+                label:'Resources',
+                name:'retail.resources.resource',
+                parent:'retail.start'
+            }
+            navigationService.addState(state,state.name,state.parent);
         });
         module.controller('resourcesCalculationsPageController',function($scope){
             $scope.selectedResource=-1;

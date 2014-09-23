@@ -545,7 +545,7 @@
                 'name'=>'currency_code',
                 'label'=>'Currency',
                 'visible'=>1,
-                'type'=>'autocomplete',
+                'type'=>'dropdown',
                 'required'=>1,
                 'edit'=>1
             ));
@@ -669,7 +669,7 @@
                 'name'=>'currency_code',
                 'label'=>'Currency',
                 'visible'=>1,
-                'type'=>'autocomplete',
+                'type'=>'dropdown',
                 'required'=>1,
                 'edit'=>1
             ));

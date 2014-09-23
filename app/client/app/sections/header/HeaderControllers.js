@@ -1,7 +1,7 @@
 define([], function() {
     var module = angular.module('app.sections.header.controllers', []);
 
-    module.controller('headerController',function ($scope,$rootScope,$state,navigationService) {
+    module.controller('headerController',function ($scope,$rootScope,$state,navigationService,loginService) {
             $scope.state=navigationService.findState($state.current.name,navigationService.path);
             if($scope.state.parent!=null){
                 $scope.parent=navigationService.findState($scope.state.parent,navigationService.path);
@@ -14,7 +14,13 @@ define([], function() {
             });
             $scope.navigate=function(parent){
                 $state.go(parent);
-            }
+            };
+            $scope.logout=function(){
+                loginService.logout().then(function(data){
+                   $state.go('login');
+                });
+            };
+
     });
     module.directive('customHeader', function () {
         return {

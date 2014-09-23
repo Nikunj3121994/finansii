@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
         Eloquent::unguard();
 
 		$this->call('ConfigSeeder');
+        return;
         $this->call('UserTableSeeder');
 
         DB::table('streets')->delete();

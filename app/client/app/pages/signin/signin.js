@@ -50,9 +50,35 @@ define([], function () {
 
            return deferred.promise;
        };
-       this.checkLogin=function(){
+       this.logout=function(){
+           $('.loading-animation').fadeIn();
+           var deferred = $q.defer();
+           var url="http://localhost/finansii/api/public/auth";
+           $http({
+               url: url,
+               method: "DELETE"
+           })
+               .success(function (data) {
+                   console.log(data);
+                   if(data.code==405){
+                       toasterService.setWarning(data.msg);
+                       deferred.reject(data);
+                   }else{
+                       toasterService.setSuccess('Succesful login');
+                       deferred.resolve(data);
+                   }
 
-       }
+                   $('.loading-animation').fadeOut();
+
+               })
+               .error(function (data) {
+                   toasterService.setError('Error getting resource');
+                   $('.loading-animation').fadeOut();
+                   deferred.reject("There was and error.");
+               });
+
+           return deferred.promise;
+       };
         return this;
     });
 });

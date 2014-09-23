@@ -67,7 +67,7 @@ class LedgersController extends \BaseController {
         $validator = Validator::make(Input::all(), array(
             "company_code" => "required|numeric",
             "order_id" => "required|numeric",
-            "sub_account" => "required|numeric",
+            "account" => "required|numeric",
             "booking_type" => "required|numeric",
             "amount" => "required|numeric",
             "currency_code"=>"required|numeric"

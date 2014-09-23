@@ -29,7 +29,10 @@
     "angular-ui-router": "latest",
     "angular-ui-utils": "latest",
     "jspdf": "latest",
-    "react": "latest"
+    "react": "latest",
+    "angular-ui-select":"latest",
+    "selectize":"#~0.8.5",
+    "angular-sanitize":"latest"
   },
   "devDependencies": {
     "metro-ui-css": "~2.0.23"

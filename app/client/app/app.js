@@ -20,6 +20,7 @@ define([
     'forms/grid/grid',
     'forms/summary/summary',
     'forms/inputs/custom-dependency-input',
+    'forms/inputs/custom-dropdown',
 
     'reports/reports',
 
@@ -50,6 +51,7 @@ define([
             'app.forms.grid',
             'app.forms.summary',
             'app.forms.inputs.dependency',
+            'app.forms.inputs.dropdown',
 
 
             'app.reports',
@@ -57,7 +59,10 @@ define([
             'app.services.navigation'
         ])
         .config([
-            '$httpProvider','$stateProvider', '$urlRouterProvider', function ($httpProvider,$stateProvider, $urlRouter) {
+            '$httpProvider','$stateProvider', '$urlRouterProvider','uiSelectConfig', function ($httpProvider,$stateProvider, $urlRouter,uiSelectConfig) {
+
+
+                uiSelectConfig.theme = 'selectize';
 
                 $httpProvider.interceptors.push('httpRequestInterceptor');
                 $urlRouter.when('', '/dashboard');

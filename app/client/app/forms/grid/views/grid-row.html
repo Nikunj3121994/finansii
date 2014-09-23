@@ -11,6 +11,7 @@
     <span ng-switch-when="number">{{row[element]}}</span>
     <span ng-switch-when="dependency">{{row[element]|number}}</span>
     <span ng-switch-when="autocomplete">{{row[config[element].resource][config[element].field]}}</span>
+    <span ng-switch-when="dropdown">{{row[config[element].resource][config[element].field]}}</span>
     <span ng-switch-when="date">{{row[element]|customDate:'dd.MM.yyyy'}}</span>
 </div>
 

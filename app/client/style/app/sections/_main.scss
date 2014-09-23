@@ -54,6 +54,20 @@ section.main-container{
       .table-input{
         display: table-cell;
         padding: 0;
+        vertical-align: top;
+        .selectize-control.single .selectize-input{
+          padding: 7px;
+          border-radius: 0;
+          background: none;
+        }
+        .selectize-dropdown{
+          top:34px;
+          border-radius: 0;
+        }
+        .selectize-dropdown .active {
+          color: #FFFFFF;
+          background-color: #67BEF3;
+        }
       }
       .table-head{
         display: table-cell;

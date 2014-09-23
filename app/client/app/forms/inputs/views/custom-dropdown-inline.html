@@ -1,0 +1,10 @@
+<div>
+    <div class="input-control text" >
+        <ui-select ng-model="$parent.inputModel" style="height: 34px;"  ng-disabled="dependencyValid()">
+            <ui-select-match placeholder="{{inputLabel}}">{{$select.selected[field]}}</ui-select-match>
+            <ui-select-choices repeat="item in dropdown.data | filter: $select.search">
+                <span ng-bind-html="trustAsHtml((item[field] | highlight: $select.search))"></span>
+            </ui-select-choices>
+        </ui-select>
+    </div>
+</div>

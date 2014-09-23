@@ -140,10 +140,10 @@ define([], function () {
                 var postRequestData = {};
                 var formData = _.clone($scope.formData);
                 _($scope.config.order).each(function (column) {
-                    if ($scope.config[column].type == "autocomplete") {
+                    if ($scope.config[column].type == "autocomplete" || $scope.config[column].type == "dropdown") {
                         if($scope.config[column].referencedColumn)
                             postRequestData[column] = $scope.formData[$scope.config[column].resource][$scope.config[column].referencedColumn];
-                        else postRequestData[column] = $scope.formData[$scope.config[column].resource].id
+                        else postRequestData[column] = $scope.formData[$scope.config[column].resource].id;
                     } else if($scope.config[column].type == "date"){
                         postRequestData[column] =$filter('date')(formData[column],"yyyy-MM-dd HH:mm:ss");
                     } else postRequestData[column] =formData[column];
@@ -170,7 +170,7 @@ define([], function () {
             var postRequestData = {};
             var formData = _.clone($scope.formData);
             _($scope.config.order).each(function (column) {
-                if ($scope.config[column].type == "autocomplete") {
+                if ($scope.config[column].type == "autocomplete" || $scope.config[column].type=="dropdown") {
                     if($scope.config[column].referencedColumn)
                         postRequestData[column] = $scope.formData[$scope.config[column].resource][$scope.config[column].referencedColumn];
                     else postRequestData[column] = $scope.formData[$scope.config[column].resource].id

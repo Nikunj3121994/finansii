@@ -36,7 +36,7 @@ define([
                     return true;
                 }
                 return false;
-            }
+            };
             $scope.getAutoCompleteData=function(val){
                 var extraParams={};
 

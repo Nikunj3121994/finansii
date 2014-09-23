@@ -267,6 +267,14 @@ define([
                                     tempInput.attr('data-dependency-model','formData["'+tplData.dependencyModel+'"]');
                                     tempInput.attr('data-dependency-field',tplData.dependencyField);
                                 }
+                            } else if (tplData.type == "dropdown") {
+                                tempInput = $('<input data-custom-dropdown-inline>');
+                                tempInput.attr('data-resource',tplData.resource);
+                                tempInput.attr('data-field',tplData.field);
+                                if(!_.isUndefined(tplData.dependencyModel)){
+                                    tempInput.attr('data-dependency-model','formData["'+tplData.dependencyModel+'"]');
+                                    tempInput.attr('data-dependency-field',tplData.dependencyField);
+                                }
                             }else if (tplData.type == "dependency") {
                                 tempInput = $('<input data-custom-dependency-inline>');
                                 tempInput.attr('form-data', 'formData');
@@ -275,7 +283,7 @@ define([
                             }
                         tempInput.attr('input-name', tplData.name);
                         tempInput.attr('input-label', tplData.label);
-                        if (tplData.type == "autocomplete") {
+                        if (tplData.type == "autocomplete" || tplData.type == "dropdown") {
                             tempInput.attr('input-model','formData["'+tplData.resource+'"]');
                         }else{
                             tempInput.attr('input-model', 'formData["'+tplData.name+'"]');
