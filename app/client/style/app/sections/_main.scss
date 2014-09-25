@@ -130,3 +130,7 @@ section.main-container{
   from  { -webkit-transform: rotate(0deg);}
   to { -webkit-transform: rotate(360deg);}
 }
+
+body.metro div, body.metro span, body.metro p{
+   font-family: 'Open Sans', sans-serif;;
+}

@@ -133,7 +133,7 @@
             )));
             $bankForm->fields()->save(new Field(array(
                 'name'=>'bank_account',
-                'label'=>'Account',
+                'label'=>'Bank account',
                 'visible'=>1,
                 'type'=>'number',
                 'required'=>0,
@@ -855,7 +855,7 @@
             )));
             $businessUnitsTable->fields()->save(new Field(array(
                 'name'=>'business_unit_account',
-                'label'=>'Account',
+                'label'=>'Bank account',
                 'visible'=>1,
                 'type'=>'text',
                 'required'=>1,

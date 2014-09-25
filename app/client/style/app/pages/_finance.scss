@@ -4,10 +4,13 @@
     .shortcut{
       width:200px;
       height:200px;
-      font-size:30px;
+      font-size:25px;
       padding: 10px;
       text-align: center;
       margin:30px;
+      span{
+        font-weight: 300;
+      }
       i{
         font-size: 40px;
         padding: 10px;

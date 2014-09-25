@@ -5,14 +5,14 @@
     <div class="col-lg-6">
        <form name="orderForm" class="orders-form" novalidate>
            <input custom-auto-complete input-model="orderData['companies']" input-name="company_code" resource="companies"
-                  field="company_name" input-label="Компанија" input-required="1">
-           <input custom-spinner input-model="orderData['order_type']" input-name="order_type" input-label="Тип на налог" input-required="1">
-           <input custom-input input-model="orderData['order_number']" input-name="order_number" input-label="Број на налог" input-required="1">
-           <input custom-date input-model="orderData['order_date']" input-name="order_date" input-label="Датум" input-required="1">
+                  field="company_name" input-label="{{'Company'|translate}}" input-required="1">
+           <input custom-spinner input-model="orderData['order_type']" input-name="order_type" input-label="{{'Order type'|translate}}" input-required="1">
+           <input custom-input input-model="orderData['order_number']" input-name="order_number" input-label="{{'Order number'|translate}}" input-required="1">
+           <input custom-date input-model="orderData['order_date']" input-name="order_date" input-label="{{'Date'|translate}}" input-required="1">
 
-           <button class="info" data-ng-disabled="orderForm.$invalid" ng-click="saveData()">Submit</button>
-           <button class="success"  ng-click="newOrder()">New</button>
-           <button class="warning"  ng-click="archiveOrder()">Archive order</button>
+           <button class="info" data-ng-disabled="orderForm.$invalid" ng-click="saveData()" translate>Submit</button>
+           <button class="success"  ng-click="newOrder()" translate>New order</button>
+           <button class="warning"  ng-click="archiveOrder()" translate>Archive order</button>
        </form>
 
     </div>

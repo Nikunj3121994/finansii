@@ -21,34 +21,31 @@ define([], function() {
         module.directive('resourcesPage',function(){
             function link($scope){
                     $scope.resources=[{
-                        name:'Места',
+                        name:'Settlements',
                         resource:'settlements'
                     },{
-                        name:'Општини',
+                        name:'Municipalities',
                         resource:'municipalities'
                     },{
-                        name:'Улици',
+                        name:'Streets',
                         resource:'streets'
                     },{
-                        name:'Банки',
+                        name:'Banks',
                         resource:'banks'
                     },{
-                        name:'Оператори',
-                        resource:'operators'
-                    },{
-                        name:'Компании',
+                        name:'Companies',
                         resource:'companies'
                     },{
-                        name:'Под конта',
+                        name:'Sub accounts',
                         resource:'sub_accounts'
                     },{
-                        name:'Конта',
+                        name:'Accounts',
                         resource:'accounts'
                     },{
-                        name:'Курс',
+                        name:'Currencies',
                         resource:'currencies'
                     },{
-                        name:'Курсни листи',
+                        name:'Exchange rates',
                         resource:'exchange_rates'
                     }]
             }

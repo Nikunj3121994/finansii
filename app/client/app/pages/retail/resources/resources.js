@@ -21,37 +21,37 @@ define([], function() {
         module.directive('resourcesCalculationsPage',function(){
             function link($scope){
                     $scope.resources=[{
-                        name:'Компании',
+                        name:'Companies',
                         resource:'companies'
                     },{
-                        name:'Тарифи',
+                        name:'Tariffs',
                         resource:'tariffs'
                     },{
-                        name:'Единици мерки',
+                        name:'Units',
                         resource:'units'
                     },{
-                        name:'Артикли',
+                        name:'Articles',
                         resource:'articles'
                     },{
-                        name:'Тип калкулација',
+                        name:'Calculation types',
                         resource:'calculation_types'
                     },{
-                        name:'Бизнис единици',
+                        name:'Business units',
                         resource:'business_units'
                     },{
-                        name:'Партнери',
+                        name:'Partners',
                         resource:'partners'
                      },{
-                        name:'Места',
+                        name:'Settlements',
                         resource:'settlements'
                     },{
-                        name:'Општини',
+                        name:'Municipalities',
                         resource:'municipalities'
                     },{
-                        name:'Улици',
+                        name:'Streets',
                         resource:'streets'
                     },{
-                        name:'Банки',
+                        name:'Banks',
                         resource:'banks'
 
                     }]

@@ -1,8 +1,8 @@
 <div>
     <div class="navigate" ng-if="parent" ng-click="navigate(parent.name)">
         <div class="btn"><i class="fa fa-angle-left"></i> </div>
-        <span>{{parent.label}}</span>
+        <span>{{parent.label|translate}}</span>
     </div>
-    <div class="state-label">{{state.label}}</div>
-    <div class="logout" ng-click="logout()"><div>Logout</div><i class="fa fa-power-off"></i></div>
+    <div class="state-label">{{state.label|translate}}</div>
+    <div class="logout" ng-click="logout()"><div translate>Logout</div><i class="fa fa-power-off"></i></div>
 </div>
