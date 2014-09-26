@@ -169,12 +169,12 @@ define([
                         for (var i = 0; i < fields.length; ++i) {
                             if(fields[i].type=="group"){
                                 gridHeader.find('tr:nth-child('+(numLevels-level+1)+')')
-                                    .append('<th colspan="'+fields[i].fields.length+'">'+fields[i].label+'</th>');
+                                    .append('<th colspan="'+fields[i].fields.length+'">'+$filter('translate')(fields[i].label)+'</th>');
                                 appendToHeader(fields[i].fields,level-1,numLevels);
                             }
                             else {
                                 gridHeader.find('tr:nth-child('+(numLevels-level+1)+')')
-                                .append('<th rowspan="'+level+'">'+fields[i].label+'</th>');
+                                .append('<th rowspan="'+level+'">'+$filter('translate')(fields[i].label)+'</th>');
                                 config.fieldsOrder.push({name:fields[i].name,format:fields[i].format || null});
                             }
                         }

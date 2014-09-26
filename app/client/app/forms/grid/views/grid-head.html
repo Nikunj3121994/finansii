@@ -10,7 +10,7 @@
 
 
     <div class="table-head" ng-repeat="element in config.order" ng-click="orderColumn(element)" bindonce ng-show="config[element].visible==1">
-        <span>{{config[element].label}}</span>
+        <span>{{config[element].label|translate}}</span>
         <span ng-class="{true: 'glyphicon-chevron-up', false: 'glyphicon-chevron-down'}[$parent.gridOrder.reverse]" class="glyphicon pull-right"
               ng-show="$parent.gridOrder.orderColumn==$index">
         </span>

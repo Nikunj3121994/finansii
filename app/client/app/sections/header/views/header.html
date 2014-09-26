@@ -4,5 +4,14 @@
         <span>{{parent.label|translate}}</span>
     </div>
     <div class="state-label">{{state.label|translate}}</div>
+    <div class="languages">
+        <span class="current-language">{{selectedlanguage.name}}<i class="fa fa-angle-down"></i></span>
+        <div class="language-dropdown">
+            <div class="arrow-up"></div>
+            <div class="language" ng-repeat="language in languages" ng-click="setLanguage(language)">
+                {{language.name}}-{{language.label}}
+            </div>
+        </div>
+    </div>
     <div class="logout" ng-click="logout()"><div translate>Logout</div><i class="fa fa-power-off"></i></div>
 </div>
