@@ -2,19 +2,13 @@
 
 class Order extends \Eloquent {
 	protected $fillable = array('order_type','order_number','order_date','order_booking','company_code');
-    public function __call($method, $parameters)
-    {
-        $return = parent::__call($method, $parameters);
+    public function scopeApp($query){
         $user=Auth::getUser();
-        if($method == 'query') {
-            $tableName=(new self)->getTable();
-            $return->join('applications',function($join) use ($user,$tableName){
-                $join->on($tableName.".user",'=','user.id');
-                $join->where('user.application', '=', $user->application);
-                $join->select('user.id','user.application');
-            });
-        }
-        return $return;
+        $tableName=(new self)->getTable();
+        return $query->join('users',function($join) use ($user,$tableName){
+            $join->on($tableName.".user",'=','users.id');
+            $join->where('users.application', '=', $user->application);
+        });
     }
     public function operators(){
         return $this->belongsTo('Operator','operator_id');

@@ -17,7 +17,7 @@ class LedgersController extends \BaseController {
 		if(Input::has('order_id')){
             $array=Ledger::with(array('accounts'=>function($query){
                     $query->with('subAccounts');
-                }))->where('order_id','=',Input::get('order_id'))->get();
+                }))->where('order_id','=',Input::get('order_id'))->app()->get();
             $output=array();
             foreach($array as $ledger){
 

@@ -10,7 +10,7 @@ class ArticlesController extends \BaseController {
 	 */
 	public function index()
 	{
-        return ProcessResponse::process(Article::with('tariffs')->with('units')->get());
+        return ProcessResponse::process(Article::with('tariffs')->with('units')->app()->get());
 	}
 
 	/**
@@ -57,7 +57,7 @@ class ArticlesController extends \BaseController {
 	 */
 	public function show($id)
 	{
-        return ProcessResponse::process(Article::find($id)->with('tariffs')->with('units')->first());
+        return ProcessResponse::process(Article::find($id)->with('tariffs')->with('units')->app()->first());
 	}
 
 	/**

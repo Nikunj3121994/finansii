@@ -10,9 +10,7 @@ class CompaniesController extends \BaseController {
 	 */
 	public function index()
 	{
-        $user=Auth::getUser();
-        $tableName=(new Company())->getTable();
-        return ProcessResponse::process(Company::with('municipalities')->with('settlements')->with('streets')->get()->toArray());
+        return ProcessResponse::process(Company::with('municipalities')->with('settlements')->with('streets')->app()->get()->toArray());
 	}
 
 	/**
@@ -63,7 +61,7 @@ class CompaniesController extends \BaseController {
 	public function show($id)
 	{
         return ProcessResponse::process(Company::find($id)->first()->with('municipalities')->
-            with('settlements')->with('streets')->get());
+            with('settlements')->with('streets')->app()->get());
 	}
 
 	/**

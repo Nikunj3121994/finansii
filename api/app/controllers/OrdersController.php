@@ -10,7 +10,7 @@ class OrdersController extends \BaseController {
 	 */
 	public function index()
 	{
-        return ProcessResponse::process(Order::with('companies')->where('archived','=',0)->get());
+        return ProcessResponse::process(Order::with('companies')->where('archived','=',0)->app()->get());
 	}
 
 	/**
@@ -57,7 +57,7 @@ class OrdersController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		return ProcessResponse::process(Order::find($id)->first()->get());
+		return ProcessResponse::process(Order::find($id)->app()->first());
 	}
 
 	/**

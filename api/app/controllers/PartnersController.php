@@ -10,7 +10,7 @@ class PartnersController extends \BaseController {
 	 */
 	public function index()
 	{
-        return ProcessResponse::process(Partner::with('municipalities')->with('settlements')->with('streets')->get());
+        return ProcessResponse::process(Partner::with('municipalities')->with('settlements')->with('streets')->app()->get());
 	}
 
 	/**
@@ -61,7 +61,7 @@ class PartnersController extends \BaseController {
 	public function show($id)
 	{
         return ProcessResponse::process(Partner::find($id)->first()->with('municipalities')->
-            with('settlements')->with('streets')->first());
+            with('settlements')->with('streets')->app()->first());
 	}
 
 	/**

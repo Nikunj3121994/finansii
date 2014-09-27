@@ -11,7 +11,7 @@ class CalculationHeadersController extends \BaseController {
 	public function index()
 	{
         return ProcessResponse::process(CalculationHeader::where('archived','!=',1)->with('businessUnits')
-            ->with('partners')->with('calculationTypes')->with('currencies')->get());
+            ->with('partners')->with('calculationTypes')->with('currencies')->app()->get());
 	}
 
 	/**
@@ -65,7 +65,7 @@ class CalculationHeadersController extends \BaseController {
 	 */
 	public function show($id)
 	{
-        return ProcessResponse::process(CalculationHeader::find($id)->with('businessUnits')->with('partners')->with('currencies')->first());
+        return ProcessResponse::process(CalculationHeader::find($id)->with('businessUnits')->with('partners')->with('currencies')->app()->first());
 	}
 
 	/**

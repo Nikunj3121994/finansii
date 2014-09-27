@@ -29,7 +29,8 @@ class ReportsController extends \BaseController
                 ->join('orders',function($join){
                     $join->on('orders.id','=','archive_ledgers.order_id');
                 })
-                ->select($columns);
+                ->select($columns)
+                ->app();
             if (Input::has('accountFrom')) $accounts['from'] = Input::get('accountFrom');
             if (Input::has('accountTo')) $accounts['to'] = Input::get('accountTo');
             if (Input::has('dateFrom')) {
@@ -77,7 +78,8 @@ class ReportsController extends \BaseController
                 })
                 ->select($columns)
                 ->orderBy('orders.order_number','archive_ledgers.booking_type', DB::raw('left(archive_ledgers.account,3)'))
-                ->groupBy('orders.order_number','archive_ledgers.booking_type',DB::raw('left(archive_ledgers.account,3)'));
+                ->groupBy('orders.order_number','archive_ledgers.booking_type',DB::raw('left(archive_ledgers.account,3)'))
+                ->app();
             if (Input::has('accountFrom')) $accounts['from'] = Input::get('accountFrom');
             if (Input::has('accountTo')) $accounts['to'] = Input::get('accountTo');
             if (Input::has('dateFrom')) {
@@ -137,7 +139,8 @@ class ReportsController extends \BaseController
                 })
                 ->select($columns)
                 ->orderBy('archive_ledgers.booking_type','grouping',DB::raw('left(archive_ledgers.account,3)'))
-                ->groupBy('archive_ledgers.booking_type','grouping',DB::raw('left(archive_ledgers.account,3)'));
+                ->groupBy('archive_ledgers.booking_type','grouping',DB::raw('left(archive_ledgers.account,3)'))
+                ->app();
             if (Input::has('accountFrom')) $accounts['from'] = Input::get('accountFrom');
             if (Input::has('accountTo')) $accounts['to'] = Input::get('accountTo');
             if (Input::has('dateFrom')) {
@@ -194,7 +197,8 @@ class ReportsController extends \BaseController
                 })
                 ->select($columns)
                 ->orderBy('archive_ledgers.booking_type','grouping',DB::raw('archive_ledgers.account'))
-                ->groupBy('archive_ledgers.booking_type','grouping',DB::raw('archive_ledgers.account'));
+                ->groupBy('archive_ledgers.booking_type','grouping',DB::raw('archive_ledgers.account'))
+                ->app();
             if (Input::has('accountFrom')) $accounts['from'] = Input::get('accountFrom');
             if (Input::has('accountTo')) $accounts['to'] = Input::get('accountTo');
             if (Input::has('dateFrom')) {
@@ -248,7 +252,8 @@ class ReportsController extends \BaseController
                 })
                 ->select($columns)
                 ->orderBy('archive_ledgers.booking_type',DB::raw('archive_ledgers.account'))
-                ->groupBy('archive_ledgers.booking_type',DB::raw('archive_ledgers.account'));
+                ->groupBy('archive_ledgers.booking_type',DB::raw('archive_ledgers.account'))
+                ->app();
             if (Input::has('accountFrom')) $accounts['from'] = Input::get('accountFrom');
             if (Input::has('accountTo')) $accounts['to'] = Input::get('accountTo');
             if (Input::has('dateFrom')) {

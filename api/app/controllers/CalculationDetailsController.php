@@ -12,7 +12,7 @@ class CalculationDetailsController extends \BaseController {
 	{
 		If(Input::has('calculation_header_id')){
             return ProcessResponse::process(CalculationDetail::with('articles')
-                ->where('calculation_header_id','=',Input::get('calculation_header_id'))->get());
+                ->where('calculation_header_id','=',Input::get('calculation_header_id'))->app()->get());
 
         } else ProcessResponse::getError(1000,"Calculation header is required");
 	}
@@ -72,7 +72,7 @@ class CalculationDetailsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-        return ProcessResponse::process(CalculationDetail::find($id)->with('articles')->first());
+        return ProcessResponse::process(CalculationDetail::find($id)->with('articles')->app()->first());
 	}
 
 	/**

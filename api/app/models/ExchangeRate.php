@@ -2,19 +2,13 @@
 
 class ExchangeRate extends \Eloquent {
     protected $fillable = array('exchange_date','currency_code','currency_value');
-    public function __call($method, $parameters)
-    {
-        $return = parent::__call($method, $parameters);
+    public function scopeApp($query){
         $user=Auth::getUser();
-        if($method == 'query') {
-            $tableName=(new self)->getTable();
-            $return->join('applications',function($join) use ($user,$tableName){
-                $join->on($tableName.".user",'=','user.id');
-                $join->where('user.application', '=', $user->application);
-                $join->select('user.id','user.application');
-            });
-        }
-        return $return;
+        $tableName=(new self)->getTable();
+        return $query->join('users',function($join) use ($user,$tableName){
+            $join->on($tableName.".user",'=','users.id');
+            $join->where('users.application', '=', $user->application);
+        });
     }
     public function currencies(){
         return $this->belongsTo('Currency','currency_code','id');

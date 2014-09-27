@@ -10,7 +10,7 @@ class BusinessUnitsController extends \BaseController {
 	 */
 	public function index()
 	{
-        return ProcessResponse::process(BusinessUnit::with('companies')->get());
+        return ProcessResponse::process(BusinessUnit::with('companies')->app()->get());
 	}
 
 	/**
@@ -59,7 +59,7 @@ class BusinessUnitsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-        return ProcessResponse::process(BusinessUnit::find($id)->with('companies')->first());
+        return ProcessResponse::process(BusinessUnit::find($id)->with('companies')->app()->first());
 	}
 
 	/**
