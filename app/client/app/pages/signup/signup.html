@@ -1,0 +1,25 @@
+<div class="signin panel">
+    <div class="panel-body">
+        <fieldset>
+            <label>Company name</label>
+            <div class="input-control text" data-role="input-control">
+                <input type="text" placeholder="Company name" ng-model="registerModel.company_name">
+            </div>
+            <label>Email</label>
+            <div class="input-control text" data-role="input-control">
+                <input type="text" placeholder="Email" ng-model="registerModel.username">
+            </div>
+            <label>Password</label>
+            <div class="input-control password" data-role="input-control">
+                <input type="password" placeholder="Password" ng-model="registerModel.password">
+            </div>
+            <label>Repeat Password</label>
+            <div class="input-control password" data-role="input-control">
+                <input type="password" placeholder="Repeat Password" ng-model="registerModel.repeat_password">
+            </div>
+            <div>
+                <button class="info" ng-click="register()">Submit</button>
+            </div>
+        </fieldset>
+    </div>
+</div>

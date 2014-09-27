@@ -16,6 +16,7 @@ define([
     'pages/retail/reports/report-page',
     'pages/retail/resources/resources',
     'pages/signin/signin',
+    'pages/signup/signup',
 
     'forms/grid/grid',
     'forms/summary/summary',
@@ -47,6 +48,7 @@ define([
             'app.pages.retail.reports',
             'app.pages.retail.resources',
             'app.pages.login',
+            'app.pages.register',
 
             'app.forms.grid',
             'app.forms.summary',
@@ -88,6 +90,17 @@ define([
                         contentView: {
                             templateUrl:'app/pages/signin/signin.html',
                             controller:'loginController'
+                        }
+                    }
+                }).state('register', {
+                    url: '/register',
+                    views: {
+                        headerView: {
+                            template: '<div class="signin-header">Sign Up</div>'
+                        },
+                        contentView: {
+                            templateUrl:'app/pages/signup/signup.html',
+                            controller:'registerController'
                         }
                     }
                 }).state('404', {
