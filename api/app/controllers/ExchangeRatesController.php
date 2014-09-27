@@ -36,6 +36,8 @@ class ExchangeRatesController extends \BaseController {
 	 */
 	public function store()
 	{
+        Log::info('soos');
+        Log::info(json_encode(Input::all()));
         $validator = Validator::make(Input::all(), array(
             "exchange_date" => "required",
             "currency_code" => "required|numeric",

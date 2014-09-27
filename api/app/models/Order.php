@@ -1,7 +1,7 @@
 <?php
 
 class Order extends \Eloquent {
-	protected $fillable = array('order_type','order_number','order_date','order_booking','company_code');
+	protected $fillable = array('order_type','order_number','order_date','order_booking','company_code','user');
     public function scopeApp($query){
         $user=Auth::getUser();
         $tableName=(new self)->getTable();

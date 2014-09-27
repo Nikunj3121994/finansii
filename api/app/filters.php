@@ -101,3 +101,8 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+Route::filter('app', function()
+{
+    $user=Auth::user();
+    Input::merge(array('user'=>$user->id));
+});

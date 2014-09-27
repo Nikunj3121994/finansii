@@ -5,7 +5,7 @@ class Company extends \Eloquent {
         'company_code','company_name','company_short_name',
         'company_address','municipality_code','settlement_code',
         'street_code','telephone1','telephone2','fax','mail','owner',
-        'authorized','activity','id_number','tax_code','tax_payer'
+        'authorized','activity','id_number','tax_code','tax_payer','user'
     );
     public function scopeApp($query){
         $user=Auth::getUser();

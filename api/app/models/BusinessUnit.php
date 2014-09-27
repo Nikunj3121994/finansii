@@ -2,7 +2,7 @@
 
 class BusinessUnit extends \Eloquent {
 	protected $fillable = array('company_code','business_unit_code','business_unit_name',
-        'business_unit_type','business_unit_account','business_unit_address');
+        'business_unit_type','business_unit_account','business_unit_address','user');
     public function scopeApp($query){
         $user=Auth::getUser();
         $tableName=(new self)->getTable();

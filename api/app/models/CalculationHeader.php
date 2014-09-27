@@ -3,7 +3,7 @@
 class CalculationHeader extends \Eloquent {
 	protected $fillable = array('business_unit_id','calculation_number','document_number','partner_code',
                                     'calculation_date','calculation_ddo','calculation_booked','currency_code',
-                                        'currency_value','calculation_type_code');
+                                        'currency_value','calculation_type_code','user');
     public function scopeApp($query){
         $user=Auth::getUser();
         $tableName=(new self)->getTable();

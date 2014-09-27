@@ -1,7 +1,7 @@
 <?php
 
 class Article extends \Eloquent {
-	protected $fillable = array('article_name','tariff_code','unit_id','pack');
+	protected $fillable = array('article_name','tariff_code','unit_id','pack','user');
     public function scopeApp($query){
         $user=Auth::getUser();
         $tableName=(new self)->getTable();

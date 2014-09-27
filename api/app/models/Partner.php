@@ -3,7 +3,7 @@
 class Partner extends \Eloquent {
 	protected $fillable = array('partner_code','partner_name','partner_address','municipality_code',
                                     'settlement_code','street_code','telephone1','telephone2','fax',
-                                         'mail','owner','authorized','activity','id_number','tax_code','tax_payer');
+                                         'mail','owner','authorized','activity','id_number','tax_code','tax_payer','user');
     public function scopeApp($query){
         $user=Auth::getUser();
         $tableName=(new self)->getTable();
