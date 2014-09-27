@@ -29,7 +29,9 @@ class CreateCalculationHeadersTable extends Migration {
 			$table->decimal('currency_value', 12,6);
 			$table->integer('calculation_type_code')->unsigned()->index();
 			$table->foreign('calculation_type_code')->references('calculation_type_code')->on('calculation_types')->onDelete('cascade')->onUpdate('cascade');
-			$table->timestamps();
+            $table->integer('user')->unsigned()->index();
+            $table->foreign('user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamps();
 		});
 	}
 

@@ -22,7 +22,9 @@ class CreateOrdersTable extends Migration {
 			$table->timestamp('order_booking');
 			$table->integer('company_code')->unsigned()->index();
             $table->foreign('company_code')->references('company_code')->on('companies')->onDelete('cascade')->onUpdate('cascade');
-			$table->timestamps();
+            $table->integer('user')->unsigned()->index();
+            $table->foreign('user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamps();
 		});
 	}
 

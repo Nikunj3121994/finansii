@@ -10,6 +10,8 @@ class CompaniesController extends \BaseController {
 	 */
 	public function index()
 	{
+        $user=Auth::getUser();
+        $tableName=(new Company())->getTable();
         return ProcessResponse::process(Company::with('municipalities')->with('settlements')->with('streets')->get()->toArray());
 	}
 

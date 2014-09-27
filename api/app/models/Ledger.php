@@ -6,7 +6,20 @@ class Ledger extends \Eloquent {
         'date','document_number','document_desc','document_date',
         'booking_type','amount','currency_code','amount_currency'
     );
-
+    public function __call($method, $parameters)
+    {
+        $return = parent::__call($method, $parameters);
+        $user=Auth::getUser();
+        if($method == 'query') {
+            $tableName=(new self)->getTable();
+            $return->join('applications',function($join) use ($user,$tableName){
+                $join->on($tableName.".user",'=','user.id');
+                $join->where('user.application', '=', $user->application);
+                $join->select('user.id','user.application');
+            });
+        }
+        return $return;
+    }
     public function company(){
         return $this->belongsTo('Company','company_code','company_code');
     }

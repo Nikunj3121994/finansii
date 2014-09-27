@@ -21,6 +21,8 @@ class CreateArticlesTable extends Migration {
 			$table->integer('unit_id')->unsigned()->index();
 			$table->foreign('unit_id')->references('id')->on('units');
 			$table->decimal('pack', 12,3);
+            $table->integer('user')->unsigned()->index();
+            $table->foreign('user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
 			$table->timestamps();
 		});
 	}

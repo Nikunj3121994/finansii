@@ -31,6 +31,8 @@ class CreateArchiveCalculationsTable extends Migration {
             $table->decimal('price_output2',15,4);
             $table->integer('tariff_code');
             $table->string('debit_credit', 1);
+            $table->integer('user')->unsigned()->index();
+            $table->foreign('user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
 		});
 	}

@@ -87,8 +87,7 @@ App::error(function(\Tappleby\AuthToken\Exceptions\NotAuthorizedException $excep
     );
 });
 
-Event::listen('auth.token.created', function($user, $token)
+Event::listen('auth.token.valid', function($user)
 {
-    //Session::put('token',AuthToken::publicToken($token));
-    return array("msg"=>"event fired");
+    Auth::setUser($user);
 });

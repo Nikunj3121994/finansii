@@ -22,6 +22,8 @@ class CreateBusinessUnitsTable extends Migration {
 			$table->integer('business_unit_type');
 			$table->string('business_unit_account', 50);
 			$table->string('business_unit_address', 50);
+            $table->integer('user')->unsigned()->index();
+            $table->foreign('user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
 			$table->timestamps();
 		});
 	}

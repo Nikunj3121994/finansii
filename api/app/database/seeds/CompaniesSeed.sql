@@ -1,14 +1,14 @@
 SET FOREIGN_KEY_CHECKS=0;
-INSERT INTO `companies` (`company_code`, `company_name`, `company_short_name`, `company_address`, `municipality_code`, `settlement_code`, `street_code`, `telephone1`, `telephone2`, `fax`, `mail`, `owner`, `authorized`, `activity`, `id_number`, `tax_code`, `tax_payer`) VALUES
-('002', 'Company 002', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('010', 'Company 010', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('030', 'Company 030', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('039', 'Company 039', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('051', 'Company 051', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('056', 'Company 056', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('072', 'Company 072', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('077', 'Company 077', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('082', 'Company 082', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `companies` (`company_code`, `company_name`, `company_short_name`, `company_address`, `municipality_code`, `settlement_code`, `street_code`, `telephone1`, `telephone2`, `fax`, `mail`, `owner`, `authorized`, `activity`, `id_number`, `tax_code`, `tax_payer`,`user`) VALUES
+('002', 'Company 002', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,1),
+('010', 'Company 010', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,1),
+('030', 'Company 030', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,1),
+('039', 'Company 039', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,1),
+('051', 'Company 051', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,1),
+('056', 'Company 056', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,1),
+('072', 'Company 072', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,1),
+('077', 'Company 077', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,1),
+('082', 'Company 082', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,1);
 INSERT INTO `order_types` (`order_type`, `order_desc`) VALUES
 ('001', '001'),
 ('100', '100'),

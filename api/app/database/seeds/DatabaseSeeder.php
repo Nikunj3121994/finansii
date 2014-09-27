@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
         Eloquent::unguard();
 
 		$this->call('ConfigSeeder');
-        return;
         $this->call('UserTableSeeder');
 
         DB::table('streets')->delete();
@@ -54,9 +53,14 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->delete();
-
-        User::create(array('email' => 'kliment.lambevski@gmail.com', 'username' => 'kliment.lambevski@gmail.com', 'password' => Hash::make('test')));
-//
+        $apiKey=UUID::v4();
+        ApplicationModel::create(array('company_name'=>'KL inc.','owner'=>1,'api_key'=>$apiKey));
+        User::create(array('email' => 'kliment.lambevski@gmail.com', 'username' => 'kliment.lambevski@gmail.com',
+            'password' => Hash::make('test'),'application'=>$apiKey));
+        $apiKey=UUID::v4();
+        ApplicationModel::create(array('company_name'=>'KL inc. no2','owner'=>1,'api_key'=>$apiKey));
+        User::create(array('email' => 'kliment@gmail.com', 'username' => 'kliment.lambevski@gmail.com',
+            'password' => Hash::make('test'),'application'=>$apiKey));
     }
 
 }

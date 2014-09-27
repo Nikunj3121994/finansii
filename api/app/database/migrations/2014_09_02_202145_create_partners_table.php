@@ -34,6 +34,8 @@ class CreatePartnersTable extends Migration {
             $table->integer('id_number');
             $table->string('tax_code', 30);
             $table->string('tax_payer', 2);
+            $table->integer('user')->unsigned()->index();
+            $table->foreign('user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
 			$table->timestamps();
 		});
 	}

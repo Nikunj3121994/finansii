@@ -30,6 +30,7 @@ Route::get('/', function()
     return $result;
 });
 Route::controller('config', 'ConfigController');
+Route::controller('admin', 'UserManagementController');
 Route::get('auth', 'Tappleby\AuthToken\AuthTokenController@index');
 Route::post('auth', 'Tappleby\AuthToken\AuthTokenController@store');
 Route::delete('auth', 'Tappleby\AuthToken\AuthTokenController@destroy');
