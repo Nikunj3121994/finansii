@@ -9,7 +9,7 @@ class Company extends \Eloquent {
     );
     public static  function __callStatic($method, $parameters)
     {
-        $return = parent::__callStatic($method, $parameters);
+        $return = parent::__call($method, $parameters);
         $user=Auth::getUser();
         Log::info($method);
         if($method == 'query') {
