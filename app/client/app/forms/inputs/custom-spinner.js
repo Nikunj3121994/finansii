@@ -17,9 +17,10 @@ define([], function() {
         function link($scope) {
             var numberTest = /^(-?(\d+\.\d+|\d+|\d+\.|\.\d+)|-)$/;
             $scope.$watch('inputModel', function (newVal, oldVal) {
+                if(_.isUndefined(newVal) || newVal=='') return;
                 if (!numberTest.test(newVal) && !_.isUndefined(newVal)) {
                     if (numberTest.test(oldVal)) $scope.inputModel = oldVal;
-                    else $scope.inputModel = 0;
+                    else $scope.inputModel = undefined;
                 }
             });
             $scope.increment = function () {
