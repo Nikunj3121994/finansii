@@ -10,7 +10,7 @@ class ArchiveCalculation extends \Eloquent {
         return $query->join('users',function($join) use ($user,$tableName){
             $join->on($tableName.".user",'=','users.id');
             $join->where('users.application', '=', $user->application);
-        });
+        })->select("users.id as uid",$tableName.".*");
     }
     public function articles(){
         return $this->belongsTo('Article','article_id','id');

@@ -55,6 +55,7 @@ class ReportsController extends \BaseController
         }
     }
     public function getMainBook(){
+        $user=Auth::user();
         $columns=array( DB::raw('left(archive_ledgers.account,3) as account') ,'archive_ledgers.document_desc',
             'archive_ledgers.document_number','archive_ledgers.document_date',
             DB::raw('(case when archive_ledgers.booking_type=1 then sum(archive_ledgers.amount) else 0 end) as owes'),
@@ -88,20 +89,21 @@ class ReportsController extends \BaseController
                         ->where('archive_ledgers.account', '>=', $accounts['from'])
                         ->where('document_date', '<=', Input::get('dateTo'))
                         ->where('document_date', '>=', Input::get('dateFrom'));
-                    return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query->toSql().') s1 group by s1.account, s1.order_number',array($accounts['to'],
+                    Log::info('select '.$columns3.' from ('.$query->toSql().') s1 group by s1.account, s1.order_number');
+                    return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query->toSql().') s1 group by s1.account, s1.order_number',array($user->application,$accounts['to'],
                         $accounts['from'],Input::get('dateTo'),Input::get('dateFrom'))),$header);
                 } else {
                    $query->where('accounts.account_type', '<=', $accounts['to'])
                         ->where('archive_ledgers.account', '>=', $accounts['from'])
                         ->where('document_date', '>=', Input::get('dateFrom'));
 
-                    return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query->toSql().') s1 group by s1.account, s1.order_number',array($accounts['to'],
+                    return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query->toSql().') s1 group by s1.account, s1.order_number',array($user->application,$accounts['to'],
                         $accounts['from'],Input::get('dateFrom'))),$header);
                 }
             } else {
                 $query->where('accounts.account_type', '<=', $accounts['to'])
                 ->where('archive_ledgers.account', '>=', $accounts['from']);
-                return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query->toSql().') s1 group by s1.account, s1.order_number',array($accounts['to'],
+                return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query->toSql().') s1 group by s1.account, s1.order_number',array($user->application,$accounts['to'],
                     $accounts['from'])),$header);
             }
         } else {
@@ -109,6 +111,7 @@ class ReportsController extends \BaseController
         }
     }
     public function getGrossBalanceSynthetics(){
+        $user=Auth::user();
         $columns=array( DB::raw('left(archive_ledgers.account,3) as account'),
             DB::raw('(case when archive_ledgers.booking_type=1 then sum(archive_ledgers.amount) else 0 end) as owes'),
             DB::raw('(case when archive_ledgers.booking_type!=1 then sum(archive_ledgers.amount) else 0 end) as asks'),
@@ -150,20 +153,20 @@ class ReportsController extends \BaseController
                         ->where('document_date', '<=', Input::get('dateTo'))
                         ->where('document_date', '>=', Input::get('dateFrom'));
 
-                    return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query1->toSql().') s1 group by s1.account',array($accounts['to'],
+                    return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query1->toSql().') s1 group by s1.account',array($user->application,$accounts['to'],
                         $accounts['from'],Input::get('dateTo'),Input::get('dateFrom'))),$header);
                 } else {
                     $query1->where('accounts.account_type', '<=', $accounts['to'])
                         ->where('archive_ledgers.account', '>=', $accounts['from'])
                         ->where('document_date', '>=', Input::get('dateFrom'));
-                    return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query1->toSql().') s1 group by s1.account',array($accounts['to'],
+                    return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query1->toSql().') s1 group by s1.account',array($user->application,$accounts['to'],
                         $accounts['from'],Input::get('dateFrom'))),$header);
                 }
             } else
             {
                 $query1->where('accounts.account_type', '<=', $accounts['to'])
                     ->where('archive_ledgers.account', '>=', $accounts['from']);
-                return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query1->toSql().') s1 group by s1.account',array($accounts['to'],
+                return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query1->toSql().') s1 group by s1.account',array($user->application,$accounts['to'],
                     $accounts['from'])),$header);
             }
         } else {
@@ -171,6 +174,7 @@ class ReportsController extends \BaseController
         }
     }
     public function getGrossBalanceAnalytics(){
+        $user=Auth::user();
         $columns=array( DB::raw('archive_ledgers.account as account'),
             DB::raw('(case when (archive_ledgers.booking_type=1 and date_format(orders.order_date,"%Y-%m-%d")!=makedate(year(orders.order_date),1)) then sum(archive_ledgers.amount) else 0 end) as owes'),
             DB::raw('(case when (archive_ledgers.booking_type!=1 and date_format(orders.order_date,"%Y-%m-%d")!=makedate(year(orders.order_date),1)) then sum(archive_ledgers.amount) else 0 end) as asks'),
@@ -208,20 +212,20 @@ class ReportsController extends \BaseController
                         ->where('document_date', '<=', Input::get('dateTo'))
                         ->where('document_date', '>=', Input::get('dateFrom'));
 
-                    return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query1->toSql().') s1 group by s1.account',array($accounts['to'],
+                    return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query1->toSql().') s1 group by s1.account',array($user->application,$accounts['to'],
                         $accounts['from'],Input::get('dateTo'),Input::get('dateFrom'))),$header);
                 } else {
                     $query1->where('accounts.account_type', '<=', $accounts['to'])
                         ->where('archive_ledgers.account', '>=', $accounts['from'])
                         ->where('document_date', '>=', Input::get('dateFrom'));
-                    return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query1->toSql().') s1 group by s1.account',array($accounts['to'],
+                    return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query1->toSql().') s1 group by s1.account',array($user->application,$accounts['to'],
                         $accounts['from'],Input::get('dateFrom'))),$header);
                 }
             } else
             {
                 $query1->where('accounts.account_type', '<=', $accounts['to'])
                     ->where('archive_ledgers.account', '>=', $accounts['from']);
-                return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query1->toSql().') s1 group by s1.account',array($accounts['to'],
+                return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query1->toSql().') s1 group by s1.account',array($user->application,$accounts['to'],
                     $accounts['from'])),$header);
             }
         } else {
@@ -229,6 +233,7 @@ class ReportsController extends \BaseController
         }
     }
     public function getAccountSpecification(){
+        $user=Auth::user();
         $columns=array( DB::raw('archive_ledgers.account as account'),'accounts.account_name',
             DB::raw('(case when archive_ledgers.booking_type=1 then sum(archive_ledgers.amount) else 0 end) as owes'),
             DB::raw('(case when archive_ledgers.booking_type!=1 then sum(archive_ledgers.amount) else 0 end) as asks')
@@ -263,20 +268,20 @@ class ReportsController extends \BaseController
                         ->where('document_date', '<=', Input::get('dateTo'))
                         ->where('document_date', '>=', Input::get('dateFrom'));
 
-                    return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query1->toSql().') s1 group by s1.account',array($accounts['to'],
+                    return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query1->toSql().') s1 group by s1.account',array($user->application,$accounts['to'],
                         $accounts['from'],Input::get('dateTo'),Input::get('dateFrom'))),$header);
                 } else {
                     $query1->where('accounts.account_type', '<=', $accounts['to'])
                         ->where('archive_ledgers.account', '>=', $accounts['from'])
                         ->where('document_date', '>=', Input::get('dateFrom'));
-                    return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query1->toSql().') s1 group by s1.account',array($accounts['to'],
+                    return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query1->toSql().') s1 group by s1.account',array($user->application,$accounts['to'],
                         $accounts['from'],Input::get('dateFrom'))),$header);
                 }
             } else
             {
                 $query1->where('accounts.account_type', '<=', $accounts['to'])
                     ->where('archive_ledgers.account', '>=', $accounts['from']);
-                return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query1->toSql().') s1 group by s1.account',array($accounts['to'],
+                return ProcessResponse::processReport(DB::select('select '.$columns3.' from ('.$query1->toSql().') s1 group by s1.account',array($user->application,$accounts['to'],
                     $accounts['from'])),$header);
             }
         } else {
