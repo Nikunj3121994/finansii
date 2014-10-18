@@ -16,5 +16,8 @@
 </div>
 
 <div class="table-cell" ng-if="gridOptions.permissions.editResource">
-    <button class="bg-white fg-dark bd-steel bg-hover-amber" ng-click="editDataRow(row.id,$index)">Edit</button>
+    <button class="fg-white bg-lightGreen" ng-click="editDataRow(row.id,$index)"><i class="fa fa-pencil"></i> </button>
+    <button class="bg-red fg-white" >
+        <i class="fa fa-trash-o"></i>
+    </button>
 </div>

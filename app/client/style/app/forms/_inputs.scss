@@ -1,4 +1,7 @@
-.custom-date {
+.metro label{
+  margin:0;
+}
+section.main-container .custom-date {
   position: relative;
   .datepicker-holder {
     float: left;
@@ -21,10 +24,75 @@
     right: 0;
     top: 0;
   }
+  .metro .dropdown-menu{
+    border: 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), 0 3px 8px rgba(0, 0, 0, 0.2);
+  }
+  table thead tr:first-child th{
+    background-color: #1ba1e2;
+    button {
+      color: #ffffff;
+    }
+
+
+  }
+  table tbody tr td{
+    color:#4390df;
+    padding: 0px 0px;
+    white-space: nowrap;
+    border: 1px solid;
+    border-color: #e6f5fc;
+    font-size: 0.7em;
+    button{
+      font-size: 1.2em;
+      padding: 5px 5px;
+      position: relative;
+    }
+    .btn-default.active{
+      background: none;
+      border: 4px #4390df solid;
+      border-width: 1px;
+      color:#4390df;
+    }
+    .btn-default.active::before{
+      position: absolute;
+      display: block;
+      content: "\f00c";
+      color: #fff;
+      right: 0;
+      font-family: FontAwesome;
+      font-size: 7pt;
+      font-weight: normal;
+      z-index: 102;
+      top: -4px;
+    }
+    .btn-default.active::after{
+      position: absolute;
+      display: block;
+      border-top: 15px solid #4390df;
+      border-left: 15px solid transparent;
+      right: 0;
+      content: "";
+      top: 0;
+      z-index: 101;
+    }
+  }
+  i.glyphicon.glyphicon-chevron-left::before{
+    content: "\f053";
+    font-family: FontAwesome;
+  }
+  i.glyphicon.glyphicon-chevron-right::before{
+    content: "\f054";
+    font-family: FontAwesome;
+  }
 }
 section.main-container .table input.form-control.date-input{
   min-width: 140px;
 }
+section.main-container .dropdown-menu .table tbody tr td {
+
+}
+
 .custom-spinner {
   position: relative;
   .spinner-btn-group{

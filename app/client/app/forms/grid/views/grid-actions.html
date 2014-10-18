@@ -12,29 +12,35 @@
     <div class="col-md-7 ">
         <div class="toolbar transparent">
 
-            <div class="btn-group" ng-if="gridOptions.permissions.filterColumns">
-                <button class="btn btn-line-primary dropdown-toggle" data-toggle="dropdown">
+            <div class="dropdown_container" ng-if="gridOptions.permissions.filterColumns">
+                <div class="dropdown_label" for="columns">
                     <i class="fa fa-columns"></i>
-                </button>
-                <ul class="dropdown-menu" role="menu">
+                </div>
+                <ul class="dropdown-menu" data-role="dropdown">
                     <li role="presentation" ng-click="showAllColumns()">
-                        <a role="menuitem" tabindex="-1">Show allcolumns</a>
+                        <a>Show all columns</a>
                     </li>
-                    <li role="presentation" ng-repeat="column in config.order">
-                        <input type="checkbox"
-                               ng-checked="config[column].visible"
-                               ng-model="config[column].visible">
-                        <span>{{ config[column].label }}</span>
+                    <li class="menu-title">Columns</li>
+                    <li ng-repeat="column in config.order">
+                        <div class="input-control checkbox">
+                            <label>
+                                <input type="checkbox"
+                                       ng-checked="config[column].visible"
+                                       ng-model="config[column].visible"/>
+                                <span class="check"></span>
+                                {{ config[column].label }}
+                            </label>
+                        </div>
                     </li>
                 </ul>
             </div>
 
-            <button class="" ng-click="deleteResources()"
+            <button class="bg-red fg-white" ng-click="deleteResources()"
                     ng-if="gridOptions.permissions.deleteResource">
                <i class="fa fa-trash-o"></i>
             </button>
 
-            <button class="" ng-click="addNewResource()"
+            <button class="bg-green fg-white" ng-click="addNewResource()"
                     ng-if="gridOptions.permissions.addResource">
                 <i class="fa fa-plus"></i>
             </button>
