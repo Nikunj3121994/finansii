@@ -59,6 +59,7 @@ define([
             'app.reports',
 
             'app.services.navigation'
+
         ])
         .config([
             '$httpProvider','$stateProvider', '$urlRouterProvider','uiSelectConfig', function ($httpProvider,$stateProvider, $urlRouter,uiSelectConfig) {

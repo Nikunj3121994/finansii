@@ -1,6 +1,6 @@
 define([], function() {
 
-        var module=angular.module('app.pages.finance.resources',[]);
+        var module=angular.module('app.pages.finance.resources',['ngMaterial']);
         module.run(function(navigationService){
             var state={
                 label:'Resources',

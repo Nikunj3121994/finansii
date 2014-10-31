@@ -32,7 +32,10 @@
     "react": "latest",
     "angular-ui-select":"latest",
     "selectize":"#~0.8.5",
-    "angular-sanitize":"latest"
+    "angular-sanitize":"latest",
+    "angular-material":"master",
+    "angular-aria":"latest",
+    "hammerjs":"latest"
   },
   "devDependencies": {
     "metro-ui-css": "~2.0.23"

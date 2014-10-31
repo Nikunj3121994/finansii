@@ -1,50 +1,38 @@
-<div class="table-actions row">
-    <div ng-if="gridOptions.permissions.search" class="col-md-3">
-        <div class="input-control text">
-            <input type="text" class="form-control js_search_field" ng-model="$parent.searchField">
-        </div>
-    </div>
-    <div class="col-md-2">
-        <div class="input-control text">
-            <input class="page-size form-control" type="number" min="1" ng-model="pagination.pageSize" ng-pattern="/^[1-9][0-9]*$/">
-        </div>
-    </div>
-    <div class="col-md-7 ">
-        <div class="toolbar transparent">
+<div class="table-actions" layout="horizontal" layout-padding>
 
-            <div class="dropdown_container" ng-if="gridOptions.permissions.filterColumns">
-                <div class="dropdown_label" for="columns">
-                    <i class="fa fa-columns"></i>
-                </div>
-                <ul class="dropdown-menu" data-role="dropdown">
-                    <li role="presentation" ng-click="showAllColumns()">
-                        <a>Show all columns</a>
-                    </li>
-                    <li class="menu-title">Columns</li>
-                    <li ng-repeat="column in config.order">
-                        <div class="input-control checkbox">
-                            <label>
-                                <input type="checkbox"
-                                       ng-checked="config[column].visible"
-                                       ng-model="config[column].visible"/>
-                                <span class="check"></span>
-                                {{ config[column].label }}
-                            </label>
-                        </div>
-                    </li>
-                </ul>
+    <md-text-float ng-if="gridOptions.permissions.search" label="Search" ng-model="$parent.searchField" aria-label="search" class="long"> </md-text-float>
+    <md-text-float label="Page size" ng-model="pagination.pageSize" ng-pattern="/^[1-9][0-9]*$/" aria-label="search"> </md-text-float>
+    <div class="action-buttons">
+        <div class="dropdown_container" ng-if="gridOptions.permissions.filterColumns">
+            <div class="dropdown_label" for="columns">
+                <i class="fa fa-columns"></i>
             </div>
-
-            <button class="bg-red fg-white" ng-click="deleteResources()"
-                    ng-if="gridOptions.permissions.deleteResource">
-               <i class="fa fa-trash-o"></i>
-            </button>
-
-            <button class="bg-green fg-white" ng-click="addNewResource()"
-                    ng-if="gridOptions.permissions.addResource">
-                <i class="fa fa-plus"></i>
-            </button>
-
+            <ul class="dropdown-menu" data-role="dropdown">
+                <li role="presentation" ng-click="showAllColumns()">
+                    <a>Show all columns</a>
+                </li>
+                <li class="menu-title">Columns</li>
+                <li ng-repeat="column in config.order">
+                    <div class="input-control checkbox">
+                        <label>
+                            <input type="checkbox"
+                                   ng-checked="config[column].visible"
+                                   ng-model="config[column].visible"/>
+                            <span class="check"></span>
+                            {{ config[column].label }}
+                        </label>
+                    </div>
+                </li>
+            </ul>
         </div>
+        <md-button class="md-warn md-raised" ng-click="deleteResources()"
+                   ng-if="gridOptions.permissions.deleteResource" aria-label="delete">
+            <i class="fa fa-trash-o"></i>
+        </md-button>
+
+        <md-button class="md-primary md-raised" ng-click="addNewResource()"
+                   ng-if="gridOptions.permissions.addResource" aria-label="add">
+            <i class="fa fa-plus"></i>
+        </md-button>
     </div>
 </div>
