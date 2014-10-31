@@ -1,8 +1,10 @@
 .custom-grid-container {
+  background: #fff;
   .table-actions {
-    input.page-size {
-      padding: 1px 5px;
+    .action-buttons{
+      padding: 21px 10px 0 40px;
     }
+
   }
   .table-container{
     overflow:auto;
