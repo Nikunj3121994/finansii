@@ -4,7 +4,9 @@
       padding: 1px 5px;
     }
   }
-
+  .table-container{
+    overflow:auto;
+  }
   .dropdown_container{
     display: inline-block;
     float: left;
