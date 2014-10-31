@@ -1,5 +1,5 @@
-<div class="resources" ng-controller="resourcesPageController">
-    <div class="resourcesNavigator col-lg-2">
+<div class="resources" ng-controller="resourcesPageController" layout="horizontal">
+    <div class="resourcesNavigator" flex="20">
         <div class="resource " ng-class="{true:'selected'}[$parent.selectedResource==$index]"
              data-ng-repeat="item in resources"
              ui-sref="finance.resources.resource({resource:item.resource})"
@@ -8,7 +8,7 @@
             <i ng-class="{true:'fa fa-angle-right'}[$parent.selectedResource==$index]"></i>
         </div>
     </div>
-    <div ui-view class="col-lg-10">
+    <div ui-view flex>
         <md-button class="md-raised" aria-label="Button"><span class="fa fa-camera"></span></md-button>
         <md-button class="md-raised md-primary" aria-label="Button">Primary</md-button>
         <md-button disabled class="md-raised md-primary" aria-label="Button">Disabled</md-button>

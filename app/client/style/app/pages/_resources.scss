@@ -1,6 +1,10 @@
 .resources{
+  min-height: 100%;
   .resourcesNavigator{
-    margin-top: 19px;
+    min-height:100%;
+    background: #fff;
+    border-right:#ccc solid 1px;
+    border-bottom: #ccc solid 3px;
     padding: 0;
     .resource{
       padding: 10px;
