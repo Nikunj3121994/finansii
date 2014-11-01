@@ -1,6 +1,6 @@
 define([
 ], function () {
-    var module = angular.module("app.forms.inputs.services",[]);
+    var module = angular.module("app.services.autocomplete",[]);
     module.factory('autoCompleteService', ["$q", "$http" ,"toasterService", function ($q, $http,toasterService) {
         this.getAutoCompleteData = function (resource,value,extraParams) {
             $('.loading-animation').fadeIn();

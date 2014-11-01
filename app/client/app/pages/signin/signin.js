@@ -20,11 +20,11 @@ define([], function () {
             });
         }
     });
-    module.factory('loginService',function(toasterService,$q,$http){
+    module.factory('loginService',function(toasterService,$q,$http,configService){
        this.login=function(username,password){
            $('.loading-animation').fadeIn();
            var deferred = $q.defer();
-           var url="http://localhost/finansii/api/public/auth";
+           var url=configService.resourseUrl+"auth";
            $http({
                url: url,
                params:{username:username,password:password},

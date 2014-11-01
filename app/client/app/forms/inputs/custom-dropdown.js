@@ -1,8 +1,6 @@
 define([
-    'forms/grid/grid-services'
 ], function () {
     var module = angular.module("app.forms.inputs.dropdown", [
-        "app.forms.grid.services",
         'ngSanitize',
         'ui.select'
     ]);

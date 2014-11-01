@@ -1,8 +1,8 @@
 define([], function() {
 
-    var module = angular.module("app.forms.grid.services", [])
+    var module = angular.module("app.services.data.resources", []);
 
-    module.factory('jsonGridDataService', ["$q", "$http","toasterService" , function ($q, $http,toasterService) {
+    module.factory('jsonGridDataService', ["$q", "$http","toasterService","configService" , function ($q, $http,toasterService,configService) {
         this.getData = function (dataUrl,params) {
             $('.loading-animation').fadeIn();
             if(_.isUndefined(params)){
@@ -40,7 +40,7 @@ define([], function() {
             $('.loading-animation').fadeIn();
             var deferred = $q.defer();
 
-            var resourceUrl="http://localhost/finansii/api/public/config";
+            var resourceUrl=configService.resourseUrl+"config";
             $http({
                 url: resourceUrl,
                 method: "GET"
@@ -56,7 +56,7 @@ define([], function() {
                 });
 
             return deferred.promise;
-        }
+        };
 
         this.getResource=function(resource,params){
             $('.loading-animation').fadeIn();
@@ -64,7 +64,7 @@ define([], function() {
             if(_.isUndefined(params)){
                 params={};
             }
-            var resourceUrl="http://localhost/finansii/api/public/"+resource;
+            var resourceUrl=configService.resourseUrl+resource;
             $http({
                 url: resourceUrl,
                 params:params,
@@ -86,14 +86,14 @@ define([], function() {
                 });
 
             return deferred.promise;
-        }
+        };
         this.saveResource=function(resource,data,params){
             $('.loading-animation').fadeIn();
             if(!_.isUndefined(params)){
                 _.extend(data,params);
             }
             var deferred = $q.defer();
-            var resourceUrl="http://localhost/finansii/api/public/"+resource;
+            var resourceUrl=configService.resourseUrl+resource;
             $http({
                 url: resourceUrl,
                 data:data,
@@ -115,14 +115,14 @@ define([], function() {
                 });
 
             return deferred.promise;
-        }
+        };
         this.editResource=function(resource,data,id,params){
             $('.loading-animation').fadeIn();
             if(!_.isUndefined(params)){
                 _.extend(data,params);
             }
             var deferred = $q.defer();
-            var resourceUrl="http://localhost/finansii/api/public/"+resource+"/"+id;
+            var resourceUrl=configService.resourseUrl+resource+"/"+id;
             $http({
                 url: resourceUrl,
                 data:data,
@@ -145,7 +145,7 @@ define([], function() {
 
             return deferred.promise;
 
-        }
+        };
         return this;
     }]);
 
