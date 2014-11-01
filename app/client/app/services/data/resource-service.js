@@ -2,9 +2,10 @@ define([], function() {
 
     var module = angular.module("app.services.data.resources", []);
 
-    module.factory('jsonGridDataService', ["$q", "$http","toasterService","configService" , function ($q, $http,toasterService,configService) {
+    module.factory('jsonGridDataService', ["$q", "$http","toasterService","configService","loadingService" ,
+        function ($q, $http,toasterService,configService,loadingService) {
         this.getData = function (dataUrl,params) {
-            $('.loading-animation').fadeIn();
+            loadingService.show();
             if(_.isUndefined(params)){
                 params={};
             }
@@ -26,18 +27,18 @@ define([], function() {
                         });
                     });
                     deferred.resolve(data);
-                    $('.loading-animation').fadeOut();
+                    loadingService.hide();
                 })
                 .error(function (data) {
                     console.log("Error getting testform.json");
                     deferred.reject("There was and error.");
-                    $('.loading-animation').fadeOut();
+                    loadingService.hide();
                 });
 
             return deferred.promise;
         };
         this.getConfig=function(resource){
-            $('.loading-animation').fadeIn();
+            loadingService.show();
             var deferred = $q.defer();
 
             var resourceUrl=configService.resourseUrl+"config";
@@ -47,19 +48,19 @@ define([], function() {
             })
                 .success(function (data) {
                     deferred.resolve(data[resource]);
-                    $('.loading-animation').fadeOut();
+                    loadingService.hide();
                 })
                 .error(function (data) {
                     console.log("Error getting testform.json");
                     deferred.reject("There was and error.");
-                    $('.loading-animation').fadeOut();
+                    loadingService.hide();
                 });
 
             return deferred.promise;
         };
 
         this.getResource=function(resource,params){
-            $('.loading-animation').fadeIn();
+            loadingService.show();
             var deferred = $q.defer();
             if(_.isUndefined(params)){
                 params={};
@@ -77,18 +78,18 @@ define([], function() {
                         toasterService.setInfo(data.error.msg);
                     }
                     deferred.resolve(data.body);
-                    $('.loading-animation').fadeOut();
+                    loadingService.hide();
                 })
                 .error(function (data) {
                     toasterService.setError("Error getting resource");
                     deferred.reject("There was and error.");
-                    $('.loading-animation').fadeOut();
+                    loadingService.hide();
                 });
 
             return deferred.promise;
         };
         this.saveResource=function(resource,data,params){
-            $('.loading-animation').fadeIn();
+            loadingService.show();
             if(!_.isUndefined(params)){
                 _.extend(data,params);
             }
@@ -106,18 +107,18 @@ define([], function() {
                         toasterService.setSuccess(data.msg);
                     }
                     deferred.resolve(data);
-                    $('.loading-animation').fadeOut();
+                    loadingService.hide();
                 })
                 .error(function (data) {
                     toasterService.setError("Error saving resource");
                     deferred.reject("There was and error.");
-                    $('.loading-animation').fadeOut();
+                    loadingService.hide();
                 });
 
             return deferred.promise;
         };
         this.editResource=function(resource,data,id,params){
-            $('.loading-animation').fadeIn();
+            loadingService.show();
             if(!_.isUndefined(params)){
                 _.extend(data,params);
             }
@@ -135,12 +136,12 @@ define([], function() {
                         toasterService.setSuccess(data.msg);
                     }
                     deferred.resolve(data);
-                    $('.loading-animation').fadeOut();
+                    loadingService.hide();
                 })
                 .error(function (data) {
                     console.log("Error getting testform.json");
                     deferred.reject("There was and error.");
-                    $('.loading-animation').fadeOut();
+                    loadingService.hide();
                 });
 
             return deferred.promise;

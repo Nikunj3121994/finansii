@@ -102,17 +102,24 @@ section.main-container{
   }
   .loading-animation{
     position: absolute;
+    bottom: 0px;
+    right: 55px;
+    z-index: 999;
+    display:none;
+  }
+  .loading-animation2{
+    position: absolute;
     bottom: 25px;
     right: 25px;
     border: solid 1px #ccc;
-    border-radius:50%;
+    border-radius: 50%;
     padding: 20px;
     background: #fff;
-    display:none;
+    display: none;
     z-index: 999;
     i{
       font-size:30px;
-      -webkit-animation-name: loading;
+      -webkit-animation-name: spin;
       -webkit-animation-duration: 1s;
       -webkit-animation-timing-function:linear;
       -webkit-animation-delay: 0s;
@@ -125,7 +132,7 @@ section.main-container{
     margin:0;
   }
 }
-@-webkit-keyframes loading {
+@-webkit-keyframes spin {
   from  { -webkit-transform: rotate(0deg);}
   to { -webkit-transform: rotate(360deg);}
 }

@@ -3,7 +3,7 @@ define([
     var module = angular.module("app.services.autocomplete",[]);
     module.factory('autoCompleteService', ["$q", "$http" ,"toasterService", function ($q, $http,toasterService) {
         this.getAutoCompleteData = function (resource,value,extraParams) {
-            $('.loading-animation').fadeIn();
+            loadingService.show()
             var deferred = $q.defer();
             var params={val:value};
             if(!_.isUndefined(extraParams)){
@@ -22,12 +22,12 @@ define([
                     }else{
                         deferred.resolve([data.body]);
                     }
-                    $('.loading-animation').fadeOut();
+                    loadingService.hide()
 
                 })
                 .error(function (data) {
                     toasterService.setError('Error getting resource');
-                    $('.loading-animation').fadeOut();
+                    loadingService.hide()
                     deferred.reject("There was and error.");
                 });
 

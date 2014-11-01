@@ -1,7 +1,7 @@
 define([], function() {
     var module = angular.module('app.sections.header.controllers', []);
 
-    module.controller('headerController',function ($scope,$rootScope,$state,navigationService,loginService,$translate) {
+    module.controller('headerController',function ($scope,$rootScope,$state,navigationService,authService,$translate) {
         $scope.languages={
             'mk':{
             name:'MK',
@@ -37,7 +37,7 @@ define([], function() {
             $state.go(parent);
         };
         $scope.logout=function(){
-            loginService.logout().then(function(data){
+            authService.logout().then(function(data){
                $state.go('login');
             });
         };

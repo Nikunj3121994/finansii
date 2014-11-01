@@ -6,6 +6,7 @@ define([],function(){
         var config={};
         config.resourseUrl="http://localhost:8080/finansii/api/public/";
         config.dateFormat="dd.mm.yyyy";
+        config.loading="loading-animation2";
         return config;
     });
 });
