@@ -7,8 +7,11 @@
     border-bottom: #ccc solid 3px;
     padding: 0;
     .resource{
-      padding: 10px;
-      cursor:pointer;
+      padding: 10px 10px;
+      display: block;
+      float: none;
+      position: relative;
+      color:#333;
       i{
         float:right;
         font-size: 20px;
@@ -18,8 +21,9 @@
       background: #e0dee5;
     }
     .resource.selected{
-      background: #4390df ;
-      color: #fff;
+      background: #EAF4FF;
+      font-weight: bold;
+      color:#4285f4;
     }
   }
 }

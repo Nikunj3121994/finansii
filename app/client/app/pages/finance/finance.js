@@ -48,7 +48,7 @@ define([], function () {
             label:'Finance',
             name:'finance.start',
             parent:'dashboard'
-        }
+        };
         navigationService.addState(state,state.name,state.parent);
     });
     return module;

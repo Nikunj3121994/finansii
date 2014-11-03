@@ -26,16 +26,17 @@
     "angular-route": "latest",
     "angular-strap": "latest",
     "angular-translate": "latest",
-    "angular-ui-router": "latest",
+    "angular-ui-router": "master-0.2.12-pr1",
     "angular-ui-utils": "latest",
     "jspdf": "latest",
     "react": "latest",
-    "angular-ui-select":"latest",
-    "selectize":"#~0.8.5",
-    "angular-sanitize":"latest",
-    "angular-material":"master",
-    "angular-aria":"latest",
-    "hammerjs":"latest"
+    "angular-ui-select": "latest",
+    "selectize": "#~0.8.5",
+    "angular-sanitize": "latest",
+    "angular-material": "master",
+    "angular-aria": "latest",
+    "hammerjs": "latest",
+    "angular-loading-bar": "~0.6.0"
   },
   "devDependencies": {
     "metro-ui-css": "~2.0.23"

@@ -58,13 +58,19 @@ define([
 
             'app.reports',
 
-            'app.services'
+            'app.services',
+
+            'angular-loading-bar',
+            'ngAnimate'
 
         ])
         .config([
-            '$httpProvider','$stateProvider', '$urlRouterProvider','uiSelectConfig', function ($httpProvider,$stateProvider, $urlRouter,uiSelectConfig) {
+            '$httpProvider','$stateProvider', '$urlRouterProvider','uiSelectConfig', '$locationProvider',
+            function ($httpProvider,$stateProvider, $urlRouter,uiSelectConfig,$locationProvider) {
 
-
+                $locationProvider
+                    .html5Mode(false)
+                    .hashPrefix('!');
                 uiSelectConfig.theme = 'selectize';
 
                 $httpProvider.interceptors.push('httpRequestInterceptor');

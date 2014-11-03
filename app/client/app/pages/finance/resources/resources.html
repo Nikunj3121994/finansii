@@ -1,13 +1,14 @@
 <div class="resources" ng-controller="resourcesPageController" layout="horizontal">
-    <div class="resourcesNavigator" flex="20">
-        <div class="resource " ng-class="{true:'selected'}[$parent.selectedResource==$index]"
-             data-ng-repeat="item in resources"
-             ui-sref="finance.resources.resource({resource:item.resource})"
-             ng-click="$parent.selectedResource=$index">
+    <md-content class="resourcesNavigator" flex="20">
+        <a class="resource" ng-class="{true:'selected'}[$parent.selectedResource==$index]"
+            data-ng-repeat="item in resources" ink-ripple
+            ui-sref="finance.resources.resource({resource:item.resource})"
+            ng-click="$parent.selectedResource=$index">
             {{item.name|translate}}
             <i ng-class="{true:'fa fa-angle-right'}[$parent.selectedResource==$index]"></i>
-        </div>
-    </div>
+            <div class="md-ripple-container"></div>
+        </a>
+    </md-content>
     <div ui-view flex>
         <md-button class="md-raised" aria-label="Button"><span class="fa fa-camera"></span></md-button>
         <md-button class="md-raised md-primary" aria-label="Button">Primary</md-button>
