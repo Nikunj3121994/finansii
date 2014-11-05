@@ -1,12 +1,12 @@
 define([
 ], function () {
-    var module = angular.module('app.reports.services', []);
-    module.factory('reportService',function($q, $http,toasterService){
+    var module = angular.module('app.services.reports', []);
+    module.factory('reportService',function($q, $http,toasterService,configService){
         this.getReport=function(filters,report){
-            $('.loading-animation').fadeIn();
+            $(configService.loading).fadeIn();
             var deferred = $q.defer(),
                 start = new Date().getTime();
-            var reportUrl="http://localhost/finansii/api/public/reports/"+report;
+            var reportUrl=configService.resourseUrl+"reports/"+report;
             $http({
                 url: reportUrl,
                 params:filters,
@@ -27,16 +27,16 @@ define([
                         }
                     }
                     deferred.resolve(data);
-                    $('.loading-animation').fadeOut();
+                    $(configService.loading).fadeOut();
                 })
                 .error(function (data) {
                     toasterService.setError("Error getting resource");
                     deferred.reject("There was and error.");
-                    $('.loading-animation').fadeOut();
+                    $(configService.loading).fadeOut();
                 });
 
             return deferred.promise;
-        }
+        };
         return this;
     });
     return module;

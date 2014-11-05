@@ -8,7 +8,7 @@
         </div>
     </md-content>
     <div flex >
-        <form name="filtersForm" class="filtersForm" >
+        <form name="filtersForm" class="filtersForm md-whiteframe-z1" >
             <div layout="horizontal">
                 <input flex="33" class="input-full-width" custom-auto-complete input-model="filterData['companies']"
                        input-name="companyCode" resource="companies"
@@ -30,7 +30,7 @@
                        input-model="filterData['dateTo']" input-name="dateTo" class="input-full-width"
                        input-label="{{'Date to'|translate}}" input-required="1">
             </div>
+            <md-button class="md-raised md-primary" aria-label="print" ng-click="getReport()">Print</md-button>
         </form>
-        <button class="info" ng-click="getReport()">Print</button>
     </div>
 </div>
