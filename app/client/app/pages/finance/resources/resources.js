@@ -6,18 +6,18 @@ define([], function() {
                 label:'Resources',
                 name:'finance.resources',
                 parent:'finance.start'
-            }
+            };
             navigationService.addState(state,state.name,state.parent);
             state={
                 label:'Resources',
                 name:'finance.resources.resource',
                 parent:'finance.start'
-            }
+            };
             navigationService.addState(state,state.name,state.parent);
         });
         module.controller('resourcesPageController',function($scope){
             $scope.selectedResource=-1;
-        })
+        });
         module.directive('resourcesPage',function(){
             function link($scope){
                     $scope.resources=[{

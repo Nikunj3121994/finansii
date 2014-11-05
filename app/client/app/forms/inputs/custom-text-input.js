@@ -217,7 +217,7 @@ define([
             ctrl.$parsers.unshift(function (viewValue) {
                 if(viewValue instanceof Date && !isNaN(viewValue.valueOf())){
                     viewValue = $filter('date')(viewValue, attr.datepickerPopup);
-                };
+                }
                 if (!_.isNaN(Date.parse(viewValue)) && element[0].selectionStart > $scope.maskValidation.length - 1) {
                     viewValue = $filter('date')(viewValue, attr.datepickerPopup);
                 }

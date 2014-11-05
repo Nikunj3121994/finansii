@@ -1,6 +1,6 @@
 define([], function () {
 
-    var module = angular.module('app.services.navigation', []);
+    var module = angular.module('app.services.ui.navigation', []);
     module.factory('navigationService',function(){
         var navigation={};
         navigation.path={};

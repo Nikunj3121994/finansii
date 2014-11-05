@@ -1,5 +1,4 @@
 define([
-    'forms/summary/summary-services'
 ], function () {
     /**
      * @ngdoc directive
@@ -7,8 +6,7 @@ define([
      * @name app.forms.inputs.module:customText
      */
     var module = angular.module("app.forms.inputs.dependency", [
-        'ui.bootstrap.dateparser',
-        "app.forms.summary.services"
+        'ui.bootstrap.dateparser'
     ]);
 
     /**

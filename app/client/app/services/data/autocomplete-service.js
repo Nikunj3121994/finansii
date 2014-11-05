@@ -1,15 +1,16 @@
 define([
 ], function () {
-    var module = angular.module("app.forms.inputs.services",[]);
-    module.factory('autoCompleteService', ["$q", "$http" ,"toasterService", function ($q, $http,toasterService) {
+    var module = angular.module("app.services.autocomplete",[]);
+    module.factory('autoCompleteService', ["$q", "$http" ,"toasterService","loadingService",'configService',
+        function ($q, $http,toasterService,loadingService,configService) {
         this.getAutoCompleteData = function (resource,value,extraParams) {
-            $('.loading-animation').fadeIn();
+            loadingService.show();
             var deferred = $q.defer();
             var params={val:value};
             if(!_.isUndefined(extraParams)){
                 _.extend(params,extraParams);
             }
-            var url="http://localhost/finansii/api/public/"+resource;
+            var url=configService.resourseUrl+resource;
             $http({
                 url: url,
                 params:params,
@@ -22,12 +23,12 @@ define([
                     }else{
                         deferred.resolve([data.body]);
                     }
-                    $('.loading-animation').fadeOut();
+                    loadingService.hide()
 
                 })
                 .error(function (data) {
                     toasterService.setError('Error getting resource');
-                    $('.loading-animation').fadeOut();
+                    loadingService.hide();
                     deferred.reject("There was and error.");
                 });
 

@@ -1,11 +1,7 @@
 <div class="table-row">
     <div class="table-head" ng-if="gridOptions.permissions.select">
-        <div class="input-control checkbox nopadding">
-            <label>
-                <input type="checkbox" ng-change="selectAllRows(event)" ng-model="protoModels.selectAllToggle" />
-                <span class="check"></span>
-            </label>
-        </div>
+        <md-checkbox ng-change="selectAllRows(event)" ng-model="protoModels.selectAllToggle"
+                     class="nomargin" aria-label="Checkbox"></md-checkbox>
     </div>
 
 

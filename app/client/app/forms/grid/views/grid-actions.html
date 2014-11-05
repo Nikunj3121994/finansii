@@ -1,7 +1,7 @@
 <div class="table-actions" layout="horizontal" layout-padding>
 
     <md-text-float ng-if="gridOptions.permissions.search" label="Search" ng-model="$parent.searchField" aria-label="search" class="long"> </md-text-float>
-    <md-text-float label="Page size" ng-model="pagination.pageSize" ng-pattern="/^[1-9][0-9]*$/" aria-label="search"> </md-text-float>
+    <md-text-float type="number" label="Page size" ng-model="pagination.pageSize" ng-pattern="/^[1-9][0-9]*$/" aria-label="search"> </md-text-float>
     <div class="action-buttons">
         <div class="dropdown_container" ng-if="gridOptions.permissions.filterColumns">
             <div class="dropdown_label" for="columns">
