@@ -29,4 +29,19 @@
     margin: 10px;
     padding: 10px;
   }
+  .print-preview{
+    margin: 10px;
+    padding: 10px;
+    table{
+      width:100%;
+      background: none;
+      td{
+        padding: 2px 3px;
+      }
+      th{
+        padding: 2px 3px;
+        border:#666 solid 1px;
+      }
+    }
+  }
 }

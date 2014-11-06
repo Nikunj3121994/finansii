@@ -220,77 +220,9 @@ define([
                 return tmp;
             }($scope.reportConfig,$scope);
 
-            var dataRows = generateData($scope.reportData,$scope.reportConfig);
-
-            function generateData(data,config){
-                if(!config.groups || !config.sums) return data;
-                var dataTmp=[];
-                var groups={};
-                var sums={};
-                for(var i=0;i<config.groups.length;i++){
-                    groups[config.groups[i].name]=null;
-                    sums[config.groups[i].name]={};
-                    for(var m=0;m<config.sums.length;m++){
-                        sums[config.groups[i].name][config.sums[m].field]=0;
-                    }
-                }
-                for(var k=0;k<data.length;k++){
-                    for(var j=0;j<config.groups.length;j++){
-                        var group=null;
-                        if(config.groups[j].groupType=='number') group=Math.floor(data[k][config.groups[j].field]/Math.pow(10,config.groups[j].group));
-                        else if(config.groups[j].groupType=='text') group=data[k][config.groups[j].field];
-                        if(groups[config.groups[j].name]!=null){
-                            var tmpRow={};
-                            if(groups[config.groups[j].name]!=group){
-                                var prefix=config.groups[j].groupPrefix || '';
-                                var field=config.groups[j].fieldPosition || config.groups[j].field;
-                                if(config.groups[j].type=='header'){
-                                    tmpRow[field]=prefix+groups[config.groups[j].name];
-                                }else{
-                                    tmpRow[field]=prefix+groups[config.groups[j].name];
-                                    tmpRow.class=config.groups[j].name;
-                                    for(var n=0;n<config.sums.length;n++){
-                                        tmpRow[config.sums[n].field]=sums[config.groups[j].name][config.sums[n].field].toFixed(2);
-                                       // console.log(tmpRow[config.sums[n].field]=sums[config.groups[j].name],sums[config.groups[j].name][config.sums[n].field]);
-                                        sums[config.groups[j].name][config.sums[n].field]=0;
-                                    }
-                                }
-                                dataTmp.push(tmpRow);
-                                groups[config.groups[j].name]=group;
-                            }
-                        }else{
-                            var tmpRow={};
-                            groups[config.groups[j].name]=group
-                            if(config.groups[j].type=='header'){
-                                tmpRow[config.groups[j].fieldPosition]=groups[config.groups[j].name];
-                                dataTmp.push(tmpRow);
-                            }
-
-                        }
-                        for(var n=0;n<config.sums.length;n++){
-                            sums[config.groups[j].name][config.sums[n].field]+=parseFloat(data[k][config.sums[n].field]);
-
-                        }
-                    }
-                    dataTmp.push(data[k]);
-                }
-                for(var j=0;j<config.groups.length;j++){
-                    var prefix=config.groups[j].groupPrefix || '';
-                    var field=config.groups[j].fieldPosition || config.groups[j].field;
-                    if(config.groups[j].type=='header') continue;
-                    tmpRow={};
-                    tmpRow[field]=prefix+groups[config.groups[j].name];
-                    tmpRow.class=config.groups[j].name;
-                    for(var n=0;n<config.sums.length;n++){
-                        tmpRow[config.sums[n].field]=sums[config.groups[j].name][config.sums[n].field].toFixed(2);
-                    }
-                    dataTmp.push(tmpRow);
-                }
-
-                return dataTmp;
-            }
+            var dataRows = $scope.reportData;
             createPages($scope.reportConfig);
-            //print();
+            print();
             function createPages(config) {
                 var perfTime = new Date().getTime();
                 var pages = [];

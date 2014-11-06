@@ -2,7 +2,7 @@
     <md-content class="reports-navigator" flex="20">
         <div class="reports" ng-class="{true:'selected'}[$parent.selectedReport==$index]"
              data-ng-repeat="item in reports" ink-ripple
-             ng-click="$parent.selectedReport=$index;$parent.currentReport=item">
+             ng-click="$parent.selectedReport=$index;$parent.currentReport=item;data=null">
             {{item.label|translate}}
             <i ng-class="{true:'fa fa-angle-right'}[$parent.selectedReport==$index]"></i>
         </div>
@@ -30,7 +30,22 @@
                        input-model="filterData['dateTo']" input-name="dateTo" class="input-full-width"
                        input-label="{{'Date to'|translate}}" input-required="1">
             </div>
-            <md-button class="md-raised md-primary" aria-label="print" ng-click="getReport()">Print</md-button>
+            <md-button class="md-raised md-primary" aria-label="print" ng-click="getReport()">Get data</md-button>
+
         </form>
+        <div class="print-preview md-whiteframe-z1" ng-show="data" >
+            <md-button class="md-raised md-primary" aria-label="print" ng-click="printReport()">Print</md-button>
+            <table>
+                <tr>
+                    <th data-ng-repeat="field in currentReport.fields">{{field.label}}</th>
+                </tr>
+                <tr data-ng-repeat="row in data">
+
+                    <td data-ng-repeat="field in currentReport.fields">
+                        {{row[field.name]}}
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>
