@@ -1,13 +1,14 @@
-<div class="resources" ng-controller="resourcesCalculationsPageController">
-    <div class="resourcesNavigator col-lg-2">
+<div class="resources" ng-controller="resourcesCalculationsPageController" layout="horizontal">
+    <md-content class="resourcesNavigator" flex="20">
         <div class="resource " ng-class="{true:'selected'}[$parent.selectedResource==$index]"
-             data-ng-repeat="item in resources"
+             data-ng-repeat="item in resources" ink-ripple
              ui-sref="retail.resources.resource({resource:item.resource})"
              ng-click="$parent.selectedResource=$index">
             {{item.name|translate}}
             <i ng-class="{true:'fa fa-angle-right'}[$parent.selectedResource==$index]"></i>
+            <div class="md-ripple-container"></div>
         </div>
-    </div>
-    <div ui-view class="col-lg-10">
+    </md-content>
+    <div ui-view flex>
     </div>
 </div>

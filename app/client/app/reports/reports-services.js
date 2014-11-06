@@ -1,12 +1,12 @@
 define([
 ], function () {
     var module = angular.module('app.reports.services', []);
-    module.factory('reportService',function($q, $http,toasterService){
+    module.factory('reportService',function($q, $http,toasterService,configService){
         this.getReport=function(filters,report){
             $('.loading-animation').fadeIn();
             var deferred = $q.defer(),
                 start = new Date().getTime();
-            var reportUrl="http://localhost/finansii/api/public/reports/"+report;
+            var reportUrl=configService.resourseUrl+"reports/"+report;
             $http({
                 url: reportUrl,
                 params:filters,

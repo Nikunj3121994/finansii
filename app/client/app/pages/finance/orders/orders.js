@@ -93,11 +93,11 @@ define([], function () {
             });
         }
 
-    }).factory('ordersService', ["$q", "$http" , function ($q, $http) {
+    }).factory('ordersService', ["$q", "$http","configService" , function ($q, $http,configService) {
             this.saveOrder = function (data) {
                 var deferred = $q.defer();
 
-                var url = "http://localhost/finansii/api/public/orders";
+                var url =configService.resourseUrl+"orders";
                 $http({
                     url: url,
                     data: data,
@@ -120,7 +120,7 @@ define([], function () {
             this.editOrder = function (data,id) {
                 var deferred = $q.defer();
 
-                var url = "http://localhost/finansii/api/public/orders/"+id;
+                var url = configService.resourseUrl+"orders/"+id;
                 $http({
                     url: url,
                     data: data,
@@ -143,7 +143,7 @@ define([], function () {
             this.archiveOrder = function (orderId,companyCode) {
                 var deferred = $q.defer();
 
-                var url = "http://localhost/finansii/api/public/archive-ledgers";
+                var url = configService.resourseUrl+"archive-ledgers";
                 $http({
                     url: url,
                     data: {orderId:orderId,companyCode:companyCode},

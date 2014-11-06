@@ -10,7 +10,17 @@ header('Access-Control-Allow-Origin: *');
 | and give it the Closure to execute when that URI is requested.
 |
 */
+Route::post('upload',function(){
+        $file            = Input::file('file');
+        $destinationPath = public_path();
+        $filename        = $file->getClientOriginalName();
+        $uploadSuccess   = $file->move($destinationPath, $filename);
 
+
+
+    return $uploadSuccess;
+
+});
 Route::get('/', function()
 {
     $url = 'http://localhost:59135/api/pravniLica';
