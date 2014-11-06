@@ -1,8 +1,13 @@
 .reports-container{
+  min-height:100%;
   .reports-navigator{
-    margin-top: 19px;
-    padding: 0;
+    min-height:100%;
+    background: #fff;
+    border-right:#ccc solid 1px;
+    border-bottom: #ccc solid 3px;
+    padding: 0;;
     .reports{
+      position:relative;
       padding: 10px;
       cursor:pointer;
       i{
@@ -14,12 +19,14 @@
       background: #e0dee5;
     }
     .reports.selected{
-      background: #4390df ;
-      color: #fff;
+      background: #EAF4FF;
+      font-weight: bold;
+      color:#4285f4;
     }
 
   }
   .filtersForm{
-    margin: 20px;
+    margin: 10px;
+    padding: 10px;
   }
 }

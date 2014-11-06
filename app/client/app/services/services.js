@@ -5,7 +5,8 @@ define([
     'services/data/resource-service',
     'services/data/autocomplete-service',
     'services/data/summary-service',
-    'services/auth/auth-service'
+    'services/auth/auth-service',
+    'services/data/reports-service'
 ],function(){
     return angular.module('app.services',[
         'app.services.ui.navigation',
@@ -14,6 +15,7 @@ define([
         'app.services.data.resources',
         'app.services.autocomplete',
         'app.services.summary',
-        'app.services.auth'
+        'app.services.auth',
+        'app.services.reports'
     ]);
 });

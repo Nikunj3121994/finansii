@@ -7,6 +7,12 @@ md-input-group.long > input{
 .md-input-group, md-input-group{
   margin: 0 5px 0 0;
 }
+section.main-container .input-full-width .full-width {
+  width:100%;
+}
+section.main-container .input-full-width .col-8-width {
+  width:66%;
+}
 section.main-container .custom-date {
   position: relative;
   .datepicker-holder {

@@ -1,29 +1,36 @@
-<div class="reports-container" ng-controller="reportsFinanceController">
-    <div class="reports-navigator col-lg-2">
+<div class="reports-container" ng-controller="reportsFinanceController" layout="horizontal">
+    <md-content class="reports-navigator" flex="20">
         <div class="reports" ng-class="{true:'selected'}[$parent.selectedReport==$index]"
-             data-ng-repeat="item in reports"
+             data-ng-repeat="item in reports" ink-ripple
              ng-click="$parent.selectedReport=$index;$parent.currentReport=item">
             {{item.label|translate}}
             <i ng-class="{true:'fa fa-angle-right'}[$parent.selectedReport==$index]"></i>
         </div>
-    </div>
-    <div class="col-lg-10">
-        <form name="filtersForm" class="filtersForm">
-            <input custom-auto-complete input-model="filterData['companies']" input-name="companyCode" resource="companies"
-                   field="company_name" input-label="{{'Company'|translate}}" input-required="1">
-            <input ng-if="currentReport.filters.indexOf('orderFrom')>-1" custom-spinner
-                   input-model="filterData['orderFrom']" input-name="orderFrom"
-                   input-label="{{'Order from'|translate}}" input-required="1">
-            <input ng-if="currentReport.filters.indexOf('orderTo')>-1" custom-spinner
-                   input-model="filterData['orderTo']" input-name="orderTo"
-                   input-label="{{'Order to'|translate}}" input-required="1">
-            <input ng-if="currentReport.filters.indexOf('dateFrom')>-1" custom-date
-                   input-model="filterData['dateFrom']" input-name="dateFrom"
-                   input-label="{{'Date from'|translate}}" input-required="1">
-            <input ng-if="currentReport.filters.indexOf('dateTo')>-1" custom-date
-                   input-model="filterData['dateTo']" input-name="dateTo"
-                   input-label="{{'Date to'|translate}}" input-required="1">
+    </md-content>
+    <div flex >
+        <form name="filtersForm" class="filtersForm md-whiteframe-z1" >
+            <div layout="horizontal">
+                <input flex="33" class="input-full-width" custom-auto-complete input-model="filterData['companies']"
+                       input-name="companyCode" resource="companies"
+                       field="company_name" input-label="{{'Company'|translate}}" input-required="1">
+            </div>
+            <div layout="horizontal">
+                <input offset-sm="33" flex="33" ng-if="currentReport.filters.indexOf('orderFrom')>-1" custom-spinner
+                       input-model="filterData['orderFrom']" input-name="orderFrom" class="input-full-width"
+                       input-label="{{'Order from'|translate}}" input-required="1">
+                <input flex="33" ng-if="currentReport.filters.indexOf('orderTo')>-1" custom-spinner
+                       input-model="filterData['orderTo']" input-name="orderTo" class="input-full-width"
+                       input-label="{{'Order to'|translate}}" input-required="1">
+            </div>
+            <div layout="horizontal">
+                <input offset-sm="33" flex="33" ng-if="currentReport.filters.indexOf('dateFrom')>-1" custom-date
+                       input-model="filterData['dateFrom']" input-name="dateFrom" class="input-full-width"
+                       input-label="{{'Date from'|translate}}" input-required="1">
+                <input flex="33" ng-if="currentReport.filters.indexOf('dateTo')>-1" custom-date
+                       input-model="filterData['dateTo']" input-name="dateTo" class="input-full-width"
+                       input-label="{{'Date to'|translate}}" input-required="1">
+            </div>
+            <md-button class="md-raised md-primary" aria-label="print" ng-click="getReport()">Print</md-button>
         </form>
-        <button class="info" ng-click="getReport()">Print</button>
     </div>
 </div>
