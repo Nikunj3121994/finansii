@@ -1,6 +1,6 @@
 define([
 ], function () {
-    var module = angular.module('app.services.reports', []);
+    var module = angular.module('app.services.data.reports', []);
     module.factory('reportService',function($q, $http,toasterService,configService){
         this.getReport=function(filters,report){
             $(configService.loading).fadeIn();

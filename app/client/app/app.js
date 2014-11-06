@@ -18,10 +18,10 @@ define([
     'pages/signin/signin',
     'pages/signup/signup',
 
-    'forms/grid/grid',
-    'forms/summary/summary',
-    'forms/inputs/custom-dependency-input',
-    'forms/inputs/custom-dropdown',
+    'components/grid/grid',
+    'components/summary/summary',
+    'components/inputs/custom-dependency-input',
+    'components/inputs/custom-dropdown',
 
     'reports/reports',
 
@@ -50,10 +50,10 @@ define([
             'app.pages.login',
             'app.pages.register',
 
-            'app.forms.grid',
-            'app.forms.summary',
-            'app.forms.inputs.dependency',
-            'app.forms.inputs.dropdown',
+            'app.components.grid',
+            'app.components.summary',
+            'app.components.inputs.dependency',
+            'app.components.inputs.dropdown',
 
 
             'app.reports',

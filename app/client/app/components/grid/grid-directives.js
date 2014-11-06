@@ -1,21 +1,21 @@
 define([
-    'forms/inputs/custom-text-input',
-    'forms/inputs/custom-date',
-    'forms/inputs/custom-spinner',
-    'forms/inputs/custom-auto-complete'
+    'components/inputs/custom-text-input',
+    'components/inputs/custom-date',
+    'components/inputs/custom-spinner',
+    'components/inputs/custom-auto-complete'
 ], function () {
     /**
      * @ngdoc overview
      * @name grid.module:directives
      * @module grid
      * @description Module that wraps all directives the are used in the grid
-     * @requires app.forms.inputs.customtext
+     * @requires app.components.inputs.customtext
      */
-    var module = angular.module("app.forms.grid.directives", [
-        "app.forms.inputs.customText",
-        "app.forms.inputs.customDate",
-        "app.forms.inputs.customSpinner",
-        'app.forms.inputs.customAutoComplete',
+    var module = angular.module("app.components.grid.directives", [
+        "app.components.inputs.customText",
+        "app.components.inputs.customDate",
+        "app.components.inputs.customSpinner",
+        'app.components.inputs.customAutoComplete',
         "ui.mask"
     ]);
 
@@ -72,7 +72,7 @@ define([
         return {
             restrict: 'E',
             controller: 'gridController',
-            templateUrl: "app/forms/grid/views/grid.html",
+            templateUrl: "app/components/grid/views/grid.html",
             scope: isolatedScope,
             link: link
         }
@@ -99,7 +99,7 @@ define([
         return {
             restrict: 'EA',
             link: link,
-            templateUrl: 'app/forms/grid/views/grid-row.html'
+            templateUrl: 'app/components/grid/views/grid-row.html'
         }
     });
 
@@ -132,7 +132,7 @@ define([
 
         return {
             restrict: 'EA',
-            templateUrl: 'app/forms/grid/views/grid-head.html',
+            templateUrl: 'app/components/grid/views/grid-head.html',
             link: link
         }
     });
@@ -141,7 +141,7 @@ define([
     module.directive('gridActions', function () {
         return {
             restrict: 'E',
-            templateUrl: 'app/forms/grid/views/grid-actions.html'
+            templateUrl: 'app/components/grid/views/grid-actions.html'
         }
     });
 
@@ -235,7 +235,7 @@ define([
             restrict: 'EA',
             link: link,
             controller: 'formController',
-            templateUrl: 'app/forms/grid/views/grid-form.html'
+            templateUrl: 'app/components/grid/views/grid-form.html'
         }
     });
     module.directive('customFormInline', function ($compile) {
@@ -304,7 +304,7 @@ define([
             restrict: 'EA',
             link: link,
             controller: 'formController',
-            templateUrl: 'app/forms/grid/views/grid-form-inline.html',
+            templateUrl: 'app/components/grid/views/grid-form-inline.html',
             replace:true
         }
     });

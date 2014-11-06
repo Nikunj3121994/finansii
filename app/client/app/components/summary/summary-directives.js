@@ -2,9 +2,9 @@ define([], function() {
     /**
      * @ngdoc directive
      * @description Module that wraps all directives the are used in the grid
-     * @name app.forms.grid.module:directives
+     * @name app.components.grid.module:directives
      */
-    var module = angular.module('app.forms.summary.directives', []);
+    var module = angular.module("app.components.summary.directives", []);
 
     module.directive('summary', function ($compile) {
         var scope = {
@@ -24,7 +24,7 @@ define([], function() {
             scope: scope,
             link: link,
             controller: 'summaryController',
-            templateUrl: 'app/forms/summary/views/summary.html'
+            template:'app/components/summary/views/summary.html'
         }
     });
 

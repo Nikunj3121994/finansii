@@ -1,5 +1,5 @@
 define([], function() {
-    var module = angular.module("app.services.summary", []);
+    var module = angular.module("app.services.data.summary", []);
     module.factory('summaryService',function(){
         var formulas = {};
         formulas.resolveFloat=function(val){

@@ -3,16 +3,16 @@ define([
     /**
      * @ngdoc directive
      * @description module that wraps directives for form inputs
-     * @name app.forms.inputs.module:customText
+     * @name app.components.inputs.module:customText
      */
-    var module = angular.module("app.forms.inputs.dependency", [
+    var module = angular.module("app.components.inputs.dependency", [
         'ui.bootstrap.dateparser'
     ]);
 
     /**
      * @ngdoc directive
      * @description directive that creates custum input with all validation needed
-     * @name app.forms.inputs.customtext.directive:customInput
+     * components app.forms.inputs.customtext.directive:customInput
      */
     module.directive('customDependencyInline', function (summaryService) {
         function link($scope,element){
@@ -53,7 +53,7 @@ define([
                 dependencyWatch:"@"
             },
             replace: true,
-            templateUrl: 'app/Forms/Inputs/views/custom-text-input-inline.html',
+            templateUrl: 'app/components/inputs/views/custom-text-input-inline.html',
             link:link
         }
     });

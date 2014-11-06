@@ -1,6 +1,6 @@
 define([], function() {
 
-    var module = angular.module("app.forms.grid.filters", ['ui.bootstrap.dateparser']);
+    var module = angular.module("app.components.grid.filters", ['ui.bootstrap.dateparser']);
 
 
     module.filter('range', function () {

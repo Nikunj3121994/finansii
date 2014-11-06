@@ -6,16 +6,20 @@ define([
     'services/data/autocomplete-service',
     'services/data/summary-service',
     'services/auth/auth-service',
-    'services/data/reports-service'
+    'services/data/reports-service',
+    'services/documents/orders-service',
+    'services/documents/calculations-service'
 ],function(){
     return angular.module('app.services',[
         'app.services.ui.navigation',
         'app.services.ui.loading',
         'app.services.config',
         'app.services.data.resources',
-        'app.services.autocomplete',
-        'app.services.summary',
-        'app.services.auth',
-        'app.services.reports'
+        'app.services.data.autocomplete',
+        'app.services.data.summary',
+        'app.services.data.reports',
+        'app.services.documents.orders',
+        'app.services.documents.calculations',
+        'app.services.auth'
     ]);
 });

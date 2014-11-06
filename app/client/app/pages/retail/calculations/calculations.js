@@ -8,7 +8,7 @@ define([], function () {
             parent:'retail.start'
         };
         navigationService.addState(state,state.name,state.parent);
-        var state={
+        state={
             label:'Calculations Edit',
             name:'retail.calculationHeader.calculations',
             parent:'retail.calculationHeader'
@@ -85,7 +85,7 @@ define([], function () {
             $scope.calculationHeaderData={};
             $scope.calculationHeaderId=null;
             $scope.currentCalculationHeader=undefined;
-        }
+        };
         $scope.archiveCalculation=function(){
             calculationService.archiveCalculation($scope.calculationHeaderId).then(function(data){
                 if(data.code==0){
@@ -100,69 +100,5 @@ define([], function () {
         }
 
 
-    }).factory('calculationService', ["$q", "$http" , function ($q, $http) {
-            this.saveCalculation = function (data) {
-                var deferred = $q.defer();
-
-                var url = "http://localhost/finansii/api/public/calculation-headers";
-                $http({
-                    url: url,
-                    data: data,
-                    method: "POST"
-                })
-                    .success(function (data) {
-                        if (data.code) deferred.resolve(data);
-                        else deferred.resolve(data.body);
-                    })
-                    .error(function (data) {
-                        console.log("Error getting testform.json");
-                        deferred.reject("There was and error.");
-                    });
-
-                return deferred.promise;
-            };
-            this.editCalculation = function (data,id) {
-                var deferred = $q.defer();
-
-                var url = "http://localhost/finansii/api/public/calculation-headers/"+id;
-                $http({
-                    url: url,
-                    data: data,
-                    method: "PUT"
-                })
-                    .success(function (data) {
-                        if (data.code) deferred.resolve(data);
-                        else deferred.resolve(data.body);
-
-
-
-                    })
-                    .error(function (data) {
-                        console.log("Error getting testform.json");
-                        deferred.reject("There was and error.");
-                    });
-
-                return deferred.promise;
-            };
-            this.archiveCalculation = function (calculationHeaderId) {
-                var deferred = $q.defer();
-
-                var url = "http://localhost/finansii/api/public/archive-calculations";
-                $http({
-                    url: url,
-                    data: {calculationHeaderId:calculationHeaderId},
-                    method: "POST"
-                })
-                    .success(function (data) {
-                        deferred.resolve(data);
-                    })
-                    .error(function (data) {
-                        console.log("Error getting testform.json");
-                        deferred.reject("There was and error.");
-                    });
-
-                return deferred.promise;
-            };
-            return this;
-        }]);
+    });
 });

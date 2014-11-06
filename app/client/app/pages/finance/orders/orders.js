@@ -6,13 +6,13 @@ define([], function () {
             label:'Orders',
             name:'finance.orders',
             parent:'finance.start'
-        }
+        };
         navigationService.addState(state,state.name,state.parent);
-        var state={
+        state={
             label:'Order edit',
             name:'finance.orders.ledgers',
             parent:'finance.orders'
-        }
+        };
         navigationService.addState(state,state.name,state.parent);
     });
     module.controller('ordersController',function ($scope, ordersService,$state,$filter,toasterService) {
@@ -46,7 +46,7 @@ define([], function () {
                     $state.go('finance.orders.ledgers',{orderId:data.id,companyCode:$scope.orderData.companies.company_code});
 
                 });
-        }
+        };
         $scope.$watch('currentOrder',function(){
             if(_.isUndefined($scope.currentOrder)) return;
             $scope.orderData= $scope.currentOrder;
@@ -78,7 +78,7 @@ define([], function () {
             $state.go('finance.orders');
             $scope.orderData={};
             $scope.orderId=null;
-        }
+        };
         $scope.archiveOrder=function(){
             ordersService.archiveOrder($scope.orderData.id,$scope.orderData.companies.company_code).then(function(data){
                if(data.code==0){
@@ -93,72 +93,5 @@ define([], function () {
             });
         }
 
-    }).factory('ordersService', ["$q", "$http","configService" , function ($q, $http,configService) {
-            this.saveOrder = function (data) {
-                var deferred = $q.defer();
-
-                var url =configService.resourseUrl+"orders";
-                $http({
-                    url: url,
-                    data: data,
-                    method: "POST"
-                })
-                    .success(function (data) {
-                        if (data.code) deferred.resolve(data);
-                        else deferred.resolve(data.body);
-
-
-
-                    })
-                    .error(function (data) {
-                        console.log("Error getting testform.json");
-                        deferred.reject("There was and error.");
-                    });
-
-                return deferred.promise;
-            };
-            this.editOrder = function (data,id) {
-                var deferred = $q.defer();
-
-                var url = configService.resourseUrl+"orders/"+id;
-                $http({
-                    url: url,
-                    data: data,
-                    method: "PUT"
-                })
-                    .success(function (data) {
-                        if (data.code) deferred.resolve(data);
-                        else deferred.resolve(data.body);
-
-
-
-                    })
-                    .error(function (data) {
-                        console.log("Error getting testform.json");
-                        deferred.reject("There was and error.");
-                    });
-
-                return deferred.promise;
-            };
-            this.archiveOrder = function (orderId,companyCode) {
-                var deferred = $q.defer();
-
-                var url = configService.resourseUrl+"archive-ledgers";
-                $http({
-                    url: url,
-                    data: {orderId:orderId,companyCode:companyCode},
-                    method: "POST"
-                })
-                    .success(function (data) {
-                        deferred.resolve(data);
-                    })
-                    .error(function (data) {
-                        console.log("Error getting testform.json");
-                        deferred.reject("There was and error.");
-                    });
-
-                return deferred.promise;
-            };
-            return this;
-        }]);
+    })
 });

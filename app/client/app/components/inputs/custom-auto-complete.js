@@ -1,6 +1,6 @@
 define([
 ], function () {
-    var module = angular.module("app.forms.inputs.customAutoComplete",[
+    var module = angular.module("app.components.inputs.customAutoComplete",[
         'ui.bootstrap'
     ]);
     module.directive('customAutoComplete',function($timeout,autoCompleteService){
@@ -24,7 +24,7 @@ define([
                 resource:"@",
                 field:"@"
             },
-            templateUrl:'app/Forms/Inputs/views/custom-auto-complete.html',
+            templateUrl:'app/components/inputs/views/custom-auto-complete.html',
             replace: true,
             link:link
         }
@@ -68,7 +68,7 @@ define([
                 dependencyModel:"=?",
                 dependencyField:"@?"
             },
-            templateUrl:'app/Forms/Inputs/views/custom-auto-complete-inline.html',
+            templateUrl:'app/components/inputs/views/custom-auto-complete-inline.html',
             replace: true,
             link:link
         }

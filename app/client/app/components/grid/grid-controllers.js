@@ -6,7 +6,7 @@ define([], function () {
      * @description
      *  module that wraps all controlers needed for custum grid directive
      */
-    var module = angular.module("app.forms.grid.controllers", []);
+    var module = angular.module("app.components.grid.controllers", []);
 
 
     /**

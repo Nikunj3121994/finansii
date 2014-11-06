@@ -1,6 +1,6 @@
 define([
 ], function () {
-    var module = angular.module("app.forms.inputs.customDate", [
+    var module = angular.module("app.components.inputs.customDate", [
         'ui.bootstrap'
     ]);
 
@@ -32,7 +32,7 @@ define([
                 inline:"@?"
             },
             replace: true,
-            templateUrl: 'app/Forms/Inputs/views/custom-date.html'
+            templateUrl: 'app/components/inputs/views/custom-date.html'
         }
     });
     module.directive('customDateInline', function ($filter) {
@@ -63,7 +63,7 @@ define([
                 inline:"@?"
             },
             replace: true,
-            templateUrl: 'app/Forms/Inputs/views/custom-date-inline.html'
+            templateUrl:'app/components/inputs/views/custom-date-inline.html'
         }
     });
 

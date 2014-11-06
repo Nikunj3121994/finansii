@@ -1,10 +1,10 @@
 define([], function() {
     /**
      * @ngdoc controller
-     * @name app.forms.grid.module:controllers
+     * @name app.components.grid.module:controllers
      * @description module that wraps all controlers needed for custum grid directive
      */
-    var module = angular.module("app.forms.summary.controllers", []).controller('summaryController', function ($scope) {
+    var module = angular.module("app.components.summary.controllers", []).controller('summaryController', function ($scope) {
         $scope.formulas = {};
         $scope.formulas.sumColumn = function (args) {
             /*expectedObject

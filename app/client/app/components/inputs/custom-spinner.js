@@ -5,7 +5,7 @@ define([], function() {
      * @name inputs.module:customSpinner
      * @module inputs
      */
-    var module = angular.module("app.forms.inputs.customSpinner", []);
+    var module = angular.module("app.components.inputs.customSpinner", []);
 
     /**
      * @ngdoc directive
@@ -47,7 +47,7 @@ define([], function() {
                 inline:"@?"
             },
             replace: true,
-            templateUrl: 'app/Forms/Inputs/views/custom-spinner-input.html',
+            templateUrl: 'app/components/inputs/views/custom-spinner-input.html',
             link: link
         }
     });
@@ -84,7 +84,7 @@ define([], function() {
                 inline:"@?"
             },
             replace: true,
-            templateUrl: 'app/Forms/Inputs/views/custom-spinner-input-inline.html',
+            templateUrl:'app/components/inputs/views/custom-spinner-input-inline.html',
             link: link
         }
     });

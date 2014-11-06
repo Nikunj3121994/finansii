@@ -1,6 +1,6 @@
 define([
 ], function () {
-    var module = angular.module("app.forms.inputs.dropdown", [
+    var module = angular.module("app.components.inputs.dropdown", [
         'ngSanitize',
         'ui.select'
     ]);
@@ -38,7 +38,7 @@ define([
             },
             link:link,
             replace: true,
-            templateUrl: 'app/Forms/Inputs/views/custom-dropdown-inline.html'
+            templateUrl:'app/components/inputs/views/custom-dropdown-inline.html'
         }
     });
 })

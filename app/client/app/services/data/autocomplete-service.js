@@ -1,6 +1,6 @@
 define([
 ], function () {
-    var module = angular.module("app.services.autocomplete",[]);
+    var module = angular.module("app.services.data.autocomplete",[]);
     module.factory('autoCompleteService', ["$q", "$http" ,"toasterService","loadingService",'configService',
         function ($q, $http,toasterService,loadingService,configService) {
         this.getAutoCompleteData = function (resource,value,extraParams) {
