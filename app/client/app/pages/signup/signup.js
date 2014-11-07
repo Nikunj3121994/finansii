@@ -1,23 +1,23 @@
 define([], function () {
 
     var module = angular.module('app.pages.register', []);
-    module.run(function (navigationService) {
+    module.run(['navigationService', function (navigationService) {
         var state = {
             label: 'Sign Up',
             name: 'register',
             parent: null
         }
         navigationService.addState(state, state.name, state.parent);
-    });
-    module.controller('registerController', function ($scope, registerService, $http, $state, $rootScope) {
+    }]);
+    module.controller('registerController', ['$scope', 'registerService', '$http', '$state', '$rootScope', function ($scope, registerService, $http, $state, $rootScope) {
         $scope.registerModel={};
         $scope.register = function () {
             registerService.register($scope.registerModel).then(function (data) {
                 $state.go('dashboard');
             });
         }
-    });
-    module.factory('registerService', function (toasterService, $q, $http) {
+    }]);
+    module.factory('registerService', ['toasterService', '$q', '$http', function (toasterService, $q, $http) {
         this.register = function (data) {
             $('.loading-animation').fadeIn();
             var deferred = $q.defer();
@@ -49,5 +49,5 @@ define([], function () {
         };
 
         return this;
-    });
+    }]);
 });

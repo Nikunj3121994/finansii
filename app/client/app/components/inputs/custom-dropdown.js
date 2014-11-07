@@ -4,7 +4,7 @@ define([
         'ngSanitize',
         'ui.select'
     ]);
-    module.directive('customDropdownInline',function(jsonGridDataService,$sce){
+    module.directive('customDropdownInline',['jsonGridDataService', '$sce', function(jsonGridDataService,$sce){
         function link($scope){
             $scope.dropdown={};
             $scope.dropdown.data=[];
@@ -40,5 +40,5 @@ define([
             replace: true,
             templateUrl:'app/components/inputs/views/custom-dropdown-inline.html'
         }
-    });
+    }]);
 })

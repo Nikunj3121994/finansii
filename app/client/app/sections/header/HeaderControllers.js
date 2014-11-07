@@ -1,7 +1,7 @@
 define([], function() {
     var module = angular.module('app.sections.header.controllers', []);
 
-    module.controller('headerController',function ($scope,$rootScope,$state,navigationService,authService,$translate) {
+    module.controller('headerController',['$scope', '$rootScope', '$state', 'navigationService', 'authService', '$translate', function ($scope,$rootScope,$state,navigationService,authService,$translate) {
         $scope.languages={
             'mk':{
             name:'MK',
@@ -42,7 +42,7 @@ define([], function() {
             });
         };
 
-    });
+    }]);
     module.directive('customHeader', function () {
         return {
             restrict: 'EA',

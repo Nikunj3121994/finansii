@@ -50,7 +50,7 @@ define([], function() {
         }
     });
 
-    module.filter('customDate', function ($filter,dateParser) {
+    module.filter('customDate', ['$filter', 'dateParser', function ($filter,dateParser) {
         return function (item, format) {
             try{
                 var model=dateParser.parse(item.split(' ')[0],"yyyy-MM-dd");
@@ -65,7 +65,7 @@ define([], function() {
 
 
         }
-    });
+    }]);
 
     return module;
 });

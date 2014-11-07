@@ -5,7 +5,7 @@ define([], function() {
      * Main controller for side navigation
      * @controller
      */
-    module.controller('navigationController', function ($scope) {
+    module.controller('navigationController', ['$scope', function ($scope) {
         $scope.demoData = [
             {
                 name: "Dashboard",
@@ -41,7 +41,7 @@ define([], function() {
                 iconClass: "frown-o"
             }
         ];
-    });
+    }]);
 
     return module;
 });

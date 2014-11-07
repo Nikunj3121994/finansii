@@ -1,5 +1,5 @@
 define([],function(){
-   return angular.module('app.services.auth',[]).factory('authService',function($q,$http,toasterService,configService){
+   return angular.module('app.services.auth',[]).factory('authService',['$q', '$http', 'toasterService', 'configService', function($q,$http,toasterService,configService){
        this.login=function(username,password){
            $('.loading-animation').fadeIn();
            var deferred = $q.defer();
@@ -60,5 +60,5 @@ define([],function(){
        };
        return this;
 
-    });
+    }]);
 });

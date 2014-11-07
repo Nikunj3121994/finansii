@@ -139,7 +139,7 @@ define([
             }
 
         }]);
-        app.factory('httpRequestInterceptor', function ($injector,$rootScope) {
+        app.factory('httpRequestInterceptor', ['$injector', '$rootScope', function ($injector,$rootScope) {
             return {
 
                 response:function(response){
@@ -156,7 +156,7 @@ define([
                     }
                 }
             };
-        });
+        }]);
 
     return app;
 });

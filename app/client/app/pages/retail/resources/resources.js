@@ -1,7 +1,7 @@
 define([], function() {
 
         var module=angular.module('app.pages.retail.resources',[]);
-        module.run(function(navigationService){
+        module.run(['navigationService', function(navigationService){
             var state={
                 label:'Resources',
                 name:'retail.resources',
@@ -14,10 +14,10 @@ define([], function() {
                 parent:'retail.start'
             }
             navigationService.addState(state,state.name,state.parent);
-        });
-        module.controller('resourcesCalculationsPageController',function($scope){
+        }]);
+        module.controller('resourcesCalculationsPageController',['$scope', function($scope){
             $scope.selectedResource=-1;
-        })
+        }])
         module.directive('resourcesCalculationsPage',function(){
             function link($scope){
                     $scope.resources=[{

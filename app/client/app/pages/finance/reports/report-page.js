@@ -1,13 +1,13 @@
 define([], function () {
     var module = angular.module('app.pages.finance.reports', []);
-    module.run(function(navigationService){
+    module.run(['navigationService', function(navigationService){
         var state={
             label:'Reports',
             name:'finance.reports',
             parent:'finance.start'
         }
         navigationService.addState(state,state.name,state.parent);
-    });
+    }]);
     module.controller('reportsFinanceController', ['$scope', 'reportService', '$compile', '$filter', 'toasterService'
         , function ($scope, reportService, $compile, $filter, toasterService) {
             var reportCache={};

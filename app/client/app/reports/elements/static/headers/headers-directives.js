@@ -2,7 +2,7 @@ define([
 ], function () {
     var module = angular.module("app.reports.elements.headers.directives", []);
 
-    module.directive('reportHeader', function ($compile) {
+    module.directive('reportHeader', ['$compile', function ($compile) {
         function link($scope,element){
             element.find('.js_company_code').text($scope.header.company_code);
             element.find('.js_company_name').text($scope.header.company_name);
@@ -38,7 +38,7 @@ define([
                     + '         </div>',
             link:link
         }
-    });
+    }]);
 
     return module;
 });

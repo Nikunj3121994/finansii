@@ -1,6 +1,6 @@
 define([], function () {
     var module = angular.module('app.pages.finance', []);
-    module.config(function($stateProvider){
+    module.config(['$stateProvider', function($stateProvider){
         $stateProvider.state('finance', {
             url: '/finance',
             abstract: true,
@@ -22,9 +22,9 @@ define([], function () {
             url:'/:resource',
             template:'<custom-grid grid-resource="{{resource}}"></custom-grid>',
 
-            controller:function($scope,$stateParams){
+            controller:['$scope', '$stateParams', function($scope,$stateParams){
                 $scope.resource=$stateParams.resource;
-            }
+            }]
         }).state('finance.orders',{
             url:'/orders',
             templateUrl:'app/pages/finance/orders/orders.html'
@@ -32,24 +32,24 @@ define([], function () {
             url:'/:companyCode/:orderId',
             template:'<custom-grid grid-resource="ledgers" grid-params="params"></custom-grid>',
 
-            controller:function($scope,$stateParams){
+            controller:['$scope', '$stateParams', function($scope,$stateParams){
                 $scope.params={
                     order_id:$stateParams.orderId,
                     company_code:$stateParams.companyCode
                 };
-            }
+            }]
         }).state('finance.reports',{
             url:'/reports',
             templateUrl:'app/pages/finance/reports/reports.html'
         })
-    });
-    module.run(function(navigationService){
+    }]);
+    module.run(['navigationService', function(navigationService){
         var state={
             label:'Finance',
             name:'finance.start',
             parent:'dashboard'
         };
         navigationService.addState(state,state.name,state.parent);
-    });
+    }]);
     return module;
 });

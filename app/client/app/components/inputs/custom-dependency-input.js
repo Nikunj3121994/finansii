@@ -14,7 +14,7 @@ define([
      * @description directive that creates custum input with all validation needed
      * components app.forms.inputs.customtext.directive:customInput
      */
-    module.directive('customDependencyInline', function (summaryService) {
+    module.directive('customDependencyInline', ['summaryService', function (summaryService) {
         function link($scope,element){
             var numberTest = /^(-?(\d+\.\d+|\d+|\d+\.|\.\d+)|-)$/;
             var mathFunction=JSON.parse($scope.mathFunction);
@@ -56,6 +56,6 @@ define([
             templateUrl: 'app/components/inputs/views/custom-text-input-inline.html',
             link:link
         }
-    });
+    }]);
     return module;
 });

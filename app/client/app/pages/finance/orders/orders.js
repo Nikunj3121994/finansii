@@ -1,7 +1,7 @@
 define([], function () {
 
     var module = angular.module('app.pages.finance.orders', []);
-    module.run(function(navigationService){
+    module.run(['navigationService', function(navigationService){
         var state={
             label:'Orders',
             name:'finance.orders',
@@ -14,8 +14,8 @@ define([], function () {
             parent:'finance.orders'
         };
         navigationService.addState(state,state.name,state.parent);
-    });
-    module.controller('ordersController',function ($scope, ordersService,$state,$filter,toasterService) {
+    }]);
+    module.controller('ordersController',['$scope', 'ordersService', '$state', '$filter', 'toasterService', function ($scope, ordersService,$state,$filter,toasterService) {
         $scope.defaultOptions = {
             permissions: {
                 search: true,
@@ -93,5 +93,5 @@ define([], function () {
             });
         }
 
-    })
+    }])
 });

@@ -6,7 +6,7 @@ define([], function() {
      */
     var module = angular.module("app.components.summary.directives", []);
 
-    module.directive('summary', function ($compile) {
+    module.directive('summary', ['$compile', function ($compile) {
         var scope = {
             data: '=',
             calculations: '='
@@ -26,7 +26,7 @@ define([], function() {
             controller: 'summaryController',
             template:'app/components/summary/views/summary.html'
         }
-    });
+    }]);
 
 
     return module;

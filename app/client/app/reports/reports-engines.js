@@ -97,61 +97,7 @@ define([
         }
     });
 
-
-    module.directive('dynamicPages1', function () {
-        function link($scope, element) {
-            var perfTime = new Date().getTime();
-            var dataRows = [];
-            for (var i = 0; i < 10000; ++i) {
-                dataRows[i] = [];
-                for (var j = 0; j < 5; ++j) {
-                    dataRows[i][j] = Math.random();
-                }
-            }
-            var initContainer = $('.init-container')[0];
-            React.renderComponent(
-                INTGRIDRENDERER({data: dataRows}),
-                initContainer
-            );
-            var rowStack = $(initContainer).find('tr');
-            console.log('INIT Done in', new Date().getTime() - perfTime);
-            renderPages();
-            console.log('FINISHED in', new Date().getTime() - perfTime);
-            var rowStack = $(initContainer).find('tr');
-            console.log('INIT Done in', new Date().getTime() - perfTime);
-            renderPages();
-            console.log('FINISHED in', new Date().getTime() - perfTime);
-            function renderPages() {
-                var printContainer = $('.print-viewport')[0];
-                var pageDiv = $('<div class="print-page">page</div>');
-                var pageRowHeight = 0;
-                var pageRowStack = [];
-                for (var i = 0; i < rowStack.length; i++) {
-                    var currentRowHeight = rowStack[i].offsetHeight;
-                    if (pageRowHeight + currentRowHeight > 600) {
-                        var tmpPage = pageDiv.clone()[0];
-                        console.log(tmpPage);
-                        React.renderComponent(
-                            INTGRIDRENDERER({data: pageRowStack}),
-                            tmpPage
-                        );
-                        pageRowStack = [];
-                        printContainer.appendChild(tmpPage);
-                    }
-                    pageRowStack.push(dataRows[i]);
-                }
-
-            }
-        }
-
-        return {
-            restrict: 'A',
-            link: link
-        }
-    });
-
-
-    module.directive('dynamicReport', function ($compile,$filter) {
+    module.directive('dynamicReport', ['$compile', '$filter', function ($compile,$filter) {
         function link($scope, element) {
             var printConfig=function(config,scope){
                 var tmp={};
@@ -293,9 +239,9 @@ define([
                 header:"="
             }
         }
-    });
+    }]);
 
-    module.directive('onRowsRendered', function ($timeout) {
+    module.directive('onRowsRendered', ['$timeout', function ($timeout) {
         function link($scope, element, attrs) {
             if ($scope.$last) {
                 $timeout(function() {
@@ -308,7 +254,7 @@ define([
             restrict: 'A',
             link: link
         }
-    });
+    }]);
 
     return module;
 });
