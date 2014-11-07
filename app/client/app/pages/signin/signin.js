@@ -1,15 +1,15 @@
 define([], function () {
 
     var module = angular.module('app.pages.login', []);
-    module.run(function(navigationService){
+    module.run(['navigationService', function(navigationService){
         var state={
             label:'Sign in',
             name:'login',
             parent:null
         }
         navigationService.addState(state,state.name,state.parent);
-    });
-    module.controller('loginController',function($scope,authService,$http,$state,$rootScope){
+    }]);
+    module.controller('loginController',['$scope', 'authService', '$http', '$state', '$rootScope', function($scope,authService,$http,$state,$rootScope){
 
         $scope.login=function(){
             authService.login($scope.username,$scope.password).then(function(data){
@@ -19,6 +19,6 @@ define([], function () {
                 else $state.go('dashboard');
             });
         }
-    });
+    }]);
 
 });

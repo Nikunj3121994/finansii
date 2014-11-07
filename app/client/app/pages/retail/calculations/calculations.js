@@ -1,7 +1,7 @@
 define([], function () {
 
     var module = angular.module('app.pages.retail.calculations', []);
-    module.run(function(navigationService){
+    module.run(['navigationService', function(navigationService){
         var state={
             label:'Calculations',
             name:'retail.calculationHeader',
@@ -14,8 +14,8 @@ define([], function () {
             parent:'retail.calculationHeader'
         };
         navigationService.addState(state,state.name,state.parent);
-    });
-    module.controller('calculationsController',function ($scope, calculationService,$state,$filter,toasterService) {
+    }]);
+    module.controller('calculationsController',['$scope', 'calculationService', '$state', '$filter', 'toasterService', function ($scope, calculationService,$state,$filter,toasterService) {
         $scope.defaultOptions = {
             permissions: {
                 search: true,
@@ -100,5 +100,5 @@ define([], function () {
         }
 
 
-    });
+    }]);
 });

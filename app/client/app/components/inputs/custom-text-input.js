@@ -52,7 +52,7 @@ define([
 
 
     //TODO DA SE VIDIT SO E SO TERMINAL RABOTAVA
-    module.directive("dynamicName", function ($compile) {
+    module.directive("dynamicName", ['$compile', function ($compile) {
         return {
             restrict: "A",
             terminal: true,
@@ -66,7 +66,7 @@ define([
                 }
             }
         };
-    });
+    }]);
 
     module.directive('notificationMessages', function () {
 
@@ -96,7 +96,7 @@ define([
             link: link
         }
     });
-    module.directive('customMask', function ($filter, dateParser) {
+    module.directive('customMask', ['$filter', 'dateParser', function ($filter, dateParser) {
         function link($scope, element, attr, ctrl) {
             $scope.maskedValue = "";
             $scope.value = "";
@@ -263,11 +263,11 @@ define([
             require: '?ngModel',
             link: link
         }
-    });
+    }]);
 
 
     /* ng-pattern fix, problems with ui-mask */
-    module.directive('customPattern', function ($filter) {
+    module.directive('customPattern', ['$filter', function ($filter) {
         function link($scope, element, attr, ngModelCtrl) {
             var regex = new RegExp(attr['customPattern']);
             $scope.$watch(attr.ngModel, function (newValue, oldValue) {
@@ -283,6 +283,6 @@ define([
             require: '?ngModel',
             link: link
         }
-    });
+    }]);
     return module;
 });

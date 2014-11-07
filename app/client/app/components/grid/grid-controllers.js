@@ -18,7 +18,7 @@ define([], function () {
      * @requires ng.$filter
      * @description used for handling the resuouce that fills the grid, pagination, selection of rows
      */
-    module.controller("gridController", function ($scope, $http, $filter, jsonGridDataService) {
+    module.controller("gridController", ['$scope', '$http', '$filter', 'jsonGridDataService', function ($scope, $http, $filter, jsonGridDataService) {
         jsonGridDataService.getConfig($scope.gridResource,$scope.gridParams).then(function (data) {
             $scope.config = data;
             $scope.dataChangeTag = !$scope.dataChangeTag;
@@ -97,7 +97,7 @@ define([], function () {
             }
         );
 
-    })
+    }])
 
 
     /**
@@ -107,7 +107,7 @@ define([], function () {
      * @description controller that handles action made on the form, binding the data from the form and saving data
      */
 
-    module.controller("formController", function controller($scope, jsonGridDataService,$filter) {
+    module.controller("formController", ['$scope', 'jsonGridDataService', '$filter', function controller($scope, jsonGridDataService,$filter) {
         var formName = $scope.gridOptions.formName;
         $scope.setFormData = function () {
             $scope.formData = {};
@@ -220,7 +220,7 @@ define([], function () {
             }
             return -1;
         }
-    });
+    }]);
 
     return module;
 });

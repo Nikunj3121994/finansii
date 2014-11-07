@@ -1,6 +1,6 @@
 define([], function () {
     var module = angular.module('app.services.data.reports', []);
-    module.factory('reportService',function($q, $http,toasterService,configService){
+    module.factory('reportService',['$q', '$http', 'toasterService', 'configService', function($q, $http,toasterService,configService){
         this.getReport=function(filters,report){
             $(configService.loading).fadeIn();
             var deferred = $q.defer(),
@@ -486,7 +486,7 @@ define([], function () {
             ];
         };
         return this;
-    });
+    }]);
 
     return module;
 });

@@ -5,7 +5,7 @@ define([
     ]);
 
 
-    module.directive('customDate', function ($filter) {
+    module.directive('customDate', ['$filter', function ($filter) {
         function link($scope, element, attr) {
             /* Binded text input model and bootstrap datePicker model
              * text input - parsedModel - string
@@ -34,8 +34,8 @@ define([
             replace: true,
             templateUrl: 'app/components/inputs/views/custom-date.html'
         }
-    });
-    module.directive('customDateInline', function ($filter) {
+    }]);
+    module.directive('customDateInline', ['$filter', function ($filter) {
         function link($scope, element, attr) {
             /* Binded text input model and bootstrap datePicker model
              * text input - parsedModel - string
@@ -65,7 +65,7 @@ define([
             replace: true,
             templateUrl:'app/components/inputs/views/custom-date-inline.html'
         }
-    });
+    }]);
 
 
     // Novi funkcii za dodavanje na denoj na datum

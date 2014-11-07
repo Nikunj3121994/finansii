@@ -97,7 +97,7 @@ define([
         }
     });
 
-    module.directive('dynamicReport', function ($compile,$filter) {
+    module.directive('dynamicReport', ['$compile', '$filter', function ($compile,$filter) {
         function link($scope, element) {
             var printConfig=function(config,scope){
                 var tmp={};
@@ -239,9 +239,9 @@ define([
                 header:"="
             }
         }
-    });
+    }]);
 
-    module.directive('onRowsRendered', function ($timeout) {
+    module.directive('onRowsRendered', ['$timeout', function ($timeout) {
         function link($scope, element, attrs) {
             if ($scope.$last) {
                 $timeout(function() {
@@ -254,7 +254,7 @@ define([
             restrict: 'A',
             link: link
         }
-    });
+    }]);
 
     return module;
 });

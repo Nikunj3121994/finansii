@@ -96,7 +96,135 @@ module.exports = function (grunt) {
         ngdocs: {
             all: ['client/app/**/*.js']
         },
+        /*==== BEGIN Production Tasks ==== */
 
+        ngAnnotate: {
+            options: {
+                singleQuotes: true
+            },
+            main: {
+                src: ['client/app/**/*.js']
+            }
+        },
+        requirejs: {
+            compile: {
+                options: {
+                    baseUrl: "client/app",
+                    mainConfigFile: "client/app/main-production.js",
+                    name: 'main-production',
+                    out: "production/app.min.js"
+                }
+            }
+        },
+        ngtemplates: {
+            app: {
+                cwd: 'client',
+                src: 'app/**/*.html',
+                dest: 'client/app/templates.js',
+                options: {
+                    htmlmin: {collapseWhitespace: true, removeComments: true},
+                    bootstrap: function (module, script) {
+                        return 'define([], function() { return angular.module("app").run(["$templateCache", function($templateCache) { ' + script + ' }]) });';
+                    }
+                }
+            }
+        },
+        bower_concat: {
+            nonangular: {
+                dest: 'production/nonangular_bower.js',
+                include: [
+                    'jquery',
+                    'bootstrap',
+                    'lodash',
+                    'hammerjs'
+                ]
+            },
+            angular: {
+                dest: 'production/angular_bower.js',
+                include: [
+                    'angular',
+                    'angular-ui-router',
+                    'angular-ui-utils',
+                    'angular-ui-select',
+                    'angular-sanitize',
+                    'angular-aria',
+                    'angular-animate',
+                    'angular-material',
+                    'angular-loading-bar',
+                    'angular-bootstrap',
+                    'angular-translate',
+                    'angular-bindonce'
+                ]
+            },
+            css: {
+                cssDest: 'production/style/css_bower.css',
+                include: [
+                    'angular-material',
+                    'metro-ui-css',
+                    'selectize',
+                    'angular-ui-select',
+                    'font-awesome'
+                ]
+
+            }
+        },
+        clean: {
+            pre: ["production/*"],
+            post: ["client/app/templates.js"]
+        },
+        copy: {
+            target: {
+                files: [
+                    // includes files within path
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: ['client/bower_components/font-awesome/fonts/*'],
+                        dest: 'production/fonts/'
+                    },
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: ['client/bower_components/angular-material/themes/blue-theme.css'],
+                        dest: 'production/style/'
+                    },
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: ['client/bower_components/bootstrap/fonts/*'],
+                        dest: 'production/fonts/'
+                    },
+                    {expand: true, flatten: true, src: ['client/style/master.css'], dest: 'production/style/'},
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: ['client/bower_components/requirejs/require.js'],
+                        dest: 'production/'
+                    }
+                ]
+            }
+        },
+        processhtml: {
+            options: {
+                data: {
+                    version: new Date().getTime()
+                }
+            },
+            production: {
+                files: {
+                    'production/index.html': ['client/index.html']
+                }
+            }
+        },
+        git_deploy:{
+            production:{
+                options: {
+                    url: 'git@github.com:klimentLambevski/finansii-production.git'
+                },
+                src: 'production'
+            }
+        },
+        /*==== END Production tasks ====*/
 
 
         /*==== BEGIN Server config ====*/
@@ -150,5 +278,17 @@ module.exports = function (grunt) {
     ]);
     grunt.registerTask('docs', [
         'ngdocs'
+    ]);
+    grunt.registerTask('production', [
+        'sass:dist',
+        'clean:pre',
+        'ngAnnotate',
+        'ngtemplates',
+        'requirejs',
+        'bower_concat',
+        'processhtml',
+        'clean:post',
+        'copy',
+        'git_deploy'
     ]);
 };

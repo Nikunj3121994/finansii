@@ -4,7 +4,7 @@ define([], function() {
      * @name app.components.grid.module:controllers
      * @description module that wraps all controlers needed for custum grid directive
      */
-    var module = angular.module("app.components.summary.controllers", []).controller('summaryController', function ($scope) {
+    var module = angular.module("app.components.summary.controllers", []).controller('summaryController', ['$scope', function ($scope) {
         $scope.formulas = {};
         $scope.formulas.sumColumn = function (args) {
             /*expectedObject
@@ -60,7 +60,7 @@ define([], function() {
 
             return $scope.formulas[formula](funcArgs);
         }
-    });
+    }]);
     return module;
 });
 

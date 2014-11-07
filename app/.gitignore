@@ -1,5 +1,6 @@
 .sass-cache
 node_modules
 docs
+production
 
 client/bower_components

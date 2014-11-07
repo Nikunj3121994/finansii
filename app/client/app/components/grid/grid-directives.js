@@ -151,7 +151,7 @@ define([
      * @description directive fo creating custum dynamic form, filed with various types of inputs (text, date, auto complete)
      * @name grid.directive:custom-form
      */
-    module.directive('customForm', function ($compile) {
+    module.directive('customForm', ['$compile', function ($compile) {
         function link(scope, element, attrs) {
             var createContextGroup = function (header) {
                 var contextGroup = $('<div class="panel panel-info">');
@@ -237,8 +237,8 @@ define([
             controller: 'formController',
             templateUrl: 'app/components/grid/views/grid-form.html'
         }
-    });
-    module.directive('customFormInline', function ($compile) {
+    }]);
+    module.directive('customFormInline', ['$compile', function ($compile) {
         function link(scope, element, attrs) {
             scope.$watch('config', function () {
                 if (!(typeof scope.config === "undefined")) {
@@ -307,6 +307,6 @@ define([
             templateUrl: 'app/components/grid/views/grid-form-inline.html',
             replace:true
         }
-    });
+    }]);
     return module;
 });

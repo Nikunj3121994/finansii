@@ -3,7 +3,7 @@ define([
     var module = angular.module("app.components.inputs.customAutoComplete",[
         'ui.bootstrap'
     ]);
-    module.directive('customAutoComplete',function($timeout,autoCompleteService){
+    module.directive('customAutoComplete',['$timeout', 'autoCompleteService', function($timeout,autoCompleteService){
         function link($scope){
             $scope.getAutoCompleteData=function(val){
                return autoCompleteService.getAutoCompleteData($scope.resource,val).then(function(data){
@@ -28,8 +28,8 @@ define([
             replace: true,
             link:link
         }
-    });
-    module.directive('customAutoCompleteInline',function($timeout,autoCompleteService,$filter){
+    }]);
+    module.directive('customAutoCompleteInline',['$timeout', 'autoCompleteService', '$filter', function($timeout,autoCompleteService,$filter){
         function link($scope){
             $scope.dependencyValid=function(){
                 if(_.isUndefined($scope.dependencyModel) && !_.isUndefined($scope.dependencyField)){
@@ -72,7 +72,7 @@ define([
             replace: true,
             link:link
         }
-    });
+    }]);
     module.directive('autoCompleteModelCast',function(){
        function link($scope,element,attr,ngModelCtrl){
            ngModelCtrl.$formatters.unshift(function (modelValue) {
