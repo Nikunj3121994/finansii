@@ -1,5 +1,4 @@
 define([
-    'reports/reports-renderers',
     'reports/reports-engines',
 
     'reports/elements/static/headers/headers',
