@@ -34,7 +34,18 @@
 
         </form>
         <div class="print-preview md-whiteframe-z1" ng-show="data" >
-            <md-button class="md-raised md-primary" aria-label="print" ng-click="printReport()">Print</md-button>
+            <div layout="horizontal">
+                <div class="row" flex="60">
+                    <div class="col-lg-3" data-ng-repeat="field in currentReport.fields">
+                        <md-checkbox ng-model="field.visible" aria-label="columns" ng-init="field.visible=true">
+                            {{field.label|translate}}
+                        </md-checkbox>
+                    </div>
+                </div>
+                <div flex>
+                    <md-button class="md-raised md-primary" aria-label="print" ng-click="printReport()">Print</md-button>
+                </div>
+            </div>
             <table>
                 <tr>
                     <td data-ng-repeat="field in currentReport.fields">
@@ -46,7 +57,7 @@
                 </tr>
                 <tr data-ng-repeat="row in data">
 
-                    <td data-ng-repeat="field in currentReport.fields">
+                    <td data-ng-repeat="field in currentReport.fields|filter:{visible:true}:strict">
                         {{row[field.name]}}
                     </td>
                 </tr>

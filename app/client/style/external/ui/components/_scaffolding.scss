@@ -18,14 +18,6 @@ body {
     -moz-osx-font-smoothing: grayscale !important;
 }
 
-::selection {
-    background: $brand-primary;
-    color: $reverse;
-}
-::-moz-selection {
-    background: $brand-primary;
-    color: $reverse;
-}
 
 span.block {
     display: block;
