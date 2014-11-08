@@ -48,12 +48,12 @@
             </div>
             <table>
                 <tr>
+                    <th data-ng-repeat="field in currentReport.fields" translate>{{field.label}}</th>
+                </tr>
+                <tr>
                     <td data-ng-repeat="field in currentReport.fields">
                         <md-text-float label="Filter" ></md-text-float>
                     </td>
-                </tr>
-                <tr>
-                    <th data-ng-repeat="field in currentReport.fields">{{field.label}}</th>
                 </tr>
                 <tr data-ng-repeat="row in data">
 
