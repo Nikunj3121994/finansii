@@ -37,6 +37,11 @@
             <md-button class="md-raised md-primary" aria-label="print" ng-click="printReport()">Print</md-button>
             <table>
                 <tr>
+                    <td data-ng-repeat="field in currentReport.fields">
+                        <md-text-float label="Filter" ></md-text-float>
+                    </td>
+                </tr>
+                <tr>
                     <th data-ng-repeat="field in currentReport.fields">{{field.label}}</th>
                 </tr>
                 <tr data-ng-repeat="row in data">
