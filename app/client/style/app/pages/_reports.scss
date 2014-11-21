@@ -38,7 +38,7 @@
     table{
       width:100%;
       background: none;
-      tr:nth-child(2n) {
+      tr:nth-child(2n+1) {
         background: #EDEDED;
       }
       td{

@@ -14,10 +14,10 @@ class CreateCalculationDetailsTable extends Migration {
 	{
 		Schema::create('calculation_details', function(Blueprint $table)
 		{
-			$table->increments('id');
-			$table->integer('calculation_header_id')->unsigned()->index();
+			$table->string('id',36)->primary();
+			$table->string('calculation_header_id',36)->index();
 			$table->foreign('calculation_header_id')->references('id')->on('calculation_headers')->onDelete('cascade')->onUpdate('cascade');
-			$table->integer('article_id')->unsigned()->index();
+			$table->string('article_id',36)->index();
 			$table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade')->onUpdate('cascade');
 			$table->decimal('quantity', 15,4);
 			$table->decimal('rabat', 5,2);
@@ -31,7 +31,7 @@ class CreateCalculationDetailsTable extends Migration {
 			$table->decimal('price_output2',15,4);
 			$table->integer('tariff_code');
 			$table->string('debit_credit', 1);
-            $table->integer('user')->unsigned()->index();
+            $table->string('user',36)->index();
             $table->foreign('user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
 		});

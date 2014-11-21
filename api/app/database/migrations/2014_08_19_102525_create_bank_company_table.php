@@ -14,10 +14,10 @@ class CreateBankCompanyTable extends Migration {
 	{
 		Schema::create('bank_company', function(Blueprint $table)
 		{
-			$table->increments('id');
-			$table->integer('bank_id')->unsigned()->index();
+			$table->string('id',36)->primary();
+			$table->string('bank_id',36)->index();
 			$table->foreign('bank_id')->references('id')->on('banks')->onDelete('cascade')->onUpdate('cascade');
-			$table->integer('company_id')->unsigned()->index();
+			$table->string('company_id',36)->index();
 			$table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
             $table->string('bank_account',15);
             $table->integer('rang');

@@ -14,10 +14,10 @@ class CreateApplicationsTable extends Migration {
 	{
 		Schema::create('applications', function(Blueprint $table)
 		{
-			$table->increments('id');
+			$table->string('id',36)->primary();
 			$table->string('company_name', 50);
 			$table->integer('owner')->unsigned()->index();
-			$table->string('api_key', '50')->index();
+			$table->string('api_key', '36')->index()->unique();
 			$table->timestamps();
 		});
 	}

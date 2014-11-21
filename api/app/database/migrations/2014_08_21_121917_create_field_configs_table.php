@@ -14,8 +14,8 @@ class CreateFieldConfigsTable extends Migration {
     {
         Schema::create('field_configs', function(Blueprint $table)
         {
-            $table->increments('id');
-            $table->integer('field_id')->unsigned()->index();
+            $table->string('id',36)->primary();
+            $table->string('field_id',36)->index();
             $table->foreign('field_id')->references('id')->on('fields')->onDelete('cascade');
             $table->string('key');
             $table->string('value');

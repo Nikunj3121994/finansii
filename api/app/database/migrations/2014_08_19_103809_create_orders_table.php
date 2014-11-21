@@ -14,15 +14,15 @@ class CreateOrdersTable extends Migration {
 	{
 		Schema::create('orders', function(Blueprint $table)
 		{
-			$table->increments('id');
-			$table->integer('order_type')->unsigned()->index();
-            $table->foreign('order_type')->references('order_type')->on('order_types')->onDelete('cascade')->onUpdate('cascade');
+			$table->string('id',36)->primary();
+			$table->string('order_type',36)->index();
+            $table->foreign('order_type')->references('id')->on('order_types')->onDelete('cascade')->onUpdate('cascade');
 			$table->string('order_number',20);
 			$table->timestamp('order_date');
 			$table->timestamp('order_booking');
-			$table->integer('company_code')->unsigned()->index();
-            $table->foreign('company_code')->references('company_code')->on('companies')->onDelete('cascade')->onUpdate('cascade');
-            $table->integer('user')->unsigned()->index();
+			$table->string('company_code',36)->index();
+            $table->foreign('company_code')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('user')->index();
             $table->foreign('user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
 		});

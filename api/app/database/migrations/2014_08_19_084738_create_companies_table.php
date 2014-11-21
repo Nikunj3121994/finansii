@@ -14,16 +14,16 @@ class CreateCompaniesTable extends Migration {
 	{
 		Schema::create('companies', function(Blueprint $table)
 		{
-			$table->increments('id');
-			$table->integer('company_code')->unsigned()->index();
+			$table->string('id',36)->primary();
+			$table->integer('company_code');
 			$table->string('company_name', 70);
 			$table->string('company_short_name', 30);
 			$table->string('company_address', 50);
-			$table->integer('municipality_code')->unsigned()->index();
+			$table->string('municipality_code',36)->index();
 
-			$table->integer('settlement_code')->unsigned()->index();
+			$table->string('settlement_code',36)->index();
 
-			$table->integer('street_code')->unsigned()->index();
+			$table->string('street_code',36)->index();
 
 			$table->string('telephone1', 20);
 			$table->string('telephone2', 20);
@@ -35,7 +35,7 @@ class CreateCompaniesTable extends Migration {
 			$table->integer('id_number');
 			$table->string('tax_code', 30);
 			$table->string('tax_payer', 2);
-            $table->integer('user')->unsigned()->index();
+            $table->string('user',36)->index();
             $table->foreign('user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
 			$table->timestamps();
 		});

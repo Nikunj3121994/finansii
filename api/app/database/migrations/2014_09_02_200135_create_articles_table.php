@@ -14,14 +14,14 @@ class CreateArticlesTable extends Migration {
 	{
 		Schema::create('articles', function(Blueprint $table)
 		{
-			$table->increments('id');
+			$table->string('id',36)->primary();
 			$table->string('article_name', 60);
-			$table->integer('tariff_code')->unsigned()->index();
-			$table->foreign('tariff_code')->references('tariff_code')->on('tariffs')->onDelete('cascade')->onUpdate('cascade');
-			$table->integer('unit_id')->unsigned()->index();
+			$table->string('tariff_code',36)->index();
+			$table->foreign('tariff_code')->references('id')->on('tariffs')->onDelete('cascade')->onUpdate('cascade');
+			$table->string('unit_id',36)->index();
 			$table->foreign('unit_id')->references('id')->on('units');
 			$table->decimal('pack', 12,3);
-            $table->integer('user')->unsigned()->index();
+            $table->string('user',36)->index();
             $table->foreign('user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
 			$table->timestamps();
 		});

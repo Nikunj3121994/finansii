@@ -14,12 +14,12 @@ class CreateExchangeRatesTable extends Migration {
 	{
 		Schema::create('exchange_rates', function(Blueprint $table)
 		{
-			$table->increments('id');
+			$table->string('id',36)->primary();
 			$table->timestamp('exchange_date');
-			$table->integer('currency_code')->unsigned()->index();
+			$table->string('currency_code',36)->index();
             $table->foreign('currency_code')->references('id')->on('currencies')->onDelete('cascade')->onUpdate('cascade');
 			$table->decimal('currency_value', 12,6);
-            $table->integer('user')->unsigned()->index();
+            $table->string('user',36)->index();
             $table->foreign('user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
 			$table->timestamps();
 		});

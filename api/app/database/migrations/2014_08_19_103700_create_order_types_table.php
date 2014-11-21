@@ -14,8 +14,8 @@ class CreateOrderTypesTable extends Migration {
 	{
 		Schema::create('order_types', function(Blueprint $table)
 		{
-			$table->increments('id');
-			$table->integer('order_type')->unsigned()->index();
+            $table->string('id', 36)->primary();
+			$table->integer('order_type');
 			$table->string('order_desc', 50);
 			$table->timestamps();
 		});

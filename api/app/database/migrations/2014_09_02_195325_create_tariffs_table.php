@@ -14,8 +14,8 @@ class CreateTariffsTable extends Migration {
 	{
 		Schema::create('tariffs', function(Blueprint $table)
 		{
-			$table->increments('id');
-			$table->integer('tariff_code')->unsigned()->index();
+			$table->string('id',36)->primary();
+			$table->integer('tariff_code');
 			$table->string('tariff_rate', 5);
 			$table->string('tariff_name', 30);
 			$table->timestamps();

@@ -14,11 +14,11 @@ class CreateUsersTable extends Migration {
 	{
 		Schema::create('users', function(Blueprint $table)
 		{
-			$table->increments('id');
+			$table->string('id',36)->primary();
             $table->string('username',255);
             $table->string('email',255);
             $table->string('password',255);
-            $table->string('application','50')->index();
+            $table->string('application','36')->index();
             $table->foreign('application')->references('api_key')->on('applications')->onDelete('cascade')->onUpdate('cascade');
 			$table->timestamps();
 		});

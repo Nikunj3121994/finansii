@@ -14,8 +14,8 @@ class CreateCalculationTypesTable extends Migration {
 	{
 		Schema::create('calculation_types', function(Blueprint $table)
 		{
-			$table->increments('id');
-			$table->integer('calculation_type_code')->unsigned()->index();
+			$table->string('id',36)->primary();
+			$table->integer('calculation_type_code');
 			$table->string('calculation_type_name', 50);
 			$table->timestamps();
 		});

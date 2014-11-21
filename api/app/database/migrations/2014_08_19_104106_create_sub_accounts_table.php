@@ -14,8 +14,8 @@ class CreateSubAccountsTable extends Migration {
 	{
 		Schema::create('sub_accounts', function(Blueprint $table)
 		{
-			$table->increments('id');
-			$table->integer('sub_account_code')->unsigned()->index();
+			$table->string('id',36)->primary();
+			$table->integer('sub_account_code');
 			$table->string('sub_account_name', 50);
 			$table->string('sub_account_table',20);
 			$table->timestamps();

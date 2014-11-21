@@ -14,15 +14,15 @@ class CreateBusinessUnitsTable extends Migration {
 	{
 		Schema::create('business_units', function(Blueprint $table)
 		{
-			$table->increments('id');
-			$table->integer('company_code')->unsigned()->index();
-			$table->foreign('company_code')->references('company_code')->on('companies')->onDelete('cascade')->onUpdate('cascade');
+			$table->string('id',36)->primary();
+			$table->string('company_code',36)->index();
+			$table->foreign('company_code')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
 			$table->integer('business_unit_code');
 			$table->string('business_unit_name', 50);
 			$table->integer('business_unit_type');
 			$table->string('business_unit_account', 50);
 			$table->string('business_unit_address', 50);
-            $table->integer('user')->unsigned()->index();
+            $table->string('user',36)->index();
             $table->foreign('user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
 			$table->timestamps();
 		});

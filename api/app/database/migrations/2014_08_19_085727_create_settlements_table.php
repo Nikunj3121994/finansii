@@ -14,12 +14,12 @@ class CreateSettlementsTable extends Migration {
 	{
 		Schema::create('settlements', function(Blueprint $table)
 		{
-			$table->increments('id');
-			$table->integer('settlement_code')->unsigned()->index();
+			$table->string('id',36)->primary();
+			$table->integer('settlement_code');
 			$table->string('settlement_name', 100);
 			$table->integer('ptt_code');
-			$table->integer('municipality_code')->unsigned()->index();
-            $table->foreign('municipality_code')->references('municipality_code')->on('municipalities')->onDelete('cascade')->onUpdate('cascade');
+			$table->string('municipality_code',36)->index();
+            $table->foreign('municipality_code')->references('id')->on('municipalities')->onDelete('cascade')->onUpdate('cascade');
 			$table->timestamps();
 		});
 	}
