@@ -21,14 +21,14 @@ class Ledger extends \Eloquent {
         })->select("users.id as uid",$tableName.".*");
     }
     public function company(){
-        return $this->belongsTo('Company','company_code','company_code');
+        return $this->belongsTo('Company','company_code','id');
     }
 
     public function order(){
         return $this->belongsTo('Order','order_id','id');
     }
     public function accounts(){
-        return $this->belongsTo('Account','account','account');
+        return $this->belongsTo('Account','account','id');
     }public function subAccount(){
         return $this->belongsTo('SubAccount','sub_account','id');
     }

@@ -20,7 +20,7 @@ class CalculationHeader extends \Eloquent {
         return $this->belongsTo('BusinessUnit','business_unit_id','id');
     }
     public function partners(){
-        return $this->belongsTo('Partner','partner_code','partner_code');
+        return $this->belongsTo('Partner','partner_code','id');
     }
     public function calculationTypes(){
         return $this->belongsTo('CalculationType','calculation_type_code','calculation_type_code');

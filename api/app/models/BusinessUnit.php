@@ -14,6 +14,6 @@ class BusinessUnit extends \Eloquent {
         })->select("users.id as uid",$tableName.".*");
     }
     public function companies(){
-        return $this->belongsTo('Company','company_code','company_code');
+        return $this->belongsTo('Company','company_code','id');
     }
 }

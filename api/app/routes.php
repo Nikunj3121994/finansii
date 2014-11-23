@@ -23,21 +23,7 @@ Route::post('upload',function(){
 });
 Route::get('/', function()
 {
-    $url = 'http://localhost:59135/api/pravniLica';
-    $data = array('key1' => 'value1', 'key2' => 'value2');
-
-// use key 'http' even if you send the request to https://...
-    $options = array(
-        'http' => array(
-            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-            'method'  => 'POST',
-            'content' => http_build_query($data),
-        ),
-    );
-    $context  = stream_context_create($options);
-    $result = file_get_contents($url, false, $context);
-
-    return $result;
+    return UUID::v4();
 });
 Route::controller('config', 'ConfigController');
 Route::controller('admin', 'UserManagementController');

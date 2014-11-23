@@ -124,7 +124,8 @@ return array(
         'Tappleby\AuthToken\AuthTokenServiceProvider',
         'Way\Generators\GeneratorsServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
-        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider'
+        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+        'Nathanmac\GUID\GUIDServiceProvider'
 	),
 
 	/*

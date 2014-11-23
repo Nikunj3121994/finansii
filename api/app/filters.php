@@ -106,3 +106,9 @@ Route::filter('app', function()
     $user=Auth::user();
     Input::merge(array('user'=>$user->id));
 });
+
+Route::filter('create', function()
+{
+    $user=Auth::user();
+    Input::merge(array('user'=>$user->id));
+});

@@ -23,13 +23,13 @@ class Company extends \Eloquent {
         })->select("users.id as uid",$tableName.".*");
     }
     public function municipalities(){
-        return $this->belongsTo('Municipality','municipality_code','municipality_code');
+        return $this->belongsTo('Municipality','municipality_code','id');
     }
     public function settlements(){
-        return $this->belongsTo('Settlement','settlement_code','settlement_code');
+        return $this->belongsTo('Settlement','settlement_code','id');
     }
     public function streets(){
-        return $this->belongsTo('Street','street_code','street_code');
+        return $this->belongsTo('Street','street_code','id');
     }
     public function banks(){
         return $this->belongsToMany('Bank')->withPivot('bank_account','rang');

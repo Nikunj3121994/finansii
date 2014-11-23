@@ -12,7 +12,7 @@ class Article extends \Eloquent {
         })->select("users.id as uid",$tableName.".*");
     }
     public function tariffs(){
-        return $this->belongsTo('Tariff','tariff_code','tariff_code');
+        return $this->belongsTo('Tariff','tariff_code','id');
     }
 
     public function units(){
