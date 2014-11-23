@@ -2,7 +2,7 @@
 
 class ArchiveLedger extends \Eloquent {
 	protected $fillable = array(
-        'company_code','order_id','account','sub_account',
+        'id','company_code','order_id','account','sub_account',
         'date','document_number','document_desc','document_date',
         'booking_type','amount','currency_code','amount_currency','user'
     );

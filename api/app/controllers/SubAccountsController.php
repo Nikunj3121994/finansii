@@ -2,6 +2,10 @@
 
 class SubAccountsController extends \BaseController {
 
+    public function __construct()
+    {
+        $this->beforeFilter('create', array('on' => 'store') );
+    }
     public function pluralToSingular($string){
         $pluralPrefix = substr($string, -3);
         if($pluralPrefix=="ies") return substr_replace($string,"",-3);

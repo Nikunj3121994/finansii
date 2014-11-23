@@ -1,7 +1,7 @@
 <?php
 
 class ExchangeRate extends \Eloquent {
-    protected $fillable = array('exchange_date','currency_code','currency_value','user');
+    protected $fillable = array('id','exchange_date','currency_code','currency_value','user');
     protected $visible = array('id','exchange_date','currency_code','currency_value','currencies');
     public function scopeApp($query){
         $user=Auth::getUser();

@@ -14,7 +14,7 @@ class CreateFormConfigsTable extends Migration {
 	{
 		Schema::create('form_configs', function(Blueprint $table)
 		{
-            $table->string('id',36)->primary();
+            $table->increments('id');
             $table->string('name');
             $table->integer('edit');
             $table->integer('delete');

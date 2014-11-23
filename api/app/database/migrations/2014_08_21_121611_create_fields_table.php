@@ -14,14 +14,14 @@ class CreateFieldsTable extends Migration {
     {
         Schema::create('fields', function(Blueprint $table)
         {
-            $table->string('id',36)->primary();
+            $table->increments('id');
             $table->string('name',50);
             $table->string('label',50);
             $table->boolean('visible');
             $table->string('type',20);
             $table->integer('edit');
             $table->boolean('required');
-            $table->string('form_config_id',36)->index();
+            $table->integer('form_config_id')->index();
             $table->foreign('form_config_id')->references('id')->on('form_configs')->onDelete('cascade');
             $table->timestamps();
         });

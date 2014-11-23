@@ -23,7 +23,7 @@ Route::post('upload',function(){
 });
 Route::get('/', function()
 {
-    return UUID::v4();
+    return User::find('45f1076d-6866-40d2-a06f-045b4e2a227f');
 });
 Route::controller('config', 'ConfigController');
 Route::controller('admin', 'UserManagementController');

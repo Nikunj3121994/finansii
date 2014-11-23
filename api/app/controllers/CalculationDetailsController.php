@@ -2,6 +2,10 @@
 
 class CalculationDetailsController extends \BaseController {
 
+    public function __construct()
+    {
+        $this->beforeFilter('create', array('on' => 'store') );
+    }
 	/**
 	 * Display a listing of the resource.
 	 * GET /calculationdetails

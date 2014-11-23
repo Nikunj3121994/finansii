@@ -2,6 +2,10 @@
 
 class MunicipalitiesController extends \BaseController {
 
+    public function __construct()
+    {
+        $this->beforeFilter('create', array('only' => 'store') );
+    }
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -39,6 +43,7 @@ class MunicipalitiesController extends \BaseController {
             "municipality_name" => "required",
             "municipality_id" => "numeric",
         ));
+        Log::info(Input::all());
         if($validator->fails()){
             return ProcessResponse::getError( 1000,$validator->messages());
         }else{

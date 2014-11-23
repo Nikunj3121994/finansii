@@ -2,7 +2,7 @@
 
 class Company extends \Eloquent {
 	protected $fillable = array(
-        'company_code','company_name','company_short_name',
+        'id','company_code','company_name','company_short_name',
         'company_address','municipality_code','settlement_code',
         'street_code','telephone1','telephone2','fax','mail','owner',
         'authorized','activity','id_number','tax_code','tax_payer','user'

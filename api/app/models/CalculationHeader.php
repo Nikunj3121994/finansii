@@ -1,7 +1,7 @@
 <?php
 
 class CalculationHeader extends \Eloquent {
-	protected $fillable = array('business_unit_id','calculation_number','document_number','partner_code',
+	protected $fillable = array('id','business_unit_id','calculation_number','document_number','partner_code',
                                     'calculation_date','calculation_ddo','calculation_booked','currency_code',
                                         'currency_value','calculation_type_code','user');
     protected $visible = array('id','business_unit_id','calculation_number','document_number','partner_code',

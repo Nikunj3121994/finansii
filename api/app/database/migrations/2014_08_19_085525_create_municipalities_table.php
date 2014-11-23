@@ -17,7 +17,6 @@ class CreateMunicipalitiesTable extends Migration {
 			$table->string('id',36)->primary();
 			$table->integer('municipality_code');
 			$table->string('municipality_name',50);
-			$table->integer('municipality_id');
 			$table->timestamps();
 		});
 	}

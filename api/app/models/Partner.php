@@ -1,7 +1,7 @@
 <?php
 
 class Partner extends \Eloquent {
-	protected $fillable = array('partner_code','partner_name','partner_address','municipality_code',
+	protected $fillable = array('id','partner_code','partner_name','partner_address','municipality_code',
                                     'settlement_code','street_code','telephone1','telephone2','fax',
                                          'mail','owner','authorized','activity','id_number','tax_code','tax_payer','user');
     protected $visible = array('id','partner_code','partner_name','partner_address','municipality_code',

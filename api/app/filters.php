@@ -109,6 +109,5 @@ Route::filter('app', function()
 
 Route::filter('create', function()
 {
-    $user=Auth::user();
-    Input::merge(array('user'=>$user->id));
+    Input::merge(array('id'=>UUID::v4()));
 });
