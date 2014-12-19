@@ -12,6 +12,7 @@
     "async"      : "latest",
     "lodash"     : "latest",
     "knex"       : "latest",
-    "bookshelf"  : "latest"
+    "bookshelf"  : "latest",
+    "pg"         : "latest"
   }
 }
