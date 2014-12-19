@@ -1,0 +1,17 @@
+{
+  "name"         : "finance-api",
+  "version"      : "0.0.1",
+  "description"  : "Finance api",
+  "main"         : "server.js",
+  "author"       : "Kliment Lambevski",
+  "dependencies" : {
+    "express"    : "latest",
+    "request"    : "latest",
+    "cheerio"    : "latest",
+    "mongodb"    : "latest",
+    "async"      : "latest",
+    "lodash"     : "latest",
+    "knex"       : "latest",
+    "bookshelf"  : "latest"
+  }
+}
