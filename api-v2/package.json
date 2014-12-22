@@ -13,6 +13,9 @@
     "lodash"     : "latest",
     "knex"       : "latest",
     "bookshelf"  : "latest",
-    "pg"         : "latest"
+    "pg"         : "latest",
+    "node-uuid"  : "latest",
+    "body-parser": "latest",
+    "multer"     : "latest"
   }
 }

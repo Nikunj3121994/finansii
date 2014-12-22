@@ -1,14 +1,29 @@
 var invoice = {};
+var invoiceModel = require('../../models/trade/model-invoice.js');
 invoice.getAll = function(req,res){
-    res.json({type:'get all invosdfsdfice'});
+    new invoiceModel().fetchAll().then(function(m){
+        res.send(m)
+    });
+
 };
 invoice.getOne = function(req,res){
-    res.send(req.params.id);
+    invoiceModel.query('where','id','=',req.params.id).fetch().then(function(m){
+        res.send(m);
+    },function(err){
+        res.send({msg:'Бараниот податок не постои'});
+    });
 };
 invoice.save = function(req,res){
-    res.send('save');
+    invoiceModel.save(req.body).then(function(m){
+        res.send(m)
+    });
+
 };
 invoice.update = function(req,res){
-    res.send('update');
+    new invoiceModel({id: req.param.id}).save(req.params.body).then(function(m){
+        res.send(m);
+    },function(err){
+        res.send(err);
+    });
 };
 module.exports = invoice;
